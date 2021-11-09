@@ -7,6 +7,7 @@
     tools:context=".MainActivity"
     android:background="@drawable/road">
 
+    <!--Page Title-->
 <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -18,6 +19,7 @@
     android:layout_margin="50dp"
     android:gravity="center"/>
 
+    <!--Username Field-->
 <EditText
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -30,8 +32,11 @@
     android:layout_margin="10dp"
     android:padding="20dp"
     android:drawableLeft="@drawable/ic_baseline_person_outline_24"
-    android:drawablePadding="20dp"/>
+    android:drawablePadding="20dp"
+    android:maxLength="12"
+    android:maxLines="1"/>
 
+    <!--Password Field-->
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,8 +50,11 @@
         android:layout_margin="10dp"
         android:padding="20dp"
         android:drawableLeft="@drawable/ic_baseline_lock_24"
-        android:drawablePadding="20dp"/>
+        android:drawablePadding="20dp"
+        android:maxLength="16"
+        android:maxLines="1"/>
 
+    <!--Login Button-->
     <com.google.android.material.button.MaterialButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -57,7 +65,7 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"/>
 
-
+    <!--Forgot Password Link-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -70,23 +78,5 @@
         android:layout_margin="20dp"/>
 
 
-
-
-
-
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="113dp"
-        android:layout_marginBottom="350dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.397"
-        app:srcCompat="@drawable/draft_logo" />
 
 </RelativeLayout>
