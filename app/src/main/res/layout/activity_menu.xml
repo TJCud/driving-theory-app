@@ -22,16 +22,65 @@ android:id="@+id/welcome"
 android:layout_margin="50dp"
 android:gravity="center"/>
 
+
+    <!--Subtitle-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/choose"
+        android:id="@+id/subtitle"
         android:layout_below="@id/welcome"
         android:text="Please choose an activity"
         android:textColor="@color/white"
+        android:textSize="25dp"
         android:backgroundTint="@color/white"
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"/>
+
+
+    <!--Login Button-->
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/testbtn"
+        android:layout_below="@id/subtitle"
+        android:text="Take Mock Test"
+        android:textAlignment="center"
+        android:backgroundTint="@color/black"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"/>
+
+    <!--Login Button-->
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/accmgmtbtn"
+        android:layout_below="@id/testbtn"
+        android:text="Account Management"
+        android:backgroundTint="@color/black"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"/>
+
+    <!--Login Button-->
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/settingsbtn"
+        android:layout_below="@id/accmgmtbtn"
+        android:text="Settings"
+        android:backgroundTint="@color/black"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"/>
+
+    <!--Login Button-->
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/logoutbtn"
+        android:layout_below="@id/settingsbtn"
+        android:text="Log Out"
+        android:backgroundTint="@color/black"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"/>
 
 
 
