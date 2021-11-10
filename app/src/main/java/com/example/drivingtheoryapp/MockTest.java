@@ -11,6 +11,7 @@ import android.widget.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class MockTest extends AppCompatActivity {
 
@@ -59,7 +60,7 @@ public class MockTest extends AppCompatActivity {
 
         dfRbColor = rb1.getTextColors();
 
-
+        timer();
 
         addQuestions();
         totalQuestions = questionsList.size();
@@ -71,7 +72,7 @@ public class MockTest extends AppCompatActivity {
                 if (answered == false){
                     if(rb1.isChecked() || rb2.isChecked() || rb3.isChecked() || rb4.isChecked()){
                         checkAnswer();
-                        countDownTimer.cancel();
+                    //    countDownTimer.cancel();
                     } else {
                     Toast.makeText(MockTest.this, "Please select an option", Toast.LENGTH_SHORT).show();}
 
@@ -82,6 +83,10 @@ public class MockTest extends AppCompatActivity {
             }
         });
     }
+
+
+
+
 
     private void checkAnswer() {
         answered = true;
@@ -118,10 +123,10 @@ public class MockTest extends AppCompatActivity {
         } else{
             btnNext.setText("Finish");
         }
-
-
-
     }
+
+
+
 
     private void showNextQuestion() {
 
@@ -131,11 +136,8 @@ public class MockTest extends AppCompatActivity {
         rb3.setTextColor(dfRbColor);
         rb4.setTextColor(dfRbColor);
 
-
-
-
         if(qCounter < totalQuestions){
-            timer();
+          //  timer();
         currentQuestion = questionsList.get(qCounter);
         tvQuestion.setText(currentQuestion.getQuestion());
         rb1.setText(currentQuestion.getOption1());
@@ -153,11 +155,17 @@ public class MockTest extends AppCompatActivity {
         }
     }
 
+
+
+
     private void timer() {
-        countDownTimer = new CountDownTimer(21000,1000) {
+        countDownTimer = new CountDownTimer(3421000,1000) {
             @Override
-            public void onTick(long l) {
-                tvTimer.setText("00:" + l/1000);
+            public void onTick(long millisUntilFinished) {
+                tvTimer.setText(""+String.format("%d:%d",
+                        TimeUnit.MILLISECONDS.toMinutes( millisUntilFinished),
+                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
+                                TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
             }
 
             @Override
@@ -166,6 +174,8 @@ public class MockTest extends AppCompatActivity {
             }
         }.start();
     }
+
+
 
 
     private void addQuestions() {
