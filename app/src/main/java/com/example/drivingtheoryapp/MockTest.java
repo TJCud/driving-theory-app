@@ -15,6 +15,11 @@ import java.util.concurrent.TimeUnit;
 
 public class MockTest extends AppCompatActivity {
 
+    //VARIABLES
+
+    private QuestionModel currentQuestion;
+    private List<QuestionModel> questionsList;
+
     private TextView tvQuestion, tvOption, tvScore, tvQuestionNo, tvTimer;
     private RadioGroup radioGroup;
     private RadioButton rb1, rb2, rb3, rb4;
@@ -26,55 +31,54 @@ public class MockTest extends AppCompatActivity {
 
     ColorStateList dfRbColor;
     boolean answered;
-
     CountDownTimer countDownTimer;
 
 
-    private QuestionModel currentQuestion;
 
 
 
 
-  private List<QuestionModel> questionsList;
 
 
 
 
+    //WHEN MOCK TEST STARTS
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mock_test);
 
+        //LOAD QUESTIONS AND ANSWERS
         questionsList = new ArrayList<>();
         tvQuestion = findViewById(R.id.textQuestion);
         tvScore = findViewById(R.id.textScore);
         tvQuestionNo = findViewById(R.id.textQuestionNo);
         tvTimer = findViewById(R.id.textTimer);
-
         radioGroup = findViewById(R.id.radioGroup);
         rb1 = findViewById(R.id.rb1);
         rb2 = findViewById(R.id.rb2);
         rb3 = findViewById(R.id.rb3);
         rb4 = findViewById(R.id.rb4);
         btnNext = findViewById(R.id.btnNext);
-
         dfRbColor = rb1.getTextColors();
 
+        //BEGIN TIMER
         timer();
 
+        //DISPLAY QUESTIONS
         addQuestions();
         totalQuestions = questionsList.size();
         showNextQuestion();
 
+        //WHEN BUTTON IS CLICKED, CHECK TO SEE AN ANSWER HAS BEEN SELECTED
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (answered == false){
                     if(rb1.isChecked() || rb2.isChecked() || rb3.isChecked() || rb4.isChecked()){
                         checkAnswer();
-                    //    countDownTimer.cancel();
                     } else {
-                    Toast.makeText(MockTest.this, "Please select an option", Toast.LENGTH_SHORT).show();}
+                    Toast.makeText(MockTest.this, "Please select an answer", Toast.LENGTH_SHORT).show();}
 
                 } else {
                     showNextQuestion();
@@ -87,7 +91,7 @@ public class MockTest extends AppCompatActivity {
 
 
 
-
+    //FUNCTION TO CHECK ANSWER. IF CORRECT ADD ONE TO SCORE. DISPLAY CORRECT ANSWER AS GREEN TEXT AND INCORRECT ANSWERS AS RED TEXT
     private void checkAnswer() {
         answered = true;
         RadioButton rbSelected = findViewById(radioGroup.getCheckedRadioButtonId());
@@ -101,6 +105,7 @@ public class MockTest extends AppCompatActivity {
         rb2.setTextColor(Color.RED);
         rb3.setTextColor(Color.RED);
         rb4.setTextColor(Color.RED);
+
         switch (currentQuestion.getCorrectAnsNo()){
             case 1:
                 rb1.setTextColor(Color.GREEN);
@@ -113,9 +118,7 @@ public class MockTest extends AppCompatActivity {
                 break;
             case 4:
                 rb4.setTextColor(Color.GREEN);
-                break;
-
-        }
+                break; }
 
         if(qCounter < totalQuestions){
             btnNext.setText("Next");
@@ -127,7 +130,8 @@ public class MockTest extends AppCompatActivity {
 
 
 
-
+    //FUNCTION THAT CHECKS TO SEE IF QUESTION COUNTER HAS ELAPSED NUMBER OF QUESTIONS. IF IT HAS THEN END THE TEST.
+    // FUNCTION ALSO RESETS RADIO BUTTON COLOURS.
     private void showNextQuestion() {
 
         radioGroup.clearCheck();
@@ -137,7 +141,6 @@ public class MockTest extends AppCompatActivity {
         rb4.setTextColor(dfRbColor);
 
         if(qCounter < totalQuestions){
-          //  timer();
         currentQuestion = questionsList.get(qCounter);
         tvQuestion.setText(currentQuestion.getQuestion());
         rb1.setText(currentQuestion.getOption1());
@@ -157,7 +160,7 @@ public class MockTest extends AppCompatActivity {
 
 
 
-
+//TIMER FUNCTION
     private void timer() {
         countDownTimer = new CountDownTimer(3421000,1000) {
             @Override
@@ -177,7 +180,7 @@ public class MockTest extends AppCompatActivity {
 
 
 
-
+//LIST OF QUESTIONS
     private void addQuestions() {
         questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
         questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
