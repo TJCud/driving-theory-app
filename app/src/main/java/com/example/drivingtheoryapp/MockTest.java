@@ -88,8 +88,8 @@ public class MockTest extends AppCompatActivity {
         RadioButton rbSelected = findViewById(radioGroup.getCheckedRadioButtonId());
         int answerNo = radioGroup.indexOfChild(rbSelected) +1;
         if(answerNo == currentQuestion.getCorrectAnsNo()){
-score++;
-tvScore.setText("Score: " +score);
+        score++;
+        tvScore.setText("Score: " +score);
         }
 
         rb1.setTextColor(Color.RED);
@@ -135,7 +135,6 @@ tvScore.setText("Score: " +score);
 
 
         if(qCounter < totalQuestions){
-
             timer();
         currentQuestion = questionsList.get(qCounter);
         tvQuestion.setText(currentQuestion.getQuestion());
