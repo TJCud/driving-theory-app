@@ -154,7 +154,7 @@ public class MockTest extends AppCompatActivity {
     }
 
     private void timer() {
-        countDownTimer = new CountDownTimer(20000,1000) {
+        countDownTimer = new CountDownTimer(21000,1000) {
             @Override
             public void onTick(long l) {
                 tvTimer.setText("00:" + l/1000);
@@ -169,6 +169,50 @@ public class MockTest extends AppCompatActivity {
 
 
     private void addQuestions() {
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
         questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
         questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
         questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
