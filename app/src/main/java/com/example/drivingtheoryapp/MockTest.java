@@ -182,56 +182,13 @@ public class MockTest extends AppCompatActivity {
 
 //LIST OF QUESTIONS
     private void addQuestions() {
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
-        questionsList.add(new QuestionModel("Will I pass my driving test?","Yes","No","No","No",1));
+        questionsList.add(new QuestionModel("You see a pedestrian with a dog wearing a yellow or burgundy coat. what does this indicate? The pedestrian is:","Elderly","Dog training","Colourblind","Deaf",4));
+        questionsList.add(new QuestionModel("In which of these situations should you avoid overtaking?","Just after a bend","In a one-way street","On a 30 mph road","Approaching a dip in the road",4));
+        questionsList.add(new QuestionModel("At a puffin crossing, which colour follows the green signal?","Steady red","Flashing amber","Steady amber","Flashing green",3));
+        questionsList.add(new QuestionModel("What percentage of all emissions does road transport account for?","10%","20%","30%","40%",2));
+        questionsList.add(new QuestionModel("You're towing a small trailer on a busy three-lane motorway. All the lanes are open. You must:","Not exceed 50 mph","Not overtake","Have a stabiliser fitted","Use only the left and centre lanes",1));
+        questionsList.add(new QuestionModel("At an incident, it is important to look after any casualties. When the area is safe, you should:","Get them out of the vehicle","Give them a drink","Give them something to eat","Keep them in the vehicle",4));
+
 
     }
 }

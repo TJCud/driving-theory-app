@@ -19,6 +19,7 @@ public class Login extends AppCompatActivity {
         TextView password = (TextView) findViewById(R.id.password);
 
         Button loginbtn = (Button) findViewById(R.id.loginbtn);
+        Button registerbtn = (Button) findViewById(R.id.registerbtn);
 
         //admin and admin
 
@@ -40,12 +41,25 @@ public class Login extends AppCompatActivity {
         });
 
 
+        registerbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openRegister();
+            }
+        });
+
+
 
 
     }
 
     public void openMenu(){
         Intent intent = new Intent(this, Menu.class);
+        startActivity(intent);
+    }
+
+    public void openRegister(){
+        Intent intent = new Intent(this, SignUp.class);
         startActivity(intent);
     }
 }

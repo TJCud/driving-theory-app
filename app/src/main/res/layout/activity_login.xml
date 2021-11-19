@@ -21,61 +21,87 @@
 
     <!--Username Field-->
     <EditText
+        android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/username"
         android:layout_below="@id/signin"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:background="#30ffffff"
-        android:hint="Username"
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"
-        android:layout_margin="10dp"
-        android:padding="20dp"
         android:drawableLeft="@drawable/ic_baseline_person_outline_24"
         android:drawablePadding="20dp"
+        android:hint="@string/username"
         android:maxLength="12"
-        android:maxLines="1"/>
+        android:maxLines="1"
+        android:padding="20dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
 
     <!--Password Field-->
     <EditText
+        android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/password"
-        android:inputType="textPassword"
         android:layout_below="@id/username"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:background="#30ffffff"
-        android:hint="Password"
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"
-        android:layout_margin="10dp"
-        android:padding="20dp"
         android:drawableLeft="@drawable/ic_baseline_lock_24"
         android:drawablePadding="20dp"
+        android:hint="@string/password"
+        android:inputType="textPassword"
         android:maxLength="16"
-        android:maxLines="1"/>
+        android:maxLines="1"
+        android:padding="20dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
 
     <!--Login Button-->
-    <com.google.android.material.button.MaterialButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/loginbtn"
-        android:layout_below="@id/password"
-        android:text="Login"
-        android:backgroundTint="@color/black"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="20dp"/>
+
+    <!--Register Button-->
+
 
     <!--Forgot Password Link-->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/loginbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/password"
+        android:layout_margin="20dp"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@color/black"
+        android:text="Login" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/registerbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/password"
+        android:layout_margin="20dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginTop="34dp"
+
+        android:layout_toRightOf="@id/loginbtn"
+        android:backgroundTint="@color/black"
+        android:text="Register" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/forgotpass"
-        android:layout_below="@id/loginbtn"
+        android:layout_below="@id/registerbtn"
         android:text="Forgot Password?"
         android:textColor="@color/white"
         android:backgroundTint="@color/white"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"/>
+
+
+
 
 
 
