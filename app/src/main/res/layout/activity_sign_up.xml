@@ -21,7 +21,7 @@
 
     <!--Full Name Field-->
     <EditText
-        android:id="@+id/signupfullname"
+        android:id="@+id/fullname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/titlesignup"
@@ -31,7 +31,7 @@
         android:layout_marginBottom="10dp"
         android:background="#30ffffff"
         android:drawablePadding="20dp"
-        android:hint="Full Name"
+        android:hint="@string/fullname"
         android:maxLength="100"
         android:maxLines="1"
         android:padding="20dp"
@@ -40,17 +40,17 @@
 
     <!--Email Field-->
     <EditText
-        android:id="@+id/signupemail"
+        android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/signupfullname"
+        android:layout_below="@id/fullname"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:background="#30ffffff"
         android:drawablePadding="20dp"
-        android:hint="E-mail Address"
+        android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:maxLength="300"
         android:maxLines="1"
@@ -60,17 +60,17 @@
 
     <!--Username Field-->
     <EditText
-        android:id="@+id/signupusername"
+        android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/signupemail"
+        android:layout_below="@id/email"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:background="#30ffffff"
         android:drawablePadding="20dp"
-        android:hint="Username"
+        android:hint="@string/username"
         android:maxLength="16"
         android:maxLines="1"
         android:padding="20dp"
@@ -79,10 +79,10 @@
 
     <!--Password Field-->
     <EditText
-        android:id="@+id/signuppassword"
+        android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/signupusername"
+        android:layout_below="@id/username"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
@@ -103,19 +103,19 @@
     <com.google.android.material.button.MaterialButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/confirmregisterbtn"
-        android:layout_below="@id/signuppassword"
-        android:text="Register"
+        android:id="@+id/buttonSignUp"
+        android:layout_below="@id/password"
+        android:text="@string/register"
         android:backgroundTint="@color/black"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"/>
 
-    <!--Forgot Password Link-->
+    <!--Already Registered Link-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/LoginText"
-        android:layout_below="@id/confirmregisterbtn"
+        android:layout_below="@id/buttonSignUp"
         android:text="Already registered? Log In Here"
         android:textColor="@color/white"
         android:backgroundTint="@color/white"
@@ -127,7 +127,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        android:layout_below="@id/signuppassword"/>
+        android:layout_below="@id/password"/>
 
 
 

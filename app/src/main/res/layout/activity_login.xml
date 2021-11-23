@@ -11,11 +11,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sign in"
+        android:text="Sign In"
         android:textColor="@color/white"
         android:textSize="35dp"
         android:textStyle="bold"
-        android:id="@+id/signin"
+        android:id="@+id/signintext"
         android:layout_margin="50dp"
         android:gravity="center"/>
 
@@ -24,7 +24,7 @@
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/signin"
+        android:layout_below="@id/signintext"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
@@ -60,9 +60,6 @@
         android:textColor="@color/white"
         android:textColorHint="@color/white" />
 
-    <!--Login Button-->
-
-    <!--Register Button-->
 
 
     <!--Forgot Password Link-->
@@ -76,6 +73,9 @@
         android:backgroundTint="@color/black"
         android:text="Login" />
 
+
+
+    <!--Register Button-->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/registerbtn"
         android:layout_width="wrap_content"
@@ -89,6 +89,8 @@
         android:backgroundTint="@color/black"
         android:text="Register" />
 
+
+    <!--Login Button-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -21,27 +21,27 @@ public class SignUp extends AppCompatActivity {
     EditText EditTextFullname, EditTextUsername, EditTextPassword, EditTextEmail;
     Button buttonSingUp;
     TextView textViewLogin;
-    ProgressBar progressBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        EditTextUsername = findViewById(R.id.signupusername);
-        EditTextFullname = findViewById(R.id.signupfullname);
-        EditTextPassword = findViewById(R.id.signuppassword);
-        EditTextEmail = findViewById(R.id.signupemail);
+        EditTextUsername = findViewById(R.id.username);
+        EditTextFullname = findViewById(R.id.fullname);
+        EditTextPassword = findViewById(R.id.password);
+        EditTextEmail = findViewById(R.id.email);
 
-        buttonSingUp = findViewById(R.id.confirmregisterbtn);
+        buttonSingUp = findViewById(R.id.buttonSignUp);
         textViewLogin = findViewById(R.id.LoginText);
-        progressBar = findViewById(R.id.progress);
+
 
 
 
         buttonSingUp.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
 
                 String fullname, username, password, email;
                 fullname = String.valueOf(EditTextFullname.getText());
@@ -50,9 +50,6 @@ public class SignUp extends AppCompatActivity {
                 email = String.valueOf(EditTextEmail.getText());
 
                 if(!fullname.equals("") && !username.equals("") && !password.equals("") && !email.equals("")) {
-
-
-                    progressBar.setVisibility(View.VISIBLE);
                     Handler handler = new Handler(Looper.getMainLooper());
                     handler.post(new Runnable() {
                         @Override
@@ -66,14 +63,14 @@ public class SignUp extends AppCompatActivity {
                             field[3] = "email";
                             //Creating array for data
                             String[] data = new String[4];
-                            data[0] = "fullname";
-                            data[1] = "username";
-                            data[2] = "password";
-                            data[3] = "email";
+                            data[0] = fullname;
+                            data[1] = username;
+                            data[2] = password;
+                            data[3] = email;
                             PutData putData = new PutData("http://192.168.1.97/LoginRegister/signup.php", "POST", field, data);
                             if (putData.startPut()) {
                                 if (putData.onComplete()) {
-                                    progressBar.setVisibility(View.GONE);
+
                                     String result = putData.getResult();
                                     if (result.equals("Sign Up Success")) {
                                         Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
@@ -86,7 +83,7 @@ public class SignUp extends AppCompatActivity {
                                    Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
 
                             }
-                           
+
                         }}}
                     });
                 }
