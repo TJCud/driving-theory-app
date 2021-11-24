@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
+import java.util.Locale;
+
 public class Login extends AppCompatActivity {
 
     EditText EditTextUsername, EditTextPassword;
@@ -47,9 +49,12 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String username, password;
-                username = String.valueOf(EditTextUsername.getText());
+                String usernameraw, username, password;
+                usernameraw = String.valueOf(EditTextUsername.getText());
                 password = String.valueOf(EditTextPassword.getText());
+                username = usernameraw.toLowerCase();
+
+
 
 
                 if(!username.equals("") && !password.equals("")) {
@@ -57,6 +62,7 @@ public class Login extends AppCompatActivity {
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
+
                             //Starting Write and Read data with URL
                             //Creating array for parameters
                             String[] field = new String[2];

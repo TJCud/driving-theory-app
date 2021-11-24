@@ -43,11 +43,13 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String fullname, username, password, email;
+                String fullname, username, usernameraw, password, email;
                 fullname = String.valueOf(EditTextFullname.getText());
-                username = String.valueOf(EditTextUsername.getText());
+                usernameraw = String.valueOf(EditTextUsername.getText());
+                username = usernameraw.toLowerCase();
                 password = String.valueOf(EditTextPassword.getText());
                 email = String.valueOf(EditTextEmail.getText());
+
 
                 if(!fullname.equals("") && !username.equals("") && !password.equals("") && !email.equals("")) {
                     Handler handler = new Handler(Looper.getMainLooper());
