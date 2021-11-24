@@ -49,10 +49,12 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String usernameraw, username, password;
-                usernameraw = String.valueOf(EditTextUsername.getText());
+                String usernamerawdata, username, password;
+
+                //Takes value of usernamerawdata and converts to lower case
+                usernamerawdata = String.valueOf(EditTextUsername.getText());
                 password = String.valueOf(EditTextPassword.getText());
-                username = usernameraw.toLowerCase();
+                username = usernamerawdata.toLowerCase();
 
 
 

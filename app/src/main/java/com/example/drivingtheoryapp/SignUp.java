@@ -45,6 +45,8 @@ public class SignUp extends AppCompatActivity {
 
                 String fullname, username, usernameraw, password, email;
                 fullname = String.valueOf(EditTextFullname.getText());
+
+                //Takes value of usernamerawdata and converts to lower case
                 usernameraw = String.valueOf(EditTextUsername.getText());
                 username = usernameraw.toLowerCase();
                 password = String.valueOf(EditTextPassword.getText());
