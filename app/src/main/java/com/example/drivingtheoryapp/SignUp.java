@@ -12,8 +12,10 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.material.textfield.TextInputEditText;
+
+// Making HttpURLConnection faster, easy and secure. Best method to impliment httpurlconnection in android.
+// https://github.com/VishnuSivadasVS/Advanced-HttpURLConnection/
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
 public class SignUp extends AppCompatActivity {
@@ -71,7 +73,9 @@ public class SignUp extends AppCompatActivity {
                             data[1] = username;
                             data[2] = password;
                             data[3] = email;
+
                             PutData putData = new PutData("http://192.168.1.97/LoginRegister/signup.php", "POST", field, data);
+
                             if (putData.startPut()) {
                                 if (putData.onComplete()) {
 

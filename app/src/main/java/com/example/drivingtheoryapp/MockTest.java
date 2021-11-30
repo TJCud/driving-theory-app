@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -32,12 +31,6 @@ public class MockTest extends AppCompatActivity {
     ColorStateList dfRbColor;
     boolean answered;
     CountDownTimer countDownTimer;
-
-
-
-
-
-
 
 
 
