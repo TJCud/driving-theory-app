@@ -2,6 +2,7 @@ package com.example.drivingtheoryapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -19,7 +20,7 @@ public class MockTest extends AppCompatActivity {
     private QuestionModel currentQuestion;
     private List<QuestionModel> questionsList;
 
-    private TextView tvQuestion, tvOption, tvScore, tvQuestionNo, tvTimer;
+    private TextView tvQuestion, tvQuestionNo, tvTimer;
     private RadioGroup radioGroup;
     private RadioButton rb1, rb2, rb3, rb4;
     private Button btnNext;
@@ -44,7 +45,6 @@ public class MockTest extends AppCompatActivity {
         //LOAD QUESTIONS AND ANSWERS
         questionsList = new ArrayList<>();
         tvQuestion = findViewById(R.id.textQuestion);
-        tvScore = findViewById(R.id.textScore);
         tvQuestionNo = findViewById(R.id.textQuestionNo);
         tvTimer = findViewById(R.id.textTimer);
         radioGroup = findViewById(R.id.radioGroup);
@@ -91,33 +91,15 @@ public class MockTest extends AppCompatActivity {
         int answerNo = radioGroup.indexOfChild(rbSelected) +1;
         if(answerNo == currentQuestion.getCorrectAnsNo()){
         score++;
-        tvScore.setText("Score: " +score);
         }
 
-        rb1.setTextColor(Color.RED);
-        rb2.setTextColor(Color.RED);
-        rb3.setTextColor(Color.RED);
-        rb4.setTextColor(Color.RED);
-
-        switch (currentQuestion.getCorrectAnsNo()){
-            case 1:
-                rb1.setTextColor(Color.GREEN);
-                break;
-            case 2:
-                rb2.setTextColor(Color.GREEN);
-                break;
-            case 3:
-                rb3.setTextColor(Color.GREEN);
-                break;
-            case 4:
-                rb4.setTextColor(Color.GREEN);
-                break; }
 
         if(qCounter < totalQuestions){
-            btnNext.setText("Next");
+            showNextQuestion();
 
         } else{
-            btnNext.setText("Finish");
+            btnNext.setText("Results");
+            btnNext.setBackgroundColor(Color.parseColor("#00ff44"));
         }
     }
 
@@ -147,7 +129,8 @@ public class MockTest extends AppCompatActivity {
         answered = false;
 
         } else {
-            finish();
+
+            finishTest();
         }
     }
 
@@ -158,7 +141,7 @@ public class MockTest extends AppCompatActivity {
         countDownTimer = new CountDownTimer(3421000,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                tvTimer.setText(""+String.format("%d:%d",
+                tvTimer.setText(""+String.format("%02d:%02d",
                         TimeUnit.MILLISECONDS.toMinutes( millisUntilFinished),
                         TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
                                 TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
@@ -166,21 +149,26 @@ public class MockTest extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-            showNextQuestion();
+                finishTest();
             }
         }.start();
     }
 
-
+    //NAVIGATES TO RESULT SCREEN
+    public void finishTest(){
+        Intent intent = new Intent(this, MockTestResults.class);
+        intent.putExtra("TOTAL_QUESTIONS", totalQuestions);
+        intent.putExtra("SCORE", score);
+        startActivity(intent);
+    }
 
 //LIST OF QUESTIONS
     private void addQuestions() {
-        questionsList.add(new QuestionModel("You see a pedestrian with a dog wearing a yellow or burgundy coat. what does this indicate? The pedestrian is:","Elderly","Dog training","Colourblind","Deaf",4));
-        questionsList.add(new QuestionModel("In which of these situations should you avoid overtaking?","Just after a bend","In a one-way street","On a 30 mph road","Approaching a dip in the road",4));
-        questionsList.add(new QuestionModel("At a puffin crossing, which colour follows the green signal?","Steady red","Flashing amber","Steady amber","Flashing green",3));
-        questionsList.add(new QuestionModel("What percentage of all emissions does road transport account for?","10%","20%","30%","40%",2));
-        questionsList.add(new QuestionModel("You're towing a small trailer on a busy three-lane motorway. All the lanes are open. You must:","Not exceed 50 mph","Not overtake","Have a stabiliser fitted","Use only the left and centre lanes",1));
-        questionsList.add(new QuestionModel("At an incident, it is important to look after any casualties. When the area is safe, you should:","Get them out of the vehicle","Give them a drink","Give them something to eat","Keep them in the vehicle",4));
+        questionsList.add(new QuestionModel("What is 1+1?","1","2","3","4",2));
+        questionsList.add(new QuestionModel("What is the closest planet to the sun?","Mars","Earth","Venus","Mercury",4));
+        questionsList.add(new QuestionModel("What month comes after April?","June","March","May","August",3));
+        questionsList.add(new QuestionModel("What is the currency of Denmark?","Euro","Dollar","Pound Sterling","Yen",1));
+        questionsList.add(new QuestionModel("In what year did The Beatles split up?","1968","1969","1970","1971",3));
 
 
     }

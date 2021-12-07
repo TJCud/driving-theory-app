@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MockTestResults"
+    android:background="@drawable/loginbg"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Results"
+        android:textSize="50sp"
+        android:layout_marginTop="50dp"/>
+
+    <TextView
+        android:id="@+id/scoreLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="#/#"
+        android:textSize="50sp"
+        android:layout_marginTop="60dp"/>
+
+
+
+    <TextView
+        android:id="@+id/verdictLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PASS/FAIL"
+        android:textSize="50sp"
+        android:layout_marginTop="60dp"/>
+
+    <Button
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:text="return"
+        android:textSize="18sp"
+        android:layout_marginTop="80dp"
+        android:backgroundTint="@color/black"/>
+
+
+
+
+
+</LinearLayout>
