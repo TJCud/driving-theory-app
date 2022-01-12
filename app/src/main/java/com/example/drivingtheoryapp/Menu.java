@@ -1,6 +1,7 @@
 package com.example.drivingtheoryapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,16 +20,16 @@ public class Menu extends AppCompatActivity {
 
 
         //Declaring buttons
-        Button logoutbtn = (Button) findViewById(R.id.logoutbtn);
-        Button testbtn = (Button) findViewById(R.id.testbtn);
-        Button accmgmtbtn = (Button) findViewById(R.id.accmgmtbtn);
-        Button settingbtn = (Button) findViewById(R.id.settingsbtn);
+        CardView logoutbtn = (CardView) findViewById(R.id.logoutbtn);
+        CardView testbtn = (CardView) findViewById(R.id.testbtn);
+        CardView accmgmtbtn = (CardView) findViewById(R.id.accmgmtbtn);
+        CardView settingbtn = (CardView) findViewById(R.id.settingsbtn);
 
         //Button Listeners
         testbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startTest();
+                testMenu();
             }
         });
 
@@ -64,15 +65,19 @@ public class Menu extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void startTest(){
-        Intent intent = new Intent(this, MockTest.class);
+    public void testMenu(){
+        Intent intent = new Intent(this, TestMenu.class);
         startActivity(intent);
     }
 
     public void accMgmt(){
+        Intent intent = new Intent(this, AccountMenu.class);
+        startActivity(intent);
     }
 
     public void settings(){
+        Intent intent = new Intent(this, SettingsMenu.class);
+        startActivity(intent);
     }
 
 }

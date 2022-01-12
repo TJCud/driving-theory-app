@@ -4,5 +4,5 @@
     <string name="password">Password</string>
     <string name="fullname">Full Name</string>
     <string name="email">E-mail Address</string>
-    <string name="register">Register</string>
+    <string name="register">Complete Registration</string>
 </resources>

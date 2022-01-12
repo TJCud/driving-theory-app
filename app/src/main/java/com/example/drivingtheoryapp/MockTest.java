@@ -98,7 +98,8 @@ public class MockTest extends AppCompatActivity {
             showNextQuestion();
 
         } else{
-            btnNext.setText("Results");
+            countDownTimer.cancel();
+            btnNext.setText("See results");
             btnNext.setBackgroundColor(Color.parseColor("#00ff44"));
         }
     }
@@ -138,7 +139,7 @@ public class MockTest extends AppCompatActivity {
 
 //TIMER FUNCTION
     private void timer() {
-        countDownTimer = new CountDownTimer(3421000,1000) {
+        countDownTimer = new CountDownTimer(10000,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 tvTimer.setText(""+String.format("%02d:%02d",
@@ -149,6 +150,7 @@ public class MockTest extends AppCompatActivity {
 
             @Override
             public void onFinish() {
+                Toast.makeText(MockTest.this, "Time up!", Toast.LENGTH_SHORT).show();
                 finishTest();
             }
         }.start();
@@ -164,11 +166,10 @@ public class MockTest extends AppCompatActivity {
 
 //LIST OF QUESTIONS
     private void addQuestions() {
-        questionsList.add(new QuestionModel("What is 1+1?","1","2","3","4",2));
-        questionsList.add(new QuestionModel("What is the closest planet to the sun?","Mars","Earth","Venus","Mercury",4));
-        questionsList.add(new QuestionModel("What month comes after April?","June","March","May","August",3));
-        questionsList.add(new QuestionModel("What is the currency of Denmark?","Euro","Dollar","Pound Sterling","Yen",1));
-        questionsList.add(new QuestionModel("In what year did The Beatles split up?","1968","1969","1970","1971",3));
+
+        for (int i = 0; i < 5; i++) {
+            questionsList.add(new QuestionModel("What is 1+1?","1","2","3","4",2));
+        }
 
 
     }

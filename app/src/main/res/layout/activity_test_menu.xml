@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:background="@drawable/loginbg"
     android:weightSum="10"
-    tools:context=".Menu">
+    tools:context=".TestMenu">
 
 
     <RelativeLayout
@@ -21,11 +21,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="Welcome, 'username'"
+            android:text="Test Menu"
             android:gravity="center"
             android:textColor="@color/black"
             android:textSize="35dp"
-            android:textStyle="bold"  />
+            android:textStyle="bold" />
 
     </RelativeLayout>
 
@@ -45,7 +45,7 @@
 
         <!-- Column 1 -->
         <androidx.cardview.widget.CardView
-            android:id="@+id/testbtn"
+            android:id="@+id/mockbtn"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_columnWeight="1"
@@ -73,7 +73,7 @@
                     android:layout_height="wrap_content" />
 
                 <TextView
-                    android:text="Learn to drive"
+                    android:text="Mock Test"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
@@ -87,7 +87,7 @@
 
         <!-- Column 2 -->
         <androidx.cardview.widget.CardView
-            android:id="@+id/accmgmtbtn"
+            android:id="@+id/practicebtn"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_columnWeight="1"
@@ -108,13 +108,13 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:src="@drawable/ic_account"
+                    android:src="@drawable/ic_practice"
                     android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <TextView
-                    android:text="Account"
+                    android:text="Practice"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
@@ -131,7 +131,7 @@
 
         <!-- Column 1 -->
         <androidx.cardview.widget.CardView
-            android:id="@+id/settingsbtn"
+            android:id="@+id/hwcodebtn"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_columnWeight="1"
@@ -152,7 +152,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:src="@drawable/ic_settings"
+                    android:src="@drawable/ic_highwaycode"
                     android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -160,7 +160,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Settings"
+                    android:text="Highway Code"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
@@ -172,7 +172,7 @@
 
         <!-- Column 2 -->
         <androidx.cardview.widget.CardView
-            android:id="@+id/logoutbtn"
+            android:id="@+id/tipsbtn"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_columnWeight="1"
@@ -193,7 +193,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:src="@drawable/ic_logout"
+                    android:src="@drawable/ic_drivingtips"
                     android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -201,7 +201,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Log Out"
+                    android:text="Driving Tips"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
