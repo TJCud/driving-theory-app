@@ -33,7 +33,7 @@ public class MockTestResults extends AppCompatActivity {
         else {
             verdictLabel.setText("Test Failed. Please try again.");
         }
-        scoreLabel.setText(score + " / " + totalQuestions);
+        scoreLabel.setText(score + " / " + totalQuestions + "\n" + "Accuracy " + passCheck + "%" + "\n" + "(86% or higher required)");
 
 
         //Button Listeners

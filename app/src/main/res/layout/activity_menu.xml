@@ -17,15 +17,15 @@
         android:layout_height="0dp">
 
         <TextView
-            android:id="@+id/textGrid"
+            android:id="@+id/welcomeLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="Welcome, 'username'"
             android:gravity="center"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="35dp"
-            android:textStyle="bold"  />
+            android:textStyle="bold" />
 
     </RelativeLayout>
 
