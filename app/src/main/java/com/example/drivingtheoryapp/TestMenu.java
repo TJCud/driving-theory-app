@@ -9,6 +9,7 @@ import android.view.View;
 
 public class TestMenu extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +59,7 @@ public class TestMenu extends AppCompatActivity {
 
     //Button Actions
     public void startTest(){
-        Intent intent = new Intent(this, MockTest.class);
+        Intent intent = new Intent(TestMenu.this, MockTestActivity.class);
         startActivity(intent);
     }
 

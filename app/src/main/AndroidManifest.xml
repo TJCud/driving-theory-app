@@ -32,7 +32,7 @@
             android:name=".Result"
             android:exported="false" />
         <activity
-            android:name=".MockTest"
+            android:name=".MockTestActivity"
             android:exported="false" />
         <activity
             android:name=".Login"

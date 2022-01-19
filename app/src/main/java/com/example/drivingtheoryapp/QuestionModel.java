@@ -1,22 +1,36 @@
 package com.example.drivingtheoryapp;
 
 public class QuestionModel {
-    private String question, option1, option2, option3, option4;
-    private int correctAnsNo;
 
-    public QuestionModel(String question, String option1, String option2, String option3, String option4, int correctAnsNo) {
+    //DECLARING VARIABLES
+    private String question;
+    private String option1;
+    private String option2;
+    private String option3;
+    private String option4;
+    private int answerNr;
+
+
+
+    //CONSTRUCTOR
+    public QuestionModel(String question, String option1, String option2, String option3, String option4, int answerNr) {
         this.question = question;
         this.option1 = option1;
         this.option2 = option2;
         this.option3 = option3;
         this.option4 = option4;
-        this.correctAnsNo = correctAnsNo;
+        this.answerNr = answerNr;
     }
 
+    //EMPTY CONSTRUCTOR
+    public QuestionModel() {
+    }
+
+
+    //GETTERS AND SETTERS
     public String getQuestion() {
         return question;
     }
-
     public void setQuestion(String question) {
         this.question = question;
     }
@@ -24,7 +38,6 @@ public class QuestionModel {
     public String getOption1() {
         return option1;
     }
-
     public void setOption1(String option1) {
         this.option1 = option1;
     }
@@ -32,7 +45,6 @@ public class QuestionModel {
     public String getOption2() {
         return option2;
     }
-
     public void setOption2(String option2) {
         this.option2 = option2;
     }
@@ -40,7 +52,6 @@ public class QuestionModel {
     public String getOption3() {
         return option3;
     }
-
     public void setOption3(String option3) {
         this.option3 = option3;
     }
@@ -48,16 +59,14 @@ public class QuestionModel {
     public String getOption4() {
         return option4;
     }
-
     public void setOption4(String option4) {
         this.option4 = option4;
     }
 
-    public int getCorrectAnsNo() {
-        return correctAnsNo;
+    public int getAnswerNr() {
+        return answerNr;
     }
-
-    public void setCorrectAnsNo(int correctAnsNo) {
-        this.correctAnsNo = correctAnsNo;
+    public void setAnswerNr(int answerNr) {
+        this.answerNr = answerNr;
     }
 }

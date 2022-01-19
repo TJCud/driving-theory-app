@@ -57,7 +57,7 @@ public class MockTestResults extends AppCompatActivity {
 
     //Button Actions
     public void retryTest(){
-        Intent intent = new Intent(this, MockTest.class);
+        Intent intent = new Intent(this, MockTestActivity.class);
         startActivity(intent);
     }
 

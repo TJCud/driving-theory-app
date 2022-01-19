@@ -9,7 +9,7 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     android:padding="16dp"
-    tools:context=".MockTest"
+    tools:context=".MockTestActivity"
     android:background="@drawable/loginbg"
     >
 
