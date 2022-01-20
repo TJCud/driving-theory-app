@@ -49,6 +49,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
                 String usernamerawdata, username, password;
 
                 //Takes value of usernamerawdata and converts to lower case
@@ -80,8 +81,11 @@ public class Login extends AppCompatActivity {
 
                                     String result = putData.getResult();
                                     if (result.equals("Login Success")) {
+
+                                        //FOR PASSING USERNAME TO OTHER ACTIVITIES
                                         Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(getApplicationContext(), Menu.class);
+                                        intent.putExtra("key",username);
                                         startActivity(intent);
                                         finish();
                                     }
@@ -97,6 +101,12 @@ public class Login extends AppCompatActivity {
                 else {
                     Toast.makeText(getApplicationContext(),"All fields are required",Toast.LENGTH_SHORT).show();
                 }
+
+
+
+
+
+
             }
         });
 

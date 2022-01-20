@@ -18,9 +18,18 @@ public class Menu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        EditText displayName = (EditText) findViewById(R.id.username);
-        TextView welcomeLabel = (TextView) findViewById(R.id.welcomeLabel);
-        welcomeLabel.setText("Welcome, " + displayName);
+
+
+        //TAKES PASSED THROUGH USERNAME AND SETS TO WELCOME LABEL
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String value = extras.getString("key");
+            //The key argument here must match that used in the other activity
+            TextView welcomeLabel = (TextView) findViewById(R.id.welcomeLabel);
+            welcomeLabel.setText("Welcome, " + value + "!");
+        }
+
+
 
         //Declaring buttons
         CardView logoutbtn = (CardView) findViewById(R.id.logoutbtn);

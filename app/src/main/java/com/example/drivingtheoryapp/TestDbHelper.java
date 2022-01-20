@@ -2,10 +2,18 @@ package com.example.drivingtheoryapp;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
 import com.example.drivingtheoryapp.MockTestContract.*;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,17 +23,21 @@ public class TestDbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "DrivingTestSuccess.db";
     private static final int DATABASE_VERSION = 1;
     private SQLiteDatabase db;
+    private Context context;
 
     public TestDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context = context;
     }
+
+
 
 
 
     //CREATES AND EXECUTES DATABASE
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        TestDbHelper context = this;
         this.db = db;
 
         final String SQL_CREATE_QUESTIONS_TABLE = "CREATE TABLE " +
@@ -40,7 +52,35 @@ public class TestDbHelper extends SQLiteOpenHelper {
                 ")";
 
         db.execSQL(SQL_CREATE_QUESTIONS_TABLE);
-        fillQuestionsTable();
+
+
+        String mCSVfile = "data.csv";
+
+        AssetManager manager = TestDbHelper.this.context.getAssets();
+        InputStream inStream = null;
+        try {
+            inStream = manager.open(mCSVfile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        BufferedReader buffer = new BufferedReader(new InputStreamReader(inStream));
+        String line = "";
+        try {
+            while ((line = buffer.readLine()) != null) {
+                String[] colums = line.split(",");
+
+                ContentValues cv = new ContentValues();
+                cv.put(QuestionsTable.COLUMN_QUESTION, colums[0].trim());
+                cv.put(QuestionsTable.COLUMN_OPTION1, colums[1].trim());
+                cv.put(QuestionsTable.COLUMN_OPTION2, colums[2].trim());
+                cv.put(QuestionsTable.COLUMN_OPTION3, colums[3].trim());
+                cv.put(QuestionsTable.COLUMN_OPTION4, colums[4].trim());
+                cv.put(QuestionsTable.COLUMN_ANSWER_NR, colums[5].trim());
+                db.insert(QuestionsTable.TABLE_NAME, null, cv);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -50,40 +90,6 @@ public class TestDbHelper extends SQLiteOpenHelper {
     db.execSQL("DROP TABLE IF EXISTS " + QuestionsTable.TABLE_NAME);
     onCreate(db);
     }
-
-
-    // PASSES QUESTIONS INTO QUESTION MODEL CONSTRUCTOR
-    private void fillQuestionsTable() {
-       QuestionModel q1 = new QuestionModel("A is correct", "A", "B", "C", "D", 1);
-        addQuestion(q1);
-
-        QuestionModel q2 = new QuestionModel("B is correct", "A", "B", "C", "D", 2);
-        addQuestion(q2);
-
-        QuestionModel q3 = new QuestionModel("C is correct", "A", "B", "C", "D", 3);
-        addQuestion(q3);
-
-        QuestionModel q4 = new QuestionModel("D is correct", "A", "B", "C", "D", 4);
-        addQuestion(q4);
-    }
-
-
-
-
-
-
-    //GETS QUESTIONS AND ANSWER FROM QUESTION MODEL, ADDS THEM TO DATABASE
-    private void addQuestion(QuestionModel question) {
-      ContentValues cv = new ContentValues();
-        cv.put(QuestionsTable.COLUMN_QUESTION, question.getQuestion());
-        cv.put(QuestionsTable.COLUMN_OPTION1, question.getOption1());
-        cv.put(QuestionsTable.COLUMN_OPTION2, question.getOption2());
-        cv.put(QuestionsTable.COLUMN_OPTION3, question.getOption3());
-        cv.put(QuestionsTable.COLUMN_OPTION4, question.getOption4());
-        cv.put(QuestionsTable.COLUMN_ANSWER_NR, question.getAnswerNr());
-        db.insert(QuestionsTable.TABLE_NAME, null, cv);
-    }
-
 
 
 

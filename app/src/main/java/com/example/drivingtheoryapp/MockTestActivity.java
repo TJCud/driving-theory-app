@@ -95,8 +95,8 @@ public class MockTestActivity extends AppCompatActivity {
             rb4.setText(currentQuestion.getOption4());
 
             qCounter++;
-            btnNext.setText("Submit");
-            tvQuestionNo.setText("QuestionModel: "+qCounter+"/"+totalQuestions);
+            btnNext.setText("Submit Answer");
+            tvQuestionNo.setText("Question "+qCounter+" of "+totalQuestions + ":");
             answered = false;
 
         } else {
