@@ -67,15 +67,15 @@ public class TestDbHelper extends SQLiteOpenHelper {
         String line = "";
         try {
             while ((line = buffer.readLine()) != null) {
-                String[] colums = line.split(",");
+                String[] columns = line.split(",");
 
                 ContentValues cv = new ContentValues();
-                cv.put(QuestionsTable.COLUMN_QUESTION, colums[0].trim());
-                cv.put(QuestionsTable.COLUMN_OPTION1, colums[1].trim());
-                cv.put(QuestionsTable.COLUMN_OPTION2, colums[2].trim());
-                cv.put(QuestionsTable.COLUMN_OPTION3, colums[3].trim());
-                cv.put(QuestionsTable.COLUMN_OPTION4, colums[4].trim());
-                cv.put(QuestionsTable.COLUMN_ANSWER_NR, colums[5].trim());
+                cv.put(QuestionsTable.COLUMN_QUESTION, columns[0].trim());
+                cv.put(QuestionsTable.COLUMN_OPTION1, columns[1].trim());
+                cv.put(QuestionsTable.COLUMN_OPTION2, columns[2].trim());
+                cv.put(QuestionsTable.COLUMN_OPTION3, columns[3].trim());
+                cv.put(QuestionsTable.COLUMN_OPTION4, columns[4].trim());
+                cv.put(QuestionsTable.COLUMN_ANSWER_NR, columns[5].trim());
                 db.insert(QuestionsTable.TABLE_NAME, null, cv);
             }
         } catch (IOException e) {

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -56,10 +57,15 @@ public class MockTestActivity extends AppCompatActivity {
         timer(); //Begin Timer
         TestDbHelper dbHelper = new TestDbHelper(this); //Initialise database
         questionList = dbHelper.getAllQuestions(); //Loads questions into list
-        totalQuestions = questionList.size(); //Displays number of questions
         Collections.shuffle(questionList); //Shuffles question order
+        totalQuestions = 10; //Displays number of questions
+
 
         showNextQuestion();
+
+
+
+
 
         //WHEN BUTTON IS CLICKED, CHECK TO SEE AN ANSWER HAS BEEN SELECTED
         btnNext.setOnClickListener(new View.OnClickListener() {
@@ -163,5 +169,3 @@ public class MockTestActivity extends AppCompatActivity {
     }
 
 }
-
-
