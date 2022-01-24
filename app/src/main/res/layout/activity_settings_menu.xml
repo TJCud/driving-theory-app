@@ -6,8 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/loginbg"
+    android:background="@drawable/background_daytime"
     android:weightSum="10"
+    android:id="@+id/ID_settingsPage"
     tools:context=".SettingsMenu">
 
 
@@ -17,7 +18,7 @@
         android:layout_height="0dp">
 
         <TextView
-            android:id="@+id/textGrid"
+            android:id="@+id/ID_settingsHeaderText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -45,7 +46,7 @@
 
         <!-- Column 1 -->
         <androidx.cardview.widget.CardView
-            android:id="@+id/progressbtn"
+            android:id="@+id/ID_soundControl"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_columnWeight="1"
@@ -73,9 +74,10 @@
                     android:src="@drawable/ic_soundon" />
 
                 <TextView
+                    android:id="@+id/ID_soundTextControl"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sound On / Off"
+                    android:text="Sound\n OFF"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
@@ -87,7 +89,7 @@
 
         <!-- Column 2 -->
         <androidx.cardview.widget.CardView
-            android:id="@+id/deletebtn"
+            android:id="@+id/ID_darkMode"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_columnWeight="1"
@@ -115,7 +117,8 @@
                     android:src="@drawable/ic_darkmode" />
 
                 <TextView
-                    android:text="Dark Mode"
+                    android:id="@+id/ID_darkModeTextControl"
+                    android:text="Dark Mode\n OFF"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
@@ -132,7 +135,7 @@
 
         <!-- Column 1 -->
         <androidx.cardview.widget.CardView
-            android:id="@+id/changepwbtn"
+            android:id="@+id/ID_questionBank"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_columnWeight="1"
@@ -159,9 +162,10 @@
                     android:src="@drawable/ic_questionbank" />
 
                 <TextView
+                    android:id="@+id/ID_questionBankTextControl"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Question Bank"
+                    android:text="Question Bank\n CARS"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
@@ -173,7 +177,7 @@
 
         <!-- Column 2 -->
         <androidx.cardview.widget.CardView
-            android:id="@+id/changeunbtn"
+            android:id="@+id/ID_voiceAssistant"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_columnWeight="1"
@@ -200,9 +204,10 @@
                     android:src="@drawable/ic_voiceassistant" />
 
                 <TextView
+                    android:id="@+id/ID_voiceAssistantTextControl"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Voice Assistant"
+                    android:text="Voice Assistant\n OFF"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
