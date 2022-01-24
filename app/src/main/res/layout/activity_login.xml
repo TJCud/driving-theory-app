@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login"
+    tools:context=".ActivityLoginScreen"
     android:background="@drawable/loginbg">
 
     <!--Page Title-->
@@ -98,17 +98,20 @@
         android:text="Register" />
 
 
-    <!--Forgot Password Link-->
+    <!--Continue as guest link-->
     <TextView
+        android:id="@+id/ID_guest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/forgotpass"
         android:layout_below="@id/registerbtn"
-        android:text="Forgot Password?"
-        android:textColor="@color/black"
-        android:backgroundTint="@color/white"
         android:layout_centerHorizontal="true"
-        android:layout_margin="20dp"/>
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/white"
+        android:text="Continue as guest"
+        android:textColor="@color/black" />
 
 
 

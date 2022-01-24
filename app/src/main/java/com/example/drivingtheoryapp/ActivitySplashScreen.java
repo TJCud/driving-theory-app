@@ -2,17 +2,12 @@ package com.example.drivingtheoryapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.View;
-import android.widget.Button;
-import android.app.Activity;
 import android.content.Intent;
 
 import android.os.Bundle;
 import android.os.*;
-import android.widget.TextView;
-import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class ActivitySplashScreen extends AppCompatActivity {
     Handler h = new Handler();
 
     @Override
@@ -23,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         h.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i = new Intent(MainActivity.this, Login.class);
+                Intent i = new Intent(ActivitySplashScreen.this, ActivityLoginScreen.class);
                 startActivity(i);
                 finish();
 

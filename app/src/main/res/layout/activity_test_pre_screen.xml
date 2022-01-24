@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    android:padding="16dp"
+    tools:context=".MockTestActivity"
+    android:background="@drawable/loginbg"
+    >
+
+
+    <TextView
+        android:id="@+id/textQuestionNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="30sp" />
+
+
+    <TextView
+        android:id="@+id/ID_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:text="57:00"
+        android:textColor="@color/white"
+        android:textSize="30sp" />
+
+
+    <TextView
+        android:id="@+id/ID_testInfo"
+        android:layout_width="395dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textQuestionNo"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:text="You are now taking a full mock test. The test has 50 questions, and you need to get 43 correct to pass. You have 57 minutes to do it."
+        android:textColor="@color/black"
+        android:textSize="30sp" />
+
+
+    <ImageView
+        android:id="@+id/ID_trafficlights"
+        android:layout_width="369dp"
+        android:layout_height="299dp"
+        android:layout_below="@id/ID_testInfo"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/trafficlight_red"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/ID_startButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ID_trafficlights"
+        android:layout_marginTop="150dp"
+        android:backgroundTint="@color/black"
+        android:text="START TEST"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textStyle="bold" />
+
+
+
+
+
+</RelativeLayout>

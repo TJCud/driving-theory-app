@@ -56,7 +56,8 @@ public class MockTestResults extends AppCompatActivity {
         String dateToStr = format.format(today);
 
         //Saves results and date/time to database
-        dbHelper.saveResults(username, score, totalQuestions, dateToStr);
+        if (!username.equals("Guest")){
+        dbHelper.saveResults(username, score, totalQuestions, dateToStr);}
 
 
 

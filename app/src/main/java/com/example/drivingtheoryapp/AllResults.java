@@ -70,12 +70,24 @@ public class AllResults extends AppCompatActivity {
         }
 
         int size = listData.size();
-        double overallPassRate = pass * 100 / size;
+        double overallPassRate;
 
-
+        //ERROR HANDLING IF USER HAS NOT TAKEN ANY PREVIOUS TESTS
+        if (size<1){
+            overviewLabel.setText("No tests found.");
+        }
+        else{
+        overallPassRate = pass * 100 / size;
         Collections.reverse(listData); // Now the list is in reverse order (most recent test at top)
 
-        overviewLabel.setText("Total Tests Taken: " + size + " | Pass rate: " + overallPassRate + "%");
+            overviewLabel.setText("Total Tests Taken: " + size + " | Pass rate: " + overallPassRate + "%");
+
+        }
+
+
+        if (getUsernameData.equals("Guest")){
+            overviewLabel.setText("Guest results are not saved. Please sign in.");}
+
 
         //create the list adapter and set the adapter
         ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);

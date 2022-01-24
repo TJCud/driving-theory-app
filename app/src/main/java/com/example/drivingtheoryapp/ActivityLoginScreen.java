@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,13 +14,10 @@ import android.widget.Toast;
 
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
-import java.util.Locale;
-
-public class Login extends AppCompatActivity {
+public class ActivityLoginScreen extends AppCompatActivity {
 
     EditText EditTextUsername, EditTextPassword;
     Button loginButton, registerButton;
-    TextView textViewSignUp;
     private long pressedTime;
 
 
@@ -35,6 +31,7 @@ public class Login extends AppCompatActivity {
             finish();
         }
 
+        TextView guestUser = findViewById(R.id.ID_guest);
         EditTextUsername = findViewById(R.id.username);
         EditTextPassword = findViewById(R.id.password);
         loginButton = (Button) findViewById(R.id.loginbtn);
@@ -102,12 +99,21 @@ public class Login extends AppCompatActivity {
             }
         });
 
+
+        guestUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openMainMenu("Guest");
+                finish();
+            }
+        });
+
     }
 
 
     //BUTTON ACTIONS
     public void openRegister(){
-        Intent intent = new Intent(this, SignUp.class);
+        Intent intent = new Intent(this, ActivitySignUp.class);
         startActivity(intent);
     }
 
@@ -128,7 +134,7 @@ public class Login extends AppCompatActivity {
         if (pressedTime + 2000 > System.currentTimeMillis()) {
             super.onBackPressed();
 
-            Intent intent = new Intent(Login.this, Login.class);
+            Intent intent = new Intent(ActivityLoginScreen.this, ActivityLoginScreen.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.putExtra("EXIT", true);
             startActivity(intent);

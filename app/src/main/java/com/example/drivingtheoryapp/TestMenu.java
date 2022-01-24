@@ -64,7 +64,7 @@ public class TestMenu extends AppCompatActivity {
 
     //Button Actions
     public void startTest(String passUsername){
-        Intent intent = new Intent(TestMenu.this, MockTestActivity.class);
+        Intent intent = new Intent(TestMenu.this, ActivityTestPreScreen.class);
         intent.putExtra("username_key",passUsername);
         startActivity(intent);
     }

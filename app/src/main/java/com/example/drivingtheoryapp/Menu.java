@@ -83,7 +83,7 @@ public class Menu extends AppCompatActivity {
 
     //Button Actions
     public void logOut(String passUsername){
-        Intent logOut = new Intent(this, Login.class);
+        Intent logOut = new Intent(this, ActivityLoginScreen.class);
         logOut.removeExtra(passUsername);
         startActivity(logOut);
         finish();
@@ -115,7 +115,7 @@ public class Menu extends AppCompatActivity {
         if (pressedTime + 2000 > System.currentTimeMillis()) {
             super.onBackPressed();
 
-            Intent logOut = new Intent(this, Login.class);
+            Intent logOut = new Intent(this, ActivityLoginScreen.class);
             startActivity(logOut);
             finish();
 

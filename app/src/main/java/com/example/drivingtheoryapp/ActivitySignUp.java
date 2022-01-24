@@ -18,7 +18,7 @@ import com.google.android.material.textfield.TextInputEditText;
 // https://github.com/VishnuSivadasVS/Advanced-HttpURLConnection/
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
-public class SignUp extends AppCompatActivity {
+public class ActivitySignUp extends AppCompatActivity {
 
     EditText EditTextFullname, EditTextUsername, EditTextPassword, EditTextEmail;
     Button buttonSingUp;
@@ -82,7 +82,7 @@ public class SignUp extends AppCompatActivity {
                                     String result = putData.getResult();
                                     if (result.equals("Sign Up Success")) {
                                         Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(getApplicationContext(), Login.class);
+                                        Intent intent = new Intent(getApplicationContext(), ActivityLoginScreen.class);
                                         startActivity(intent);
                                         finish();
                                     }
