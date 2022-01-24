@@ -13,21 +13,31 @@ import android.widget.Toast;
 
 public class Menu extends AppCompatActivity {
 
+    //Calculating double press when logging out
+    private long pressedTime;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
 
+        // Getting the intent which started this activity
+        Intent intent = getIntent();
+        // Get the data of the activity providing the same key value
+        String username = intent.getStringExtra("username_key");
 
-        //TAKES PASSED THROUGH USERNAME AND SETS TO WELCOME LABEL
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            String value = extras.getString("key");
-            //The key argument here must match that used in the other activity
-            TextView welcomeLabel = (TextView) findViewById(R.id.welcomeLabel);
-            welcomeLabel.setText("Welcome, " + value + "!");
-        }
+
+
+
+
+
+
+        //Displaying username in welcome header
+        TextView welcomeLabel = (TextView) findViewById(R.id.welcomeLabel);
+        welcomeLabel.setText("Welcome, " + username + "!");
+
+
 
 
 
@@ -41,28 +51,28 @@ public class Menu extends AppCompatActivity {
         testbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                testMenu();
+                testMenu(username);
             }
         });
 
         logoutbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                logOut();
+                logOut(username);
             }
         });
 
         accmgmtbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                accMgmt();
+                accMgmt(username);
             }
         });
 
         settingbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                settings();
+                settings(username);
             }
         });
 
@@ -72,24 +82,50 @@ public class Menu extends AppCompatActivity {
     }
 
     //Button Actions
-    public void logOut(){
-        Intent intent = new Intent(this, Login.class);
-        startActivity(intent);
+    public void logOut(String passUsername){
+        Intent logOut = new Intent(this, Login.class);
+        logOut.removeExtra(passUsername);
+        startActivity(logOut);
+        finish();
     }
 
-    public void testMenu(){
-        Intent intent = new Intent(this, TestMenu.class);
-        startActivity(intent);
+    public void testMenu(String passUsername){
+        Intent openResults = new Intent(getApplicationContext(), TestMenu.class);
+        openResults.putExtra("username_key",passUsername);
+        startActivity(openResults);
     }
 
-    public void accMgmt(){
-        Intent intent = new Intent(this, AccountMenu.class);
-        startActivity(intent);
+    public void accMgmt(String passUsername){
+        Intent openAccMgmt = new Intent(getApplicationContext(), AccountMenu.class);
+        openAccMgmt.putExtra("username_key",passUsername);
+        startActivity(openAccMgmt);
     }
 
-    public void settings(){
-        Intent intent = new Intent(this, SettingsMenu.class);
-        startActivity(intent);
+    public void settings(String passUsername){
+        Intent openSettings = new Intent(getApplicationContext(), SettingsMenu.class);
+        openSettings.putExtra("username_key",passUsername);
+        startActivity(openSettings);
     }
+
+
+    //LOG OUT ON BACK BUTTON
+    @Override
+    public void onBackPressed()
+    {
+        if (pressedTime + 2000 > System.currentTimeMillis()) {
+            super.onBackPressed();
+
+            Intent logOut = new Intent(this, Login.class);
+            startActivity(logOut);
+            finish();
+
+
+        } else {
+            Toast.makeText(getBaseContext(), "Press back again to log out", Toast.LENGTH_SHORT).show();
+        }
+        pressedTime = System.currentTimeMillis();
+    }
+
+
 
 }

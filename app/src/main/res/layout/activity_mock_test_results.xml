@@ -34,28 +34,42 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="8dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/retrybtn"
-            android:layout_width="160dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="80dp"
-            android:backgroundTint="@color/black"
-            android:layout_margin="10dp"
-            android:text="RETRY"
-            android:textSize="18sp" />
+
 
         <Button
             android:id="@+id/menubtn"
-            android:layout_width="160dp"
+            android:layout_width="180dp"
             android:layout_height="50dp"
             android:gravity="center"
             android:layout_marginTop="80dp"
             android:layout_margin="10dp"
             android:backgroundTint="@color/black"
             android:text="MAIN MENU"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/retrybtn"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="80dp"
+            android:backgroundTint="@color/black"
+            android:layout_margin="10dp"
+            android:text="RETAKE TEST"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/resultsbtn"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:layout_marginTop="80dp"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/black"
+            android:text="ALL RESULTS"
             android:textSize="18sp" />
     </LinearLayout>
 

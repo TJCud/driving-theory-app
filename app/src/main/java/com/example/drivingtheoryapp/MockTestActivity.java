@@ -31,8 +31,6 @@ public class MockTestActivity extends AppCompatActivity {
     private int score;
     private boolean answered;
 
-    private ColorStateList dfRbColor;
-
     private CountDownTimer countDownTimer;
 
     @Override
@@ -51,17 +49,20 @@ public class MockTestActivity extends AppCompatActivity {
         rb3 = findViewById(R.id.rb3);
         rb4 = findViewById(R.id.rb4);
         btnNext = findViewById(R.id.btnNext);
-        dfRbColor = rb1.getTextColors();
 
+        // Getting the intent which started this activity
+        Intent intent = getIntent();
+        // Get the data of the activity providing the same key value
+        String username = intent.getStringExtra("username_key");
 
         timer(); //Begin Timer
         TestDbHelper dbHelper = new TestDbHelper(this); //Initialise database
         questionList = dbHelper.getAllQuestions(); //Loads questions into list
         Collections.shuffle(questionList); //Shuffles question order
-        totalQuestions = 10; //Displays number of questions
+       // totalQuestions = questionList.size(); //Displays number of questions
+        totalQuestions = 5;
 
-
-        showNextQuestion();
+        showNextQuestion(username);
 
 
 
@@ -73,12 +74,12 @@ public class MockTestActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (answered == false){
                     if(rb1.isChecked() || rb2.isChecked() || rb3.isChecked() || rb4.isChecked()){
-                        checkAnswer();
+                        checkAnswer(username);
                     } else {
                         Toast.makeText(MockTestActivity.this, "Please select an answer", Toast.LENGTH_SHORT).show();}
 
                 } else {
-                    showNextQuestion();
+                    showNextQuestion(username);
                 }
 
             }
@@ -86,13 +87,14 @@ public class MockTestActivity extends AppCompatActivity {
     }
 
 
-    private void showNextQuestion() {
+    private void showNextQuestion(String passUsername) {
 
         radioGroup.clearCheck();
 
 
         if(qCounter < totalQuestions){
             currentQuestion = questionList.get(qCounter);
+
 
             tvQuestion.setText(currentQuestion.getQuestion());
             rb1.setText(currentQuestion.getOption1());
@@ -107,12 +109,12 @@ public class MockTestActivity extends AppCompatActivity {
 
         } else {
 
-            finishTest();
+            finishTest(passUsername);
         }
     }
 
 
-    private void checkAnswer() {
+    private void checkAnswer(String passUsername) {
         answered = true;
         RadioButton rbSelected = findViewById(radioGroup.getCheckedRadioButtonId());
         int answerNo = radioGroup.indexOfChild(rbSelected) +1;
@@ -122,7 +124,7 @@ public class MockTestActivity extends AppCompatActivity {
 
 
         if(qCounter < totalQuestions){
-            showNextQuestion();
+            showNextQuestion(passUsername);
 
         } else{
             countDownTimer.cancel();
@@ -160,11 +162,20 @@ public class MockTestActivity extends AppCompatActivity {
 
 
     //NAVIGATES TO RESULT SCREEN
-    public void finishTest(){
+    public void finishTest(String passUsername){
         Intent intent = new Intent(this, MockTestResults.class);
         intent.putExtra("TOTAL_QUESTIONS", totalQuestions);
         intent.putExtra("SCORE", score);
+        intent.putExtra("username_key",passUsername);
         startActivity(intent);
+        finish();
+    }
+
+
+    //END TEST TO PREVENT CHEATING (LOOKING UP ANSWERS ON INTERNET APPLICATION ETC)
+    @Override
+    protected void onPause() {
+        super.onPause();
         finish();
     }
 

@@ -14,6 +14,12 @@ public class AccountMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_menu);
 
+        // Getting the intent which started this activity
+        Intent intent = getIntent();
+        // Get the data of the activity providing the same key value
+        String username = intent.getStringExtra("username_key");
+
+
         //Declaring buttons
         CardView progressbtn = (CardView) findViewById(R.id.progressbtn);
         CardView deletebtn = (CardView) findViewById(R.id.deletebtn);
@@ -24,7 +30,7 @@ public class AccountMenu extends AppCompatActivity {
         progressbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openProgress();
+                openProgress(username);
             }
         });
 
@@ -53,8 +59,10 @@ public class AccountMenu extends AppCompatActivity {
     }
 
     //Button Actions
-    public void openProgress() {
-
+    public void openProgress(String passUsername) {
+        Intent intent = new Intent(this, AllResults.class);
+        intent.putExtra("username_key",passUsername);
+        startActivity(intent);
     }
 
     public void deleteAccount() {

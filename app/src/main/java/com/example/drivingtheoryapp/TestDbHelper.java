@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.example.drivingtheoryapp.MockTestContract.*;
+import com.example.drivingtheoryapp.ResultsTableContract.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -40,6 +41,21 @@ public class TestDbHelper extends SQLiteOpenHelper {
         TestDbHelper context = this;
         this.db = db;
 
+        //CREATE RESULTS TABLE
+        final String SQL_CREATE_RESULTS_TABLE = "CREATE TABLE " +
+                ResultsTableContract.ResultsTable.TABLE_NAME + " ( " +
+                ResultsTableContract.ResultsTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                ResultsTableContract.ResultsTable.COLUMN_USERNAME + " TEXT, " +
+                ResultsTableContract.ResultsTable.COLUMN_QUESTIONS_CORRECT + " INTEGER, " +
+                ResultsTableContract.ResultsTable.COLUMN_QUESTIONS_TOTAL + " INTEGER, " +
+                ResultsTableContract.ResultsTable.COLUMN_TEST_DATE + " STRING" +
+                ")";
+        db.execSQL(SQL_CREATE_RESULTS_TABLE);
+
+
+
+
+        //CREATE QUESTIONS TABLE
         final String SQL_CREATE_QUESTIONS_TABLE = "CREATE TABLE " +
                 QuestionsTable.TABLE_NAME + " ( " +
                 QuestionsTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -54,8 +70,8 @@ public class TestDbHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_QUESTIONS_TABLE);
 
 
+        //LOAD DATA FROM CSV FILE AND STORE INTO RESULTS TABLE
         String mCSVfile = "data.csv";
-
         AssetManager manager = TestDbHelper.this.context.getAssets();
         InputStream inStream = null;
         try {
@@ -88,10 +104,9 @@ public class TestDbHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     db.execSQL("DROP TABLE IF EXISTS " + QuestionsTable.TABLE_NAME);
+    db.execSQL("DROP TABLE IF EXISTS " + ResultsTable.TABLE_NAME);
     onCreate(db);
     }
-
-
 
 
 
@@ -122,7 +137,56 @@ public class TestDbHelper extends SQLiteOpenHelper {
     }
 
 
+
+    //SAVES RESULTS TO DB
+    public boolean saveResults(String username, int qCorrect, int qTotal, String date) {
+        //String username, int questionsCorrect, int questionsTotal
+        // Gets the data repository in write mode
+        db = getWritableDatabase();
+
+        // Create a new map of values, where column names are the keys
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ResultsTable.COLUMN_USERNAME, username);
+        contentValues.put(ResultsTable.COLUMN_QUESTIONS_CORRECT, qCorrect);
+        contentValues.put(ResultsTable.COLUMN_QUESTIONS_TOTAL, qTotal);
+        contentValues.put(ResultsTable.COLUMN_TEST_DATE, date);
+
+
+        // Insert the new row, returning the primary key value of the new row
+        long result = db.insert(ResultsTable.TABLE_NAME, null, contentValues);
+
+        //if date as inserted incorrectly it will return -1
+        if (result == -1) {
+            return false;
+        } else {
+            return true;
+        }
+
+
+
+    }
+
+
+
+
+
+    //RETRIEVES RESULTS FROM DB, ADDS TO LIST, RETURNS LIST
+    public Cursor getAllResults(String username) {
+
+        db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + ResultsTable.TABLE_NAME +
+                " WHERE " + ResultsTable.COLUMN_USERNAME + " = '" + username + "'";
+        Cursor data = db.rawQuery(query, null);
+        return data;
+    }
+
+
+
+
 }
+
+
+
 
 
 

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:background="@drawable/loginbg"
+android:weightSum="10"
+tools:context=".Menu">
+
+    <TextView
+        android:id="@+id/welcomeLabel"
+        android:layout_width="match_parent"
+        android:layout_height="111dp"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="Historical Results"
+        android:textColor="@color/black"
+        android:textSize="35dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/ID_overview_stats"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="STATS"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+
+
+<RelativeLayout
+    android:layout_weight="2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="50dp" />
+
+</RelativeLayout>
+</LinearLayout>
+
+

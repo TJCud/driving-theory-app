@@ -6,6 +6,7 @@ import androidx.cardview.widget.CardView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 public class TestMenu extends AppCompatActivity {
 
@@ -15,6 +16,10 @@ public class TestMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_menu);
 
+        // Getting the intent which started this activity
+        Intent intent = getIntent();
+        // Get the data of the activity providing the same key value
+        String username = intent.getStringExtra("username_key");
 
 
         //Declaring buttons
@@ -27,7 +32,7 @@ public class TestMenu extends AppCompatActivity {
         mockbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startTest();
+                startTest(username);
             }
         });
 
@@ -58,8 +63,9 @@ public class TestMenu extends AppCompatActivity {
     }
 
     //Button Actions
-    public void startTest(){
+    public void startTest(String passUsername){
         Intent intent = new Intent(TestMenu.this, MockTestActivity.class);
+        intent.putExtra("username_key",passUsername);
         startActivity(intent);
     }
 
@@ -72,5 +78,11 @@ public class TestMenu extends AppCompatActivity {
 
     public void openTips(){
     }
+
+
+
+
+
+
 
 }
