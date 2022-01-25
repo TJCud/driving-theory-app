@@ -1,28 +1,43 @@
 package com.example.drivingtheoryapp;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.common.util.ArrayUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 
 public class AllResults extends AppCompatActivity {
 
     private static final String TAG = "ListDataActivity";
 
+    public static String saveQuestionString;
+    public static String saveResultString;
+
     TestDbHelper mDatabaseHelper;
 
     private ListView mListView;
     private Button returnBtn;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,36 +55,55 @@ public class AllResults extends AppCompatActivity {
         populateListView(username, overviewLabel);
 
 
-
-
-
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void populateListView(String getUsernameData, TextView overviewLabel) {
         //get the data and append to a list
         Cursor data = mDatabaseHelper.getAllResults(getUsernameData);
 
         int pass=0, fail=0;
-        ArrayList<String> listData = new ArrayList<>();
-
+        ArrayList<String> listDataOutcome = new ArrayList<>();
+        ArrayList<String> listDataQuestionsAndAnswers = new ArrayList<>();
 
         while(data.moveToNext()){
+
             int score = data.getInt(2);
             int questions = data.getInt(3);
             String date = data.getString(4);
             String verdict = "";
-
+            int size = listDataOutcome.size();
 
             //CHECKS IF PASS PERCENTAGE IS ACHIEVED AND DISPLAYS OUTCOME
             double passCheck = score * 100 / questions;
             if(passCheck > 85){ verdict = "PASS";pass++; }
             else { verdict = "FAIL";fail++; }
 
-            listData.add(date + "\n" + "Test Score: " + score + "/" + questions + " (" + passCheck + "%) " + "Outcome: " + verdict);
-            double averageScore = score / listData.size();
+            listDataOutcome.add(date + "\n" + "Test ID: " + " Test Score: " + score + "/" + questions + " (" + passCheck + "%) " + "Outcome: " + verdict + "\n");
+
+            String allAskedQuestions = data.getString(5);
+            String allUserAnswers = data.getString(6);
+            String allCorrectAnswers = data.getString(7);
+
+
+
+            for (int i=0;i<15;i++){
+                String[] askedQuestion = allAskedQuestions.split((Pattern.quote("|")));
+                String[] userAnswer = allUserAnswers.split((Pattern.quote("|")));
+                String[] correctAnswer = allCorrectAnswers.split((Pattern.quote("|")));
+                listDataQuestionsAndAnswers.add("Question: " + askedQuestion[i] + "\n\nYour answer: " + userAnswer[i] + "\n\nCorrect Answer:" + correctAnswer[i] + "\n\n\n\n");
+
+            }
+
+            saveQuestionString = listDataQuestionsAndAnswers.stream().map(Object::toString)
+                    .collect(Collectors.joining(" | "));
+
+            saveResultString = listDataOutcome.stream().map(Object::toString)
+                    .collect(Collectors.joining(" | "));
         }
 
-        int size = listData.size();
+
+        int size = listDataOutcome.size();
         double overallPassRate;
 
         //ERROR HANDLING IF USER HAS NOT TAKEN ANY PREVIOUS TESTS
@@ -78,22 +112,52 @@ public class AllResults extends AppCompatActivity {
         }
         else{
         overallPassRate = pass * 100 / size;
-        Collections.reverse(listData); // Now the list is in reverse order (most recent test at top)
-
+        Collections.reverse(listDataOutcome); // Now the list is in reverse order (most recent test at top)
             overviewLabel.setText("Total Tests Taken: " + size + " | Pass rate: " + overallPassRate + "%");
 
         }
-
-
         if (getUsernameData.equals("Guest")){
             overviewLabel.setText("Guest results are not saved. Please sign in.");}
 
 
-        //create the list adapter and set the adapter
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
-        mListView.setAdapter(adapter);
 
+      //  listDataOutcome.addAll(listDataQuestionsAndAnswers);
+
+        // New list containing a union b
+        List<String> merged = new ArrayList<String>(Collections.singleton(saveResultString));
+       // merged.addAll(listDataQuestionsAndAnswers);
+
+
+        //create the list adapter and set the adapter
+        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, merged);
+
+
+        mListView.setAdapter(adapter);
+        //set an onItemClickListener to the ListView
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+/*                String resultID = adapterView.getItemAtPosition(i).toString();
+                Log.d(TAG, "onItemClick: You Clicked on " + resultID);
+
+                Cursor data = mDatabaseHelper.getAllResults(resultID); //get the id associated with that name
+                int itemID = -1;
+                while(data.moveToNext()){
+                    itemID = data.getInt(0);
+                }
+
+                    Log.d(TAG, "onItemClick: The ID is: " + itemID);
+                    Intent editScreenIntent = new Intent(AllResults.this, ActivityReviewResults.class);
+                    editScreenIntent.putExtra("id",itemID);
+                    editScreenIntent.putExtra("username_key",getUsernameData);
+                    editScreenIntent.putExtra("result",saveQuestionStrings);
+                    startActivity(editScreenIntent);*/
+            }
+        });
     }
+
+
+}
 
 
 
@@ -118,4 +182,3 @@ public class AllResults extends AppCompatActivity {
 
 
 
-}

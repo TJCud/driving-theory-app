@@ -14,6 +14,9 @@
         android:theme="@style/Theme.DrivingTheoryApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ActivityReviewResults"
+            android:exported="false" />
+        <activity
             android:name=".ActivityTestPreScreen"
             android:exported="false" />
         <activity

@@ -50,18 +50,13 @@ public class MockTestResults extends AppCompatActivity {
 
 
 
-        //Assign current date and time to string
-        Date today = new Date();
-        SimpleDateFormat format = new SimpleDateFormat("'Test Date: 'MMMM dd yyyy ' Test Time: ' hh:mm a");
-        String dateToStr = format.format(today);
+
 
         //Saves results and date/time to database
         if (username.equals("Guest")){
             resultsBtn.setVisibility(View.GONE);
         }
-        else{
-            dbHelper.saveResults(username, score, totalQuestions, dateToStr);
-        }
+
 
 
 

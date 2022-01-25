@@ -3,6 +3,7 @@ package com.example.drivingtheoryapp;
 public class QuestionModel {
 
     //DECLARING VARIABLES
+    private String category;
     private String question;
     private String option1;
     private String option2;
@@ -13,8 +14,10 @@ public class QuestionModel {
 
 
 
+
     //CONSTRUCTOR
-    public QuestionModel(String question, String option1, String option2, String option3, String option4, int answerNr, String imageID) {
+    public QuestionModel(String category, String question, String option1, String option2, String option3, String option4, int answerNr, String imageID) {
+        this.category = category;
         this.question = question;
         this.option1 = option1;
         this.option2 = option2;
@@ -30,6 +33,12 @@ public class QuestionModel {
 
 
     //GETTERS AND SETTERS
+    public String getCategory() {
+        return category;
+    }
+    public void setCategory(String category) {
+        this.category = category;
+    }
     public String getQuestion() {
         return question;
     }

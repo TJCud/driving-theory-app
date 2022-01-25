@@ -1,5 +1,6 @@
 package com.example.drivingtheoryapp;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,16 +9,25 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.*;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 public class MockTestActivity extends AppCompatActivity {
+
+    public static ArrayList<String> saveQuestion= new ArrayList<>();;
+    public static ArrayList<String> saveUserAnswer= new ArrayList<>();;
+    public static ArrayList<String> saveCorrectAnswer= new ArrayList<>();;
 
 
     private QuestionModel currentQuestion;
@@ -37,6 +47,7 @@ public class MockTestActivity extends AppCompatActivity {
 
     private CountDownTimer countDownTimer;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +71,7 @@ public class MockTestActivity extends AppCompatActivity {
         // Get the data of the activity providing the same key value
         String username = intent.getStringExtra("username_key");
 
-        timer(); //Begin Timer
+        timer(username); //Begin Timer
         TestDbHelper dbHelper = new TestDbHelper(this); //Initialise database
         questionList = dbHelper.getAllQuestions(); //Loads questions into list
         Collections.shuffle(questionList); //Shuffles question order
@@ -70,6 +81,7 @@ public class MockTestActivity extends AppCompatActivity {
 
         //WHEN BUTTON IS CLICKED, CHECK TO SEE AN ANSWER HAS BEEN SELECTED
         btnNext.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View view) {
                 if (answered == false){
@@ -87,6 +99,7 @@ public class MockTestActivity extends AppCompatActivity {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void showNextQuestion(String passUsername) {
 
         radioGroup.clearCheck();
@@ -108,7 +121,7 @@ public class MockTestActivity extends AppCompatActivity {
             questionImage.setImageDrawable(drawable);
 
             qCounter++;
-            btnNext.setText("Submit Answer");
+            btnNext.setText("Next Question");
             tvQuestionNo.setText("Question "+qCounter+" of "+totalQuestions + ":");
             answered = false;
 
@@ -119,13 +132,51 @@ public class MockTestActivity extends AppCompatActivity {
     }
 
 
+
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void checkAnswer(String passUsername) {
+
+
+
+
+
         answered = true;
         RadioButton rbSelected = findViewById(radioGroup.getCheckedRadioButtonId());
+
+
+
+
+
         int answerNo = radioGroup.indexOfChild(rbSelected) +1;
         if(answerNo == currentQuestion.getAnswerNr()){
             score++;
         }
+
+
+
+        saveQuestion.add(currentQuestion.getQuestion());
+        saveUserAnswer.add((String) rbSelected.getText());
+        //
+
+        switch (currentQuestion.getAnswerNr()) {
+            case 1:
+                saveCorrectAnswer.add(currentQuestion.getOption1());
+                break;
+            case 2:
+                saveCorrectAnswer.add(currentQuestion.getOption2());
+                break;
+            case 3:
+                saveCorrectAnswer.add(currentQuestion.getOption3());
+                break;
+            case 4:
+                saveCorrectAnswer.add(currentQuestion.getOption4());
+                break;}
+
+
+
+
+
 
 
         if(qCounter < totalQuestions){
@@ -148,7 +199,7 @@ public class MockTestActivity extends AppCompatActivity {
 
 
     //TIMER FUNCTION
-    private void timer() {
+    private void timer(String passUsername) {
         countDownTimer = new CountDownTimer(3421000,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -158,9 +209,11 @@ public class MockTestActivity extends AppCompatActivity {
                                 TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
             }
 
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onFinish() {
                 Toast.makeText(MockTestActivity.this, "Time up!", Toast.LENGTH_SHORT).show();
+                finishTest(passUsername);
 
             }
         }.start();
@@ -168,13 +221,57 @@ public class MockTestActivity extends AppCompatActivity {
 
 
     //NAVIGATES TO RESULT SCREEN
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void finishTest(String passUsername){
-        Intent intent = new Intent(this, MockTestResults.class);
-        intent.putExtra("TOTAL_QUESTIONS", totalQuestions);
-        intent.putExtra("SCORE", score);
-        intent.putExtra("username_key",passUsername);
-        startActivity(intent);
-        finish();
+
+
+
+        //Assign current date and time to string
+        Date today = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("'Test Date: 'MMMM dd yyyy ' Test Time: ' hh:mm a");
+        String dateToStr = format.format(today);
+
+        //Saves results and date/time to database
+        if (passUsername.equals("Guest")){
+            Intent intent = new Intent(this, MockTestResults.class);
+            intent.putExtra("TOTAL_QUESTIONS", totalQuestions);
+            intent.putExtra("SCORE", score);
+            intent.putExtra("username_key",passUsername);
+            startActivity(intent);
+            finish();
+
+
+        }
+        else{
+
+            String saveQuestionStrings = saveQuestion.stream().map(Object::toString)
+                    .collect(Collectors.joining(" | "));
+
+            String saveUserAnswerStrings = saveUserAnswer.stream().map(Object::toString)
+                    .collect(Collectors.joining(" | "));
+
+            String saveCorrectAnswerStrings = saveCorrectAnswer.stream().map(Object::toString)
+                    .collect(Collectors.joining(" | "));
+
+
+            TestDbHelper dbHelper = new TestDbHelper(this); //Initialise database
+            dbHelper.saveResults(passUsername, score, totalQuestions, dateToStr,saveQuestionStrings,saveUserAnswerStrings,saveCorrectAnswerStrings);
+            Intent intent = new Intent(this, MockTestResults.class);
+            intent.putExtra("TOTAL_QUESTIONS", totalQuestions);
+            intent.putExtra("SCORE", score);
+            intent.putExtra("username_key",passUsername);
+            startActivity(intent);
+            finish();
+        }
+
+
+
+
+
+
+
+
+
     }
 
 

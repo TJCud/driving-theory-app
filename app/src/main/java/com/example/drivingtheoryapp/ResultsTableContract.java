@@ -13,6 +13,10 @@ public class ResultsTableContract {
         public static final String COLUMN_QUESTIONS_CORRECT = "questions_correct";
         public static final String COLUMN_QUESTIONS_TOTAL = "questions_total";
         public static final String COLUMN_TEST_DATE = "test_date";
+        public static final String COLUMN_CATEGORY = "category";
+        public static final String COLUMN_ASKED_QUESTION = "asked_question";
+        public static final String COLUMN_USER_ANSWER = "user_answer";
+        public static final String COLUMN_CORRECT_ANSWER = "correct_answer";
 
     }
 }

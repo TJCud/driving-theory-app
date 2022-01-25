@@ -17,6 +17,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 
 public class TestDbHelper extends SQLiteOpenHelper {
@@ -48,7 +49,10 @@ public class TestDbHelper extends SQLiteOpenHelper {
                 ResultsTableContract.ResultsTable.COLUMN_USERNAME + " TEXT, " +
                 ResultsTableContract.ResultsTable.COLUMN_QUESTIONS_CORRECT + " INTEGER, " +
                 ResultsTableContract.ResultsTable.COLUMN_QUESTIONS_TOTAL + " INTEGER, " +
-                ResultsTableContract.ResultsTable.COLUMN_TEST_DATE + " TEXT" +
+                ResultsTableContract.ResultsTable.COLUMN_TEST_DATE + " TEXT, " +
+                ResultsTableContract.ResultsTable.COLUMN_ASKED_QUESTION + " TEXT, " +
+                ResultsTableContract.ResultsTable.COLUMN_USER_ANSWER + " TEXT, " +
+                ResultsTableContract.ResultsTable.COLUMN_CORRECT_ANSWER + " TEXT" +
                 ")";
         db.execSQL(SQL_CREATE_RESULTS_TABLE);
 
@@ -59,6 +63,7 @@ public class TestDbHelper extends SQLiteOpenHelper {
         final String SQL_CREATE_QUESTIONS_TABLE = "CREATE TABLE " +
                 QuestionsTable.TABLE_NAME + " ( " +
                 QuestionsTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                QuestionsTable.COLUMN_CATEGORY + " TEXT, " +
                 QuestionsTable.COLUMN_QUESTION + " TEXT, " +
                 QuestionsTable.COLUMN_OPTION1 + " TEXT, " +
                 QuestionsTable.COLUMN_OPTION2 + " TEXT, " +
@@ -84,16 +89,17 @@ public class TestDbHelper extends SQLiteOpenHelper {
         String line = "";
         try {
             while ((line = buffer.readLine()) != null) {
-                String[] columns = line.split(",");
+                String[] columns = line.split((Pattern.quote("|")));
 
                 ContentValues cv = new ContentValues();
-                cv.put(QuestionsTable.COLUMN_QUESTION, columns[0].trim());
-                cv.put(QuestionsTable.COLUMN_OPTION1, columns[1].trim());
-                cv.put(QuestionsTable.COLUMN_OPTION2, columns[2].trim());
-                cv.put(QuestionsTable.COLUMN_OPTION3, columns[3].trim());
-                cv.put(QuestionsTable.COLUMN_OPTION4, columns[4].trim());
-                cv.put(QuestionsTable.COLUMN_ANSWER_NR, columns[5].trim());
-                cv.put(QuestionsTable.COLUMN_IMAGE_ID, columns[6].trim());
+                cv.put(QuestionsTable.COLUMN_CATEGORY, columns[0].trim());
+                cv.put(QuestionsTable.COLUMN_QUESTION, columns[1].trim());
+                cv.put(QuestionsTable.COLUMN_OPTION1, columns[2].trim());
+                cv.put(QuestionsTable.COLUMN_OPTION2, columns[3].trim());
+                cv.put(QuestionsTable.COLUMN_OPTION3, columns[4].trim());
+                cv.put(QuestionsTable.COLUMN_OPTION4, columns[5].trim());
+                cv.put(QuestionsTable.COLUMN_ANSWER_NR, columns[6].trim());
+                cv.put(QuestionsTable.COLUMN_IMAGE_ID, columns[7].trim());
 
                 db.insert(QuestionsTable.TABLE_NAME, null, cv);
             }
@@ -125,6 +131,7 @@ public class TestDbHelper extends SQLiteOpenHelper {
         if (c.moveToFirst()) { //moveToFirst will display question ONLY if there is an entry in database
             do {
                 QuestionModel question = new QuestionModel();
+                question.setCategory(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_CATEGORY)));
                 question.setQuestion(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_QUESTION)));
                 question.setOption1(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION1)));
                 question.setOption2(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION2)));
@@ -143,7 +150,7 @@ public class TestDbHelper extends SQLiteOpenHelper {
 
 
     //SAVES RESULTS TO DB
-    public boolean saveResults(String username, int qCorrect, int qTotal, String date) {
+    public boolean saveResults(String username, int qCorrect, int qTotal, String date, String askedQuestion, String userAnswer, String correctAnswer) {
         //String username, int questionsCorrect, int questionsTotal
         // Gets the data repository in write mode
         db = getWritableDatabase();
@@ -154,6 +161,10 @@ public class TestDbHelper extends SQLiteOpenHelper {
         contentValues.put(ResultsTable.COLUMN_QUESTIONS_CORRECT, qCorrect);
         contentValues.put(ResultsTable.COLUMN_QUESTIONS_TOTAL, qTotal);
         contentValues.put(ResultsTable.COLUMN_TEST_DATE, date);
+        contentValues.put(ResultsTable.COLUMN_ASKED_QUESTION, askedQuestion);
+        contentValues.put(ResultsTable.COLUMN_USER_ANSWER, userAnswer);
+        contentValues.put(ResultsTable.COLUMN_CORRECT_ANSWER, correctAnswer);
+
 
 
         // Insert the new row, returning the primary key value of the new row
@@ -170,8 +181,6 @@ public class TestDbHelper extends SQLiteOpenHelper {
 
 
 
-
-
     //RETRIEVES RESULTS FROM DB, ADDS TO LIST, RETURNS LIST
     public Cursor getAllResults(String username) {
 
@@ -181,4 +190,9 @@ public class TestDbHelper extends SQLiteOpenHelper {
         Cursor data = db.rawQuery(query, null);
         return data;
     }
+
+
+
+
+
 }
