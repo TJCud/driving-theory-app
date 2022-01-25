@@ -63,7 +63,7 @@ public class MockTestActivity extends AppCompatActivity {
         timer(); //Begin Timer
         TestDbHelper dbHelper = new TestDbHelper(this); //Initialise database
         questionList = dbHelper.getAllQuestions(); //Loads questions into list
-       // Collections.shuffle(questionList); //Shuffles question order
+        Collections.shuffle(questionList); //Shuffles question order
         totalQuestions = questionList.size(); //Displays number of questions
 
         showNextQuestion(username);
@@ -139,6 +139,7 @@ public class MockTestActivity extends AppCompatActivity {
             rb2.setVisibility(View.GONE);
             rb3.setVisibility(View.GONE);
             rb4.setVisibility(View.GONE);
+            questionImage.setVisibility(View.GONE);
             btnNext.setText("See results");
             btnNext.setBackgroundColor(Color.parseColor("#00ff44"));
         }

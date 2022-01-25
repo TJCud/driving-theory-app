@@ -62,7 +62,7 @@ public class AllResults extends AppCompatActivity {
 
             //CHECKS IF PASS PERCENTAGE IS ACHIEVED AND DISPLAYS OUTCOME
             double passCheck = score * 100 / questions;
-            if(passCheck > 86){ verdict = "PASS";pass++; }
+            if(passCheck > 85){ verdict = "PASS";pass++; }
             else { verdict = "FAIL";fail++; }
 
             listData.add(date + "\n" + "Test Score: " + score + "/" + questions + " (" + passCheck + "%) " + "Outcome: " + verdict);

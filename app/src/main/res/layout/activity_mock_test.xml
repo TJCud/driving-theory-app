@@ -48,9 +48,9 @@
 
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="143dp"
         android:id="@+id/ID_questionImage"
+        android:layout_width="164dp"
+        android:layout_height="164dp"
         android:layout_below="@+id/textQuestionNo"
         android:layout_marginTop="15dp"
         android:layout_toRightOf="@id/textQuestion"
