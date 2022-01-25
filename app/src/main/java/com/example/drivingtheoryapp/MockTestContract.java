@@ -18,10 +18,8 @@ public class MockTestContract {
         public static final String COLUMN_OPTION3 = "option3";
         public static final String COLUMN_OPTION4 = "option4";
         public static final String COLUMN_ANSWER_NR = "answer";
+        public static final String COLUMN_IMAGE_ID = "image";
 
     }
-
-
-
 
 }

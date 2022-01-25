@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.firebase.inappmessaging.model.Button;
+
 
 public class SettingsMenu extends AppCompatActivity {
 
@@ -60,7 +60,7 @@ public class SettingsMenu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                background.setBackground(getResources().getDrawable(R.drawable.background_nightime));
+
                 darkModeButtonText.setTextColor(Color.WHITE);
                 soundButtonText.setTextColor(Color.WHITE);
                 questionBankButtonText.setTextColor(Color.WHITE);

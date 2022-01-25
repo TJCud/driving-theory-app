@@ -10,7 +10,7 @@
     app:layout_constraintTop_toTopOf="parent"
     android:padding="16dp"
     tools:context=".MockTestActivity"
-    android:background="@drawable/loginbg"
+    android:background="@drawable/background_daytime"
     >
 
 

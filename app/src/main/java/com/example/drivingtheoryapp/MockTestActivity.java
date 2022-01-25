@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -25,7 +27,9 @@ public class MockTestActivity extends AppCompatActivity {
     private RadioGroup radioGroup;
     private RadioButton rb1, rb2, rb3, rb4;
     private Button btnNext;
+    private ImageView questionImage;
 
+    private String imageID;
     private int totalQuestions;
     private int qCounter;
     private int score;
@@ -48,6 +52,7 @@ public class MockTestActivity extends AppCompatActivity {
         rb2 = findViewById(R.id.rb2);
         rb3 = findViewById(R.id.rb3);
         rb4 = findViewById(R.id.rb4);
+        questionImage = findViewById(R.id.ID_questionImage);
         btnNext = findViewById(R.id.btnNext);
 
         // Getting the intent which started this activity
@@ -58,15 +63,10 @@ public class MockTestActivity extends AppCompatActivity {
         timer(); //Begin Timer
         TestDbHelper dbHelper = new TestDbHelper(this); //Initialise database
         questionList = dbHelper.getAllQuestions(); //Loads questions into list
-        Collections.shuffle(questionList); //Shuffles question order
-       // totalQuestions = questionList.size(); //Displays number of questions
-        totalQuestions = 5;
+       // Collections.shuffle(questionList); //Shuffles question order
+        totalQuestions = questionList.size(); //Displays number of questions
 
         showNextQuestion(username);
-
-
-
-
 
         //WHEN BUTTON IS CLICKED, CHECK TO SEE AN ANSWER HAS BEEN SELECTED
         btnNext.setOnClickListener(new View.OnClickListener() {
@@ -91,16 +91,21 @@ public class MockTestActivity extends AppCompatActivity {
 
         radioGroup.clearCheck();
 
-
         if(qCounter < totalQuestions){
             currentQuestion = questionList.get(qCounter);
-
 
             tvQuestion.setText(currentQuestion.getQuestion());
             rb1.setText(currentQuestion.getOption1());
             rb2.setText(currentQuestion.getOption2());
             rb3.setText(currentQuestion.getOption3());
             rb4.setText(currentQuestion.getOption4());
+
+           //CODE FOR LOADING IMAGE
+            imageID = currentQuestion.getImageID();
+            String uri = "@drawable/img"+imageID;
+            int imageResource = getResources().getIdentifier(uri, null, getPackageName());
+            Drawable drawable = getResources().getDrawable(imageResource);
+            questionImage.setImageDrawable(drawable);
 
             qCounter++;
             btnNext.setText("Submit Answer");

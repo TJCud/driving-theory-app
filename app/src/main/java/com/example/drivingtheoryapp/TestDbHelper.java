@@ -48,7 +48,7 @@ public class TestDbHelper extends SQLiteOpenHelper {
                 ResultsTableContract.ResultsTable.COLUMN_USERNAME + " TEXT, " +
                 ResultsTableContract.ResultsTable.COLUMN_QUESTIONS_CORRECT + " INTEGER, " +
                 ResultsTableContract.ResultsTable.COLUMN_QUESTIONS_TOTAL + " INTEGER, " +
-                ResultsTableContract.ResultsTable.COLUMN_TEST_DATE + " STRING" +
+                ResultsTableContract.ResultsTable.COLUMN_TEST_DATE + " TEXT" +
                 ")";
         db.execSQL(SQL_CREATE_RESULTS_TABLE);
 
@@ -64,7 +64,8 @@ public class TestDbHelper extends SQLiteOpenHelper {
                 QuestionsTable.COLUMN_OPTION2 + " TEXT, " +
                 QuestionsTable.COLUMN_OPTION3 + " TEXT, " +
                 QuestionsTable.COLUMN_OPTION4 + " TEXT, " +
-                QuestionsTable.COLUMN_ANSWER_NR + " INTEGER" +
+                QuestionsTable.COLUMN_ANSWER_NR + " INTEGER, " +
+                QuestionsTable.COLUMN_IMAGE_ID + " TEXT" +
                 ")";
 
         db.execSQL(SQL_CREATE_QUESTIONS_TABLE);
@@ -92,6 +93,8 @@ public class TestDbHelper extends SQLiteOpenHelper {
                 cv.put(QuestionsTable.COLUMN_OPTION3, columns[3].trim());
                 cv.put(QuestionsTable.COLUMN_OPTION4, columns[4].trim());
                 cv.put(QuestionsTable.COLUMN_ANSWER_NR, columns[5].trim());
+                cv.put(QuestionsTable.COLUMN_IMAGE_ID, columns[6].trim());
+
                 db.insert(QuestionsTable.TABLE_NAME, null, cv);
             }
         } catch (IOException e) {
@@ -103,9 +106,9 @@ public class TestDbHelper extends SQLiteOpenHelper {
     //UPGRADES DATABASE
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-    db.execSQL("DROP TABLE IF EXISTS " + QuestionsTable.TABLE_NAME);
-    db.execSQL("DROP TABLE IF EXISTS " + ResultsTable.TABLE_NAME);
-    onCreate(db);
+        db.execSQL("DROP TABLE IF EXISTS " + QuestionsTable.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + ResultsTable.TABLE_NAME);
+        onCreate(db);
     }
 
 
@@ -128,6 +131,7 @@ public class TestDbHelper extends SQLiteOpenHelper {
                 question.setOption3(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION3)));
                 question.setOption4(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION4)));
                 question.setAnswerNr(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_ANSWER_NR)));
+                question.setImageID(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_IMAGE_ID)));
                 questionList.add(question);
             } while (c.moveToNext()); //Keeps adding questions while entries in database exists.
         }
@@ -162,8 +166,6 @@ public class TestDbHelper extends SQLiteOpenHelper {
             return true;
         }
 
-
-
     }
 
 
@@ -179,14 +181,4 @@ public class TestDbHelper extends SQLiteOpenHelper {
         Cursor data = db.rawQuery(query, null);
         return data;
     }
-
-
-
-
 }
-
-
-
-
-
-
