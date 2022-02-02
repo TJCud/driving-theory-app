@@ -148,6 +148,41 @@ public class TestDbHelper extends SQLiteOpenHelper {
     }
 
 
+    public List<QuestionModel> getCategoryQuestions(String category) {
+
+        List<QuestionModel> questionList = new ArrayList<>();
+        db = getReadableDatabase();
+
+        String query = "SELECT * FROM " + QuestionsTable.TABLE_NAME +
+                " WHERE " + QuestionsTable.COLUMN_CATEGORY + " = '" + category + "'";
+
+        Cursor c = db.rawQuery(query, null);
+
+
+        //CREATES QUESTION OBJECT FOR EACH ENTRY IN DATABASE
+        if (c.moveToFirst()) { //moveToFirst will display question ONLY if there is an entry in database
+            do {
+                QuestionModel question = new QuestionModel();
+                question.setCategory(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_CATEGORY)));
+                question.setQuestion(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_QUESTION)));
+                question.setOption1(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION1)));
+                question.setOption2(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION2)));
+                question.setOption3(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION3)));
+                question.setOption4(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION4)));
+                question.setAnswerNr(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_ANSWER_NR)));
+                question.setImageID(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_IMAGE_ID)));
+                questionList.add(question);
+            } while (c.moveToNext()); //Keeps adding questions while entries in database exists.
+        }
+
+        c.close();
+        return questionList;
+    }
+
+
+
+
+
 
     //SAVES RESULTS TO DB
     public boolean saveResults(String username, int qCorrect, int qTotal, String date, String askedQuestion, String userAnswer, String correctAnswer) {
@@ -166,7 +201,6 @@ public class TestDbHelper extends SQLiteOpenHelper {
         contentValues.put(ResultsTable.COLUMN_CORRECT_ANSWER, correctAnswer);
 
 
-
         // Insert the new row, returning the primary key value of the new row
         long result = db.insert(ResultsTable.TABLE_NAME, null, contentValues);
 
@@ -176,7 +210,6 @@ public class TestDbHelper extends SQLiteOpenHelper {
         } else {
             return true;
         }
-
     }
 
 
@@ -190,9 +223,4 @@ public class TestDbHelper extends SQLiteOpenHelper {
         Cursor data = db.rawQuery(query, null);
         return data;
     }
-
-
-
-
-
 }

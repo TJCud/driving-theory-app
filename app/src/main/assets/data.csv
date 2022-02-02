@@ -1,15 +1,72 @@
-Full|You see a horse rider as you approach a roundabout. They are signalling right but keeping well to the left. You should|proceed as normal|keep close to them|cut in front of them|stay well back|4|1001
-Full|How would you react to drivers who appear to be inexperienced?|Sound your horn to warn them of your presence|Be patient and prepare for them to react more slowly|Flash your headlights to indicate that it is safe for them to proceed|Overtake them as soon as possible|2|1002
-Full|You are on a country road. What should you expect to see coming towards you on YOUR side of the road?|Motorcycles|Bicycles|Pedestrians|Horse riders|3|1003
-Full|You are following a car driven by an elderly driver. You should|expect the driver to drive badly|flash your lights and overtake|be aware that the driver’s reactions may not be as fast as yours|stay very close behind but be careful|3|1004
-Full|You are following a cyclist. You wish to turn left just ahead. You should|overtake the cyclist before the junction|pull alongside the cyclist and stay level until after the junction|hold back until the cyclist has passed the junction|go around the cyclist on the junction|3|1005
-Full|A horse rider is in the left-hand lane approaching a roundabout. You should expect the rider to|go in any direction|turn right|turn left|go ahead|1|1006
-Full|Powered vehicles used by disabled people are small and hard to see. How do they give early warning when on a dual carriageway?|They will have a flashing red light|They will have a flashing green light|They will have a flashing blue light|They will have a flashing amber light|4|1007
-Full|You should never attempt to overtake a cyclist|just before you turn left|on a left-hand bend|on a one-way street|on a dual carriageway|1|1008
-Full|Ahead of you there is a moving vehicle with a flashing amber beacon. This means it is|slow moving|broken down|a doctor’s car|a school crossing patrol|1|1009
-Full|You notice horse riders in front. What should you do FIRST?|Pull out to the middle of the road|Slow down and be ready to stop|Accelerate around them|Signal right|2|1010
-Full|What does this sign mean?|Two-way traffic straight ahead|Two-way traffic crosses a one-way road|Two-way traffic over a bridge|Two-way traffic crosses a two-way road|2|1011
-Full|What does this sign mean?|Hump-back bridge|Traffic calming hump|Low bridge|Uneven Road|3|1012
-Full|What does this sign mean?|No footpath|No pedestrians|Zebra Crossing|School crossing|3|1013
-Full|What does this sign mean?|Turn left ahead|T-junction|No through road|Give Way|2|1014
-Full|What does this sign mean?|Crossroads|Level crossing with gate|Level crossing without gate|Ahead only|1|1015
+Accidents|A is correct|A|B|C|D|1|default
+Accidents|B is correct|A|B|C|D|2|default
+Accidents|C is correct|A|B|C|D|3|default
+Accidents|D is correct|A|B|C|D|4|default
+Alertness|When following a large vehicle you should keep well back because this|Allows you to corner more quickly|Helps the large vehicle to stop more easily|Allows the driver to see you in the mirrors|Helps you to keep out of the wind|3|hgv
+Alertness|When you see a hazard ahead you should use the mirrors. Why is this?|Because you will need to accelerate out of danger|To access how your actions will affect following traffic|Because you will need to brake sharply to stop|To check what is happening on the road ahead|2|hazard
+Alertness|You are driving on a wet road. You have to stop your vehicle in an emergency. You should|Apply the handbrake and footbrake together|Keep both hands on the wheel|Select reverse gear|Give an arm signal|2|wetroad
+Alertness|You cannot see clearly behind when reversing. What should you do?|Open your window to look behind|Open the door and look behind|Look in the nearside mirror|Ask someone to guide you|4|reverse
+Alertness|Windscreen pillars can obstruct your view. You should take particular care when|Driving on a motorway|Driving on a dual carriageway|Approaching a one-way street|Approaching bends and junctions|4|pillar
+Alertness|To answer a call on your mobile phone while travelling you should|Reduce your speed wherever you are|Stop in a proper and convenient place|Keep the call time to a minimum|Slow down and allow others to overtake|2|mobile
+Alertness|You are waiting to turn right at the end of a road. Your view is obstructed by parked vehicles. What should you do?|Stop and then move forward slowly and carefully for a proper view|Move quickly to where you can see so you only block traffic from one direction|Wait for a pedestrian to let you know when it is safe for you to emerge|Turn your vehicle around immediately and find another junction to use|1|parkedvehicles
+Alertness|In which of these situations should you avoid overtaking?|Just after a bend|In a one-way street|On a 30 mph road|Approaching a dip in the road|4|overtake
+Alertness|You are driving on a motorway and want to use your mobile phone. What should you do?|Try to find a safe place on the hard shoulder|Leave the motorway and stop in a safe place|Use the next exit and pull up on the slip road|Move to the left lane and reduce your speed|2|mobile
+Alertness|You must not use a hand-held phone while driving. Using a hands-free system|Is acceptable in a vehicle with power steering|Will significantly reduce your field of vision|Will affect your vehicle's electronic systems|Is still likely to distract your attention from the road|4|mobile
+Alertness|Your vehicle is fitted with a navigation system. How should you avoid letting this distract you while driving?|Keep going and input your destination into the system|Keep going as the system will adjust to your route|Stop immediately to view and use the system|Stop in a safe place before using the system|4|satnav
+Alertness|You lose your way on a busy road. What is the best action to take?|Stop at traffic lights and ask pedestrians|Shout to other drivers to ask them the way|Turn into a side road, stop and check a map|Check a map, and keep going with the traffic flow|3|traffic
+Alertness|You should ONLY use a mobile phone when|Receiving a call|Suitably parked|Driving at less than 30 mph|Driving an automatic vehicle|2|mobile
+Attitude|What type of emergency vehicle is fitted with a green flashing beacon?|Fire engine|Road gritter|Ambulance|Doctor's car|4|default
+Attitude|You are driving on a clear night. There is a steady stream of oncoming traffic. The national speed limit applies. Which lights should you use?|Full beam headlights|Sidelights|Dipped headlightse|Fog lights|3|default
+Attitude|You are driving in traffic at the speed limit for the road. The driver behind is trying to overtake. You should|move closer to the car ahead, so the driver behind has no room to overtake|wave the driver behind to overtake when it is safe|keep a steady course and allow the driver behind to overtake|accelerate to get away from the driver behind|3|default
+Attitude|A bus lane on your left shows no times of operation. This means it is|not in operation at all|only in operation at peak times|in operation 24 hours a day|only in operation in daylight hours|3|default
+Attitude|A vehicle pulls out in front of you at a junction. What should you do?|Swerve past it and sound your horn|Flash your headlights and drive up close behind|Slow down and be ready to stop|Accelerate past it immediately|3|default
+Attitude|At puffin crossings, which light will not show to a driver?|Flashing amber|Red|Steady amber|Green|1|default
+Attitude|You are driving a slow-moving vehicle on a narrow winding road. You should|keep well out to stop vehicles overtaking dangerously|wave following vehicles past you if you think they can overtake quickly|pull in safely when you can, to let following vehicles overtake|give a left signal when it is safe for vehicles to overtake|3|default
+Attitude|What style of driving causes increased risk to everyone?|Considerate|Defensive|Competitive|Responsible|3|default
+Attitude|You are driving at night on an unlit road behind another vehicle. You should|flash your headlights|use dipped beam headlights|switch off your headlights|use full beam headlights|2|default
+Attitude|You are approaching a red light at a puffin crossing. Pedestrians are on the crossing. The red light will stay on until|you start to edge forward on to the crossing|the pedestrians have reached a safe position|the pedestrians are clear of the front of your vehicle|a driver from the opposite direction reaches the crossing|2|default
+Documents|A is correct|A|B|C|D|1|default
+Documents|B is correct|A|B|C|D|2|default
+Documents|C is correct|A|B|C|D|3|default
+Documents|D is correct|A|B|C|D|4|default
+Hazard awareness|A is correct|A|B|C|D|1|default
+Hazard awareness|B is correct|A|B|C|D|2|default
+Hazard awareness|C is correct|A|B|C|D|3|default
+Hazard awareness|D is correct|A|B|C|D|4|default
+Motorway rules|A is correct|A|B|C|D|1|default
+Motorway rules|B is correct|A|B|C|D|2|default
+Motorway rules|C is correct|A|B|C|D|3|default
+Motorway rules|D is correct|A|B|C|D|4|default
+Other types of vehicle|A is correct|A|B|C|D|1|default
+Other types of vehicle|B is correct|A|B|C|D|2|default
+Other types of vehicle|C is correct|A|B|C|D|3|default
+Other types of vehicle|D is correct|A|B|C|D|4|default
+Road and traffic signs|What does this sign mean?|Two-way traffic straight ahead|Two-way traffic crosses a one-way road|Two-way traffic over a bridge|Two-way traffic crosses a two-way road|2|1011
+Road and traffic signs|What does this sign mean?|Hump-back bridge|Traffic calming hump|Low bridge|Uneven Road|3|1012
+Road and traffic signs|What does this sign mean?|No footpath|No pedestrians|Zebra Crossing|School crossing|3|1013
+Road and traffic signs|What does this sign mean?|Turn left ahead|T-junction|No through road|Give Way|2|1014
+Road and traffic signs|What does this sign mean?|Crossroads|Level crossing with gate|Level crossing without gate|Ahead only|1|1015
+Rules of the road|A is correct|A|B|C|D|1|default
+Rules of the road|B is correct|A|B|C|D|2|default
+Rules of the road|C is correct|A|B|C|D|3|default
+Rules of the road|D is correct|A|B|C|D|4|default
+Safety and your vehicle|A is correct|A|B|C|D|1|default
+Safety and your vehicle|B is correct|A|B|C|D|2|default
+Safety and your vehicle|C is correct|A|B|C|D|3|default
+Safety and your vehicle|D is correct|A|B|C|D|4|default
+Safety margins|A is correct|A|B|C|D|1|default
+Safety margins|B is correct|A|B|C|D|2|default
+Safety margins|C is correct|A|B|C|D|3|default
+Safety margins|D is correct|A|B|C|D|4|default
+Vehicle handling|A is correct|A|B|C|D|1|default
+Vehicle handling|B is correct|A|B|C|D|2|default
+Vehicle handling|C is correct|A|B|C|D|3|default
+Vehicle handling|D is correct|A|B|C|D|4|default
+Vehicle loading|A is correct|A|B|C|D|1|default
+Vehicle loading|B is correct|A|B|C|D|2|default
+Vehicle loading|C is correct|A|B|C|D|3|default
+Vehicle loading|D is correct|A|B|C|D|4|default
+Vulnerable road users|A is correct|A|B|C|D|1|default
+Vulnerable road users|B is correct|A|B|C|D|2|default
+Vulnerable road users|C is correct|A|B|C|D|3|default
+Vulnerable road users|D is correct|A|B|C|D|4|default

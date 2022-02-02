@@ -39,7 +39,7 @@ public class TestMenu extends AppCompatActivity {
         practicebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openPractice();
+                openPractice(username);
             }
         });
 
@@ -69,7 +69,10 @@ public class TestMenu extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openPractice(){
+    public void openPractice(String passUsername){
+        Intent intent = new Intent(TestMenu.this, ActivityPracticeMenu.class);
+        intent.putExtra("username_key",passUsername);
+        startActivity(intent);
 
     }
 

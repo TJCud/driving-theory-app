@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    android:padding="16dp"
+    tools:context=".ActivityPracticeMenu"
+    android:background="#fafafa">
+
+
+  <TextView
+      android:id="@+id/textQuestion"
+      android:layout_width="391dp"
+      android:layout_height="50dp"
+      android:layout_marginTop="5dp"
+      android:gravity="center"
+      android:text="Select a category"
+      android:textColor="#363636"
+      android:textSize="25sp" />
+
+
+  <RadioGroup
+      android:id="@+id/ID_category_rg"
+      android:layout_below="@id/textQuestion"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_centerInParent="true"
+      android:gravity="center"
+      android:layout_marginTop="20dp"
+      android:layout_marginBottom="10dp">
+
+
+    <RadioButton
+        android:id="@+id/ID_category_rb1"
+        android:layout_width="350dp"
+        android:layout_height="35dp"
+        android:layout_weight="1"
+        android:background="@drawable/checkbox_background"
+        android:button="@android:color/transparent"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:textColor="@color/white"
+        android:text="Accidents"
+        android:textSize="11.5sp" />
+
+
+    <RadioButton
+        android:id="@+id/ID_category_rb2"
+        android:layout_width="350dp"
+        android:layout_height="35dp"
+        android:background="@drawable/checkbox_background"
+        android:button="@android:color/transparent"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:textColor="@color/white"
+        android:text="Alertness"
+        android:textSize="11.5sp" />
+
+    <RadioButton
+        android:id="@+id/ID_category_rb3"
+        android:layout_width="350dp"
+        android:layout_height="35dp"
+        android:background="@drawable/checkbox_background"
+        android:button="@android:color/transparent"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:textColor="@color/white"
+        android:text="Attitude"
+        android:textSize="11.5sp" />
+
+    <RadioButton
+        android:id="@+id/ID_category_rb4"
+        android:layout_width="350dp"
+        android:layout_height="35dp"
+        android:background="@drawable/checkbox_background"
+        android:button="@android:color/transparent"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:textColor="@color/white"
+        android:text="Documents"
+        android:textSize="11.5sp" />
+
+    <RadioButton
+        android:id="@+id/ID_category_rb5"
+        android:layout_width="350dp"
+        android:layout_height="35dp"
+        android:background="@drawable/checkbox_background"
+        android:button="@android:color/transparent"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:textColor="@color/white"
+        android:text="Hazard awareness"
+        android:textSize="11.5sp" />
+
+    <RadioButton
+        android:id="@+id/ID_category_rb6"
+        android:layout_width="350dp"
+        android:layout_height="35dp"
+        android:background="@drawable/checkbox_background"
+        android:button="@android:color/transparent"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:textColor="@color/white"
+        android:text="Motorway rules"
+        android:textSize="11.5sp" />
+
+    <RadioButton
+        android:id="@+id/ID_category_rb7"
+        android:layout_width="350dp"
+        android:layout_height="35dp"
+        android:background="@drawable/checkbox_background"
+        android:button="@android:color/transparent"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:textColor="@color/white"
+        android:text="Other types of vehicle"
+        android:textSize="11.5sp" />
+
+    <RadioButton
+        android:id="@+id/ID_category_rb8"
+        android:layout_width="350dp"
+        android:layout_height="35dp"
+        android:background="@drawable/checkbox_background"
+        android:button="@android:color/transparent"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:textColor="@color/white"
+        android:text="Road and traffic signs"
+        android:textSize="11.5sp" />
+
+    <RadioButton
+        android:id="@+id/ID_category_rb9"
+        android:layout_width="350dp"
+        android:layout_height="35dp"
+        android:background="@drawable/checkbox_background"
+        android:button="@android:color/transparent"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:textColor="@color/white"
+        android:text="Rules of the road"
+        android:textSize="11.5sp" />
+
+    <RadioButton
+        android:id="@+id/ID_category_rb10"
+        android:layout_width="350dp"
+        android:layout_height="35dp"
+        android:background="@drawable/checkbox_background"
+        android:button="@android:color/transparent"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:textColor="@color/white"
+        android:text="Safety and your vehicle"
+        android:textSize="11.5sp" />
+
+    <RadioButton
+        android:id="@+id/ID_category_rb11"
+        android:layout_width="350dp"
+        android:layout_height="35dp"
+        android:background="@drawable/checkbox_background"
+        android:button="@android:color/transparent"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:textColor="@color/white"
+        android:text="Safety margins"
+        android:textSize="11.5sp" />
+
+    <RadioButton
+        android:id="@+id/ID_category_rb12"
+        android:layout_width="350dp"
+        android:layout_height="35dp"
+        android:background="@drawable/checkbox_background"
+        android:button="@android:color/transparent"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:textColor="@color/white"
+        android:text="Vehicle handling"
+        android:textSize="11.5sp" />
+
+    <RadioButton
+        android:id="@+id/ID_category_rb13"
+        android:layout_width="350dp"
+        android:layout_height="35dp"
+        android:background="@drawable/checkbox_background"
+        android:button="@android:color/transparent"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:textColor="@color/white"
+        android:text="Vehicle loading"
+        android:textSize="11.5sp" />
+
+    <RadioButton
+        android:id="@+id/ID_category_rb14"
+        android:layout_width="350dp"
+        android:layout_height="35dp"
+        android:background="@drawable/checkbox_background"
+        android:button="@android:color/transparent"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:textColor="@color/white"
+        android:text="Vulnerable road users"
+        android:textSize="11.5sp" />
+
+
+  </RadioGroup>
+
+
+  <Button
+      android:id="@+id/btnNext"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/ID_category_rg"
+      android:layout_marginTop="10dp"
+      android:backgroundTint="@color/black"
+      android:text="START TEST"
+      android:textColor="@color/white"
+      android:textSize="20sp"
+      android:textStyle="normal"
+      app:layout_constraintBottom_toBottomOf="parent" />
+
+
+
+
+
+</RelativeLayout>

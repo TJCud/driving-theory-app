@@ -32,8 +32,7 @@ public class ActivityTestPreScreen extends AppCompatActivity {
         startButton = (Button) findViewById(R.id.ID_startButton);
         ImageView trafficLights = findViewById(R.id.ID_trafficlights);
         TextView testInfo = findViewById(R.id.ID_testInfo);
-        TextView timerText = findViewById(R.id.ID_timer);
-        timerText.setVisibility(View.INVISIBLE);
+
 
         // Getting the intent which started this activity
         Intent intent = getIntent();
@@ -49,14 +48,14 @@ public class ActivityTestPreScreen extends AppCompatActivity {
                 testInfo.setText("Starting test in... 3");
                 startButton.setVisibility(View.GONE);
                 trafficLights.setVisibility(View.VISIBLE);
-                timerText.setVisibility(View.VISIBLE);
-                timerText.setTextColor(Color.RED);
+
+
 
                 new Handler().postDelayed(new Runnable() {
                     public void run() {
                         testInfo.setText("Starting test in... 2");
                         trafficLights.setImageResource(R.drawable.trafficlight_amber);
-                        timerText.setTextColor(Color.YELLOW);
+
                     }
                 }, 1 * 1000);
 
@@ -64,7 +63,7 @@ public class ActivityTestPreScreen extends AppCompatActivity {
                     public void run() {
                         testInfo.setText("Starting test in... 1");
                         trafficLights.setImageResource(R.drawable.trafficlight_green);
-                        timerText.setTextColor(Color.GREEN);
+
                     }
                 }, 2 * 1000);
 

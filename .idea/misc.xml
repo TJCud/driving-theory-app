@@ -18,18 +18,23 @@
         <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/drawable/ic_mocktest.xml" value="0.18645833333333334" />
         <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/drawable/ic_practice.xml" value="0.2" />
         <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/drawable/ic_settings.xml" value="0.18645833333333334" />
+        <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/drawable/questionimages.xml" value="0.228125" />
         <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/drawable/round_back_red10.xml" value="0.221875" />
         <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/drawable/settings_icon.xml" value="0.2046875" />
         <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/drawable/test_icon.xml" value="0.2046875" />
         <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/drawable/testicon.xml" value="0.2046875" />
         <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/layout/activity_account_menu.xml" value="0.20572916666666666" />
         <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/layout/activity_all_results.xml" value="0.2749094202898551" />
+        <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/layout/activity_graph_view.xml" value="0.20572916666666666" />
         <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/layout/activity_login.xml" value="0.1984375" />
         <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/layout/activity_menu.xml" value="0.335" />
         <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/layout/activity_mock_test.xml" value="0.20572916666666666" />
         <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/layout/activity_mock_test_results.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/layout/activity_new_menu.xml" value="0.18854166666666666" />
+        <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/layout/activity_practice.xml" value="0.34692028985507245" />
+        <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/layout/activity_practice_menu.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/layout/activity_practice_test.xml" value="0.34692028985507245" />
         <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/layout/activity_result.xml" value="0.18072916666666666" />
         <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/layout/activity_review_results.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/layout/activity_settings_menu.xml" value="0.20572916666666666" />

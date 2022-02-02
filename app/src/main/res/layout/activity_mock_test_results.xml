@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MockTestResults"
-    android:background="@drawable/background_daytime"
+    android:background="#fafafa"
     android:gravity="center"
     android:orientation="vertical">
 

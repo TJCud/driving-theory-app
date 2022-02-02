@@ -27,19 +27,9 @@ public class Menu extends AppCompatActivity {
         // Get the data of the activity providing the same key value
         String username = intent.getStringExtra("username_key");
 
-
-
-
-
-
-
         //Displaying username in welcome header
         TextView welcomeLabel = (TextView) findViewById(R.id.welcomeLabel);
         welcomeLabel.setText("Welcome, " + username + "!");
-
-
-
-
 
         //Declaring buttons
         CardView logoutbtn = (CardView) findViewById(R.id.logoutbtn);
@@ -102,7 +92,7 @@ public class Menu extends AppCompatActivity {
     }
 
     public void settings(String passUsername){
-        Intent openSettings = new Intent(getApplicationContext(), SettingsMenu.class);
+        Intent openSettings = new Intent(getApplicationContext(), ActivityGraphView.class);
         openSettings.putExtra("username_key",passUsername);
         startActivity(openSettings);
     }

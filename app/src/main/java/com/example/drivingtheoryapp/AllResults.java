@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,10 +13,6 @@ import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.android.gms.common.util.ArrayUtils;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -27,13 +22,9 @@ import java.util.stream.Collectors;
 
 public class AllResults extends AppCompatActivity {
 
-    private static final String TAG = "ListDataActivity";
-
     public static String saveQuestionString;
     public static String saveResultString;
-
     TestDbHelper mDatabaseHelper;
-
     private ListView mListView;
     private Button returnBtn;
 
@@ -79,7 +70,7 @@ public class AllResults extends AppCompatActivity {
             if(passCheck > 85){ verdict = "PASS";pass++; }
             else { verdict = "FAIL";fail++; }
 
-            listDataOutcome.add(date + "\n" + "Test ID: " + " Test Score: " + score + "/" + questions + " (" + passCheck + "%) " + "Outcome: " + verdict + "\n");
+            listDataOutcome.add(date + "\n" + "Test Score: " + score + "/" + questions + " (" + passCheck + "%) " + "Outcome: " + verdict + "\n");
 
             String allAskedQuestions = data.getString(5);
             String allUserAnswers = data.getString(6);
@@ -87,7 +78,7 @@ public class AllResults extends AppCompatActivity {
 
 
 
-            for (int i=0;i<15;i++){
+            for (int i=0;i<size;i++){
                 String[] askedQuestion = allAskedQuestions.split((Pattern.quote("|")));
                 String[] userAnswer = allUserAnswers.split((Pattern.quote("|")));
                 String[] correctAnswer = allCorrectAnswers.split((Pattern.quote("|")));
@@ -129,7 +120,7 @@ public class AllResults extends AppCompatActivity {
 
 
         //create the list adapter and set the adapter
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, merged);
+        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listDataOutcome);
 
 
         mListView.setAdapter(adapter);

@@ -1,20 +1,20 @@
 package com.example.drivingtheoryapp;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.*;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-public class MockTestActivity extends AppCompatActivity {
+public class ActivityPracticeTest extends AppCompatActivity {
 
     public static ArrayList<String> saveQuestion= new ArrayList<>();;
     public static ArrayList<String> saveUserAnswer= new ArrayList<>();;
@@ -38,14 +38,15 @@ public class MockTestActivity extends AppCompatActivity {
     private RadioButton rb1, rb2, rb3, rb4;
     private Button btnNext;
     private ImageView questionImage;
+    private ImageView timerImage;
 
     private String imageID;
     private int totalQuestions;
     private int qCounter;
     private int score;
     private boolean answered;
-
     private CountDownTimer countDownTimer;
+
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -58,24 +59,28 @@ public class MockTestActivity extends AppCompatActivity {
         tvQuestion = findViewById(R.id.textQuestion);
         tvQuestionNo = findViewById(R.id.textQuestionNo);
         tvTimer = findViewById(R.id.textTimer);
+        tvTimer.setText("");
         radioGroup = findViewById(R.id.radioGroup);
         rb1 = findViewById(R.id.rb1);
         rb2 = findViewById(R.id.rb2);
         rb3 = findViewById(R.id.rb3);
         rb4 = findViewById(R.id.rb4);
         questionImage = findViewById(R.id.ID_questionImage);
+        timerImage = findViewById(R.id.ID_timerImage);
+        timerImage.setVisibility(View.INVISIBLE);
         btnNext = findViewById(R.id.btnNext);
 
         // Getting the intent which started this activity
         Intent intent = getIntent();
         // Get the data of the activity providing the same key value
         String username = intent.getStringExtra("username_key");
+        String category = intent.getStringExtra("category_key");
 
-        timer(username); //Begin Timer
+       // timer(username); //Begin Timer
         TestDbHelper dbHelper = new TestDbHelper(this); //Initialise database
-        questionList = dbHelper.getAllQuestions(); //Loads questions into list
+        questionList = dbHelper.getCategoryQuestions(category); //Loads questions into list
         Collections.shuffle(questionList); //Shuffles question order
-        totalQuestions = 50; //Displays number of questions
+        totalQuestions = questionList.size(); //Displays number of questions
 
         showNextQuestion(username);
 
@@ -88,12 +93,11 @@ public class MockTestActivity extends AppCompatActivity {
                     if(rb1.isChecked() || rb2.isChecked() || rb3.isChecked() || rb4.isChecked()){
                         checkAnswer(username);
                     } else {
-                        Toast.makeText(MockTestActivity.this, "Please select an answer", Toast.LENGTH_SHORT).show();}
+                        Toast.makeText(ActivityPracticeTest.this, "Please select an answer", Toast.LENGTH_SHORT).show();}
 
                 } else {
                     showNextQuestion(username);
                 }
-
             }
         });
     }
@@ -102,6 +106,10 @@ public class MockTestActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void showNextQuestion(String passUsername) {
 
+        rb1.setBackgroundResource(R.drawable.checkbox_background);
+        rb2.setBackgroundResource(R.drawable.checkbox_background);
+        rb3.setBackgroundResource(R.drawable.checkbox_background);
+        rb4.setBackgroundResource(R.drawable.checkbox_background);
         radioGroup.clearCheck();
 
         if(qCounter < totalQuestions){
@@ -113,7 +121,7 @@ public class MockTestActivity extends AppCompatActivity {
             rb3.setText(currentQuestion.getOption3());
             rb4.setText(currentQuestion.getOption4());
 
-           //CODE FOR LOADING IMAGE
+            //CODE FOR LOADING IMAGE
             imageID = currentQuestion.getImageID();
             String uri = "@drawable/question_image_"+imageID;
             int imageResource = getResources().getIdentifier(uri, null, getPackageName());
@@ -121,7 +129,7 @@ public class MockTestActivity extends AppCompatActivity {
             questionImage.setImageDrawable(drawable);
 
             qCounter++;
-            btnNext.setText("Next Question");
+            btnNext.setText("Confirm");
             tvQuestionNo.setText("Question "+qCounter+" of "+totalQuestions + ":");
             answered = false;
 
@@ -139,18 +147,21 @@ public class MockTestActivity extends AppCompatActivity {
 
         answered = true;
         RadioButton rbSelected = findViewById(radioGroup.getCheckedRadioButtonId());
-
         int answerNo = radioGroup.indexOfChild(rbSelected) +1;
+
+
+        //ADDING TO SCORE IF ANSWER IS CORRECT
         if(answerNo == currentQuestion.getAnswerNr()){
             score++;
+            Toast.makeText(ActivityPracticeTest.this, "Correct answer", Toast.LENGTH_SHORT).show();
         }
+        else { Toast.makeText(ActivityPracticeTest.this, "Incorrect answer", Toast.LENGTH_SHORT).show(); }
 
 
 
+        //SAVING QUESTIONS AND ANSWERS TO DB
         saveQuestion.add(currentQuestion.getQuestion());
         saveUserAnswer.add((String) rbSelected.getText());
-        //
-
         switch (currentQuestion.getAnswerNr()) {
             case 1:
                 saveCorrectAnswer.add(currentQuestion.getOption1());
@@ -166,23 +177,9 @@ public class MockTestActivity extends AppCompatActivity {
                 break;}
 
 
+        //SHOW SOLUTION
+        showSolution(passUsername);
 
-
-        if(qCounter < totalQuestions){
-            showNextQuestion(passUsername);
-
-        } else{
-            countDownTimer.cancel();
-            tvQuestionNo.setVisibility(View.GONE);
-            tvQuestion.setVisibility(View.GONE);
-            rb1.setVisibility(View.GONE);
-            rb2.setVisibility(View.GONE);
-            rb3.setVisibility(View.GONE);
-            rb4.setVisibility(View.GONE);
-            questionImage.setVisibility(View.GONE);
-            btnNext.setText("See results");
-            btnNext.setBackgroundColor(Color.parseColor("#00ff44"));
-        }
     }
 
 
@@ -201,7 +198,7 @@ public class MockTestActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onFinish() {
-                Toast.makeText(MockTestActivity.this, "Time up!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ActivityPracticeTest.this, "Time up!", Toast.LENGTH_SHORT).show();
                 finishTest(passUsername);
 
             }
@@ -259,5 +256,47 @@ public class MockTestActivity extends AppCompatActivity {
         super.onPause();
         finish();
     }
+
+
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void showSolution(String passUsername) {
+        rb1.setBackgroundResource(R.drawable.button_background_red);
+        rb2.setBackgroundResource(R.drawable.button_background_red);
+        rb3.setBackgroundResource(R.drawable.button_background_red);
+        rb4.setBackgroundResource(R.drawable.button_background_red);
+
+        switch (currentQuestion.getAnswerNr()) {
+            case 1:
+                rb1.setBackgroundResource(R.drawable.button_background_green);
+                break;
+            case 2:
+                rb2.setBackgroundResource(R.drawable.button_background_green);
+                break;
+            case 3:
+                rb3.setBackgroundResource(R.drawable.button_background_green);
+                break;
+            case 4:
+                rb4.setBackgroundResource(R.drawable.button_background_green);
+                break;
+        }
+
+        if(qCounter < totalQuestions){
+            btnNext.setText("Next Question");
+        } else{
+/*            countDownTimer.cancel();
+            tvQuestionNo.setVisibility(View.GONE);
+            tvQuestion.setVisibility(View.GONE);
+            rb1.setVisibility(View.GONE);
+            rb2.setVisibility(View.GONE);
+            rb3.setVisibility(View.GONE);
+            rb4.setVisibility(View.GONE);
+            questionImage.setVisibility(View.GONE);*/
+            btnNext.setText("FINISH TEST");
+            btnNext.setBackgroundColor(Color.parseColor("#00ff44"));
+        }
+    }
+
+
 
 }
