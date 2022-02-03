@@ -1,243 +1,640 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    android:padding="16dp"
-    tools:context=".ActivityPracticeMenu"
-    android:background="#fafafa">
+    android:orientation="vertical"
+    android:background="#fafafa"
+    android:weightSum="15"
+    tools:context=".ActivityPracticeMenu">
 
 
-  <TextView
-      android:id="@+id/textQuestion"
-      android:layout_width="391dp"
-      android:layout_height="50dp"
-      android:layout_marginTop="5dp"
-      android:gravity="center"
-      android:text="Select a category"
-      android:textColor="#363636"
-      android:textSize="25sp" />
-
-
-  <RadioGroup
-      android:id="@+id/ID_category_rg"
-      android:layout_below="@id/textQuestion"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_centerInParent="true"
-      android:gravity="center"
-      android:layout_marginTop="20dp"
-      android:layout_marginBottom="10dp">
-
-
-    <RadioButton
-        android:id="@+id/ID_category_rb1"
-        android:layout_width="350dp"
-        android:layout_height="35dp"
-        android:layout_weight="1"
-        android:background="@drawable/checkbox_background"
-        android:button="@android:color/transparent"
-        android:gravity="center"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:textColor="@color/white"
-        android:text="Accidents"
-        android:textSize="11.5sp" />
-
-
-    <RadioButton
-        android:id="@+id/ID_category_rb2"
-        android:layout_width="350dp"
-        android:layout_height="35dp"
-        android:background="@drawable/checkbox_background"
-        android:button="@android:color/transparent"
-        android:gravity="center"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:textColor="@color/white"
-        android:text="Alertness"
-        android:textSize="11.5sp" />
-
-    <RadioButton
-        android:id="@+id/ID_category_rb3"
-        android:layout_width="350dp"
-        android:layout_height="35dp"
-        android:background="@drawable/checkbox_background"
-        android:button="@android:color/transparent"
-        android:gravity="center"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:textColor="@color/white"
-        android:text="Attitude"
-        android:textSize="11.5sp" />
-
-    <RadioButton
-        android:id="@+id/ID_category_rb4"
-        android:layout_width="350dp"
-        android:layout_height="35dp"
-        android:background="@drawable/checkbox_background"
-        android:button="@android:color/transparent"
-        android:gravity="center"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:textColor="@color/white"
-        android:text="Documents"
-        android:textSize="11.5sp" />
-
-    <RadioButton
-        android:id="@+id/ID_category_rb5"
-        android:layout_width="350dp"
-        android:layout_height="35dp"
-        android:background="@drawable/checkbox_background"
-        android:button="@android:color/transparent"
-        android:gravity="center"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:textColor="@color/white"
-        android:text="Hazard awareness"
-        android:textSize="11.5sp" />
-
-    <RadioButton
-        android:id="@+id/ID_category_rb6"
-        android:layout_width="350dp"
-        android:layout_height="35dp"
-        android:background="@drawable/checkbox_background"
-        android:button="@android:color/transparent"
-        android:gravity="center"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:textColor="@color/white"
-        android:text="Motorway rules"
-        android:textSize="11.5sp" />
-
-    <RadioButton
-        android:id="@+id/ID_category_rb7"
-        android:layout_width="350dp"
-        android:layout_height="35dp"
-        android:background="@drawable/checkbox_background"
-        android:button="@android:color/transparent"
-        android:gravity="center"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:textColor="@color/white"
-        android:text="Other types of vehicle"
-        android:textSize="11.5sp" />
-
-    <RadioButton
-        android:id="@+id/ID_category_rb8"
-        android:layout_width="350dp"
-        android:layout_height="35dp"
-        android:background="@drawable/checkbox_background"
-        android:button="@android:color/transparent"
-        android:gravity="center"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:textColor="@color/white"
-        android:text="Road and traffic signs"
-        android:textSize="11.5sp" />
-
-    <RadioButton
-        android:id="@+id/ID_category_rb9"
-        android:layout_width="350dp"
-        android:layout_height="35dp"
-        android:background="@drawable/checkbox_background"
-        android:button="@android:color/transparent"
-        android:gravity="center"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:textColor="@color/white"
-        android:text="Rules of the road"
-        android:textSize="11.5sp" />
-
-    <RadioButton
-        android:id="@+id/ID_category_rb10"
-        android:layout_width="350dp"
-        android:layout_height="35dp"
-        android:background="@drawable/checkbox_background"
-        android:button="@android:color/transparent"
-        android:gravity="center"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:textColor="@color/white"
-        android:text="Safety and your vehicle"
-        android:textSize="11.5sp" />
-
-    <RadioButton
-        android:id="@+id/ID_category_rb11"
-        android:layout_width="350dp"
-        android:layout_height="35dp"
-        android:background="@drawable/checkbox_background"
-        android:button="@android:color/transparent"
-        android:gravity="center"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:textColor="@color/white"
-        android:text="Safety margins"
-        android:textSize="11.5sp" />
-
-    <RadioButton
-        android:id="@+id/ID_category_rb12"
-        android:layout_width="350dp"
-        android:layout_height="35dp"
-        android:background="@drawable/checkbox_background"
-        android:button="@android:color/transparent"
-        android:gravity="center"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:textColor="@color/white"
-        android:text="Vehicle handling"
-        android:textSize="11.5sp" />
-
-    <RadioButton
-        android:id="@+id/ID_category_rb13"
-        android:layout_width="350dp"
-        android:layout_height="35dp"
-        android:background="@drawable/checkbox_background"
-        android:button="@android:color/transparent"
-        android:gravity="center"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:textColor="@color/white"
-        android:text="Vehicle loading"
-        android:textSize="11.5sp" />
-
-    <RadioButton
-        android:id="@+id/ID_category_rb14"
-        android:layout_width="350dp"
-        android:layout_height="35dp"
-        android:background="@drawable/checkbox_background"
-        android:button="@android:color/transparent"
-        android:gravity="center"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:textColor="@color/white"
-        android:text="Vulnerable road users"
-        android:textSize="11.5sp" />
-
-
-  </RadioGroup>
-
-
-  <Button
-      android:id="@+id/btnNext"
+  <RelativeLayout
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/ID_category_rg"
-      android:layout_marginTop="10dp"
-      android:backgroundTint="@color/black"
-      android:text="START TEST"
-      android:textColor="@color/white"
-      android:textSize="20sp"
-      android:textStyle="normal"
-      app:layout_constraintBottom_toBottomOf="parent" />
+      android:layout_height="69dp"
+      android:layout_weight="2"
+      android:layout_marginBottom="0dp"
+      android:background="@color/cardview_dark_background">
+
+    <TextView
+        android:id="@+id/welcomeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="0dp"
+        android:fontFamily="@font/next_book"
+        android:gravity="center"
+        android:text="Select a category"
+        android:textColor="@color/white"
+        android:textSize="35dp"
+        android:textStyle="bold" />
+
+  </RelativeLayout>
+
+  <ScrollView
+      android:id="@+id/container_scroll_view"
+      android:layout_width="match_parent"
+      android:layout_height="600dp">
+
+    <GridLayout
+        android:id="@+id/mainGrid"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="0dp"
+        android:alignmentMode="alignMargins"
+        android:columnCount="2"
+        android:columnOrderPreserved="false"
+        android:padding="5dp">
+
+      <!-- Row 1 -->
+
+      <!-- Column 1 -->
+      <androidx.cardview.widget.CardView
+          android:id="@+id/ID_buttonAlertness"
+          android:layout_width="0dp"
+          android:layout_rowWeight="1"
+          android:layout_columnWeight="1"
+          android:layout_gravity="fill_vertical"
+          android:layout_marginLeft="16dp"
+          android:layout_marginRight="16dp"
+          android:layout_marginBottom="16dp"
+          app:cardCornerRadius="80dp"
+          app:cardElevation="0dp"
+          card_view:cardBackgroundColor="#bff0ff"
+
+          >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+          <ImageView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_horizontal"
+              android:src="@drawable/ic_category_alertness" />
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:fontFamily="@font/next_book"
+              android:text="\nAlertness\n"
+              android:textAlignment="center"
+              android:textColor="@android:color/black"
+              android:textSize="13dp" />
+
+        </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
+
+      <!-- Column 2 -->
+      <androidx.cardview.widget.CardView
+          android:id="@+id/ID_buttonAttitude"
+          android:layout_width="0dp"
+          android:layout_rowWeight="1"
+          android:layout_columnWeight="1"
+          android:layout_gravity="fill_vertical"
+          android:layout_marginLeft="16dp"
+          android:layout_marginRight="16dp"
+          android:layout_marginBottom="16dp"
+          app:cardCornerRadius="80dp"
+          app:cardElevation="0dp"
+          card_view:cardBackgroundColor="#bff0ff">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_margin="14dp"
+            android:orientation="vertical">
+
+          <ImageView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_horizontal"
+              android:src="@drawable/ic_category_attitude" />
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:fontFamily="@font/next_book"
+              android:text="\nAttitude\n"
+              android:textAlignment="center"
+              android:textColor="@android:color/black"
+              android:textSize="13dp" />
+
+        </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
 
 
+      <!-- Row 2 -->
+
+      <!-- Column 1 -->
+      <androidx.cardview.widget.CardView
+          android:id="@+id/ID_buttonDocuments"
+          android:layout_width="0dp"
+          android:layout_rowWeight="1"
+          android:layout_columnWeight="1"
+          android:layout_gravity="fill_vertical"
+          android:layout_marginLeft="16dp"
+          android:layout_marginRight="16dp"
+          android:layout_marginBottom="16dp"
+          app:cardCornerRadius="80dp"
+          app:cardElevation="0dp"
+          card_view:cardBackgroundColor="#bff0ff">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+          <ImageView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_horizontal"
+              android:src="@drawable/ic_category_documents" />
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:fontFamily="@font/next_book"
+              android:text="\nDocuments\n"
+              android:textAlignment="center"
+              android:textColor="@android:color/black"
+              android:textSize="13dp" />
+
+        </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
+
+      <!-- Column 2 -->
+      <androidx.cardview.widget.CardView
+          android:id="@+id/ID_buttonHazAware"
+          android:layout_width="0dp"
+          android:layout_rowWeight="1"
+          android:layout_columnWeight="1"
+          android:layout_gravity="fill_vertical"
+          android:layout_marginLeft="16dp"
+          android:layout_marginRight="16dp"
+          android:layout_marginBottom="16dp"
+          app:cardCornerRadius="80dp"
+          app:cardElevation="0dp"
+          card_view:cardBackgroundColor="#bff0ff">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+          <ImageView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_horizontal"
+              android:src="@drawable/ic_category_hazard_awareness" />
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:fontFamily="@font/next_book"
+              android:text="\nHazard  Awareness\n"
+              android:textAlignment="center"
+              android:textColor="@android:color/black"
+              android:textSize="13dp" />
+
+        </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
 
 
+      <!-- Row 3 -->
 
-</RelativeLayout>
+      <!-- Column 1 -->
+      <androidx.cardview.widget.CardView
+          android:id="@+id/ID_buttonIncidents"
+          android:layout_width="0dp"
+          android:layout_rowWeight="1"
+          android:layout_columnWeight="1"
+          android:layout_gravity="fill_vertical"
+          android:layout_marginLeft="16dp"
+          android:layout_marginRight="16dp"
+          android:layout_marginBottom="16dp"
+          app:cardCornerRadius="80dp"
+          app:cardElevation="0dp"
+          card_view:cardBackgroundColor="#bff0ff">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+          <ImageView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_horizontal"
+              android:src="@drawable/ic_category_incidents" />
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:fontFamily="@font/next_book"
+              android:text="\nIncidents\n"
+              android:textAlignment="center"
+              android:textColor="@android:color/black"
+              android:textSize="13dp" />
+
+        </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
+
+      <!-- Column 2 -->
+      <androidx.cardview.widget.CardView
+          android:id="@+id/ID_buttonMotorway"
+          android:layout_width="0dp"
+          android:layout_rowWeight="1"
+          android:layout_columnWeight="1"
+          android:layout_gravity="fill_vertical"
+          android:layout_marginLeft="16dp"
+          android:layout_marginRight="16dp"
+          android:layout_marginBottom="16dp"
+          app:cardCornerRadius="80dp"
+          app:cardElevation="0dp"
+          card_view:cardBackgroundColor="#bff0ff">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+          <ImageView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_horizontal"
+              android:src="@drawable/ic_category_motorway_rules" />
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:fontFamily="@font/next_book"
+              android:text="\nMotorway Rules\n"
+              android:textAlignment="center"
+              android:textColor="@android:color/black"
+              android:textSize="13dp" />
+
+        </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
+
+
+      <!-- Row 4 -->
+
+      <!-- Column 1 -->
+      <androidx.cardview.widget.CardView
+          android:id="@+id/ID_buttonOtherVehicles"
+          android:layout_width="0dp"
+          android:layout_rowWeight="1"
+          android:layout_columnWeight="1"
+          android:layout_gravity="fill_vertical"
+          android:layout_marginLeft="16dp"
+          android:layout_marginRight="16dp"
+          android:layout_marginBottom="16dp"
+          app:cardCornerRadius="80dp"
+          app:cardElevation="0dp"
+          card_view:cardBackgroundColor="#bff0ff">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+          <ImageView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_horizontal"
+              android:src="@drawable/ic_category_other_types_of_vehicle" />
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:fontFamily="@font/next_book"
+              android:text="\nOther Types Of Vehicle"
+              android:textAlignment="center"
+              android:textColor="@android:color/black"
+              android:textSize="13dp"
+
+              />
+
+        </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
+
+      <!-- Column 2 -->
+      <androidx.cardview.widget.CardView
+          android:id="@+id/ID_buttonRoadSigns"
+          android:layout_width="0dp"
+          android:layout_rowWeight="1"
+          android:layout_columnWeight="1"
+          android:layout_gravity="fill_vertical"
+          android:layout_marginLeft="16dp"
+          android:layout_marginRight="16dp"
+          android:layout_marginBottom="16dp"
+          app:cardCornerRadius="80dp"
+          app:cardElevation="0dp"
+          card_view:cardBackgroundColor="#bff0ff">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+          <ImageView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_horizontal"
+              android:src="@drawable/ic_category_roads_and_traffic_signs" />
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:fontFamily="@font/next_book"
+              android:text="\nRoad and Traffic Signs"
+              android:textAlignment="center"
+              android:textColor="@android:color/black"
+              android:textSize="13dp" />
+
+        </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
+
+
+      <!-- Row 5 -->
+
+      <!-- Column 1 -->
+      <androidx.cardview.widget.CardView
+          android:id="@+id/ID_buttonRulesOfRoad"
+          android:layout_width="0dp"
+          android:layout_rowWeight="1"
+          android:layout_columnWeight="1"
+          android:layout_gravity="fill_vertical"
+          android:layout_marginLeft="16dp"
+          android:layout_marginRight="16dp"
+          android:layout_marginBottom="16dp"
+          app:cardCornerRadius="80dp"
+          app:cardElevation="0dp"
+          card_view:cardBackgroundColor="#bff0ff">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+          <ImageView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_horizontal"
+              android:src="@drawable/ic_category_rules_of_the_road" />
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:fontFamily="@font/next_book"
+              android:text="\nRules of the Road\n"
+              android:textAlignment="center"
+              android:textColor="@android:color/black"
+              android:textSize="13dp" />
+
+        </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
+
+      <!-- Column 2 -->
+      <androidx.cardview.widget.CardView
+          android:id="@+id/ID_buttonSafetyAndYourVehicle"
+          android:layout_width="0dp"
+          android:layout_rowWeight="1"
+          android:layout_columnWeight="1"
+          android:layout_gravity="fill_vertical"
+          android:layout_marginLeft="16dp"
+          android:layout_marginRight="16dp"
+          android:layout_marginBottom="16dp"
+          app:cardCornerRadius="80dp"
+          app:cardElevation="0dp"
+          card_view:cardBackgroundColor="#bff0ff">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+          <ImageView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_horizontal"
+              android:src="@drawable/ic_category_safety_and_your_vehicle" />
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:fontFamily="@font/next_book"
+              android:text="\nSafety and Your Vehicle"
+              android:textAlignment="center"
+              android:textColor="@android:color/black"
+              android:textSize="13dp" />
+
+        </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
+
+
+      <!-- Row 6 -->
+
+      <!-- Column 1 -->
+      <androidx.cardview.widget.CardView
+          android:id="@+id/ID_buttonSafetyMargins"
+          android:layout_width="0dp"
+          android:layout_rowWeight="1"
+          android:layout_columnWeight="1"
+          android:layout_gravity="fill_vertical"
+          android:layout_marginLeft="16dp"
+          android:layout_marginRight="16dp"
+          android:layout_marginBottom="16dp"
+          app:cardCornerRadius="80dp"
+          app:cardElevation="0dp"
+          card_view:cardBackgroundColor="#bff0ff">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+          <ImageView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_horizontal"
+              android:src="@drawable/ic_category_safety_margins" />
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:fontFamily="@font/next_book"
+              android:text="\nSafety Margins\n"
+              android:textAlignment="center"
+              android:textColor="@android:color/black"
+              android:textSize="13dp" />
+
+        </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
+
+      <!-- Column 2 -->
+      <androidx.cardview.widget.CardView
+          android:id="@+id/ID_buttonVehicleHandling"
+          android:layout_width="0dp"
+          android:layout_rowWeight="1"
+          android:layout_columnWeight="1"
+          android:layout_gravity="fill_vertical"
+          android:layout_marginLeft="16dp"
+          android:layout_marginRight="16dp"
+          android:layout_marginBottom="16dp"
+          app:cardCornerRadius="80dp"
+          app:cardElevation="0dp"
+          card_view:cardBackgroundColor="#bff0ff">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+          <ImageView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_horizontal"
+              android:src="@drawable/ic_category_vehicle_handling" />
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:fontFamily="@font/next_book"
+              android:text="\nVehicle Handling\n"
+              android:textAlignment="center"
+              android:textColor="@android:color/black"
+              android:textSize="13dp" />
+
+        </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
+
+
+      <!-- Row 7 -->
+
+      <!-- Column 1 -->
+      <androidx.cardview.widget.CardView
+          android:id="@+id/ID_buttonVehicleLoading"
+          android:layout_width="0dp"
+          android:layout_rowWeight="1"
+          android:layout_columnWeight="1"
+          android:layout_gravity="fill_vertical"
+          android:layout_marginLeft="16dp"
+          android:layout_marginRight="16dp"
+          android:layout_marginBottom="16dp"
+          app:cardCornerRadius="80dp"
+          app:cardElevation="0dp"
+          card_view:cardBackgroundColor="#bff0ff">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+          <ImageView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_horizontal"
+              android:src="@drawable/ic_category_vehicle_loading" />
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:fontFamily="@font/next_book"
+              android:text="\nVehicle Loading\n"
+              android:textAlignment="center"
+              android:textColor="@android:color/black"
+              android:textSize="13dp" />
+
+        </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
+
+      <!-- Column 2 -->
+      <androidx.cardview.widget.CardView
+          android:id="@+id/ID_buttonVulnerableRoadUsers"
+          android:layout_width="0dp"
+          android:layout_rowWeight="1"
+          android:layout_columnWeight="1"
+          android:layout_gravity="fill_vertical"
+          android:layout_marginLeft="16dp"
+          android:layout_marginRight="16dp"
+          android:layout_marginBottom="16dp"
+          app:cardCornerRadius="80dp"
+          app:cardElevation="0dp"
+          card_view:cardBackgroundColor="#bff0ff">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+          <ImageView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_horizontal"
+              android:src="@drawable/ic_category_vulnerable_road_users" />
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:fontFamily="@font/next_book"
+              android:text="\nVulnerable Road Users"
+              android:textAlignment="center"
+              android:textColor="@android:color/black"
+              android:textSize="13dp" />
+
+        </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
+
+
+    </GridLayout>
+
+  </ScrollView>
+
+</LinearLayout>

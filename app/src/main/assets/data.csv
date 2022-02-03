@@ -1,72 +1,417 @@
-Accidents|A is correct|A|B|C|D|1|default
-Accidents|B is correct|A|B|C|D|2|default
-Accidents|C is correct|A|B|C|D|3|default
-Accidents|D is correct|A|B|C|D|4|default
-Alertness|When following a large vehicle you should keep well back because this|Allows you to corner more quickly|Helps the large vehicle to stop more easily|Allows the driver to see you in the mirrors|Helps you to keep out of the wind|3|hgv
-Alertness|When you see a hazard ahead you should use the mirrors. Why is this?|Because you will need to accelerate out of danger|To access how your actions will affect following traffic|Because you will need to brake sharply to stop|To check what is happening on the road ahead|2|hazard
-Alertness|You are driving on a wet road. You have to stop your vehicle in an emergency. You should|Apply the handbrake and footbrake together|Keep both hands on the wheel|Select reverse gear|Give an arm signal|2|wetroad
-Alertness|You cannot see clearly behind when reversing. What should you do?|Open your window to look behind|Open the door and look behind|Look in the nearside mirror|Ask someone to guide you|4|reverse
-Alertness|Windscreen pillars can obstruct your view. You should take particular care when|Driving on a motorway|Driving on a dual carriageway|Approaching a one-way street|Approaching bends and junctions|4|pillar
-Alertness|To answer a call on your mobile phone while travelling you should|Reduce your speed wherever you are|Stop in a proper and convenient place|Keep the call time to a minimum|Slow down and allow others to overtake|2|mobile
-Alertness|You are waiting to turn right at the end of a road. Your view is obstructed by parked vehicles. What should you do?|Stop and then move forward slowly and carefully for a proper view|Move quickly to where you can see so you only block traffic from one direction|Wait for a pedestrian to let you know when it is safe for you to emerge|Turn your vehicle around immediately and find another junction to use|1|parkedvehicles
-Alertness|In which of these situations should you avoid overtaking?|Just after a bend|In a one-way street|On a 30 mph road|Approaching a dip in the road|4|overtake
-Alertness|You are driving on a motorway and want to use your mobile phone. What should you do?|Try to find a safe place on the hard shoulder|Leave the motorway and stop in a safe place|Use the next exit and pull up on the slip road|Move to the left lane and reduce your speed|2|mobile
-Alertness|You must not use a hand-held phone while driving. Using a hands-free system|Is acceptable in a vehicle with power steering|Will significantly reduce your field of vision|Will affect your vehicle's electronic systems|Is still likely to distract your attention from the road|4|mobile
-Alertness|Your vehicle is fitted with a navigation system. How should you avoid letting this distract you while driving?|Keep going and input your destination into the system|Keep going as the system will adjust to your route|Stop immediately to view and use the system|Stop in a safe place before using the system|4|satnav
-Alertness|You lose your way on a busy road. What is the best action to take?|Stop at traffic lights and ask pedestrians|Shout to other drivers to ask them the way|Turn into a side road, stop and check a map|Check a map, and keep going with the traffic flow|3|traffic
-Alertness|You should ONLY use a mobile phone when|Receiving a call|Suitably parked|Driving at less than 30 mph|Driving an automatic vehicle|2|mobile
-Attitude|What type of emergency vehicle is fitted with a green flashing beacon?|Fire engine|Road gritter|Ambulance|Doctor's car|4|default
-Attitude|You are driving on a clear night. There is a steady stream of oncoming traffic. The national speed limit applies. Which lights should you use?|Full beam headlights|Sidelights|Dipped headlightse|Fog lights|3|default
-Attitude|You are driving in traffic at the speed limit for the road. The driver behind is trying to overtake. You should|move closer to the car ahead, so the driver behind has no room to overtake|wave the driver behind to overtake when it is safe|keep a steady course and allow the driver behind to overtake|accelerate to get away from the driver behind|3|default
-Attitude|A bus lane on your left shows no times of operation. This means it is|not in operation at all|only in operation at peak times|in operation 24 hours a day|only in operation in daylight hours|3|default
-Attitude|A vehicle pulls out in front of you at a junction. What should you do?|Swerve past it and sound your horn|Flash your headlights and drive up close behind|Slow down and be ready to stop|Accelerate past it immediately|3|default
-Attitude|At puffin crossings, which light will not show to a driver?|Flashing amber|Red|Steady amber|Green|1|default
-Attitude|You are driving a slow-moving vehicle on a narrow winding road. You should|keep well out to stop vehicles overtaking dangerously|wave following vehicles past you if you think they can overtake quickly|pull in safely when you can, to let following vehicles overtake|give a left signal when it is safe for vehicles to overtake|3|default
-Attitude|What style of driving causes increased risk to everyone?|Considerate|Defensive|Competitive|Responsible|3|default
-Attitude|You are driving at night on an unlit road behind another vehicle. You should|flash your headlights|use dipped beam headlights|switch off your headlights|use full beam headlights|2|default
-Attitude|You are approaching a red light at a puffin crossing. Pedestrians are on the crossing. The red light will stay on until|you start to edge forward on to the crossing|the pedestrians have reached a safe position|the pedestrians are clear of the front of your vehicle|a driver from the opposite direction reaches the crossing|2|default
-Documents|A is correct|A|B|C|D|1|default
-Documents|B is correct|A|B|C|D|2|default
-Documents|C is correct|A|B|C|D|3|default
-Documents|D is correct|A|B|C|D|4|default
-Hazard awareness|A is correct|A|B|C|D|1|default
-Hazard awareness|B is correct|A|B|C|D|2|default
-Hazard awareness|C is correct|A|B|C|D|3|default
-Hazard awareness|D is correct|A|B|C|D|4|default
-Motorway rules|A is correct|A|B|C|D|1|default
-Motorway rules|B is correct|A|B|C|D|2|default
-Motorway rules|C is correct|A|B|C|D|3|default
-Motorway rules|D is correct|A|B|C|D|4|default
-Other types of vehicle|A is correct|A|B|C|D|1|default
-Other types of vehicle|B is correct|A|B|C|D|2|default
-Other types of vehicle|C is correct|A|B|C|D|3|default
-Other types of vehicle|D is correct|A|B|C|D|4|default
-Road and traffic signs|What does this sign mean?|Two-way traffic straight ahead|Two-way traffic crosses a one-way road|Two-way traffic over a bridge|Two-way traffic crosses a two-way road|2|1011
-Road and traffic signs|What does this sign mean?|Hump-back bridge|Traffic calming hump|Low bridge|Uneven Road|3|1012
-Road and traffic signs|What does this sign mean?|No footpath|No pedestrians|Zebra Crossing|School crossing|3|1013
-Road and traffic signs|What does this sign mean?|Turn left ahead|T-junction|No through road|Give Way|2|1014
-Road and traffic signs|What does this sign mean?|Crossroads|Level crossing with gate|Level crossing without gate|Ahead only|1|1015
-Rules of the road|A is correct|A|B|C|D|1|default
-Rules of the road|B is correct|A|B|C|D|2|default
-Rules of the road|C is correct|A|B|C|D|3|default
-Rules of the road|D is correct|A|B|C|D|4|default
-Safety and your vehicle|A is correct|A|B|C|D|1|default
-Safety and your vehicle|B is correct|A|B|C|D|2|default
-Safety and your vehicle|C is correct|A|B|C|D|3|default
-Safety and your vehicle|D is correct|A|B|C|D|4|default
-Safety margins|A is correct|A|B|C|D|1|default
-Safety margins|B is correct|A|B|C|D|2|default
-Safety margins|C is correct|A|B|C|D|3|default
-Safety margins|D is correct|A|B|C|D|4|default
-Vehicle handling|A is correct|A|B|C|D|1|default
-Vehicle handling|B is correct|A|B|C|D|2|default
-Vehicle handling|C is correct|A|B|C|D|3|default
-Vehicle handling|D is correct|A|B|C|D|4|default
-Vehicle loading|A is correct|A|B|C|D|1|default
-Vehicle loading|B is correct|A|B|C|D|2|default
-Vehicle loading|C is correct|A|B|C|D|3|default
-Vehicle loading|D is correct|A|B|C|D|4|default
-Vulnerable road users|A is correct|A|B|C|D|1|default
-Vulnerable road users|B is correct|A|B|C|D|2|default
-Vulnerable road users|C is correct|A|B|C|D|3|default
-Vulnerable road users|D is correct|A|B|C|D|4|default
+Incidents|What should you do if you break down on a level crossing, even if the lights haven't yet begun to flash?|Leave your vehicle and get yourself and any passengers well clear|Continue down the track and attempt to signal any oncoming trains|Tell others what the issue is|Stay in your car|1|levelcrossing|Getting everyone out of the vehicle and away from the crossing should be your first priority following a breakdown on a level crossing. Warn the signal operator via the railway telephone (if one is present), and only attempt to move the vehicle if the alarm signals are not yet on.
+Incidents|You arrive at the scene of an accident and find someone has suffered a burn which needs to be treated. How long should the burn be cooled for?|At least 5 minutes|At least 10 minutes|At least 15 minutes|At least 20 minutes|4|collision|A burn should be cooled for at least 20 minutes. Cool it with a cool, clean, non-toxic liquid. Water ideally. You should also check the casualty for shock.
+Incidents|You arrive at the scene of an incident. Several people are badly injured. After turning on your hazard lights and ensuring all engines are off, what should you do?|Wave down other motorists for help|Pull any casualties away from the vehicle(s)|Provide sweet drinks for anyone injured|Call for an ambulance|4|collision|You shouldn't assume someone else has already contacted the emergency services, and should phone them yourself. It's also important to make sure there is no further danger. Check that engines are off and that hazard warning lights are turned on, reducing the risk of fire or further collision.
+Incidents|You are approaching a long tunnel. Which of these should you do?|Turn on your full-beam headlights|Lower your sun visor and put your sunglasses on|Use a lower gear|Tune your radio to the frequency shown on signs|4|tunnel|You'll often see signs for local radio channels as you approach a tunnel. These radio stations warn of traffic, incidents, or congestion within the tunnel; some radios have settings allowing them to automatically pick up these signals. Ensure tuning the radio doesn't distract you. Using these radio stations will give advance warning of hazards within the tunnel, preventing issues from escalating. Fire is the greatest risk in a tunnel due to risk of suffocation from smoke.
+Incidents|What should you do if your car catches fire in a tunnel, but is still driveable?|Continue out of the tunnel if possible|Leave the engine running and exit the vehicle|Stop as far to one side of the tunnel as possible|Stop and walk to the nearest emergency telephone|1|tunnel|If it's possible to continue on without causing further danger, you should continue to drive out of the tunnel. Smoke gathers in tunnels, presenting risk of suffocation.
+Incidents|There has been a road traffic accident and someone is bleeding from their arm. There is nothing embedded in the wound. How should you help this person?|Dab the wound with a cloth|Raise their arm and apply pressure|Pour them some water|Lower their arm and apply pressure|2|firstaid|The casualty should be laid down if possible, and the wound should be checked for debris. Use a clean material to apply pressure to the wound without pressing any debris into the wound. If you can, raise the arm above heart level to slow blood loss.
+Incidents|What should you do if your car catches fire in a tunnel, but is NOT driveable?|Close the windows and stay in the vehicle|Turn on your hazard warning lights, leave the vehicle, then call for help|Turn off your lights and leave the vehicle|Leave the engine running and leave the vehicle|2|tunnel|While the best option is usually to continue driving, this is sometimes not possible. Pull over at an emergency point (if there is one), switch on our hazard warning lights, and leave the vehicle to call for help. An on-board fire extinguisher may be enough to deal with small fires, but leave large fires to the professionals.
+Incidents|Following an incident, a casualty has a bleeding arm but can move it freely. Why should you ask them to move it into a raised position?|To allow emergency services to recognise them|To reduce blood flow and bleeding|To reduce the pain|To prevent them from touching other people|2|firstaid|Raising the arm above heart level will reduce the flow of blood and lessen blood loss. You should make sure the arm isn't broken before raising it, as this could lead to further injury.
+Incidents|Following an accident, an unconscious injured person has been placed in the recovery position. Their breathing is normal. What else should you do?|Give them water|Lower their arms to their sides|Ensure their airway remains clear|Press down between their shoulder blades|3|firstaid|You should ensure their airway remains clear, monitoring their condition until medical help arrives. Unless there is further danger, do not move the casualty.
+Incidents|You are driving behind a lorry on the motorway. A large box falls from the vehicle onto the road. How should you react?|Continue until the next emergency telephone and report it|Follow the driver and flash your lights to get their attention|Pull onto the hard shoulder and retrieve the box|Stop your car near the box until police arrive|1|hgv|Given the size of their vehicles, it's not uncommon for lorry drivers to miss seeing objects falling from their vehicles. If the driver doesn't stop following this happening, don't attempt to rescue the object. Instead, stop safely on the hard shoulder and report the hazard on an emergency telephone.
+Incidents|An adult isn't breathing at the scene of a crash. To save the casualty, you must administer chest compressions. What is the correct chest compression depth?|15 to 20 centimetres|5 to 6 centimetres|10 to 15 centimetres|1 to 2 centimetres|2|firstaid|A compression depth of 5-6 centimetres is correct. Place both hands in the centre of the casualty's chest and give two chest compressions every second (120 per minute). This maintains circulation in adult casualties who aren't breathing properly.
+Incidents|You have broken down on a motorway and must use the emergency telephone. What will you be asked for?|For your insurance details|For your vehicle details|For your driver's licence details|For your employment details|2|motorway|While on the emergency telephone, the operator will ask for your vehicle details and the reason for the breakdown. Whilst on the phone to the operator, you should face traffic so you can see what's coming.
+Incidents|A motorcyclist has been involved in an accident and is unconscious in the middle of the road. There are no other people or vehicles involved. What should you do first?|Pull the rider out of the road|Clear away any debris|Warn other traffic|Reassure the rider that everything will be fine|3|motorcyclecrash|Warning other traffic should be your first priority, ensuring there is no risk of further collision. Turn on your hazard warning lights to warn other drivers, and ensure all engines are turned off to reduce risk of fire. The motorcyclists is in a very vulnerable position, and you should ensure that in helping them you don't put yourself or others at risk.
+Incidents|How can you help a driver suffering from shock?|Ask who is at fault for causing the accident|Reassure them|Give them a warm, sugary drink|Offer a cigarette|2|firstaid|You should call the emergency services to come and help, then reassure the driver, staying with them until the emergency services arrive. The casualty may have injuries that aren't visible, so avoid moving them unless there is further danger.
+Incidents|In which circumstances should a motorcyclist's helmet be removed following a crash?|Only if absolutely necessary|Immediately, unless they are visibly in shock|When the motorcyclist asks|Immediately|1|motorcyclecrash|You should not remove a motorcyclist's helmet unless it is absolutely necessary. Doing so could cause further injury, and they may be suffering from shock. Reassure them with confidence that they will be okay, but don’t let them eat.
+Incidents|There has been an accident involving a motorcyclist. The motorcyclist is unconscious and is lying in the middle of the road. Traffic has stopped and doesn't pose a threat. How should you help?|Remove their safety jacket|Lift them off the road|Call for medical help|Remove their helmet|3|motorcyclecrash|You should call the emergency services to ensure the motorcyclist gets medical attention as soon as possible. If you cannot phone them yourself, ask someone nearby to do it. You should not move a casualty or remove a motorcyclist's helmet unless it is entirely necessary.
+Incidents|Which of these is an appropriate time to use your hazard warning lights?|When driving at night without headlights|If you need to stop and are temporarily obstructing traffic|While travelling slowly to read road signs|When parking on double-yellow lines|2|hazardlights|Unless being used to warn traffic behind of a hazard or obstruction ahead on a motorway or unrestricted dual carriageway, hazard warning lights should not be used while moving. They should not be used to warn of illegal or dangerous parking.
+Incidents|What should you do if a warning light comes on while driving?|Deal with it later|Continue if there are no visible issues|Have the issue looked into as soon as safely possible|Hope the issue will resolve itself|3|warningdashlight|Warning lights tell you of engine faults and other problems. You should be able to identify any warning light that comes on because they can indicate problems that make your car unsafe to drive. Get a qualified mechanic to check the problem if you're unsure.
+Incidents|If a car is displaying a 'help' pennant, what does it mean?|The driver is more than likely a disabled person|The driver is a rescue patrol officer|The driver is qualified in first aid|The driver is from another country|1|help|In the event that a disabled driver can't walk to an emergency phone following a breakdown, the best course of action is for them to stay in their vehicle, turn on their hazard warning lights, and await help. The 'help' pennant indicates when a disabled driver needs assistance.
+Incidents|What must you do if you damage a garden wall with your car, but no one sees?|Report the collision to the police within 24 hours|Tell your insurance company later that day|Tell the owners of the house the next day|Tell someone in the neighbourhood what happened|1|collision|You should report the collision to the police as soon as possible, and never later than 24 hours afterwards.
+Incidents|You are driving through a tunnel when the traffic ahead slows down and stops. What should you do?|Leave only a small space between you and the vehicle in front|Ignore any signage in the tunnel|If possible, make a U-turn and exit the tunnel|Maintain a safe distance from the vehicle in front of you|4|tunnel|Keeping a safe gap between you and the vehicle in front is important, even when moving slowly or stopped in a queue. In a tunnel, leaving space is important for the usual safety reasons, but will also help if you need to manoeuvre around a broken down vehicle.
+Incidents|Following an incident, a small child isn't breathing. You need to administer CPR which include giving rescue breaths. How should you breathe into the child's mouth?|Gently|Heavily|Rapidly|Sharply|1|firstaid|Children and infants have more delicate ribcages than adults, so, after checking their airway is clear, you should use a single hand on their chest (just two fingers for an infant) when giving chest compressions. You should also begin mouth-to-mouth resuscitation, breathing gently until they're able to breathe.
+Incidents|What should you do if you break down in a tunnel?|Stand behind your vehicle and wave traffic past|Stay near your vehicle and warn oncoming traffic|Turn on your hazard warning lights, then call for help|Call the police and stay in your vehicle|3|tunnel|You should turn on your hazard warning lights and call for help. In a tunnel, using an emergency telephone usually gets the breakdown sorted sooner. Breakdowns in tunnels can cause severe congestion and danger.
+Incidents|A vehicle has collided with your car What information should you find out if someone is injured and your car is damaged?|What the other driver does for a living|Whether the other driver has a full licence|The name, address, and phone number of the other driver|Where the other driver was going|3|collision|You should find out the name and address of other involved drivers, as well as the registration numbers of any vehicles involved. The aftermath of a collision can be stressful, but you should try to remain calm. Take pictures of the scene and make note of the positions of vehicles involved; you may need this information for an insurance claim.
+Incidents|Once an area is safe following an incident, how can you look after any casualties?|Give them food and water|Ask what happened|Keep them in the same position|Help them away from any vehicles|3|firstaid|Casualties could have unseen or internal injuries, and moving them could make these worse. It's best not to move them unless staying where they are puts them at further risk.
+Incidents|A collision has taken place in front of you. What is the first thing you should do to help an injured person lying in the middle of a busy road?|Warn other traffic|Roll them into the recovery position|Keep them warm|Check to see if they're in shock|1|collision|Further collision and vehicle fire are the two most immediate dangers. Warn other traffic by turning on your hazard warning lights (and by placing an advance warning triangle anywhere but on a motorway) and turn off engines to reduce risk of fire. Don't put yourself at risk doing this.
+Incidents|When should you move a casualty who's unconscious but breathing?|When bystanders are there to help|When bystanders tell you to|Only if there is further danger|Only when an ambulance has been called|3|firstaid|Casualties could have internal injuries or other hidden ailments. Moving them could make these worse, and so casualties should not be moved unless staying put presents a danger. Additionally, only if it's absolutely necessary should a motorcyclist's helmet be removed.
+Incidents|In a long tunnel, what might warn you of an incident or congestion ahead?|Lines on the road|Drivers behind flashing their headlights|Variable message signs|Yellow hatch markings on the road|3|tunnel|Variable message signs (usually overhead or on the walls) give instructions and warnings about tunnel traffic conditions. Keep watch for the signs changing, and be prepared to stop if they warn of a hazard ahead. Incidents can quickly spiral out of control in congested tunnels, so be wary.
+Incidents|If someone is unconscious following an accident, what is the first thing you should do?|Ensure their airway is clear|Put something soft under their head|Attempt to wake them|Ask for their name|1|firstaid|Remember the DR ABC acronym when arriving at crashed where people are injured. Danger (remove risk of further collision or fire), Response (call emergency services), Airway (check their airway is clear), Breathing (check their breathing), Compressions (give chest compressions). Continue providing first aid until the emergency services arrive.
+Incidents|A pedestrian suffers a leg injury following an accident. The leg is bleeding heavily, although it isn't broken and nothing is embedded in the wound. What should you do to help?|Raise the leg to reduce the bleeding|Lay both legs flat on the ground|Get them a drink of water|Gently dab the wound|1|firstaid|Raising the leg above heart level will reduce the flow of blood to the limb, and therefore reduce blood loss. Provided there is no debris in the wound, blood loss can be slowed further with a bandage or clean cloth. Tying something around the leg to reduce blood flow is not advised, as it can lead to permanent damage.
+Alertness|How should you use a hand-held device in your car?|Only at low speeds|Only if you can steer well one-handed|Only on a well lit road|Only when safely parked|4|mobile|Except in genuine emergencies, it is illegal to use a handheld mobile phone. Doing so will distract you from the road, and increase risk of an accident.
+Alertness|Which of the following is most likely to be a major distraction while driving?|Using a mobile phone|Adjusting the air conditioning|Looking in your rear view mirror|Turning on the windscreen wipers|1|driver|Tuning your radio stations to local radio, planning your route, and taking regular breaks are just a few ways you should prepare for a long journey. Avoid distractions as much as possible. Handheld mobile phone use is illegal except in emergencies, but even hands-free use can be distracting.
+Alertness|How should you use a satellite navigation device (sat nav) without it affecting your driving?|Only when driving in the countryside|With voice instructions turned on|When you become lost|Programme the device before beginning your journey|4|satnav|Satellite navigation systems (sat nav) are very useful for unfamiliar journeys, but they can also be distracting. Looking at them could cause you to lose control or miss a hazard ahead. Ensure you're stopped in a safe place before attempting to input information or adjust them.
+Alertness|What should you do before emerging right onto a dual carriageway?|Prepare to accelerate hard|Ensure there is enough room behind you for a second vehicle|Ensure the central reservation is wide enough for your vehicle|Come to a complete stop and select a low gear|3|motorway|You should ensure the central reservation is deep enough to protect your vehicle before emerging right onto a dual carriageway. If it's not, treat the dual carriageway as a single road, and ensure you check both directions before emerging. Not doing this could cause a collision by placing some or all of your vehicle in the path of approaching traffic.
+Alertness|You're approaching a set of traffic lights which have been on green for some time. What should you do?|Anticipate they might change|Brake sharply|Maintain a steady speed|Accelerate towards the lights|1|greenlights|Always consider when approaching traffic lights on green that they could change to red. Be prepared in case they change and you have to stop, especially if the lights have been green for a while.
+Alertness|While driving on a wet road, you suddenly need stop the car due to an emergency. What should you do to keep safe?|Brake sharply and apply the handbrake|Wave your arm out of the window to warn other drivers|Put your vehicle into reverse|Keep your hands securely on the steering wheel|4|wetroad|Paying attention to your surroundings makes it more likely you'll spot hazards early. This means you'll react earlier too, and can keep better control of the vehicle in emergencies. Ensure you keep both hands on the steering wheel to maximise control.
+Alertness|How would using a mobile phone while driving affect you?|It will improve your concentration|It will allow you to drive more carefully|You won't be able to see as well|It will distract you|4|mobile|Even using a hands-free kit can leave you distracted. The person speaking on the other end of the phone can't see the road you're driving and won't know when you need to concentrate, or when a hazard presents itself. The best course of action is to stop in a safe place before making or taking a call.
+Alertness|Before making a U-turn in the road, what should you do?|Glance over your shoulder to check for any oncoming vehicles|Signal by using or arms or indicators|Select a higher gear than you normally would|Select a lower gear than you normally would|1|uturn|Before you perform a U-turn, slow down and have a look to see if the road is clear in both directions. Ensure there is enough space in the road to safely perform the manoeuvre.
+Alertness|What should you do if you get lost in a busy area?|Keep moving and open a map on your phone|Shout to other cars for advice|Stop in the road and ask a pedestrian|Stop somewhere safe and check a map|4|traffic|You should always find a safe place to stop before checking a map or asking for directions.
+Alertness|What should you do before moving out on to the road from a parked position?|Pull out and then signal|Pull out and then look around|Check your side mirrors only|Check your rear view and side mirrors to see what's around|4|driver|You should check your exterior and interior mirrors to make sure the road is clear before moving off. Check your blind spots too, and be prepared to use arm signals if you feel other drivers might not understand your intentions.
+Alertness|You're driving on a narrow country road and see a cyclist ahead. How should you pass?|Pass as close to them as possible|Accelerate past as quickly as possible|Only pass if it is safe, leaving plenty of room|Sound your horn as you pass them|3|cyclist|Cyclists often need to weave around potholes, and sometimes need to adjust their course to correct their balance. Allow them plenty of room when you overtake, and pay close attention to the road ahead, looking for farm entrances or driveways where vehicles might pull out.
+Alertness|Why do these yellow lines sometimes appear on the road?|To make you aware of how fast you're going|To help you keep the correct distance from the vehicle in front of you|To guide you to the correct lane|To inform you of the distance to the next exit|1|trafficcalming|These lines are a form of traffic calming measure. They are often present just before roundabouts and dangerous junctions. They prompt you to reduce your speed. You should look ahead and do this in good time.
+Alertness|In which of the following situations are you permitted to use a mobile phone in your car?|While travelling at under 30 mph|Whenever someone calls you|Only when safely parked|While using cruise control|3|mobile|Except in genuine emergencies, it is illegal to use a handheld mobile phone. Hands-free kits make phone use possible, but are still distracting. The safest approach is to stop in a safe place before making or receiving a call. Your hands will also be free to take notes if needed.
+Alertness|It starts to get dark while you're driving. Why should you switch on your lights?|To make your dials light up|To see and be seen more easily|Because the street lights are on|Because everyone else is doing it|2|headlights|When visibility is poor during the day, it may be necessary to turn on your headlights and tail lights to help other drivers spot you. This is especially true in early morning or in late afternoon, when the operation of streetlamps might not be timed optimally to help drivers see clearly.
+Alertness|You're driving on the motorway and start to feel sleepy. What should you do?|Stop for a rest on the hard shoulder|Drink an energy drink to get you through|Leave at the first opportunity and find a safe place to stop|Turn up the radio|3|motorway|Fresh air can help keep you alert when you begin to feel tired, but your first priority should always be using the next service area or motorway exit to find a safe place to rest.
+Alertness|How should you approach this bridge?|Reduce your speed|Select a lower gear|Move to the right|Maintain a speed of 30 mph|1|middleroadbridge|Slow down and exercise caution. The bridge is narrow, so passing an oncoming vehicle may not be possible. There is also no footpath, so keep an eye out for pedestrians in the road.
+Alertness|What should you do if you can't get a clear view behind you while reversing?|Ask someone for help|Open the door to see behind you|Lean out of the window and look behind|Look only in the nearside mirror|1|reverse|Ensure you can see all around your vehicle before attempting to turn your car around. Get someone to guide you if you're unable to get a good look around.
+Alertness|What should you do if your mobile phone starts ringing while you're driving?|Pull up at the nearest kerb|Ignore your phone|Stop the car immediately|Check to see who's calling you|2|mobile|Using a mobile phone or a similar device while driving or riding is against the law, except in the case of an emergency. For your safety, you should switch off your mobile phone before leaving and set it to voice mail. If your phone rings because you forgot to turn it off, ignore it. When you've come to a safe stop, you can check your phone and, if necessary, return the call.
+Alertness|What is a 'blind spot'?|An area that isn't covered by your headlights|The area covered by your right-hand mirror|An area not visible in your mirrors|The space right behind the driver's seat|3|pillar|Even modern vehicles have blind spots, areas of the vehicle's surroundings not visible through its mirrors. It's therefore essential that you look around to check these areas are clear when necessary.
+Alertness|What should you do before stopping your car?|Check your mirrors|Sound your horn|Flash your headlights|Shift up a gear|1|driver|Before pulling over or coming to a stop, always check your mirrors to see who is behind you. Don't forget to use your indicators if pulling off or stopping by the road.
+Alertness|The windscreen pillar is hindering your view at a junction. Which of the following vehicles should you particularly keep an eye out for?|LGVs|Motorcyclists|Buses|Minivans|2|pillar|Approaching motorcyclists, pedestrians, and cyclists can be entirely obscured by windscreen pillars. Take extra time to look for these road users. Don't assume a quick glance is enough.
+Alertness|You're driving behind an LGV (Large Goods Vehicle). Why should you keep well back?|To slow down traffic|The LGV driver will see you in their mirrors|So you can take corners quicker|To leave space for other cars|2|hgv|LGV and van drivers don't have rear view mirrors. Remember to stay well back from them, because if you can't see their side mirrors, they can't see you. This will also help you see more of the road.
+Alertness|What could happen if you hang objects from your rear-view mirror?|Your windscreen might fog up|You could be distracted or have your view blocked|Your mirror might fall off|Your radio might not work|2|rearviewmirror|Anything dangling from your rear view mirror or stuck to your windscreen could distract you from driving properly. Make sure you can see through your windscreen clearly.
+Alertness|Why should you use your mirrors after you've spotted a hazard up ahead?|To see what's ahead of you|To check to see if you can do an emergency stop|To check whether you can accelerate|To assess the situation around you and react accordingly|4|hazard|You should be checking your mirrors regularly, ensuring you always know what's ahead, beside, and behind you. Doing this will help you anticipate what might happen next, helping avoid and prevent hazards. It's especially important to check your mirrors when you spot a hazard.
+Alertness|In which of the following situations would windscreen pillars hinder your view of the road?|On a dual carriageway|On a one-way street|Approaching bends or junctions|On a motorway|3|pillar|Smaller vehicles and road users - pedestrians, motorcyclists, and cyclists - can be hidden by your windscreen pillars. Be sure to move your head to look past them to check the road at bends and junctions.
+Alertness|In which of the following situations should you NOT overtake?|On a dual carriageway|When approaching a dip in the road|On a 40 mph road|In a one-way street|2|overtake|Prior to overtaking, consider if it’s really needed. If you can’t see far enough, keep back and wait for a better place to pull out.
+Alertness|You intend to turn right at a junction but your view is blocked by parked vehicles. What should you do?|Reverse away from the junction and find another route|Move forward quickly to get a clear view|Get out and have a look at what's approaching|Stop at the junction, then edge forward until you have a clear view|4|parkedvehicles|Buildings, parked cars, and trees often restrict visibility at junctions. To ensure emerging is safe, edge forward slowly to look past obstructions. Ensure you don't cause other drivers to change speed when you pull out.
+Attitude|A is correct|A|B|C|D|1|default|Explanation text here
+Attitude|A is correct|A|B|C|D|1|default|Explanation text here
+Attitude|A is correct|A|B|C|D|1|default|Explanation text here
+Attitude|A is correct|A|B|C|D|1|default|Explanation text here
+Attitude|A is correct|A|B|C|D|1|default|Explanation text here
+Attitude|A is correct|A|B|C|D|1|default|Explanation text here
+Attitude|A is correct|A|B|C|D|1|default|Explanation text here
+Attitude|A is correct|A|B|C|D|1|default|Explanation text here
+Attitude|A is correct|A|B|C|D|1|default|Explanation text here
+Attitude|A is correct|A|B|C|D|1|default|Explanation text here
+Attitude|A is correct|A|B|C|D|1|default|Explanation text here
+Attitude|A is correct|A|B|C|D|1|default|Explanation text here
+Attitude|A is correct|A|B|C|D|1|default|Explanation text here
+Attitude|A is correct|A|B|C|D|1|default|Explanation text here
+Attitude|A is correct|A|B|C|D|1|default|Explanation text here
+Attitude|A is correct|A|B|C|D|1|default|Explanation text here
+Attitude|A is correct|A|B|C|D|1|default|Explanation text here
+Attitude|A is correct|A|B|C|D|1|default|Explanation text here
+Attitude|A is correct|A|B|C|D|1|default|Explanation text here
+Attitude|A is correct|A|B|C|D|1|default|Explanation text here
+Attitude|A is correct|A|B|C|D|1|default|Explanation text here
+Attitude|A is correct|A|B|C|D|1|default|Explanation text here
+Attitude|A is correct|A|B|C|D|1|default|Explanation text here
+Attitude|A is correct|A|B|C|D|1|default|Explanation text here
+Attitude|A is correct|A|B|C|D|1|default|Explanation text here
+Attitude|A is correct|A|B|C|D|1|default|Explanation text here
+Attitude|A is correct|A|B|C|D|1|default|Explanation text here
+Attitude|A is correct|A|B|C|D|1|default|Explanation text here
+Attitude|A is correct|A|B|C|D|1|default|Explanation text here
+Attitude|A is correct|A|B|C|D|1|default|Explanation text here
+Documents|A is correct|A|B|C|D|1|default|Explanation text here
+Documents|A is correct|A|B|C|D|1|default|Explanation text here
+Documents|A is correct|A|B|C|D|1|default|Explanation text here
+Documents|A is correct|A|B|C|D|1|default|Explanation text here
+Documents|A is correct|A|B|C|D|1|default|Explanation text here
+Documents|A is correct|A|B|C|D|1|default|Explanation text here
+Documents|A is correct|A|B|C|D|1|default|Explanation text here
+Documents|A is correct|A|B|C|D|1|default|Explanation text here
+Documents|A is correct|A|B|C|D|1|default|Explanation text here
+Documents|A is correct|A|B|C|D|1|default|Explanation text here
+Documents|A is correct|A|B|C|D|1|default|Explanation text here
+Documents|A is correct|A|B|C|D|1|default|Explanation text here
+Documents|A is correct|A|B|C|D|1|default|Explanation text here
+Documents|A is correct|A|B|C|D|1|default|Explanation text here
+Documents|A is correct|A|B|C|D|1|default|Explanation text here
+Documents|A is correct|A|B|C|D|1|default|Explanation text here
+Documents|A is correct|A|B|C|D|1|default|Explanation text here
+Documents|A is correct|A|B|C|D|1|default|Explanation text here
+Documents|A is correct|A|B|C|D|1|default|Explanation text here
+Documents|A is correct|A|B|C|D|1|default|Explanation text here
+Documents|A is correct|A|B|C|D|1|default|Explanation text here
+Documents|A is correct|A|B|C|D|1|default|Explanation text here
+Documents|A is correct|A|B|C|D|1|default|Explanation text here
+Documents|A is correct|A|B|C|D|1|default|Explanation text here
+Documents|A is correct|A|B|C|D|1|default|Explanation text here
+Documents|A is correct|A|B|C|D|1|default|Explanation text here
+Documents|A is correct|A|B|C|D|1|default|Explanation text here
+Documents|A is correct|A|B|C|D|1|default|Explanation text here
+Documents|A is correct|A|B|C|D|1|default|Explanation text here
+Documents|A is correct|A|B|C|D|1|default|Explanation text here
+Hazard awareness|A is correct|A|B|C|D|1|default|Explanation text here
+Hazard awareness|A is correct|A|B|C|D|1|default|Explanation text here
+Hazard awareness|A is correct|A|B|C|D|1|default|Explanation text here
+Hazard awareness|A is correct|A|B|C|D|1|default|Explanation text here
+Hazard awareness|A is correct|A|B|C|D|1|default|Explanation text here
+Hazard awareness|A is correct|A|B|C|D|1|default|Explanation text here
+Hazard awareness|A is correct|A|B|C|D|1|default|Explanation text here
+Hazard awareness|A is correct|A|B|C|D|1|default|Explanation text here
+Hazard awareness|A is correct|A|B|C|D|1|default|Explanation text here
+Hazard awareness|A is correct|A|B|C|D|1|default|Explanation text here
+Hazard awareness|A is correct|A|B|C|D|1|default|Explanation text here
+Hazard awareness|A is correct|A|B|C|D|1|default|Explanation text here
+Hazard awareness|A is correct|A|B|C|D|1|default|Explanation text here
+Hazard awareness|A is correct|A|B|C|D|1|default|Explanation text here
+Hazard awareness|A is correct|A|B|C|D|1|default|Explanation text here
+Hazard awareness|A is correct|A|B|C|D|1|default|Explanation text here
+Hazard awareness|A is correct|A|B|C|D|1|default|Explanation text here
+Hazard awareness|A is correct|A|B|C|D|1|default|Explanation text here
+Hazard awareness|A is correct|A|B|C|D|1|default|Explanation text here
+Hazard awareness|A is correct|A|B|C|D|1|default|Explanation text here
+Hazard awareness|A is correct|A|B|C|D|1|default|Explanation text here
+Hazard awareness|A is correct|A|B|C|D|1|default|Explanation text here
+Hazard awareness|A is correct|A|B|C|D|1|default|Explanation text here
+Hazard awareness|A is correct|A|B|C|D|1|default|Explanation text here
+Hazard awareness|A is correct|A|B|C|D|1|default|Explanation text here
+Hazard awareness|A is correct|A|B|C|D|1|default|Explanation text here
+Hazard awareness|A is correct|A|B|C|D|1|default|Explanation text here
+Hazard awareness|A is correct|A|B|C|D|1|default|Explanation text here
+Hazard awareness|A is correct|A|B|C|D|1|default|Explanation text here
+Hazard awareness|A is correct|A|B|C|D|1|default|Explanation text here
+Motorway rules|A is correct|A|B|C|D|1|default|Explanation text here
+Motorway rules|A is correct|A|B|C|D|1|default|Explanation text here
+Motorway rules|A is correct|A|B|C|D|1|default|Explanation text here
+Motorway rules|A is correct|A|B|C|D|1|default|Explanation text here
+Motorway rules|A is correct|A|B|C|D|1|default|Explanation text here
+Motorway rules|A is correct|A|B|C|D|1|default|Explanation text here
+Motorway rules|A is correct|A|B|C|D|1|default|Explanation text here
+Motorway rules|A is correct|A|B|C|D|1|default|Explanation text here
+Motorway rules|A is correct|A|B|C|D|1|default|Explanation text here
+Motorway rules|A is correct|A|B|C|D|1|default|Explanation text here
+Motorway rules|A is correct|A|B|C|D|1|default|Explanation text here
+Motorway rules|A is correct|A|B|C|D|1|default|Explanation text here
+Motorway rules|A is correct|A|B|C|D|1|default|Explanation text here
+Motorway rules|A is correct|A|B|C|D|1|default|Explanation text here
+Motorway rules|A is correct|A|B|C|D|1|default|Explanation text here
+Motorway rules|A is correct|A|B|C|D|1|default|Explanation text here
+Motorway rules|A is correct|A|B|C|D|1|default|Explanation text here
+Motorway rules|A is correct|A|B|C|D|1|default|Explanation text here
+Motorway rules|A is correct|A|B|C|D|1|default|Explanation text here
+Motorway rules|A is correct|A|B|C|D|1|default|Explanation text here
+Motorway rules|A is correct|A|B|C|D|1|default|Explanation text here
+Motorway rules|A is correct|A|B|C|D|1|default|Explanation text here
+Motorway rules|A is correct|A|B|C|D|1|default|Explanation text here
+Motorway rules|A is correct|A|B|C|D|1|default|Explanation text here
+Motorway rules|A is correct|A|B|C|D|1|default|Explanation text here
+Motorway rules|A is correct|A|B|C|D|1|default|Explanation text here
+Motorway rules|A is correct|A|B|C|D|1|default|Explanation text here
+Motorway rules|A is correct|A|B|C|D|1|default|Explanation text here
+Motorway rules|A is correct|A|B|C|D|1|default|Explanation text here
+Motorway rules|A is correct|A|B|C|D|1|default|Explanation text here
+Other types of vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Other types of vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Other types of vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Other types of vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Other types of vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Other types of vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Other types of vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Other types of vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Other types of vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Other types of vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Other types of vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Other types of vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Other types of vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Other types of vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Other types of vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Other types of vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Other types of vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Other types of vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Other types of vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Other types of vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Other types of vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Other types of vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Other types of vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Other types of vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Other types of vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Other types of vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Other types of vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Other types of vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Other types of vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Other types of vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Road and traffic signs|A is correct|A|B|C|D|1|default|Explanation text here
+Road and traffic signs|A is correct|A|B|C|D|1|default|Explanation text here
+Road and traffic signs|A is correct|A|B|C|D|1|default|Explanation text here
+Road and traffic signs|A is correct|A|B|C|D|1|default|Explanation text here
+Road and traffic signs|A is correct|A|B|C|D|1|default|Explanation text here
+Road and traffic signs|A is correct|A|B|C|D|1|default|Explanation text here
+Road and traffic signs|A is correct|A|B|C|D|1|default|Explanation text here
+Road and traffic signs|A is correct|A|B|C|D|1|default|Explanation text here
+Road and traffic signs|A is correct|A|B|C|D|1|default|Explanation text here
+Road and traffic signs|A is correct|A|B|C|D|1|default|Explanation text here
+Road and traffic signs|A is correct|A|B|C|D|1|default|Explanation text here
+Road and traffic signs|A is correct|A|B|C|D|1|default|Explanation text here
+Road and traffic signs|A is correct|A|B|C|D|1|default|Explanation text here
+Road and traffic signs|A is correct|A|B|C|D|1|default|Explanation text here
+Road and traffic signs|A is correct|A|B|C|D|1|default|Explanation text here
+Road and traffic signs|A is correct|A|B|C|D|1|default|Explanation text here
+Road and traffic signs|A is correct|A|B|C|D|1|default|Explanation text here
+Road and traffic signs|A is correct|A|B|C|D|1|default|Explanation text here
+Road and traffic signs|A is correct|A|B|C|D|1|default|Explanation text here
+Road and traffic signs|A is correct|A|B|C|D|1|default|Explanation text here
+Road and traffic signs|A is correct|A|B|C|D|1|default|Explanation text here
+Road and traffic signs|A is correct|A|B|C|D|1|default|Explanation text here
+Road and traffic signs|A is correct|A|B|C|D|1|default|Explanation text here
+Road and traffic signs|A is correct|A|B|C|D|1|default|Explanation text here
+Road and traffic signs|A is correct|A|B|C|D|1|default|Explanation text here
+Road and traffic signs|A is correct|A|B|C|D|1|default|Explanation text here
+Road and traffic signs|A is correct|A|B|C|D|1|default|Explanation text here
+Road and traffic signs|A is correct|A|B|C|D|1|default|Explanation text here
+Road and traffic signs|A is correct|A|B|C|D|1|default|Explanation text here
+Road and traffic signs|A is correct|A|B|C|D|1|default|Explanation text here
+Rules of the road|A is correct|A|B|C|D|1|default|Explanation text here
+Rules of the road|A is correct|A|B|C|D|1|default|Explanation text here
+Rules of the road|A is correct|A|B|C|D|1|default|Explanation text here
+Rules of the road|A is correct|A|B|C|D|1|default|Explanation text here
+Rules of the road|A is correct|A|B|C|D|1|default|Explanation text here
+Rules of the road|A is correct|A|B|C|D|1|default|Explanation text here
+Rules of the road|A is correct|A|B|C|D|1|default|Explanation text here
+Rules of the road|A is correct|A|B|C|D|1|default|Explanation text here
+Rules of the road|A is correct|A|B|C|D|1|default|Explanation text here
+Rules of the road|A is correct|A|B|C|D|1|default|Explanation text here
+Rules of the road|A is correct|A|B|C|D|1|default|Explanation text here
+Rules of the road|A is correct|A|B|C|D|1|default|Explanation text here
+Rules of the road|A is correct|A|B|C|D|1|default|Explanation text here
+Rules of the road|A is correct|A|B|C|D|1|default|Explanation text here
+Rules of the road|A is correct|A|B|C|D|1|default|Explanation text here
+Rules of the road|A is correct|A|B|C|D|1|default|Explanation text here
+Rules of the road|A is correct|A|B|C|D|1|default|Explanation text here
+Rules of the road|A is correct|A|B|C|D|1|default|Explanation text here
+Rules of the road|A is correct|A|B|C|D|1|default|Explanation text here
+Rules of the road|A is correct|A|B|C|D|1|default|Explanation text here
+Rules of the road|A is correct|A|B|C|D|1|default|Explanation text here
+Rules of the road|A is correct|A|B|C|D|1|default|Explanation text here
+Rules of the road|A is correct|A|B|C|D|1|default|Explanation text here
+Rules of the road|A is correct|A|B|C|D|1|default|Explanation text here
+Rules of the road|A is correct|A|B|C|D|1|default|Explanation text here
+Rules of the road|A is correct|A|B|C|D|1|default|Explanation text here
+Rules of the road|A is correct|A|B|C|D|1|default|Explanation text here
+Rules of the road|A is correct|A|B|C|D|1|default|Explanation text here
+Rules of the road|A is correct|A|B|C|D|1|default|Explanation text here
+Rules of the road|A is correct|A|B|C|D|1|default|Explanation text here
+Safety and your vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Safety and your vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Safety and your vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Safety and your vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Safety and your vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Safety and your vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Safety and your vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Safety and your vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Safety and your vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Safety and your vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Safety and your vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Safety and your vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Safety and your vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Safety and your vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Safety and your vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Safety and your vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Safety and your vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Safety and your vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Safety and your vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Safety and your vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Safety and your vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Safety and your vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Safety and your vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Safety and your vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Safety and your vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Safety and your vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Safety and your vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Safety and your vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Safety and your vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Safety and your vehicle|A is correct|A|B|C|D|1|default|Explanation text here
+Safety margins|A is correct|A|B|C|D|1|default|Explanation text here
+Safety margins|A is correct|A|B|C|D|1|default|Explanation text here
+Safety margins|A is correct|A|B|C|D|1|default|Explanation text here
+Safety margins|A is correct|A|B|C|D|1|default|Explanation text here
+Safety margins|A is correct|A|B|C|D|1|default|Explanation text here
+Safety margins|A is correct|A|B|C|D|1|default|Explanation text here
+Safety margins|A is correct|A|B|C|D|1|default|Explanation text here
+Safety margins|A is correct|A|B|C|D|1|default|Explanation text here
+Safety margins|A is correct|A|B|C|D|1|default|Explanation text here
+Safety margins|A is correct|A|B|C|D|1|default|Explanation text here
+Safety margins|A is correct|A|B|C|D|1|default|Explanation text here
+Safety margins|A is correct|A|B|C|D|1|default|Explanation text here
+Safety margins|A is correct|A|B|C|D|1|default|Explanation text here
+Safety margins|A is correct|A|B|C|D|1|default|Explanation text here
+Safety margins|A is correct|A|B|C|D|1|default|Explanation text here
+Safety margins|A is correct|A|B|C|D|1|default|Explanation text here
+Safety margins|A is correct|A|B|C|D|1|default|Explanation text here
+Safety margins|A is correct|A|B|C|D|1|default|Explanation text here
+Safety margins|A is correct|A|B|C|D|1|default|Explanation text here
+Safety margins|A is correct|A|B|C|D|1|default|Explanation text here
+Safety margins|A is correct|A|B|C|D|1|default|Explanation text here
+Safety margins|A is correct|A|B|C|D|1|default|Explanation text here
+Safety margins|A is correct|A|B|C|D|1|default|Explanation text here
+Safety margins|A is correct|A|B|C|D|1|default|Explanation text here
+Safety margins|A is correct|A|B|C|D|1|default|Explanation text here
+Safety margins|A is correct|A|B|C|D|1|default|Explanation text here
+Safety margins|A is correct|A|B|C|D|1|default|Explanation text here
+Safety margins|A is correct|A|B|C|D|1|default|Explanation text here
+Safety margins|A is correct|A|B|C|D|1|default|Explanation text here
+Safety margins|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle handling|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle handling|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle handling|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle handling|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle handling|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle handling|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle handling|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle handling|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle handling|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle handling|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle handling|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle handling|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle handling|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle handling|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle handling|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle handling|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle handling|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle handling|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle handling|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle handling|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle handling|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle handling|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle handling|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle handling|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle handling|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle handling|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle handling|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle handling|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle handling|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle handling|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle loading|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle loading|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle loading|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle loading|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle loading|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle loading|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle loading|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle loading|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle loading|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle loading|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle loading|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle loading|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle loading|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle loading|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle loading|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle loading|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle loading|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle loading|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle loading|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle loading|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle loading|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle loading|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle loading|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle loading|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle loading|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle loading|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle loading|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle loading|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle loading|A is correct|A|B|C|D|1|default|Explanation text here
+Vehicle loading|A is correct|A|B|C|D|1|default|Explanation text here
+Vulnerable road users|A is correct|A|B|C|D|1|default|Explanation text here
+Vulnerable road users|A is correct|A|B|C|D|1|default|Explanation text here
+Vulnerable road users|A is correct|A|B|C|D|1|default|Explanation text here
+Vulnerable road users|A is correct|A|B|C|D|1|default|Explanation text here
+Vulnerable road users|A is correct|A|B|C|D|1|default|Explanation text here
+Vulnerable road users|A is correct|A|B|C|D|1|default|Explanation text here
+Vulnerable road users|A is correct|A|B|C|D|1|default|Explanation text here
+Vulnerable road users|A is correct|A|B|C|D|1|default|Explanation text here
+Vulnerable road users|A is correct|A|B|C|D|1|default|Explanation text here
+Vulnerable road users|A is correct|A|B|C|D|1|default|Explanation text here
+Vulnerable road users|A is correct|A|B|C|D|1|default|Explanation text here
+Vulnerable road users|A is correct|A|B|C|D|1|default|Explanation text here
+Vulnerable road users|A is correct|A|B|C|D|1|default|Explanation text here
+Vulnerable road users|A is correct|A|B|C|D|1|default|Explanation text here
+Vulnerable road users|A is correct|A|B|C|D|1|default|Explanation text here
+Vulnerable road users|A is correct|A|B|C|D|1|default|Explanation text here
+Vulnerable road users|A is correct|A|B|C|D|1|default|Explanation text here
+Vulnerable road users|A is correct|A|B|C|D|1|default|Explanation text here
+Vulnerable road users|A is correct|A|B|C|D|1|default|Explanation text here
+Vulnerable road users|A is correct|A|B|C|D|1|default|Explanation text here
+Vulnerable road users|A is correct|A|B|C|D|1|default|Explanation text here
+Vulnerable road users|A is correct|A|B|C|D|1|default|Explanation text here
+Vulnerable road users|A is correct|A|B|C|D|1|default|Explanation text here
+Vulnerable road users|A is correct|A|B|C|D|1|default|Explanation text here
+Vulnerable road users|A is correct|A|B|C|D|1|default|Explanation text here
+Vulnerable road users|A is correct|A|B|C|D|1|default|Explanation text here
+Vulnerable road users|A is correct|A|B|C|D|1|default|Explanation text here
+Vulnerable road users|A is correct|A|B|C|D|1|default|Explanation text here
+Vulnerable road users|A is correct|A|B|C|D|1|default|Explanation text here
+Vulnerable road users|A is correct|A|B|C|D|1|default|Explanation text here

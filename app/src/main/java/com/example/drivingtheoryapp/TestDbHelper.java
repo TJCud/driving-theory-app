@@ -70,7 +70,8 @@ public class TestDbHelper extends SQLiteOpenHelper {
                 QuestionsTable.COLUMN_OPTION3 + " TEXT, " +
                 QuestionsTable.COLUMN_OPTION4 + " TEXT, " +
                 QuestionsTable.COLUMN_ANSWER_NR + " INTEGER, " +
-                QuestionsTable.COLUMN_IMAGE_ID + " TEXT" +
+                QuestionsTable.COLUMN_IMAGE_ID + " TEXT, " +
+                QuestionsTable.COLUMN_EXPLANATION + " TEXT" +
                 ")";
 
         db.execSQL(SQL_CREATE_QUESTIONS_TABLE);
@@ -100,6 +101,7 @@ public class TestDbHelper extends SQLiteOpenHelper {
                 cv.put(QuestionsTable.COLUMN_OPTION4, columns[5].trim());
                 cv.put(QuestionsTable.COLUMN_ANSWER_NR, columns[6].trim());
                 cv.put(QuestionsTable.COLUMN_IMAGE_ID, columns[7].trim());
+                cv.put(QuestionsTable.COLUMN_EXPLANATION, columns[8].trim());
 
                 db.insert(QuestionsTable.TABLE_NAME, null, cv);
             }
@@ -139,6 +141,7 @@ public class TestDbHelper extends SQLiteOpenHelper {
                 question.setOption4(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION4)));
                 question.setAnswerNr(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_ANSWER_NR)));
                 question.setImageID(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_IMAGE_ID)));
+                question.setExplanation(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_EXPLANATION)));
                 questionList.add(question);
             } while (c.moveToNext()); //Keeps adding questions while entries in database exists.
         }
@@ -171,6 +174,7 @@ public class TestDbHelper extends SQLiteOpenHelper {
                 question.setOption4(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION4)));
                 question.setAnswerNr(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_ANSWER_NR)));
                 question.setImageID(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_IMAGE_ID)));
+                question.setExplanation(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_EXPLANATION)));
                 questionList.add(question);
             } while (c.moveToNext()); //Keeps adding questions while entries in database exists.
         }

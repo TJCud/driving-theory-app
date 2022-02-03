@@ -27,7 +27,9 @@ public class AllResults extends AppCompatActivity {
     TestDbHelper mDatabaseHelper;
     private ListView mListView;
     private Button returnBtn;
-
+    private ArrayList<String> listDataOutcome = new ArrayList<>();
+    private ArrayList<String> listDataQuestionsAndAnswers = new ArrayList<>();
+    
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +56,7 @@ public class AllResults extends AppCompatActivity {
         Cursor data = mDatabaseHelper.getAllResults(getUsernameData);
 
         int pass=0, fail=0;
-        ArrayList<String> listDataOutcome = new ArrayList<>();
-        ArrayList<String> listDataQuestionsAndAnswers = new ArrayList<>();
+
 
         while(data.moveToNext()){
 
@@ -78,7 +79,7 @@ public class AllResults extends AppCompatActivity {
 
 
 
-            for (int i=0;i<size;i++){
+            for (int i=0;i<listDataOutcome.size();i++){
                 String[] askedQuestion = allAskedQuestions.split((Pattern.quote("|")));
                 String[] userAnswer = allUserAnswers.split((Pattern.quote("|")));
                 String[] correctAnswer = allCorrectAnswers.split((Pattern.quote("|")));

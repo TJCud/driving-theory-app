@@ -25,27 +25,19 @@ import java.util.stream.Collectors;
 
 public class ActivityPracticeTest extends AppCompatActivity {
 
-    public static ArrayList<String> saveQuestion= new ArrayList<>();;
-    public static ArrayList<String> saveUserAnswer= new ArrayList<>();;
-    public static ArrayList<String> saveCorrectAnswer= new ArrayList<>();;
-
-
     private QuestionModel currentQuestion;
     private List<QuestionModel> questionList;
-
     private TextView tvQuestion, tvQuestionNo, tvTimer;
     private RadioGroup radioGroup;
     private RadioButton rb1, rb2, rb3, rb4;
     private Button btnNext;
     private ImageView questionImage;
     private ImageView timerImage;
-
     private String imageID;
     private int totalQuestions;
     private int qCounter;
     private int score;
     private boolean answered;
-    private CountDownTimer countDownTimer;
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -129,7 +121,7 @@ public class ActivityPracticeTest extends AppCompatActivity {
             questionImage.setImageDrawable(drawable);
 
             qCounter++;
-            btnNext.setText("Confirm");
+            btnNext.setText("Confirm Answer");
             tvQuestionNo.setText("Question "+qCounter+" of "+totalQuestions + ":");
             answered = false;
 
@@ -138,7 +130,6 @@ public class ActivityPracticeTest extends AppCompatActivity {
             finishTest(passUsername);
         }
     }
-
 
 
 
@@ -159,51 +150,12 @@ public class ActivityPracticeTest extends AppCompatActivity {
 
 
 
-        //SAVING QUESTIONS AND ANSWERS TO DB
-        saveQuestion.add(currentQuestion.getQuestion());
-        saveUserAnswer.add((String) rbSelected.getText());
-        switch (currentQuestion.getAnswerNr()) {
-            case 1:
-                saveCorrectAnswer.add(currentQuestion.getOption1());
-                break;
-            case 2:
-                saveCorrectAnswer.add(currentQuestion.getOption2());
-                break;
-            case 3:
-                saveCorrectAnswer.add(currentQuestion.getOption3());
-                break;
-            case 4:
-                saveCorrectAnswer.add(currentQuestion.getOption4());
-                break;}
-
-
         //SHOW SOLUTION
         showSolution(passUsername);
 
     }
 
 
-
-    //TIMER FUNCTION
-    private void timer(String passUsername) {
-        countDownTimer = new CountDownTimer(3421000,1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                tvTimer.setText(""+String.format("%02d:%02d",
-                        TimeUnit.MILLISECONDS.toMinutes( millisUntilFinished),
-                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
-                                TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
-            }
-
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onFinish() {
-                Toast.makeText(ActivityPracticeTest.this, "Time up!", Toast.LENGTH_SHORT).show();
-                finishTest(passUsername);
-
-            }
-        }.start();
-    }
 
 
     //NAVIGATES TO RESULT SCREEN
@@ -228,18 +180,6 @@ public class ActivityPracticeTest extends AppCompatActivity {
         }
         else{
 
-            String saveQuestionStrings = saveQuestion.stream().map(Object::toString)
-                    .collect(Collectors.joining(" | "));
-
-            String saveUserAnswerStrings = saveUserAnswer.stream().map(Object::toString)
-                    .collect(Collectors.joining(" | "));
-
-            String saveCorrectAnswerStrings = saveCorrectAnswer.stream().map(Object::toString)
-                    .collect(Collectors.joining(" | "));
-
-
-            TestDbHelper dbHelper = new TestDbHelper(this); //Initialise database
-            dbHelper.saveResults(passUsername, score, totalQuestions, dateToStr,saveQuestionStrings,saveUserAnswerStrings,saveCorrectAnswerStrings);
             Intent intent = new Intent(this, MockTestResults.class);
             intent.putExtra("TOTAL_QUESTIONS", totalQuestions);
             intent.putExtra("SCORE", score);
@@ -284,14 +224,6 @@ public class ActivityPracticeTest extends AppCompatActivity {
         if(qCounter < totalQuestions){
             btnNext.setText("Next Question");
         } else{
-/*            countDownTimer.cancel();
-            tvQuestionNo.setVisibility(View.GONE);
-            tvQuestion.setVisibility(View.GONE);
-            rb1.setVisibility(View.GONE);
-            rb2.setVisibility(View.GONE);
-            rb3.setVisibility(View.GONE);
-            rb4.setVisibility(View.GONE);
-            questionImage.setVisibility(View.GONE);*/
             btnNext.setText("FINISH TEST");
             btnNext.setBackgroundColor(Color.parseColor("#00ff44"));
         }

@@ -10,13 +10,14 @@ public class QuestionModel {
     private String option3;
     private String option4;
     private String imageID;
+    private String explanation;
     private int answerNr;
 
 
 
 
     //CONSTRUCTOR
-    public QuestionModel(String category, String question, String option1, String option2, String option3, String option4, int answerNr, String imageID) {
+    public QuestionModel(String category, String question, String option1, String option2, String option3, String option4, int answerNr, String imageID, String explanation) {
         this.category = category;
         this.question = question;
         this.option1 = option1;
@@ -25,6 +26,7 @@ public class QuestionModel {
         this.option4 = option4;
         this.answerNr = answerNr;
         this.imageID = imageID;
+        this.explanation = explanation;
     }
 
     //EMPTY CONSTRUCTOR
@@ -79,6 +81,13 @@ public class QuestionModel {
     }
     public void setImageID(String imageID) {
         this.imageID = imageID;
+    }
+
+    public String getExplanation() {
+        return explanation;
+    }
+    public void setExplanation(String explanation) {
+        this.explanation = explanation;
     }
 
     public int getAnswerNr() {

@@ -2,6 +2,7 @@ package com.example.drivingtheoryapp;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -27,7 +28,9 @@ public class ActivityPracticeMenu extends AppCompatActivity {
 
 
     private RadioGroup radioGroup;
-    private RadioButton rb1, rb2, rb3, rb4, rb5, rb6, rb7, rb8, rb9, rb10, rb11, rb12, rb13, rb14;
+    private CardView categoryCV1, categoryCV2, categoryCV3, categoryCV4, categoryCV5,
+            categoryCV6, categoryCV7, categoryCV8, categoryCV9, categoryCV10,
+            categoryCV11, categoryCV12, categoryCV13, categoryCV14;
 
 
     @Override
@@ -36,22 +39,21 @@ public class ActivityPracticeMenu extends AppCompatActivity {
         setContentView(R.layout.activity_practice_menu);
 
         //ASSIGN VARIABLES TO ID's
-        radioGroup = findViewById(R.id.ID_category_rg);
-        rb1 = findViewById(R.id.ID_category_rb1);
-        rb2 = findViewById(R.id.ID_category_rb2);
-        rb3 = findViewById(R.id.ID_category_rb3);
-        rb4 = findViewById(R.id.ID_category_rb4);
-        rb5 = findViewById(R.id.ID_category_rb5);
-        rb6 = findViewById(R.id.ID_category_rb6);
-        rb7 = findViewById(R.id.ID_category_rb7);
-        rb8 = findViewById(R.id.ID_category_rb8);
-        rb9 = findViewById(R.id.ID_category_rb9);
-        rb10 = findViewById(R.id.ID_category_rb10);
-        rb11 = findViewById(R.id.ID_category_rb11);
-        rb12 = findViewById(R.id.ID_category_rb12);
-        rb13 = findViewById(R.id.ID_category_rb13);
-        rb14 = findViewById(R.id.ID_category_rb14);
-        Button btnNext = findViewById(R.id.btnNext);
+        categoryCV1 = findViewById(R.id.ID_buttonAlertness);
+        categoryCV2 = findViewById(R.id.ID_buttonAttitude);
+        categoryCV3 = findViewById(R.id.ID_buttonDocuments);
+        categoryCV4 = findViewById(R.id.ID_buttonHazAware);
+        categoryCV5 = findViewById(R.id.ID_buttonIncidents);
+        categoryCV6 = findViewById(R.id.ID_buttonMotorway);
+        categoryCV7 = findViewById(R.id.ID_buttonOtherVehicles);
+        categoryCV8 = findViewById(R.id.ID_buttonRoadSigns);
+        categoryCV9 = findViewById(R.id.ID_buttonRulesOfRoad);
+        categoryCV10 = findViewById(R.id.ID_buttonSafetyAndYourVehicle);
+        categoryCV11 = findViewById(R.id.ID_buttonSafetyMargins);
+        categoryCV12 = findViewById(R.id.ID_buttonVehicleHandling);
+        categoryCV13 = findViewById(R.id.ID_buttonVehicleLoading);
+        categoryCV14 = findViewById(R.id.ID_buttonVulnerableRoadUsers);
+
 
         // Getting the intent which started this activity
         Intent intent = getIntent();
@@ -59,41 +61,148 @@ public class ActivityPracticeMenu extends AppCompatActivity {
         String username = intent.getStringExtra("username_key");
 
 
-
-
-
-
-        //WHEN BUTTON IS CLICKED, CHECK TO SEE AN ANSWER HAS BEEN SELECTED
-        btnNext.setOnClickListener(new View.OnClickListener() {
+        //Button Listeners
+        categoryCV1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                    if(     rb1.isChecked() || rb2.isChecked() || rb3.isChecked() || rb4.isChecked() ||
-                            rb5.isChecked() || rb6.isChecked() || rb7.isChecked() || rb8.isChecked() ||
-                            rb9.isChecked() || rb10.isChecked() || rb11.isChecked() || rb12.isChecked() ||
-                            rb13.isChecked() || rb14.isChecked()
-                    ){
-                        RadioButton rbSelected = findViewById(radioGroup.getCheckedRadioButtonId());
-                        String selectedCategory = (String) rbSelected.getText();
-                        startTest(username,selectedCategory);
-                    } else {
-                        Toast.makeText(ActivityPracticeMenu.this, "Please select a category", Toast.LENGTH_SHORT).show();}
-
+                Intent category = new Intent(getApplicationContext(), ActivityPracticeTest.class);
+                category.putExtra("username_key",username);
+                category.putExtra("category_key","Alertness");
+                startActivity(category);
             }
         });
+
+        categoryCV2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent category = new Intent(getApplicationContext(), ActivityPracticeTest.class);
+                category.putExtra("username_key",username);
+                category.putExtra("category_key","Attitude");
+                startActivity(category);
+            }
+        });
+
+        categoryCV3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent category = new Intent(getApplicationContext(), ActivityPracticeTest.class);
+                category.putExtra("username_key",username);
+                category.putExtra("category_key","Documents");
+                startActivity(category);
+            }
+        });
+
+        categoryCV4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent category = new Intent(getApplicationContext(), ActivityPracticeTest.class);
+                category.putExtra("username_key",username);
+                category.putExtra("category_key","Hazard awareness");
+                startActivity(category);
+            }
+        });
+
+
+        categoryCV5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent category = new Intent(getApplicationContext(), ActivityPracticeTest.class);
+                category.putExtra("username_key",username);
+                category.putExtra("category_key","Incidents");
+                startActivity(category);
+            }
+        });
+
+        categoryCV6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent category = new Intent(getApplicationContext(), ActivityPracticeTest.class);
+                category.putExtra("username_key",username);
+                category.putExtra("category_key","Motorway rules");
+                startActivity(category);
+            }
+        });
+
+        categoryCV7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent category = new Intent(getApplicationContext(), ActivityPracticeTest.class);
+                category.putExtra("username_key",username);
+                category.putExtra("category_key","Other types of vehicle");
+                startActivity(category);
+            }
+        });
+
+        categoryCV8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent category = new Intent(getApplicationContext(), ActivityPracticeTest.class);
+                category.putExtra("username_key",username);
+                category.putExtra("category_key","Road and traffic signs");
+                startActivity(category);
+            }
+        });
+
+        categoryCV9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent category = new Intent(getApplicationContext(), ActivityPracticeTest.class);
+                category.putExtra("username_key",username);
+                category.putExtra("category_key","Rules of the road");
+                startActivity(category);
+            }
+        });
+
+        categoryCV10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent category = new Intent(getApplicationContext(), ActivityPracticeTest.class);
+                category.putExtra("username_key",username);
+                category.putExtra("category_key","Safety and your vehicle");
+                startActivity(category);
+            }
+        });
+
+        categoryCV11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent category = new Intent(getApplicationContext(), ActivityPracticeTest.class);
+                category.putExtra("username_key",username);
+                category.putExtra("category_key","Safety margins");
+                startActivity(category);
+            }
+        });
+
+        categoryCV12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent category = new Intent(getApplicationContext(), ActivityPracticeTest.class);
+                category.putExtra("username_key",username);
+                category.putExtra("category_key","Vehicle handling");
+                startActivity(category);
+            }
+        });
+
+        categoryCV13.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent category = new Intent(getApplicationContext(), ActivityPracticeTest.class);
+                category.putExtra("username_key",username);
+                category.putExtra("category_key","Vehicle loading");
+                startActivity(category);
+            }
+        });
+
+        categoryCV14.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent category = new Intent(getApplicationContext(), ActivityPracticeTest.class);
+                category.putExtra("username_key",username);
+                category.putExtra("category_key","Vulnerable road users");
+                startActivity(category);
+            }
+        });
+
+
     }
-
-
-    //Button Actions
-    public void startTest(String passUsername, String selectedCategory){
-
-        Intent intent = new Intent(ActivityPracticeMenu.this, ActivityPracticeTest.class);
-        intent.putExtra("username_key",passUsername);
-        intent.putExtra("category_key",selectedCategory);
-        startActivity(intent);
-        finish();
-    }
-
-
-
 }
