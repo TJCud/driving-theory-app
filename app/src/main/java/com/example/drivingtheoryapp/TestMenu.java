@@ -6,6 +6,7 @@ import androidx.cardview.widget.CardView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class TestMenu extends AppCompatActivity {
@@ -23,69 +24,57 @@ public class TestMenu extends AppCompatActivity {
 
 
         //Declaring buttons
-        CardView mockbtn = (CardView) findViewById(R.id.mockbtn);
-        CardView practicebtn = (CardView) findViewById(R.id.practicebtn);
-        CardView hwcodebtn = (CardView) findViewById(R.id.hwcodebtn);
-        CardView tipsbtn = (CardView) findViewById(R.id.tipsbtn);
+        CardView fullTestCV = (CardView) findViewById(R.id.mockbtn);
+        CardView practiceModeCV = (CardView) findViewById(R.id.practicebtn);
+        CardView hwCodeCV = (CardView) findViewById(R.id.hwcodebtn);
+        CardView drivingTipsCV = (CardView) findViewById(R.id.tipsbtn);
+        ImageView returnButtonIcon = (ImageView) findViewById(R.id.ID_returnButton);
 
         //Button Listeners
-        mockbtn.setOnClickListener(new View.OnClickListener() {
+        fullTestCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startTest(username);
+                Intent intent = new Intent(TestMenu.this, ActivityTestPreScreen.class);
+                intent.putExtra("username_key",username);
+                finish();
+                startActivity(intent);
             }
         });
 
-        practicebtn.setOnClickListener(new View.OnClickListener() {
+        practiceModeCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openPractice(username);
+                Intent intent = new Intent(TestMenu.this, ActivityPracticeMenu.class);
+                intent.putExtra("username_key",username);
+                startActivity(intent);
+                finish();
             }
         });
 
-        hwcodebtn.setOnClickListener(new View.OnClickListener() {
+        hwCodeCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openHWCODE();
+                Toast.makeText(getApplicationContext(),"Coming soon",Toast.LENGTH_SHORT).show();
             }
         });
 
-        tipsbtn.setOnClickListener(new View.OnClickListener() {
+        drivingTipsCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openTips();
+                Toast.makeText(getApplicationContext(),"Coming soon",Toast.LENGTH_SHORT).show();
             }
         });
 
 
-
-
-    }
-
-    //Button Actions
-    public void startTest(String passUsername){
-        Intent intent = new Intent(TestMenu.this, ActivityTestPreScreen.class);
-        intent.putExtra("username_key",passUsername);
-        startActivity(intent);
-    }
-
-    public void openPractice(String passUsername){
-        Intent intent = new Intent(TestMenu.this, ActivityPracticeMenu.class);
-        intent.putExtra("username_key",passUsername);
-        startActivity(intent);
+        returnButtonIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Menu.class);
+                intent.putExtra("username_key",username);
+                finish();
+                startActivity(intent);
+            }
+        });
 
     }
-
-    public void openHWCODE(){
-    }
-
-    public void openTips(){
-    }
-
-
-
-
-
-
-
 }

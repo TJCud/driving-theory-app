@@ -33,6 +33,7 @@ public class ActivityPracticeMenu extends AppCompatActivity {
             categoryCV11, categoryCV12, categoryCV13, categoryCV14;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +54,7 @@ public class ActivityPracticeMenu extends AppCompatActivity {
         categoryCV12 = findViewById(R.id.ID_buttonVehicleHandling);
         categoryCV13 = findViewById(R.id.ID_buttonVehicleLoading);
         categoryCV14 = findViewById(R.id.ID_buttonVulnerableRoadUsers);
+        ImageView backButtonIcon = (ImageView) findViewById(R.id.ID_returnButton);
 
 
         // Getting the intent which started this activity
@@ -203,6 +205,16 @@ public class ActivityPracticeMenu extends AppCompatActivity {
             }
         });
 
+
+        backButtonIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent returnMenu = new Intent(getApplicationContext(), TestMenu.class);
+                returnMenu.putExtra("username_key",username);
+                finish();
+                startActivity(returnMenu);
+            }
+        });
 
     }
 }

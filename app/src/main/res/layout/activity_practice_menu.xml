@@ -6,37 +6,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#fafafa"
+    android:background="@color/white"
     android:weightSum="15"
     tools:context=".ActivityPracticeMenu">
 
 
   <RelativeLayout
       android:layout_width="match_parent"
-      android:layout_height="69dp"
+      android:layout_height="45dp"
       android:layout_weight="2"
       android:layout_marginBottom="0dp"
-      android:background="@color/cardview_dark_background">
+      android:background="#4287f5">
 
-    <TextView
-        android:id="@+id/welcomeLabel"
+    <ImageView
+        android:id="@+id/ID_returnButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="0dp"
+        android:layout_toLeftOf="@id/ID_category_menu_header"
+        android:paddingRight="5dp"
+        android:src="@drawable/ic_backarrow" />
+
+    <TextView
+        android:id="@+id/ID_category_menu_header"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:layout_marginTop="0dp"
         android:fontFamily="@font/next_book"
         android:gravity="center"
-        android:text="Select a category"
+        android:text="Practice"
         android:textColor="@color/white"
-        android:textSize="35dp"
-        android:textStyle="bold" />
+        android:textSize="35dp" />
 
   </RelativeLayout>
 
   <ScrollView
       android:id="@+id/container_scroll_view"
       android:layout_width="match_parent"
-      android:layout_height="600dp">
+      android:layout_height="690dp">
 
     <GridLayout
         android:id="@+id/mainGrid"
@@ -62,7 +72,7 @@
           android:layout_marginBottom="16dp"
           app:cardCornerRadius="80dp"
           app:cardElevation="0dp"
-          card_view:cardBackgroundColor="#bff0ff"
+          card_view:cardBackgroundColor="#4287f5"
 
           >
 
@@ -85,7 +95,7 @@
               android:fontFamily="@font/next_book"
               android:text="\nAlertness\n"
               android:textAlignment="center"
-              android:textColor="@android:color/black"
+              android:textColor="@android:color/white"
               android:textSize="13dp" />
 
         </LinearLayout>
@@ -104,7 +114,7 @@
           android:layout_marginBottom="16dp"
           app:cardCornerRadius="80dp"
           app:cardElevation="0dp"
-          card_view:cardBackgroundColor="#bff0ff">
+          card_view:cardBackgroundColor="#4287f5">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -125,7 +135,7 @@
               android:fontFamily="@font/next_book"
               android:text="\nAttitude\n"
               android:textAlignment="center"
-              android:textColor="@android:color/black"
+              android:textColor="@android:color/white"
               android:textSize="13dp" />
 
         </LinearLayout>
@@ -147,7 +157,7 @@
           android:layout_marginBottom="16dp"
           app:cardCornerRadius="80dp"
           app:cardElevation="0dp"
-          card_view:cardBackgroundColor="#bff0ff">
+          card_view:cardBackgroundColor="#4287f5">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -168,7 +178,7 @@
               android:fontFamily="@font/next_book"
               android:text="\nDocuments\n"
               android:textAlignment="center"
-              android:textColor="@android:color/black"
+              android:textColor="@android:color/white"
               android:textSize="13dp" />
 
         </LinearLayout>
@@ -187,7 +197,7 @@
           android:layout_marginBottom="16dp"
           app:cardCornerRadius="80dp"
           app:cardElevation="0dp"
-          card_view:cardBackgroundColor="#bff0ff">
+          card_view:cardBackgroundColor="#4287f5">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -208,7 +218,7 @@
               android:fontFamily="@font/next_book"
               android:text="\nHazard  Awareness\n"
               android:textAlignment="center"
-              android:textColor="@android:color/black"
+              android:textColor="@android:color/white"
               android:textSize="13dp" />
 
         </LinearLayout>
@@ -230,7 +240,7 @@
           android:layout_marginBottom="16dp"
           app:cardCornerRadius="80dp"
           app:cardElevation="0dp"
-          card_view:cardBackgroundColor="#bff0ff">
+          card_view:cardBackgroundColor="#4287f5">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -251,7 +261,7 @@
               android:fontFamily="@font/next_book"
               android:text="\nIncidents\n"
               android:textAlignment="center"
-              android:textColor="@android:color/black"
+              android:textColor="@android:color/white"
               android:textSize="13dp" />
 
         </LinearLayout>
@@ -270,7 +280,7 @@
           android:layout_marginBottom="16dp"
           app:cardCornerRadius="80dp"
           app:cardElevation="0dp"
-          card_view:cardBackgroundColor="#bff0ff">
+          card_view:cardBackgroundColor="#4287f5">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -291,7 +301,7 @@
               android:fontFamily="@font/next_book"
               android:text="\nMotorway Rules\n"
               android:textAlignment="center"
-              android:textColor="@android:color/black"
+              android:textColor="@android:color/white"
               android:textSize="13dp" />
 
         </LinearLayout>
@@ -313,7 +323,7 @@
           android:layout_marginBottom="16dp"
           app:cardCornerRadius="80dp"
           app:cardElevation="0dp"
-          card_view:cardBackgroundColor="#bff0ff">
+          card_view:cardBackgroundColor="#4287f5">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -334,7 +344,7 @@
               android:fontFamily="@font/next_book"
               android:text="\nOther Types Of Vehicle"
               android:textAlignment="center"
-              android:textColor="@android:color/black"
+              android:textColor="@android:color/white"
               android:textSize="13dp"
 
               />
@@ -355,7 +365,7 @@
           android:layout_marginBottom="16dp"
           app:cardCornerRadius="80dp"
           app:cardElevation="0dp"
-          card_view:cardBackgroundColor="#bff0ff">
+          card_view:cardBackgroundColor="#4287f5">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -376,7 +386,7 @@
               android:fontFamily="@font/next_book"
               android:text="\nRoad and Traffic Signs"
               android:textAlignment="center"
-              android:textColor="@android:color/black"
+              android:textColor="@android:color/white"
               android:textSize="13dp" />
 
         </LinearLayout>
@@ -398,7 +408,7 @@
           android:layout_marginBottom="16dp"
           app:cardCornerRadius="80dp"
           app:cardElevation="0dp"
-          card_view:cardBackgroundColor="#bff0ff">
+          card_view:cardBackgroundColor="#4287f5">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -419,7 +429,7 @@
               android:fontFamily="@font/next_book"
               android:text="\nRules of the Road\n"
               android:textAlignment="center"
-              android:textColor="@android:color/black"
+              android:textColor="@android:color/white"
               android:textSize="13dp" />
 
         </LinearLayout>
@@ -438,7 +448,7 @@
           android:layout_marginBottom="16dp"
           app:cardCornerRadius="80dp"
           app:cardElevation="0dp"
-          card_view:cardBackgroundColor="#bff0ff">
+          card_view:cardBackgroundColor="#4287f5">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -459,7 +469,7 @@
               android:fontFamily="@font/next_book"
               android:text="\nSafety and Your Vehicle"
               android:textAlignment="center"
-              android:textColor="@android:color/black"
+              android:textColor="@android:color/white"
               android:textSize="13dp" />
 
         </LinearLayout>
@@ -481,7 +491,7 @@
           android:layout_marginBottom="16dp"
           app:cardCornerRadius="80dp"
           app:cardElevation="0dp"
-          card_view:cardBackgroundColor="#bff0ff">
+          card_view:cardBackgroundColor="#4287f5">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -502,7 +512,7 @@
               android:fontFamily="@font/next_book"
               android:text="\nSafety Margins\n"
               android:textAlignment="center"
-              android:textColor="@android:color/black"
+              android:textColor="@android:color/white"
               android:textSize="13dp" />
 
         </LinearLayout>
@@ -521,7 +531,7 @@
           android:layout_marginBottom="16dp"
           app:cardCornerRadius="80dp"
           app:cardElevation="0dp"
-          card_view:cardBackgroundColor="#bff0ff">
+          card_view:cardBackgroundColor="#4287f5">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -542,7 +552,7 @@
               android:fontFamily="@font/next_book"
               android:text="\nVehicle Handling\n"
               android:textAlignment="center"
-              android:textColor="@android:color/black"
+              android:textColor="@android:color/white"
               android:textSize="13dp" />
 
         </LinearLayout>
@@ -564,7 +574,7 @@
           android:layout_marginBottom="16dp"
           app:cardCornerRadius="80dp"
           app:cardElevation="0dp"
-          card_view:cardBackgroundColor="#bff0ff">
+          card_view:cardBackgroundColor="#4287f5">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -585,7 +595,7 @@
               android:fontFamily="@font/next_book"
               android:text="\nVehicle Loading\n"
               android:textAlignment="center"
-              android:textColor="@android:color/black"
+              android:textColor="@android:color/white"
               android:textSize="13dp" />
 
         </LinearLayout>
@@ -604,7 +614,7 @@
           android:layout_marginBottom="16dp"
           app:cardCornerRadius="80dp"
           app:cardElevation="0dp"
-          card_view:cardBackgroundColor="#bff0ff">
+          card_view:cardBackgroundColor="#4287f5">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -625,7 +635,7 @@
               android:fontFamily="@font/next_book"
               android:text="\nVulnerable Road Users"
               android:textAlignment="center"
-              android:textColor="@android:color/black"
+              android:textColor="@android:color/white"
               android:textSize="13dp" />
 
         </LinearLayout>

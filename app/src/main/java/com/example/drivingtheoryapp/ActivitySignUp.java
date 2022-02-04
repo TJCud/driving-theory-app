@@ -53,6 +53,7 @@ public class ActivitySignUp extends AppCompatActivity {
                 username = usernameraw.toLowerCase();
                 password = String.valueOf(EditTextPassword.getText());
                 email = String.valueOf(EditTextEmail.getText());
+               // String usernameSize = username.chars();
 
 
                 if(!fullname.equals("") && !username.equals("") && !password.equals("") && !email.equals("")) {
@@ -60,6 +61,11 @@ public class ActivitySignUp extends AppCompatActivity {
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
+
+                            if(username.length()>8){
+                                Toast.makeText(getApplicationContext(),"Username cannot exceed 8 characters",Toast.LENGTH_SHORT).show();
+                            }
+                            else{
                             //Starting Write and Read data with URL
                             //Creating array for parameters
                             String[] field = new String[4];
@@ -92,7 +98,7 @@ public class ActivitySignUp extends AppCompatActivity {
 
                             }
 
-                        }}}
+                        }}}}
                     });
                 }
                 else {

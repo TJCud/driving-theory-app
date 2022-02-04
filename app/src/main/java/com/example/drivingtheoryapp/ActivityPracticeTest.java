@@ -58,8 +58,8 @@ public class ActivityPracticeTest extends AppCompatActivity {
         rb3 = findViewById(R.id.rb3);
         rb4 = findViewById(R.id.rb4);
         questionImage = findViewById(R.id.ID_questionImage);
-        timerImage = findViewById(R.id.ID_timerImage);
-        timerImage.setVisibility(View.INVISIBLE);
+//        timerImage = findViewById(R.id.ID_timerImage);
+//        timerImage.setVisibility(View.INVISIBLE);
         btnNext = findViewById(R.id.btnNext);
 
         // Getting the intent which started this activity

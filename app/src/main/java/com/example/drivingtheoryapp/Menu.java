@@ -92,7 +92,7 @@ public class Menu extends AppCompatActivity {
     }
 
     public void settings(String passUsername){
-        Intent openSettings = new Intent(getApplicationContext(), ActivityGraphView.class);
+        Intent openSettings = new Intent(getApplicationContext(), SettingsMenu.class);
         openSettings.putExtra("username_key",passUsername);
         startActivity(openSettings);
     }

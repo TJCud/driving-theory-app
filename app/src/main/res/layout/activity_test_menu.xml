@@ -1,44 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+xmlns:card_view="http://schemas.android.com/apk/res-auto"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:background="@color/white"
+android:weightSum="15"
+tools:context=".TestMenu">
+
+
+<RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#fafafa"
-    android:weightSum="10"
-    tools:context=".TestMenu">
+    android:layout_height="45dp"
+    android:layout_weight="2"
+    android:layout_marginBottom="0dp"
+    android:background="#4287f5">
 
+    <ImageView
+        android:id="@+id/ID_returnButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="0dp"
+        android:layout_toLeftOf="@id/ID_category_menu_header"
+        android:paddingRight="5dp"
+        android:src="@drawable/ic_backarrow" />
 
-    <RelativeLayout
-        android:layout_weight="2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp">
+    <TextView
+        android:id="@+id/ID_category_menu_header"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="0dp"
+        android:fontFamily="@font/next_book"
+        android:gravity="center"
+        android:text="Learn to drive"
+        android:textColor="@color/white"
+        android:textSize="35dp" />
 
-        <TextView
-            android:id="@+id/textGrid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Test Menu"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:textSize="35dp"
-            android:textStyle="bold" />
+</RelativeLayout>
 
-    </RelativeLayout>
+<ScrollView
+    android:id="@+id/container_scroll_view"
+    android:layout_width="match_parent"
+    android:layout_height="690dp"
+    android:layout_gravity="center_vertical">
 
     <GridLayout
         android:id="@+id/mainGrid"
-        android:columnCount="2"
-        android:rowCount="3"
-        android:alignmentMode="alignMargins"
-        android:columnOrderPreserved="false"
-        android:layout_weight="6"
+        android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:padding="14dp"
+        android:layout_marginTop="0dp"
+        android:alignmentMode="alignMargins"
+        android:columnCount="1"
+        android:columnOrderPreserved="false"
+        android:padding="30dp"
         >
 
         <!-- Row 1 -->
@@ -47,39 +67,39 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/mockbtn"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:layout_marginBottom="16dp"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_vertical"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            app:cardElevation="8dp"
-            app:cardCornerRadius="8dp"
-            card_view:cardBackgroundColor="#30ffffff"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="80dp"
+            app:cardElevation="0dp"
+            card_view:cardBackgroundColor="#4287f5"
 
             >
 
             <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_margin="16dp"
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:orientation="vertical">
 
                 <ImageView
-                    android:src="@drawable/ic_mocktest"
-                    android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_mocktest" />
 
                 <TextView
-                    android:text="Mock Test"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/next_book"
+                    android:text="Full Mock Test"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="30dp" />
 
             </LinearLayout>
 
@@ -89,38 +109,37 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/practicebtn"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:layout_marginBottom="16dp"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_vertical"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            app:cardElevation="8dp"
-            app:cardCornerRadius="8dp"
-            card_view:cardBackgroundColor="#30ffffff"
-            >
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="80dp"
+            app:cardElevation="0dp"
+            card_view:cardBackgroundColor="#4287f5">
 
             <LinearLayout
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_margin="16dp"
-                android:orientation="vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="14dp"
+                android:orientation="vertical">
 
                 <ImageView
-                    android:src="@drawable/ic_practice"
-                    android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_practice" />
 
                 <TextView
-                    android:text="Practice"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/next_book"
+                    android:text="Practice Mode"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="30dp" />
 
             </LinearLayout>
 
@@ -133,38 +152,37 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/hwcodebtn"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:layout_marginBottom="16dp"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_vertical"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            app:cardElevation="8dp"
-            app:cardCornerRadius="8dp"
-            card_view:cardBackgroundColor="#30ffffff"
-            >
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="80dp"
+            app:cardElevation="0dp"
+            card_view:cardBackgroundColor="#4287f5">
 
             <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_margin="16dp"
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:orientation="vertical">
 
                 <ImageView
-                    android:src="@drawable/ic_highwaycode"
-                    android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_highwaycode" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:fontFamily="@font/next_book"
                     android:text="Highway Code"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textColor="@android:color/white"
+                    android:textSize="30dp" />
 
             </LinearLayout>
 
@@ -174,47 +192,45 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/tipsbtn"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:layout_marginBottom="16dp"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_vertical"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            app:cardElevation="8dp"
-            app:cardCornerRadius="8dp"
-            card_view:cardBackgroundColor="#30ffffff"
-            >
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="80dp"
+            app:cardElevation="0dp"
+            card_view:cardBackgroundColor="#4287f5">
 
             <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_margin="16dp"
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:orientation="vertical">
 
                 <ImageView
-                    android:src="@drawable/ic_drivingtips"
-                    android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_drivingtips" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:fontFamily="@font/next_book"
                     android:text="Driving Tips"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textColor="@android:color/white"
+                    android:textSize="30dp" />
 
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 
 
-
-
-
     </GridLayout>
+
+</ScrollView>
 
 </LinearLayout>
