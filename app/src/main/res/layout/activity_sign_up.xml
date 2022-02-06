@@ -5,22 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ActivitySignUp"
-    android:background="#fafafa">
+    android:background="#e6e6ff">
 
     <!--Page Title-->
     <TextView
         android:id="@+id/titlesignup"
-        android:layout_width="match_parent"
+        android:layout_width="362dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="50dp"
         android:layout_marginTop="50dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginEnd="49dp"
         android:layout_marginBottom="50dp"
+        android:fontFamily="@font/next_book"
         android:gravity="center"
-        android:text="Sign Up"
+        android:text="Account Registration"
         android:textColor="@color/black"
         android:textSize="35dp"
         android:textStyle="bold" />
+
 
     <!--Full Name Field-->
     <EditText
@@ -29,18 +32,39 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/titlesignup"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="0dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:background="#30ffffff"
+        android:drawableLeft="@drawable/ic_baseline_person_outline_24"
         android:drawablePadding="20dp"
+        android:fontFamily="@font/next_book"
         android:hint="@string/fullname"
         android:inputType="text"
         android:maxLength="100"
         android:maxLines="1"
-        android:padding="20dp"
+        android:padding="25dp"
         android:textColor="#000000"
         android:textColorHint="#5c5c5c" />
+
+    <TextView
+        android:id="@+id/tvFullNameWarning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fullname"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="20dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/next_book"
+        android:text="Full Name Warning"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+
 
     <!--Email Field-->
     <EditText
@@ -49,11 +73,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/fullname"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:background="#30ffffff"
         android:drawablePadding="20dp"
+        android:drawableLeft="@drawable/ic_baseline_person_outline_24"
+        android:fontFamily="@font/next_book"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:maxLength="300"
@@ -62,6 +88,22 @@
         android:textColor="#000000"
         android:textColorHint="#5c5c5c" />
 
+    <TextView
+        android:id="@+id/tvEmailWarning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/email"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="20dp"
+        android:layout_marginEnd="50dp"
+        android:fontFamily="@font/next_book"
+        android:text="Email Warning"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
     <!--Username Field-->
     <EditText
         android:id="@+id/username"
@@ -69,11 +111,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/email"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:background="#30ffffff"
         android:drawablePadding="20dp"
+        android:drawableLeft="@drawable/ic_baseline_person_outline_24"
+        android:fontFamily="@font/next_book"
         android:hint="@string/username"
         android:inputType="text"
         android:maxLength="16"
@@ -82,6 +126,22 @@
         android:textColor="#000000"
         android:textColorHint="#5c5c5c" />
 
+    <TextView
+        android:id="@+id/tvUsernameWarning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/username"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="50dp"
+        android:paddingLeft="20dp"
+        android:fontFamily="@font/next_book"
+        android:text="Username Warning"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
     <!--Password Field-->
     <EditText
         android:id="@+id/password"
@@ -89,11 +149,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/username"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:background="#30ffffff"
         android:drawablePadding="20dp"
+        android:drawableLeft="@drawable/ic_baseline_person_outline_24"
+        android:fontFamily="@font/next_book"
         android:hint="@string/password"
         android:inputType="textPassword"
         android:maxLength="16"
@@ -101,6 +163,22 @@
         android:padding="20dp"
         android:textColor="#000000"
         android:textColorHint="#5c5c5c" />
+
+    <TextView
+        android:id="@+id/tvPasswordWarning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/password"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="50dp"
+        android:paddingLeft="20dp"
+        android:fontFamily="@font/next_book"
+        android:text="Password Warning"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        android:textStyle="bold" />
 
 
 
@@ -111,24 +189,28 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/password"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:backgroundTint="@color/black"
+        android:fontFamily="@font/next_book"
         android:text="@string/register" />
 
     <!--Already Registered Link-->
     <TextView
+        android:id="@+id/LoginText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/LoginText"
         android:layout_below="@id/buttonSignUp"
-        android:text="Already registered? Log In Here"
-        android:textColor="@color/black"
-        android:backgroundTint="@color/white"
         android:layout_centerHorizontal="true"
-        android:layout_margin="20dp"/>
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/white"
+        android:fontFamily="@font/next_book"
+        android:text="Already registered? Log In Here"
+        android:textColor="@color/black" />
 
     <ProgressBar
         android:id="@+id/progress"
@@ -136,7 +218,6 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:layout_below="@id/password"/>
-
 
 
 </RelativeLayout>

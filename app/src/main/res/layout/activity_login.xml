@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ActivityLoginScreen"
-    android:background="#fafafa">
+    android:background="#e6e6ff">
 
     <!--Page Title-->
     <TextView
@@ -18,10 +18,10 @@
         android:layout_marginBottom="50dp"
         android:gravity="center"
         android:text="Sign In"
+        android:fontFamily="@font/next_book"
         android:textColor="@color/black"
         android:textSize="35dp"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
 
     <!--Username Field-->
     <EditText
@@ -36,6 +36,7 @@
         android:background="#30ffffff"
         android:drawableLeft="@drawable/ic_baseline_person_outline_24"
         android:drawablePadding="20dp"
+        android:fontFamily="@font/next_book"
         android:hint="@string/username"
         android:inputType="text"
         android:maxLength="12"
@@ -50,6 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/username"
+        android:fontFamily="@font/next_book"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
@@ -71,30 +73,32 @@
     <!--Login Button-->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/loginbtn"
-        android:layout_below="@id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/password"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:backgroundTint="@color/black"
-        android:text="Login"
-        android:gravity="center"/>
+        android:fontFamily="@font/next_book"
+        android:gravity="center"
+        android:text="Login" />
 
 
 
     <!--Register Button-->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/registerbtn"
-        android:layout_below="@id/loginbtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/loginbtn"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:backgroundTint="@color/black"
+        android:fontFamily="@font/next_book"
         android:text="Register" />
 
 
@@ -108,6 +112,8 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
+        android:fontFamily="@font/next_book"
+        android:textSize="20dp"
         android:layout_marginBottom="20dp"
         android:backgroundTint="@color/white"
         android:text="Continue as guest"

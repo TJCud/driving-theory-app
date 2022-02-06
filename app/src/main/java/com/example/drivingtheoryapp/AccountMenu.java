@@ -6,6 +6,7 @@ import androidx.cardview.widget.CardView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
 public class AccountMenu extends AppCompatActivity {
 
@@ -25,6 +26,7 @@ public class AccountMenu extends AppCompatActivity {
         CardView deletebtn = (CardView) findViewById(R.id.deletebtn);
         CardView changepwbtn = (CardView) findViewById(R.id.changepwbtn);
         CardView changeunbtn = (CardView) findViewById(R.id.changeunbtn);
+        ImageView backButtonIcon = (ImageView) findViewById(R.id.ID_returnButton);
 
         //Button Listeners
         progressbtn.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +57,16 @@ public class AccountMenu extends AppCompatActivity {
             }
         });
 
+
+        backButtonIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent returnMenu = new Intent(getApplicationContext(), Menu.class);
+                returnMenu.putExtra("username_key",username);
+                finish();
+                startActivity(returnMenu);
+            }
+        });
 
     }
 

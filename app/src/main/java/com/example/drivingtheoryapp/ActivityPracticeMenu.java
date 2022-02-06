@@ -27,7 +27,6 @@ import java.util.stream.Collectors;
 public class ActivityPracticeMenu extends AppCompatActivity {
 
 
-    private RadioGroup radioGroup;
     private CardView categoryCV1, categoryCV2, categoryCV3, categoryCV4, categoryCV5,
             categoryCV6, categoryCV7, categoryCV8, categoryCV9, categoryCV10,
             categoryCV11, categoryCV12, categoryCV13, categoryCV14;
@@ -71,6 +70,7 @@ public class ActivityPracticeMenu extends AppCompatActivity {
                 category.putExtra("username_key",username);
                 category.putExtra("category_key","Alertness");
                 startActivity(category);
+                finish();
             }
         });
 
@@ -81,6 +81,7 @@ public class ActivityPracticeMenu extends AppCompatActivity {
                 category.putExtra("username_key",username);
                 category.putExtra("category_key","Attitude");
                 startActivity(category);
+                finish();
             }
         });
 
@@ -91,6 +92,7 @@ public class ActivityPracticeMenu extends AppCompatActivity {
                 category.putExtra("username_key",username);
                 category.putExtra("category_key","Documents");
                 startActivity(category);
+                finish();
             }
         });
 
@@ -101,6 +103,7 @@ public class ActivityPracticeMenu extends AppCompatActivity {
                 category.putExtra("username_key",username);
                 category.putExtra("category_key","Hazard awareness");
                 startActivity(category);
+                finish();
             }
         });
 
@@ -112,6 +115,7 @@ public class ActivityPracticeMenu extends AppCompatActivity {
                 category.putExtra("username_key",username);
                 category.putExtra("category_key","Incidents");
                 startActivity(category);
+                finish();
             }
         });
 
@@ -122,6 +126,7 @@ public class ActivityPracticeMenu extends AppCompatActivity {
                 category.putExtra("username_key",username);
                 category.putExtra("category_key","Motorway rules");
                 startActivity(category);
+                finish();
             }
         });
 
@@ -132,6 +137,7 @@ public class ActivityPracticeMenu extends AppCompatActivity {
                 category.putExtra("username_key",username);
                 category.putExtra("category_key","Other types of vehicle");
                 startActivity(category);
+                finish();
             }
         });
 
@@ -142,6 +148,7 @@ public class ActivityPracticeMenu extends AppCompatActivity {
                 category.putExtra("username_key",username);
                 category.putExtra("category_key","Road and traffic signs");
                 startActivity(category);
+                finish();
             }
         });
 
@@ -152,6 +159,7 @@ public class ActivityPracticeMenu extends AppCompatActivity {
                 category.putExtra("username_key",username);
                 category.putExtra("category_key","Rules of the road");
                 startActivity(category);
+                finish();
             }
         });
 
@@ -162,6 +170,7 @@ public class ActivityPracticeMenu extends AppCompatActivity {
                 category.putExtra("username_key",username);
                 category.putExtra("category_key","Safety and your vehicle");
                 startActivity(category);
+                finish();
             }
         });
 
@@ -172,6 +181,7 @@ public class ActivityPracticeMenu extends AppCompatActivity {
                 category.putExtra("username_key",username);
                 category.putExtra("category_key","Safety margins");
                 startActivity(category);
+                finish();
             }
         });
 
@@ -182,6 +192,7 @@ public class ActivityPracticeMenu extends AppCompatActivity {
                 category.putExtra("username_key",username);
                 category.putExtra("category_key","Vehicle handling");
                 startActivity(category);
+                finish();
             }
         });
 
@@ -192,6 +203,7 @@ public class ActivityPracticeMenu extends AppCompatActivity {
                 category.putExtra("username_key",username);
                 category.putExtra("category_key","Vehicle loading");
                 startActivity(category);
+                finish();
             }
         });
 
@@ -202,6 +214,7 @@ public class ActivityPracticeMenu extends AppCompatActivity {
                 category.putExtra("username_key",username);
                 category.putExtra("category_key","Vulnerable road users");
                 startActivity(category);
+                finish();
             }
         });
 

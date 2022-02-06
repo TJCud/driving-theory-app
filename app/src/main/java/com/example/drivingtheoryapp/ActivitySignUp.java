@@ -3,9 +3,12 @@ package com.example.drivingtheoryapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,7 +25,7 @@ public class ActivitySignUp extends AppCompatActivity {
 
     EditText EditTextFullname, EditTextUsername, EditTextPassword, EditTextEmail;
     Button buttonSingUp;
-    TextView textViewLogin;
+    TextView textViewLogin,tvFullNameWarning,tvEmailWarning,tvUsernameWarning,tvPasswordWarning;
 
 
     @Override
@@ -37,6 +40,15 @@ public class ActivitySignUp extends AppCompatActivity {
 
         buttonSingUp = findViewById(R.id.buttonSignUp);
         textViewLogin = findViewById(R.id.LoginText);
+        tvFullNameWarning = findViewById(R.id.tvFullNameWarning);
+        tvEmailWarning = findViewById(R.id.tvEmailWarning);
+        tvUsernameWarning = findViewById(R.id.tvUsernameWarning);
+        tvPasswordWarning = findViewById(R.id.tvPasswordWarning);
+
+        tvFullNameWarning.setVisibility(View.GONE);
+        tvEmailWarning.setVisibility(View.GONE);
+        tvUsernameWarning.setVisibility(View.GONE);
+        tvPasswordWarning.setVisibility(View.GONE);
 
 
 
@@ -47,6 +59,7 @@ public class ActivitySignUp extends AppCompatActivity {
 
                 String fullname, username, usernameraw, password, email;
                 fullname = String.valueOf(EditTextFullname.getText());
+                boolean allFieldsValid = true;
 
                 //Takes value of usernamerawdata and converts to lower case
                 usernameraw = String.valueOf(EditTextUsername.getText());
@@ -55,17 +68,67 @@ public class ActivitySignUp extends AppCompatActivity {
                 email = String.valueOf(EditTextEmail.getText());
                // String usernameSize = username.chars();
 
+                tvFullNameWarning.setVisibility(View.GONE);
+                tvEmailWarning.setVisibility(View.GONE);
+                tvUsernameWarning.setVisibility(View.GONE);
+                tvPasswordWarning.setVisibility(View.GONE);
 
-                if(!fullname.equals("") && !username.equals("") && !password.equals("") && !email.equals("")) {
+
+                if (fullname.equals("")) {
+                    tvFullNameWarning.setTextColor(Color.RED);
+                    tvFullNameWarning.setVisibility(View.VISIBLE);
+                    tvFullNameWarning.setText("Name field cannot be empty");
+                    allFieldsValid = false;}
+                if (fullname.length() > 20) {
+                    tvFullNameWarning.setTextColor(Color.RED);
+                    tvFullNameWarning.setVisibility(View.VISIBLE);
+                    tvFullNameWarning.setText("Name cannot exceed 20 characters");
+                    allFieldsValid = false;}
+
+                if (username.equals("")) {
+                    tvUsernameWarning.setTextColor(Color.RED);
+                    tvUsernameWarning.setVisibility(View.VISIBLE);
+                    tvUsernameWarning.setText("Username field cannot be emply");
+                    allFieldsValid = false;}
+                if (username.length() > 8) {
+                    tvUsernameWarning.setTextColor(Color.RED);
+                    tvUsernameWarning.setVisibility(View.VISIBLE);
+                    tvUsernameWarning.setText("Username cannot exceed 8 characters");
+                    allFieldsValid = false;}
+
+                if (password.equals("")) {
+                    tvPasswordWarning.setTextColor(Color.RED);
+                    tvPasswordWarning.setVisibility(View.VISIBLE);
+                    tvPasswordWarning.setText("Password field cannot be empty");
+                    allFieldsValid = false;}
+                if (password.length() < 8 || password.length() >20) {
+                    tvPasswordWarning.setTextColor(Color.RED);
+                    tvPasswordWarning.setVisibility(View.VISIBLE);
+                    tvPasswordWarning.setText("Password must contain 8-20 characters");
+                    allFieldsValid = false;}
+
+                if (email.equals("")) {
+                    tvEmailWarning.setTextColor(Color.RED);
+                    tvEmailWarning.setVisibility(View.VISIBLE);
+                    tvEmailWarning.setText("E-mail field cannot be empty");
+                    allFieldsValid = false;
+                }
+                if (!isValidEmail(email)) {
+                    tvEmailWarning.setTextColor(Color.RED);
+                    tvEmailWarning.setVisibility(View.VISIBLE);
+                    tvEmailWarning.setText("Invalid e-mail format");
+                    allFieldsValid = false;
+                }
+
+
+
+
+              if(!fullname.equals("") && !username.equals("") && !password.equals("") && !email.equals("") && allFieldsValid) {
                     Handler handler = new Handler(Looper.getMainLooper());
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
 
-                            if(username.length()>8){
-                                Toast.makeText(getApplicationContext(),"Username cannot exceed 8 characters",Toast.LENGTH_SHORT).show();
-                            }
-                            else{
                             //Starting Write and Read data with URL
                             //Creating array for parameters
                             String[] field = new String[4];
@@ -98,7 +161,7 @@ public class ActivitySignUp extends AppCompatActivity {
 
                             }
 
-                        }}}}
+                        }}}
                     });
                 }
                 else {
@@ -106,8 +169,10 @@ public class ActivitySignUp extends AppCompatActivity {
                 }
             }
         });
-
-
-
     }
+
+    public static boolean isValidEmail(CharSequence target) {
+        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
+    }
+
 }

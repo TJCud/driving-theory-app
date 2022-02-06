@@ -27,7 +27,7 @@ public class ActivityPracticeTest extends AppCompatActivity {
 
     private QuestionModel currentQuestion;
     private List<QuestionModel> questionList;
-    private TextView tvQuestion, tvQuestionNo, tvTimer;
+    private TextView tvQuestion, tvQuestionNo, tvTimer, tvExitTest;
     private RadioGroup radioGroup;
     private RadioButton rb1, rb2, rb3, rb4;
     private Button btnNext;
@@ -48,10 +48,11 @@ public class ActivityPracticeTest extends AppCompatActivity {
 
         //ASSIGN VARIABLES TO ID's
         questionList = new ArrayList<>();
-        tvQuestion = findViewById(R.id.textQuestion);
-        tvQuestionNo = findViewById(R.id.textQuestionNo);
-        tvTimer = findViewById(R.id.textTimer);
-        tvTimer.setText("");
+        tvQuestion = findViewById(R.id.tvQuestion);
+        tvQuestionNo = findViewById(R.id.tvQuestionNumber);
+        tvTimer = findViewById(R.id.tvTimer);
+        tvTimer.setText("00:00");
+        tvTimer.setVisibility(View.INVISIBLE);
         radioGroup = findViewById(R.id.radioGroup);
         rb1 = findViewById(R.id.rb1);
         rb2 = findViewById(R.id.rb2);
@@ -61,6 +62,7 @@ public class ActivityPracticeTest extends AppCompatActivity {
 //        timerImage = findViewById(R.id.ID_timerImage);
 //        timerImage.setVisibility(View.INVISIBLE);
         btnNext = findViewById(R.id.btnNext);
+        tvExitTest = findViewById(R.id.tvExitTest);
 
         // Getting the intent which started this activity
         Intent intent = getIntent();
@@ -92,6 +94,24 @@ public class ActivityPracticeTest extends AppCompatActivity {
                 }
             }
         });
+
+
+
+        //EXIT BUTTON ACTIONS
+        tvExitTest.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ActivityPracticeMenu.class);
+                intent.putExtra("username_key",username);
+                startActivity(intent);
+                finish();
+
+            }
+        });
+
+
+
     }
 
 
@@ -201,23 +221,25 @@ public class ActivityPracticeTest extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void showSolution(String passUsername) {
-        rb1.setBackgroundResource(R.drawable.button_background_red);
-        rb2.setBackgroundResource(R.drawable.button_background_red);
-        rb3.setBackgroundResource(R.drawable.button_background_red);
-        rb4.setBackgroundResource(R.drawable.button_background_red);
+
+        rb1.setBackgroundColor(Color.parseColor("#ff5757"));
+        rb2.setBackgroundColor(Color.parseColor("#ff5757"));
+        rb3.setBackgroundColor(Color.parseColor("#ff5757"));
+        rb4.setBackgroundColor(Color.parseColor("#ff5757"));
+
 
         switch (currentQuestion.getAnswerNr()) {
             case 1:
-                rb1.setBackgroundResource(R.drawable.button_background_green);
+                rb1.setBackgroundColor(Color.parseColor("#57ff81"));
                 break;
             case 2:
-                rb2.setBackgroundResource(R.drawable.button_background_green);
+                rb2.setBackgroundColor(Color.parseColor("#57ff81"));
                 break;
             case 3:
-                rb3.setBackgroundResource(R.drawable.button_background_green);
+                rb3.setBackgroundColor(Color.parseColor("#57ff81"));
                 break;
             case 4:
-                rb4.setBackgroundResource(R.drawable.button_background_green);
+                rb4.setBackgroundColor(Color.parseColor("#57ff81"));
                 break;
         }
 

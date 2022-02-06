@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#fafafa"
+    android:background="#e6e6ff"
     android:weightSum="10"
     android:id="@+id/ID_settingsPage"
     tools:context=".SettingsMenu">

@@ -10,7 +10,7 @@
     app:layout_constraintTop_toTopOf="parent"
     android:padding="0dp"
     tools:context=".MockTestActivity"
-    android:background="#fafafa">
+    android:background="#e6e6ff">
 
     <RelativeLayout
         android:id="@+id/test_layout_top"
@@ -18,8 +18,8 @@
         android:layout_height="45dp"
         android:layout_marginBottom="0dp"
         android:layout_weight="2"
-        android:gravity="center_vertical"
-        android:background="#4287f5">
+        android:background="#4287f5"
+        android:gravity="center_vertical">
 
 
         <TextView
@@ -27,18 +27,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/next_book"
-            android:text="Exit Test"
-            android:paddingLeft="5dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="5dp"
+            android:text="Exit"
             android:textColor="@color/white"
-            android:textStyle="bold"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
 
         <TextView
-            android:id="@+id/textQuestionNo"
+            android:id="@+id/tvQuestionNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/textTimer"
+            android:layout_toLeftOf="@id/tvTimer"
             android:layout_toRightOf="@id/tvExitTest"
             android:fontFamily="@font/next_book"
             android:gravity="center"
@@ -48,13 +49,14 @@
 
 
         <TextView
-            android:id="@+id/textTimer"
+            android:id="@+id/tvTimer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:fontFamily="@font/next_book"
+            android:paddingLeft="5dp"
+            android:paddingRight="15dp"
             android:text="TIMER"
-            android:paddingRight="5dp"
             android:textColor="@color/white"
             android:textSize="15sp" />
 
@@ -62,7 +64,7 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/textQuestion"
+        android:id="@+id/tvQuestion"
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:layout_below="@+id/ID_questionImage"
@@ -71,6 +73,20 @@
         android:text="Question will display here"
         android:textColor="#363636"
         android:textSize="20sp" />
+
+
+    <ImageView
+        android:id="@+id/ivTTSicon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/test_layout_top"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginBottom="100dp"
+        android:layout_toLeftOf="@id/ID_questionImage"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_tts" />
 
     <ImageView
         android:id="@+id/ID_questionImage"
@@ -88,7 +104,7 @@
 
     <RadioGroup
         android:id="@+id/radioGroup"
-        android:layout_below="@id/textQuestion"
+        android:layout_below="@id/tvQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -101,13 +117,13 @@
             android:id="@+id/rb1"
             android:layout_width="410dp"
             android:layout_height="55dp"
-            android:background="#4287f5"
+            android:background="@drawable/checkbox_background"
             android:button="@android:color/transparent"
             android:gravity="center"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:text="Option 1"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="11.5sp" />
 
 
@@ -116,13 +132,13 @@
             android:layout_marginTop="5dp"
             android:layout_width="410dp"
             android:layout_height="55dp"
-            android:background="#4287f5"
+            android:background="@drawable/checkbox_background"
             android:button="@android:color/transparent"
             android:gravity="center"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:text="Option 2"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="11.5sp" />
 
         <RadioButton
@@ -130,13 +146,13 @@
             android:layout_marginTop="5dp"
             android:layout_width="410dp"
             android:layout_height="55dp"
-            android:background="#4287f5"
+            android:background="@drawable/checkbox_background"
             android:button="@android:color/transparent"
             android:gravity="center"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:text="Option 3"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="11.5sp" />
 
         <RadioButton
@@ -144,13 +160,13 @@
             android:layout_marginTop="5dp"
             android:layout_width="410dp"
             android:layout_height="55dp"
-            android:background="#4287f5"
+            android:background="@drawable/checkbox_background"
             android:button="@android:color/transparent"
             android:gravity="center"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:text="Option 4"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="11.5sp" />
 
 

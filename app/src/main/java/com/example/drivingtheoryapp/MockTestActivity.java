@@ -4,22 +4,21 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.*;
-
+import android.speech.tts.TextToSpeech;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -29,15 +28,15 @@ public class MockTestActivity extends AppCompatActivity {
     public static ArrayList<String> saveUserAnswer= new ArrayList<>();;
     public static ArrayList<String> saveCorrectAnswer= new ArrayList<>();;
 
-
     private QuestionModel currentQuestion;
     private List<QuestionModel> questionList;
 
-    private TextView tvQuestion, tvQuestionNo, tvTimer;
+    private TextView tvQuestion, tvQuestionNo, tvTimer, tvExitTest;
     private RadioGroup radioGroup;
     private RadioButton rb1, rb2, rb3, rb4;
     private Button btnNext;
     private ImageView questionImage;
+    private ImageView ttsImage;
 
     private String imageID;
     private int totalQuestions;
@@ -46,6 +45,7 @@ public class MockTestActivity extends AppCompatActivity {
     private boolean answered;
 
     private CountDownTimer countDownTimer;
+    private TextToSpeech mTTS;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -55,9 +55,9 @@ public class MockTestActivity extends AppCompatActivity {
 
         //ASSIGN VARIABLES TO ID's
         questionList = new ArrayList<>();
-        tvQuestion = findViewById(R.id.textQuestion);
-        tvQuestionNo = findViewById(R.id.textQuestionNo);
-        tvTimer = findViewById(R.id.textTimer);
+        tvQuestion = findViewById(R.id.tvQuestion);
+        tvQuestionNo = findViewById(R.id.tvQuestionNumber);
+        tvTimer = findViewById(R.id.tvTimer);
         radioGroup = findViewById(R.id.radioGroup);
         rb1 = findViewById(R.id.rb1);
         rb2 = findViewById(R.id.rb2);
@@ -65,6 +65,8 @@ public class MockTestActivity extends AppCompatActivity {
         rb4 = findViewById(R.id.rb4);
         questionImage = findViewById(R.id.ID_questionImage);
         btnNext = findViewById(R.id.btnNext);
+        tvExitTest = findViewById(R.id.tvExitTest);
+        ttsImage = findViewById(R.id.ivTTSicon);
 
         // Getting the intent which started this activity
         Intent intent = getIntent();
@@ -76,8 +78,37 @@ public class MockTestActivity extends AppCompatActivity {
         questionList = dbHelper.getAllQuestions(); //Loads questions into list
         Collections.shuffle(questionList); //Shuffles question order
         totalQuestions = 50; //Displays number of questions
+        showNextQuestion(username); //Shows the first question
 
-        showNextQuestion(username);
+
+        //TEXT TO SPEECH INITIALISATION
+        mTTS = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status == TextToSpeech.SUCCESS) {
+                    int result = mTTS.setLanguage(Locale.ENGLISH);
+
+                    if (result == TextToSpeech.LANG_MISSING_DATA
+                            || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        Log.e("TTS", "Language not supported");
+                    } else {
+                        ttsImage.setEnabled(true);
+                    }
+                } else {
+                    Log.e("TTS", "Initialization failed");
+                }
+            }
+        });
+
+
+        //TEXT TO SPEECH LISTENER
+        ttsImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                speak();
+            }
+        });
+
 
         //WHEN BUTTON IS CLICKED, CHECK TO SEE AN ANSWER HAS BEEN SELECTED
         btnNext.setOnClickListener(new View.OnClickListener() {
@@ -89,24 +120,39 @@ public class MockTestActivity extends AppCompatActivity {
                         checkAnswer(username);
                     } else {
                         Toast.makeText(MockTestActivity.this, "Please select an answer", Toast.LENGTH_SHORT).show();}
-
                 } else {
                     showNextQuestion(username);
                 }
+            }
+        });
 
+
+        //EXIT TEST LISTENER
+        tvExitTest.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), TestMenu.class);
+                intent.putExtra("username_key",username);
+                startActivity(intent);
+                finish();
             }
         });
     }
 
 
+
+
+
+
+    // SHOW NEXT QUESTION FUNCTION
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void showNextQuestion(String passUsername) {
 
-        radioGroup.clearCheck();
+        radioGroup.clearCheck(); //CLEARS SELECTED ANSWER
 
         if(qCounter < totalQuestions){
             currentQuestion = questionList.get(qCounter);
-
             tvQuestion.setText(currentQuestion.getQuestion());
             rb1.setText(currentQuestion.getOption1());
             rb2.setText(currentQuestion.getOption2());
@@ -120,14 +166,14 @@ public class MockTestActivity extends AppCompatActivity {
             Drawable drawable = getResources().getDrawable(imageResource);
             questionImage.setImageDrawable(drawable);
 
-            qCounter++;
-            btnNext.setText("Next Question");
-            tvQuestionNo.setText("Question "+qCounter+" of "+totalQuestions + ":");
-            answered = false;
+
+            qCounter++; //ADD TO COUNTER
+            btnNext.setText("Next Question");//CHANGE BUTTON CONTENTS
+            tvQuestionNo.setText("Question "+qCounter+" of "+totalQuestions + ":"); //CHANGE QUESTION NUMBER
+            answered = false; //SET ANSWERED TO FALSE
 
         } else {
-
-            finishTest(passUsername);
+            finishTest(passUsername); //RUN FINISH TEST FUNCTION IF QUESTION COUNTER EXCEEDS TOTAL QUESTIONS
         }
     }
 
@@ -145,11 +191,8 @@ public class MockTestActivity extends AppCompatActivity {
             score++;
         }
 
-
-
         saveQuestion.add(currentQuestion.getQuestion());
         saveUserAnswer.add((String) rbSelected.getText());
-        //
 
         switch (currentQuestion.getAnswerNr()) {
             case 1:
@@ -164,9 +207,6 @@ public class MockTestActivity extends AppCompatActivity {
             case 4:
                 saveCorrectAnswer.add(currentQuestion.getOption4());
                 break;}
-
-
-
 
         if(qCounter < totalQuestions){
             showNextQuestion(passUsername);
@@ -259,5 +299,41 @@ public class MockTestActivity extends AppCompatActivity {
         super.onPause();
         finish();
     }
+
+
+    //TEXT TO SPEECH FUNCTION
+    private void speak() {
+        String question = tvQuestion.getText().toString();
+        String answer1 = rb1.getText().toString();
+        String answer2 = rb2.getText().toString();
+        String answer3 = rb3.getText().toString();
+        String answer4 = rb4.getText().toString();
+
+        mTTS.setPitch(1);
+        mTTS.setSpeechRate(1);
+
+        mTTS.speak(question, TextToSpeech.QUEUE_ADD, null,null);
+        mTTS.playSilentUtterance(500, TextToSpeech.QUEUE_ADD,null);
+        mTTS.speak(answer1, TextToSpeech.QUEUE_ADD, null,null);
+        mTTS.playSilentUtterance(500, TextToSpeech.QUEUE_ADD,null);
+        mTTS.speak(answer2, TextToSpeech.QUEUE_ADD, null,null);
+        mTTS.playSilentUtterance(500, TextToSpeech.QUEUE_ADD,null);
+        mTTS.speak(answer3, TextToSpeech.QUEUE_ADD, null,null);
+        mTTS.playSilentUtterance(500, TextToSpeech.QUEUE_ADD,null);
+        mTTS.speak(answer4, TextToSpeech.QUEUE_ADD, null,null);
+
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (mTTS != null) {
+            mTTS.stop();
+            mTTS.shutdown();
+        }
+
+        super.onDestroy();
+    }
+
 
 }

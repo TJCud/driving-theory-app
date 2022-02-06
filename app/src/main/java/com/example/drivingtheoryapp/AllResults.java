@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -26,7 +27,6 @@ public class AllResults extends AppCompatActivity {
     public static String saveResultString;
     TestDbHelper mDatabaseHelper;
     private ListView mListView;
-    private Button returnBtn;
     private ArrayList<String> listDataOutcome = new ArrayList<>();
     private ArrayList<String> listDataQuestionsAndAnswers = new ArrayList<>();
     
@@ -35,17 +35,32 @@ public class AllResults extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_results);
-        //returnBtn = findViewById(R.id.returnbtn);
-        TextView overviewLabel = (TextView) findViewById(R.id.ID_overview_stats);
+        TextView tvTestStats = (TextView) findViewById(R.id.tvTestStats);
         mListView = (ListView) findViewById(R.id.listView);
         mDatabaseHelper = new TestDbHelper(this);
+        ImageView backButtonIcon = (ImageView) findViewById(R.id.ID_returnButton);
 
         //Code for passing username from last activity and assigning to string variable
         Intent intent = getIntent();
         String username = intent.getStringExtra("username_key");
 
         //Run List function passing in username
-        populateListView(username, overviewLabel);
+        populateListView(username, tvTestStats);
+
+
+
+        backButtonIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent returnMenu = new Intent(getApplicationContext(), AccountMenu.class);
+                returnMenu.putExtra("username_key",username);
+                finish();
+                startActivity(returnMenu);
+            }
+        });
+
+
+
 
 
     }
@@ -71,7 +86,7 @@ public class AllResults extends AppCompatActivity {
             if(passCheck > 85){ verdict = "PASS";pass++; }
             else { verdict = "FAIL";fail++; }
 
-            listDataOutcome.add(date + "\n" + "Test Score: " + score + "/" + questions + " (" + passCheck + "%) " + "Outcome: " + verdict + "\n");
+            listDataOutcome.add("\n"+date + "\n" + "Test Score: " + score + "/" + questions + " (" + passCheck + "%) " + "Outcome: " + verdict + "\n");
 
             String allAskedQuestions = data.getString(5);
             String allUserAnswers = data.getString(6);
@@ -105,7 +120,7 @@ public class AllResults extends AppCompatActivity {
         else{
         overallPassRate = pass * 100 / size;
         Collections.reverse(listDataOutcome); // Now the list is in reverse order (most recent test at top)
-            overviewLabel.setText("Total Tests Taken: " + size + " | Pass rate: " + overallPassRate + "%");
+            overviewLabel.setText("Total Tests Taken: " + size + "              Pass rate: " + overallPassRate + "%");
 
         }
         if (getUsernameData.equals("Guest")){
@@ -147,29 +162,7 @@ public class AllResults extends AppCompatActivity {
             }
         });
     }
-
-
 }
-
-
-
-
-/*
-        //Button Listeners
-        returnBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mainMenu();
-            }
-        }); }
-
-
-    //Button Actions
-    public void mainMenu(){
-        Intent intent = new Intent(this, Menu.class);
-        startActivity(intent);
-    }
-*/
 
 
 

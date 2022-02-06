@@ -1,50 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
+xmlns:card_view="http://schemas.android.com/apk/res-auto"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical"
-android:background="#fafafa"
-android:weightSum="10"
-tools:context=".Menu">
+android:background="#4287f5"
+android:weightSum="15"
+tools:context=".AllResults">
 
-    <TextView
-        android:id="@+id/welcomeLabel"
+
+    <RelativeLayout
+        android:id="@+id/topHeader"
         android:layout_width="match_parent"
-        android:layout_height="111dp"
-        android:layout_centerInParent="true"
-        android:gravity="center"
-        android:text="Historical Results"
-        android:textColor="@color/black"
-        android:textSize="35dp"
-        android:textStyle="bold" />
+        android:layout_height="50dp"
+        android:layout_marginBottom="0dp"
+        android:layout_weight="2"
+        android:background="#4287f5"
 
-    <TextView
-        android:id="@+id/ID_overview_stats"
+        >
+
+        <ImageView
+            android:id="@+id/ID_returnButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="0dp"
+            android:layout_toLeftOf="@id/tvPageHeader"
+            android:paddingRight="5dp"
+            android:src="@drawable/ic_backarrow" />
+
+
+        <TextView
+            android:id="@+id/tvPageHeader"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="0dp"
+            android:fontFamily="@font/next_book"
+            android:gravity="center"
+            android:text="Track Progress"
+            android:textColor="@color/white"
+            android:textSize="35dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="32dp"
-        android:layout_centerInParent="true"
-        android:gravity="center"
-        android:text="STATS"
-        android:textColor="@color/black"
-        android:textSize="15dp"
-        android:textStyle="bold" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
+        android:layout_below="@id/topHeader"
+        android:layout_weight="2"
+        android:background="#e6e6ff">
 
 
+        <TextView
+            android:id="@+id/tvTestStats"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:gravity="center_horizontal"
+            android:scrollbars="vertical"
+            android:text="STATS"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:textStyle="normal" />
 
-<RelativeLayout
-    android:layout_weight="2"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tvTestStats"
+            android:paddingBottom="0dp" />
 
 
-    <ListView
-        android:id="@+id/listView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingBottom="50dp" />
+    </RelativeLayout>
 
-</RelativeLayout>
 </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

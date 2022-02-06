@@ -10,7 +10,7 @@
     app:layout_constraintTop_toTopOf="parent"
     android:padding="16dp"
     tools:context=".MockTestActivity"
-    android:background="#fafafa"
+    android:background="#e6e6ff"
     >
 
 
@@ -29,17 +29,18 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:text="TIMER"
-        android:textColor="#fafafa"
+        android:textColor="#e6e6ff"
         android:textSize="30sp" />
 
 
     <TextView
         android:id="@+id/ID_testInfo"
         android:layout_width="wrap_content"
-        android:layout_height="253dp"
+        android:layout_height="351dp"
         android:layout_below="@+id/textQuestionNo"
         android:layout_marginTop="30dp"
-        android:gravity="center"
+        android:fontFamily="@font/next_book"
+        android:gravity="center_horizontal"
         android:text="You are now taking a full mock test. The test has 50 questions, and you need to answer 43 or higher correctly to pass. You have 57 minutes to complete the test. Good luck!"
         android:textColor="@color/black"
         android:textSize="30sp" />
@@ -62,9 +63,10 @@
         android:layout_marginTop="50dp"
         android:backgroundTint="@color/black"
         android:gravity="center"
-        android:text="START TEST"
+        android:text="BEGIN TEST"
         android:textColor="@color/white"
         android:textSize="20sp"
+        android:fontFamily="@font/next_book"
         android:textStyle="bold" />
 
 

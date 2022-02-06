@@ -73,28 +73,28 @@ public class Menu extends AppCompatActivity {
 
     //Button Actions
     public void logOut(String passUsername){
-        Intent logOut = new Intent(this, ActivityLoginScreen.class);
-        logOut.removeExtra(passUsername);
-        startActivity(logOut);
+        Intent intent = new Intent(this, ActivityLoginScreen.class);
+        intent.removeExtra(passUsername);
+        startActivity(intent);
         finish();
     }
 
     public void testMenu(String passUsername){
-        Intent openResults = new Intent(getApplicationContext(), TestMenu.class);
-        openResults.putExtra("username_key",passUsername);
-        startActivity(openResults);
+        Intent intent = new Intent(getApplicationContext(), TestMenu.class);
+        intent.putExtra("username_key",passUsername);
+        startActivity(intent);
     }
 
     public void accMgmt(String passUsername){
-        Intent openAccMgmt = new Intent(getApplicationContext(), AccountMenu.class);
-        openAccMgmt.putExtra("username_key",passUsername);
-        startActivity(openAccMgmt);
+        Intent intent = new Intent(getApplicationContext(), AccountMenu.class);
+        intent.putExtra("username_key",passUsername);
+        startActivity(intent);
     }
 
     public void settings(String passUsername){
-        Intent openSettings = new Intent(getApplicationContext(), SettingsMenu.class);
-        openSettings.putExtra("username_key",passUsername);
-        startActivity(openSettings);
+        Intent intent = new Intent(getApplicationContext(), SettingsMenu.class);
+        intent.putExtra("username_key",passUsername);
+        startActivity(intent);
     }
 
 
