@@ -1,76 +1,249 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    android:padding="16dp"
-    tools:context=".MockTestActivity"
+    android:orientation="vertical"
     android:background="#e6e6ff"
-    >
+    android:weightSum="15"
+    tools:context=".ActivityTestPreScreen">
 
 
-    <TextView
-        android:id="@+id/textQuestionNo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textColor="#fafafa"
-        android:textSize="30sp" />
-
-
-    <TextView
-        android:id="@+id/ID_timer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:text="TIMER"
-        android:textColor="#e6e6ff"
-        android:textSize="30sp" />
-
-
-    <TextView
-        android:id="@+id/ID_testInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="351dp"
-        android:layout_below="@+id/textQuestionNo"
-        android:layout_marginTop="30dp"
-        android:fontFamily="@font/next_book"
-        android:gravity="center_horizontal"
-        android:text="You are now taking a full mock test. The test has 50 questions, and you need to answer 43 or higher correctly to pass. You have 57 minutes to complete the test. Good luck!"
-        android:textColor="@color/black"
-        android:textSize="30sp" />
-
-
-    <ImageView
-        android:id="@+id/ID_trafficlights"
-        android:layout_width="369dp"
-        android:layout_height="299dp"
-        android:layout_below="@id/ID_testInfo"
-        android:layout_marginTop="30dp"
-        android:src="@drawable/trafficlight_red"
-        android:visibility="gone"/>
-
-    <Button
-        android:id="@+id/ID_startButton"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/ID_trafficlights"
-        android:layout_marginTop="50dp"
-        android:backgroundTint="@color/black"
+        android:layout_height="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_weight="2"
+        android:background="#4287f5">
+
+        <ImageView
+            android:id="@+id/ID_returnButton"
+            android:layout_width="48dp"
+            android:layout_height="54dp"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@id/tvPageHeader"
+            android:paddingRight="5dp"
+            android:src="@drawable/ic_backarrow" />
+
+
+        <TextView
+            android:id="@+id/tvPageHeader"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="0dp"
+            android:fontFamily="@font/next_book"
+            android:gravity="center"
+            android:text="Full Mock Exam"
+            android:textColor="@color/white"
+            android:textSize="35dp" />
+
+    </RelativeLayout>
+
+
+    <ScrollView
+        android:id="@+id/container_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="181dp"
+        android:layout_gravity="center_vertical">
+
+        <GridLayout
+            android:id="@+id/allDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="0dp"
+            android:alignmentMode="alignMargins"
+            android:columnCount="3"
+            android:columnOrderPreserved="false"
+            android:padding="30dp">
+
+            <!-- Row 1 -->
+
+            <!-- Column 1 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/questionDisplay"
+                android:layout_width="40dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_gravity="fill_vertical"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="0dp"
+                card_view:cardBackgroundColor="#4287f5"
+
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_margin="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/next_book"
+                        android:text="50"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"
+                        android:textSize="30dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/next_book"
+                        android:text="Questions"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"
+                        android:textSize="10dp" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Column 2 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/minutesDisplay"
+                android:layout_width="40dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_gravity="fill_vertical"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="0dp"
+                card_view:cardBackgroundColor="#4287f5">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_margin="14dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/next_book"
+                        android:text="57"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"
+                        android:textSize="30dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/next_book"
+                        android:text="Minutes"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"
+                        android:textSize="10dp" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/topicDisplay"
+                android:layout_width="40dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_gravity="fill_vertical"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="0dp"
+                card_view:cardBackgroundColor="#4287f5">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_margin="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/next_book"
+                        android:text="14"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"
+                        android:textSize="30dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/next_book"
+                        android:text="Topics"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"
+                        android:textSize="10dp" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+        </GridLayout>
+
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="241dp"
+        android:layout_marginBottom="0dp"
+        android:layout_weight="2"
+        android:background="#e6e6ff"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/ID_startButton"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:backgroundTint="#4287f5"
+            android:fontFamily="@font/next_book"
+            android:gravity="center"
+            android:text="BEGIN EXAM"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/ID_trafficlights"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/trafficlight_red"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_weight="2"
         android:gravity="center"
-        android:text="BEGIN TEST"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:fontFamily="@font/next_book"
-        android:textStyle="bold" />
+        android:background="#e6e6ff">
+
+
+    </RelativeLayout>
 
 
 
+</LinearLayout>
 
 
-</RelativeLayout>

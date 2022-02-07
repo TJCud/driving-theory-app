@@ -20,6 +20,9 @@
         android:theme="@style/Theme.DrivingTheoryApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".RBsaverTest"
+            android:exported="false" />
+        <activity
             android:name=".TTSexample"
             android:exported="false" />
         <activity

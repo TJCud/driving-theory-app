@@ -31,7 +31,7 @@ public class ActivityTestPreScreen extends AppCompatActivity {
 
         startButton = (Button) findViewById(R.id.ID_startButton);
         ImageView trafficLights = findViewById(R.id.ID_trafficlights);
-        TextView testInfo = findViewById(R.id.ID_testInfo);
+        ImageView backButtonIcon = (ImageView) findViewById(R.id.ID_returnButton);
 
 
         // Getting the intent which started this activity
@@ -45,7 +45,7 @@ public class ActivityTestPreScreen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                testInfo.setText("Starting test in... 3");
+            //    testInfo.setText("Starting test in... 3");
                 startButton.setVisibility(View.GONE);
                 trafficLights.setVisibility(View.VISIBLE);
 
@@ -53,7 +53,7 @@ public class ActivityTestPreScreen extends AppCompatActivity {
 
                 new Handler().postDelayed(new Runnable() {
                     public void run() {
-                        testInfo.setText("Starting test in... 2");
+                      //  testInfo.setText("Starting test in... 2");
                         trafficLights.setImageResource(R.drawable.trafficlight_amber);
 
                     }
@@ -61,7 +61,7 @@ public class ActivityTestPreScreen extends AppCompatActivity {
 
                 new Handler().postDelayed(new Runnable() {
                     public void run() {
-                        testInfo.setText("Starting test in... 1");
+                      //  testInfo.setText("Starting test in... 1");
                         trafficLights.setImageResource(R.drawable.trafficlight_green);
 
                     }
@@ -76,6 +76,19 @@ public class ActivityTestPreScreen extends AppCompatActivity {
 
             }
         });
+
+
+        backButtonIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent returnMenu = new Intent(getApplicationContext(), TestMenu.class);
+                returnMenu.putExtra("username_key",username);
+                finish();
+                startActivity(returnMenu);
+            }
+        });
+
+
     }
 
 

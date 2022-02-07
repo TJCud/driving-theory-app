@@ -86,7 +86,7 @@ public class AllResults extends AppCompatActivity {
             if(passCheck > 85){ verdict = "PASS";pass++; }
             else { verdict = "FAIL";fail++; }
 
-            listDataOutcome.add("\n"+date + "\n" + "Test Score: " + score + "/" + questions + " (" + passCheck + "%) " + "Outcome: " + verdict + "\n");
+            listDataOutcome.add("\n"+date + "\n" + "Exam Score: " + score + "/" + questions + " (" + passCheck + "%) " + "Outcome: " + verdict + "\n");
 
             String allAskedQuestions = data.getString(5);
             String allUserAnswers = data.getString(6);
@@ -113,18 +113,18 @@ public class AllResults extends AppCompatActivity {
         int size = listDataOutcome.size();
         double overallPassRate;
 
-        //ERROR HANDLING IF USER HAS NOT TAKEN ANY PREVIOUS TESTS
+        //ERROR HANDLING IF USER HAS NOT TAKEN ANY PREVIOUS EXAMS
         if (size<1){
-            overviewLabel.setText("No tests found.");
+            overviewLabel.setText("No full mock exams found.");
         }
         else{
         overallPassRate = pass * 100 / size;
-        Collections.reverse(listDataOutcome); // Now the list is in reverse order (most recent test at top)
-            overviewLabel.setText("Total Tests Taken: " + size + "              Pass rate: " + overallPassRate + "%");
+        Collections.reverse(listDataOutcome); // Now the list is in reverse order (most recent exam at top)
+            overviewLabel.setText("Total Exams Taken: " + size + "              Pass rate: " + overallPassRate + "%");
 
         }
         if (getUsernameData.equals("Guest")){
-            overviewLabel.setText("Guest results are not saved. Please sign in.");}
+            overviewLabel.setText("Guest exam results are not saved. Please sign in.");}
 
 
 

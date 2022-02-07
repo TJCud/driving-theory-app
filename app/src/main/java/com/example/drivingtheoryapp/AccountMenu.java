@@ -78,6 +78,8 @@ public class AccountMenu extends AppCompatActivity {
     }
 
     public void deleteAccount() {
+        Intent intent = new Intent(this, RBsaverTest.class);
+        startActivity(intent);
 
     }
 

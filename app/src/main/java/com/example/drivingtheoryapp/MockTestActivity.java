@@ -22,7 +22,7 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-public class MockTestActivity extends AppCompatActivity {
+public class MockTestActivity extends AppCompatActivity implements ExampleDialog.ExampleDialogListener {
 
     public static ArrayList<String> saveQuestion= new ArrayList<>();;
     public static ArrayList<String> saveUserAnswer= new ArrayList<>();;
@@ -31,10 +31,10 @@ public class MockTestActivity extends AppCompatActivity {
     private QuestionModel currentQuestion;
     private List<QuestionModel> questionList;
 
-    private TextView tvQuestion, tvQuestionNo, tvTimer, tvExitTest;
+    private TextView tvQuestion, tvQuestionNo, tvTimer, tvExitTest, tvAnswerWarning;
     private RadioGroup radioGroup;
     private RadioButton rb1, rb2, rb3, rb4;
-    private Button btnNext;
+    private Button btnNext,btnPrev;
     private ImageView questionImage;
     private ImageView ttsImage;
 
@@ -65,7 +65,10 @@ public class MockTestActivity extends AppCompatActivity {
         rb4 = findViewById(R.id.rb4);
         questionImage = findViewById(R.id.ID_questionImage);
         btnNext = findViewById(R.id.btnNext);
+        btnPrev = findViewById(R.id.btnExplanationOrPrevQuestion);
         tvExitTest = findViewById(R.id.tvExitTest);
+        tvAnswerWarning = findViewById(R.id.tvAnswerWarning);
+        tvAnswerWarning.setVisibility(View.GONE);
         ttsImage = findViewById(R.id.ivTTSicon);
 
         // Getting the intent which started this activity
@@ -115,13 +118,37 @@ public class MockTestActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View view) {
-                if (answered == false){
-                    if(rb1.isChecked() || rb2.isChecked() || rb3.isChecked() || rb4.isChecked()){
+                if (answered == false) {
+                    if (rb1.isChecked() || rb2.isChecked() || rb3.isChecked() || rb4.isChecked()) {
+                        mTTS.stop();
                         checkAnswer(username);
                     } else {
-                        Toast.makeText(MockTestActivity.this, "Please select an answer", Toast.LENGTH_SHORT).show();}
+                        tvAnswerWarning.setVisibility(View.VISIBLE);
+                    }
                 } else {
+                    mTTS.stop();
                     showNextQuestion(username);
+                }
+            }
+        });
+
+
+
+        //PREV QUESTION
+        btnPrev.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onClick(View view) {
+                if (answered == false) {
+                    if (rb1.isChecked() || rb2.isChecked() || rb3.isChecked() || rb4.isChecked()) {
+                        mTTS.stop();
+                        showPreviousQuestion(username);
+                    } else {
+                        tvAnswerWarning.setVisibility(View.VISIBLE);
+                    }
+                } else {
+                    mTTS.stop();
+                    showPreviousQuestion(username);
                 }
             }
         });
@@ -132,15 +159,10 @@ public class MockTestActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), TestMenu.class);
-                intent.putExtra("username_key",username);
-                startActivity(intent);
-                finish();
+                openDialog(username,"Are you sure you void and exit the exam?", "Warning", "Yes", "No");
             }
         });
     }
-
-
 
 
 
@@ -150,6 +172,7 @@ public class MockTestActivity extends AppCompatActivity {
     private void showNextQuestion(String passUsername) {
 
         radioGroup.clearCheck(); //CLEARS SELECTED ANSWER
+        tvAnswerWarning.setVisibility(View.GONE); //CLEARS ANSWER WARNING (IF VISIBLE)
 
         if(qCounter < totalQuestions){
             currentQuestion = questionList.get(qCounter);
@@ -159,7 +182,7 @@ public class MockTestActivity extends AppCompatActivity {
             rb3.setText(currentQuestion.getOption3());
             rb4.setText(currentQuestion.getOption4());
 
-           //CODE FOR LOADING IMAGE
+            //CODE FOR LOADING IMAGE
             imageID = currentQuestion.getImageID();
             String uri = "@drawable/question_image_"+imageID;
             int imageResource = getResources().getIdentifier(uri, null, getPackageName());
@@ -169,6 +192,7 @@ public class MockTestActivity extends AppCompatActivity {
 
             qCounter++; //ADD TO COUNTER
             btnNext.setText("Next Question");//CHANGE BUTTON CONTENTS
+            btnPrev.setText("Previous Question");
             tvQuestionNo.setText("Question "+qCounter+" of "+totalQuestions + ":"); //CHANGE QUESTION NUMBER
             answered = false; //SET ANSWERED TO FALSE
 
@@ -176,6 +200,45 @@ public class MockTestActivity extends AppCompatActivity {
             finishTest(passUsername); //RUN FINISH TEST FUNCTION IF QUESTION COUNTER EXCEEDS TOTAL QUESTIONS
         }
     }
+
+
+    // SHOW NEXT QUESTION FUNCTION
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void showPreviousQuestion(String passUsername) {
+
+        radioGroup.clearCheck(); //CLEARS SELECTED ANSWER
+        tvAnswerWarning.setVisibility(View.GONE); //CLEARS ANSWER WARNING (IF VISIBLE)
+
+        if(qCounter < totalQuestions){
+            currentQuestion = questionList.get(qCounter);
+            tvQuestion.setText(currentQuestion.getQuestion());
+            rb1.setText(currentQuestion.getOption1());
+            rb2.setText(currentQuestion.getOption2());
+            rb3.setText(currentQuestion.getOption3());
+            rb4.setText(currentQuestion.getOption4());
+
+            //CODE FOR LOADING IMAGE
+            imageID = currentQuestion.getImageID();
+            String uri = "@drawable/question_image_"+imageID;
+            int imageResource = getResources().getIdentifier(uri, null, getPackageName());
+            Drawable drawable = getResources().getDrawable(imageResource);
+            questionImage.setImageDrawable(drawable);
+
+
+            qCounter--; //ADD TO COUNTER
+            btnNext.setText("Next Question");//CHANGE BUTTON CONTENTS
+            btnPrev.setText("Previous Question");
+            tvQuestionNo.setText("Question "+qCounter+" of "+totalQuestions + ":"); //CHANGE QUESTION NUMBER
+            answered = false; //SET ANSWERED TO FALSE
+
+        } else {
+            finishTest(passUsername); //RUN FINISH TEST FUNCTION IF QUESTION COUNTER EXCEEDS TOTAL QUESTIONS
+        }
+    }
+
+
+
+
 
 
 
@@ -213,14 +276,7 @@ public class MockTestActivity extends AppCompatActivity {
 
         } else{
             countDownTimer.cancel();
-            tvQuestionNo.setVisibility(View.GONE);
-            tvQuestion.setVisibility(View.GONE);
-            rb1.setVisibility(View.GONE);
-            rb2.setVisibility(View.GONE);
-            rb3.setVisibility(View.GONE);
-            rb4.setVisibility(View.GONE);
-            questionImage.setVisibility(View.GONE);
-            btnNext.setText("See results");
+            btnNext.setText("Finish Exam");
             btnNext.setBackgroundColor(Color.parseColor("#00ff44"));
         }
     }
@@ -331,9 +387,24 @@ public class MockTestActivity extends AppCompatActivity {
             mTTS.stop();
             mTTS.shutdown();
         }
-
         super.onDestroy();
     }
 
+    //OPENING DIALOG
+    public void openDialog(String username, String input, String title, String positiveButton, String negativeButton) {
+        ExampleDialog exampleDialog = new ExampleDialog(username,input,title,positiveButton,negativeButton);
+        exampleDialog.show(getSupportFragmentManager(), "example dialog");
+    }
 
+
+
+    //APPLY CHOICE OF DIALOG BOX
+    @Override
+    public void applyChoice(String username) {
+        Intent intent = new Intent(getApplicationContext(), TestMenu.class);
+        intent.putExtra("username_key", username);
+        mTTS.stop();
+        startActivity(intent);
+        finish();
+    }
 }
