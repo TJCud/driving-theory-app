@@ -36,7 +36,7 @@ tools:context=".AccountMenu">
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:layout_marginTop="0dp"
-        android:fontFamily="@font/next_book"
+        android:fontFamily="@font/robotocondensedlight"
         android:gravity="center"
         android:text="Account Settings"
         android:textColor="@color/white"
@@ -96,7 +96,7 @@ tools:context=".AccountMenu">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/next_book"
+                    android:fontFamily="@font/robotocondensedlight"
                     android:text="Track Progress"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
@@ -136,7 +136,7 @@ tools:context=".AccountMenu">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/next_book"
+                    android:fontFamily="@font/robotocondensedlight"
                     android:text="Delete Account"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
@@ -179,7 +179,7 @@ tools:context=".AccountMenu">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:fontFamily="@font/next_book"
+                    android:fontFamily="@font/robotocondensedlight"
                     android:text="Change Password"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
@@ -219,7 +219,7 @@ tools:context=".AccountMenu">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:fontFamily="@font/next_book"
+                    android:fontFamily="@font/robotocondensedlight"
                     android:text="Change Username"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"

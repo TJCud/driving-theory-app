@@ -25,7 +25,7 @@ tools:context=".TestMenu">
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:layout_marginTop="0dp"
-        android:fontFamily="@font/next_book"
+        android:fontFamily="@font/robotocondensedlight"
         android:gravity="center"
         android:text="Welcome"
         android:textColor="@color/white"
@@ -85,7 +85,7 @@ tools:context=".TestMenu">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/next_book"
+                    android:fontFamily="@font/robotocondensedlight"
                     android:text="Learn to drive"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
@@ -125,7 +125,7 @@ tools:context=".TestMenu">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/next_book"
+                    android:fontFamily="@font/robotocondensedlight"
                     android:text="Account Manager"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
@@ -168,7 +168,7 @@ tools:context=".TestMenu">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:fontFamily="@font/next_book"
+                    android:fontFamily="@font/robotocondensedlight"
                     android:text="System Settings"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
@@ -208,7 +208,7 @@ tools:context=".TestMenu">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:fontFamily="@font/next_book"
+                    android:fontFamily="@font/robotocondensedlight"
                     android:text="Log Out"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"

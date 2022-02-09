@@ -35,7 +35,7 @@
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:layout_marginTop="0dp"
-        android:fontFamily="@font/next_book"
+        android:fontFamily="@font/robotocondensedlight"
         android:gravity="center"
         android:text="Practice"
         android:textColor="@color/white"
@@ -92,7 +92,7 @@
           <TextView
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:fontFamily="@font/next_book"
+              android:fontFamily="@font/robotocondensedlight"
               android:text="\nAlertness\n"
               android:textAlignment="center"
               android:textColor="@android:color/white"
@@ -132,7 +132,7 @@
           <TextView
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:fontFamily="@font/next_book"
+              android:fontFamily="@font/robotocondensedlight"
               android:text="\nAttitude\n"
               android:textAlignment="center"
               android:textColor="@android:color/white"
@@ -175,7 +175,7 @@
           <TextView
               android:layout_width="wrap_content"
               android:layout_height="match_parent"
-              android:fontFamily="@font/next_book"
+              android:fontFamily="@font/robotocondensedlight"
               android:text="\nDocuments\n"
               android:textAlignment="center"
               android:textColor="@android:color/white"
@@ -215,7 +215,7 @@
           <TextView
               android:layout_width="wrap_content"
               android:layout_height="match_parent"
-              android:fontFamily="@font/next_book"
+              android:fontFamily="@font/robotocondensedlight"
               android:text="\nHazard  Awareness\n"
               android:textAlignment="center"
               android:textColor="@android:color/white"
@@ -258,7 +258,7 @@
           <TextView
               android:layout_width="wrap_content"
               android:layout_height="match_parent"
-              android:fontFamily="@font/next_book"
+              android:fontFamily="@font/robotocondensedlight"
               android:text="\nIncidents\n"
               android:textAlignment="center"
               android:textColor="@android:color/white"
@@ -298,7 +298,7 @@
           <TextView
               android:layout_width="wrap_content"
               android:layout_height="match_parent"
-              android:fontFamily="@font/next_book"
+              android:fontFamily="@font/robotocondensedlight"
               android:text="\nMotorway Rules\n"
               android:textAlignment="center"
               android:textColor="@android:color/white"
@@ -341,7 +341,7 @@
           <TextView
               android:layout_width="wrap_content"
               android:layout_height="match_parent"
-              android:fontFamily="@font/next_book"
+              android:fontFamily="@font/robotocondensedlight"
               android:text="\nOther Types Of Vehicle"
               android:textAlignment="center"
               android:textColor="@android:color/white"
@@ -383,7 +383,7 @@
           <TextView
               android:layout_width="wrap_content"
               android:layout_height="match_parent"
-              android:fontFamily="@font/next_book"
+              android:fontFamily="@font/robotocondensedlight"
               android:text="\nRoad and Traffic Signs"
               android:textAlignment="center"
               android:textColor="@android:color/white"
@@ -426,7 +426,7 @@
           <TextView
               android:layout_width="wrap_content"
               android:layout_height="match_parent"
-              android:fontFamily="@font/next_book"
+              android:fontFamily="@font/robotocondensedlight"
               android:text="\nRules of the Road\n"
               android:textAlignment="center"
               android:textColor="@android:color/white"
@@ -466,7 +466,7 @@
           <TextView
               android:layout_width="wrap_content"
               android:layout_height="match_parent"
-              android:fontFamily="@font/next_book"
+              android:fontFamily="@font/robotocondensedlight"
               android:text="\nSafety and Your Vehicle"
               android:textAlignment="center"
               android:textColor="@android:color/white"
@@ -509,7 +509,7 @@
           <TextView
               android:layout_width="wrap_content"
               android:layout_height="match_parent"
-              android:fontFamily="@font/next_book"
+              android:fontFamily="@font/robotocondensedlight"
               android:text="\nSafety Margins\n"
               android:textAlignment="center"
               android:textColor="@android:color/white"
@@ -549,7 +549,7 @@
           <TextView
               android:layout_width="wrap_content"
               android:layout_height="match_parent"
-              android:fontFamily="@font/next_book"
+              android:fontFamily="@font/robotocondensedlight"
               android:text="\nVehicle Handling\n"
               android:textAlignment="center"
               android:textColor="@android:color/white"
@@ -592,7 +592,7 @@
           <TextView
               android:layout_width="wrap_content"
               android:layout_height="match_parent"
-              android:fontFamily="@font/next_book"
+              android:fontFamily="@font/robotocondensedlight"
               android:text="\nVehicle Loading\n"
               android:textAlignment="center"
               android:textColor="@android:color/white"
@@ -632,7 +632,7 @@
           <TextView
               android:layout_width="wrap_content"
               android:layout_height="match_parent"
-              android:fontFamily="@font/next_book"
+              android:fontFamily="@font/robotocondensedlight"
               android:text="\nVulnerable Road Users"
               android:textAlignment="center"
               android:textColor="@android:color/white"

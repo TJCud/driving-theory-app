@@ -23,9 +23,9 @@ import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
 public class ActivitySignUp extends AppCompatActivity {
 
-    EditText EditTextFullname, EditTextUsername, EditTextPassword, EditTextEmail;
+    EditText EditTextUsername, EditTextPassword, EditTextPasswordConfirm, EditTextEmail;
     Button buttonSingUp;
-    TextView textViewLogin,tvFullNameWarning,tvEmailWarning,tvUsernameWarning,tvPasswordWarning;
+    TextView textViewLogin,tvFullNameWarning,tvEmailWarning,tvUsernameWarning,tvPasswordWarning,tvPasswordConfirmWarning;
 
 
     @Override
@@ -33,22 +33,22 @@ public class ActivitySignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        EditTextUsername = findViewById(R.id.username);
-        EditTextFullname = findViewById(R.id.fullname);
-        EditTextPassword = findViewById(R.id.password);
-        EditTextEmail = findViewById(R.id.email);
+        EditTextUsername = findViewById(R.id.etUsername);
+        EditTextPassword = findViewById(R.id.etPassword);
+        EditTextPasswordConfirm = findViewById(R.id.etPasswordConfirm);
+        EditTextEmail = findViewById(R.id.etEmail);
 
         buttonSingUp = findViewById(R.id.buttonSignUp);
         textViewLogin = findViewById(R.id.LoginText);
-        tvFullNameWarning = findViewById(R.id.tvFullNameWarning);
         tvEmailWarning = findViewById(R.id.tvEmailWarning);
         tvUsernameWarning = findViewById(R.id.tvUsernameWarning);
         tvPasswordWarning = findViewById(R.id.tvPasswordWarning);
+        tvPasswordConfirmWarning = findViewById(R.id.tvPasswordConfirmWarning);
 
-        tvFullNameWarning.setVisibility(View.GONE);
         tvEmailWarning.setVisibility(View.GONE);
         tvUsernameWarning.setVisibility(View.GONE);
         tvPasswordWarning.setVisibility(View.GONE);
+        tvPasswordConfirmWarning.setVisibility(View.GONE);
 
 
 
@@ -57,34 +57,26 @@ public class ActivitySignUp extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String fullname, username, usernameraw, password, email;
-                fullname = String.valueOf(EditTextFullname.getText());
+                String username, usernameraw, password,passwordConfirm, email;
+
                 boolean allFieldsValid = true;
 
                 //Takes value of usernamerawdata and converts to lower case
                 usernameraw = String.valueOf(EditTextUsername.getText());
                 username = usernameraw.toLowerCase();
                 password = String.valueOf(EditTextPassword.getText());
+                passwordConfirm = String.valueOf(EditTextPasswordConfirm.getText());
                 email = String.valueOf(EditTextEmail.getText());
                // String usernameSize = username.chars();
 
-                tvFullNameWarning.setVisibility(View.GONE);
+
                 tvEmailWarning.setVisibility(View.GONE);
                 tvUsernameWarning.setVisibility(View.GONE);
                 tvPasswordWarning.setVisibility(View.GONE);
+                tvPasswordConfirmWarning.setVisibility(View.GONE);
 
 
-                if (fullname.equals("")) {
-                    tvFullNameWarning.setTextColor(Color.RED);
-                    tvFullNameWarning.setVisibility(View.VISIBLE);
-                    tvFullNameWarning.setText("Name field cannot be empty");
-                    allFieldsValid = false;}
-                if (fullname.length() > 20) {
-                    tvFullNameWarning.setTextColor(Color.RED);
-                    tvFullNameWarning.setVisibility(View.VISIBLE);
-                    tvFullNameWarning.setText("Name cannot exceed 20 characters");
-                    allFieldsValid = false;}
-
+                //USERNAME VALIDATION
                 if (username.equals("")) {
                     tvUsernameWarning.setTextColor(Color.RED);
                     tvUsernameWarning.setVisibility(View.VISIBLE);
@@ -96,17 +88,31 @@ public class ActivitySignUp extends AppCompatActivity {
                     tvUsernameWarning.setText("Username cannot exceed 8 characters");
                     allFieldsValid = false;}
 
+                //PASSWORD VALIDATION
+                if  (!password.equals(passwordConfirm)) {
+                    tvPasswordWarning.setTextColor(Color.RED);
+                    tvPasswordWarning.setVisibility(View.VISIBLE);
+                    tvPasswordWarning.setText("Password does not match");
+                    tvPasswordConfirmWarning.setTextColor(Color.RED);
+                    tvPasswordConfirmWarning.setVisibility(View.VISIBLE);
+                    tvPasswordConfirmWarning.setText("Password does not match");
+                    allFieldsValid = false;
+                    }
                 if (password.equals("")) {
                     tvPasswordWarning.setTextColor(Color.RED);
                     tvPasswordWarning.setVisibility(View.VISIBLE);
                     tvPasswordWarning.setText("Password field cannot be empty");
-                    allFieldsValid = false;}
-                if (password.length() < 8 || password.length() >20) {
+                    allFieldsValid = false;
+                    }
+                if (password.length() < 8 || password.length() > 20) {
                     tvPasswordWarning.setTextColor(Color.RED);
                     tvPasswordWarning.setVisibility(View.VISIBLE);
                     tvPasswordWarning.setText("Password must contain 8-20 characters");
-                    allFieldsValid = false;}
+                    allFieldsValid = false;
+                    }
 
+
+                //EMAIL VALIDATION
                 if (email.equals("")) {
                     tvEmailWarning.setTextColor(Color.RED);
                     tvEmailWarning.setVisibility(View.VISIBLE);
@@ -123,7 +129,7 @@ public class ActivitySignUp extends AppCompatActivity {
 
 
 
-              if(!fullname.equals("") && !username.equals("") && !password.equals("") && !email.equals("") && allFieldsValid) {
+              if(!username.equals("") && !password.equals("") && !email.equals("") && allFieldsValid) {
                     Handler handler = new Handler(Looper.getMainLooper());
                     handler.post(new Runnable() {
                         @Override
@@ -131,17 +137,15 @@ public class ActivitySignUp extends AppCompatActivity {
 
                             //Starting Write and Read data with URL
                             //Creating array for parameters
-                            String[] field = new String[4];
-                            field[0] = "fullname";
-                            field[1] = "username";
-                            field[2] = "password";
-                            field[3] = "email";
+                            String[] field = new String[3];
+                            field[0] = "username";
+                            field[1] = "password";
+                            field[2] = "email";
                             //Creating array for data
-                            String[] data = new String[4];
-                            data[0] = fullname;
-                            data[1] = username;
-                            data[2] = password;
-                            data[3] = email;
+                            String[] data = new String[3];
+                            data[0] = username;
+                            data[1] = password;
+                            data[2] = email;
 
                             PutData putData = new PutData("http://192.168.1.97/LoginRegister/signup.php", "POST", field, data);
 

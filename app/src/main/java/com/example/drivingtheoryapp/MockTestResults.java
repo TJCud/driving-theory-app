@@ -41,10 +41,10 @@ public class MockTestResults extends AppCompatActivity {
 
         //CHECKS IF PASS PERCENTAGE IS ACHIEVED AND DISPLAYS OUTCOME
         if(passCheck > 85){
-            verdictLabel.setText("Test Passed. Congratulations!");
+            verdictLabel.setText("Exam Passed.\n Congratulations!");
         }
         else {
-            verdictLabel.setText("Test Failed. Please try again.");
+            verdictLabel.setText("Exam Failed.\n Please try again.");
         }
         scoreLabel.setText(score + " out of " + totalQuestions + "\n" + "Accuracy " + passCheck + "%" + "\n" + "(86% or higher required)");
 

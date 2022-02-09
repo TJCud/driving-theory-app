@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -144,8 +145,8 @@ public class AllResults extends AppCompatActivity {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-/*                String resultID = adapterView.getItemAtPosition(i).toString();
-                Log.d(TAG, "onItemClick: You Clicked on " + resultID);
+                String resultID = adapterView.getItemAtPosition(i).toString();
+
 
                 Cursor data = mDatabaseHelper.getAllResults(resultID); //get the id associated with that name
                 int itemID = -1;
@@ -153,14 +154,18 @@ public class AllResults extends AppCompatActivity {
                     itemID = data.getInt(0);
                 }
 
-                    Log.d(TAG, "onItemClick: The ID is: " + itemID);
+
                     Intent editScreenIntent = new Intent(AllResults.this, ActivityReviewResults.class);
                     editScreenIntent.putExtra("id",itemID);
                     editScreenIntent.putExtra("username_key",getUsernameData);
-                    editScreenIntent.putExtra("result",saveQuestionStrings);
-                    startActivity(editScreenIntent);*/
+                    editScreenIntent.putExtra("result",saveQuestionString);
+                    startActivity(editScreenIntent);
             }
         });
+
+
+
+
     }
 }
 

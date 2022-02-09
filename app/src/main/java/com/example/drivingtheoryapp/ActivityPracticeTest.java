@@ -23,7 +23,7 @@ public class ActivityPracticeTest extends AppCompatActivity implements ExampleDi
 
     private QuestionModel currentQuestion;
     private List<QuestionModel> questionList;
-    private TextView tvQuestion, tvQuestionNo, tvTimer, tvExitTest,tvAnswerWarning;;
+    private TextView tvQuestionWithImage,tvQuestionWithoutImage, tvQuestionNo, tvTimer, tvExitTest,tvAnswerWarning;;
     private RadioGroup radioGroup;
     private RadioButton rb1, rb2, rb3, rb4;
     private Button btnNext;
@@ -47,7 +47,8 @@ public class ActivityPracticeTest extends AppCompatActivity implements ExampleDi
 
         //ASSIGN VARIABLES TO ID's
         questionList = new ArrayList<>();
-        tvQuestion = findViewById(R.id.tvQuestion);
+        tvQuestionWithImage = findViewById(R.id.tvQuestionWithImage);
+        tvQuestionWithoutImage = findViewById(R.id.tvQuestionWithoutImage);
         tvQuestionNo = findViewById(R.id.tvQuestionNumber);
         tvTimer = findViewById(R.id.tvTimer);
         tvTimer.setText("00:00");
@@ -208,7 +209,8 @@ public class ActivityPracticeTest extends AppCompatActivity implements ExampleDi
 
         if(qCounter < totalQuestions){
             currentQuestion = questionList.get(qCounter);
-            tvQuestion.setText(currentQuestion.getQuestion());
+            tvQuestionWithImage.setText(currentQuestion.getQuestion());
+            tvQuestionWithoutImage.setText(currentQuestion.getQuestion());
             rb1.setText(currentQuestion.getOption1());
             rb2.setText(currentQuestion.getOption2());
             rb3.setText(currentQuestion.getOption3());
@@ -220,6 +222,19 @@ public class ActivityPracticeTest extends AppCompatActivity implements ExampleDi
             int imageResource = getResources().getIdentifier(uri, null, getPackageName());
             Drawable drawable = getResources().getDrawable(imageResource);
             questionImage.setImageDrawable(drawable);
+
+
+            //CODE IF QUESTION DOES NOT INCLUDE IMAGE
+            if(imageID.equals("default")){
+                questionImage.setVisibility(View.INVISIBLE);
+                tvQuestionWithImage.setVisibility(View.INVISIBLE);
+                tvQuestionWithoutImage.setVisibility(View.VISIBLE);
+
+            }
+            else {questionImage.setVisibility(View.VISIBLE);
+                tvQuestionWithImage.setVisibility(View.VISIBLE);
+                tvQuestionWithoutImage.setVisibility(View.INVISIBLE);}
+
 
             //CODE FOR RETRIEVING EXPLANATION
             questionExplanation = currentQuestion.getExplanation();
@@ -333,7 +348,7 @@ public class ActivityPracticeTest extends AppCompatActivity implements ExampleDi
 
     //TEXT TO SPEECH FUNCTION
     private void speak() {
-        String question = tvQuestion.getText().toString();
+        String question = tvQuestionWithImage.getText().toString();
         String answer1 = rb1.getText().toString();
         String answer2 = rb2.getText().toString();
         String answer3 = rb3.getText().toString();

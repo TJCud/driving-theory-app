@@ -35,7 +35,7 @@ tools:context=".TestMenu">
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:layout_marginTop="0dp"
-        android:fontFamily="@font/next_book"
+        android:fontFamily="@font/robotocondensedlight"
         android:gravity="center"
         android:text="Learn to drive"
         android:textColor="@color/white"
@@ -95,7 +95,7 @@ tools:context=".TestMenu">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/next_book"
+                    android:fontFamily="@font/robotocondensedlight"
                     android:text="Full Mock Exam"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
@@ -135,7 +135,7 @@ tools:context=".TestMenu">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/next_book"
+                    android:fontFamily="@font/robotocondensedlight"
                     android:text="Practice Mode"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
@@ -178,7 +178,7 @@ tools:context=".TestMenu">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:fontFamily="@font/next_book"
+                    android:fontFamily="@font/robotocondensedlight"
                     android:text="Highway Code"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
@@ -218,7 +218,7 @@ tools:context=".TestMenu">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:fontFamily="@font/next_book"
+                    android:fontFamily="@font/robotocondensedlight"
                     android:text="Driving Tips"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"

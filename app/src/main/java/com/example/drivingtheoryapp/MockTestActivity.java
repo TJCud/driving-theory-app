@@ -31,7 +31,7 @@ public class MockTestActivity extends AppCompatActivity implements ExampleDialog
     private QuestionModel currentQuestion;
     private List<QuestionModel> questionList;
 
-    private TextView tvQuestion, tvQuestionNo, tvTimer, tvExitTest, tvAnswerWarning;
+    private TextView tvQuestionWithImage,tvQuestionWithoutImage, tvQuestionNo, tvTimer, tvExitTest, tvAnswerWarning;
     private RadioGroup radioGroup;
     private RadioButton rb1, rb2, rb3, rb4;
     private Button btnNext,btnPrev;
@@ -55,7 +55,8 @@ public class MockTestActivity extends AppCompatActivity implements ExampleDialog
 
         //ASSIGN VARIABLES TO ID's
         questionList = new ArrayList<>();
-        tvQuestion = findViewById(R.id.tvQuestion);
+        tvQuestionWithImage = findViewById(R.id.tvQuestionWithImage);
+        tvQuestionWithoutImage = findViewById(R.id.tvQuestionWithoutImage);
         tvQuestionNo = findViewById(R.id.tvQuestionNumber);
         tvTimer = findViewById(R.id.tvTimer);
         radioGroup = findViewById(R.id.radioGroup);
@@ -176,7 +177,8 @@ public class MockTestActivity extends AppCompatActivity implements ExampleDialog
 
         if(qCounter < totalQuestions){
             currentQuestion = questionList.get(qCounter);
-            tvQuestion.setText(currentQuestion.getQuestion());
+            tvQuestionWithImage.setText(currentQuestion.getQuestion());
+            tvQuestionWithoutImage.setText(currentQuestion.getQuestion());
             rb1.setText(currentQuestion.getOption1());
             rb2.setText(currentQuestion.getOption2());
             rb3.setText(currentQuestion.getOption3());
@@ -188,6 +190,17 @@ public class MockTestActivity extends AppCompatActivity implements ExampleDialog
             int imageResource = getResources().getIdentifier(uri, null, getPackageName());
             Drawable drawable = getResources().getDrawable(imageResource);
             questionImage.setImageDrawable(drawable);
+
+            //CODE IF QUESTION DOES NOT INCLUDE IMAGE
+            if(imageID.equals("default")){
+                questionImage.setVisibility(View.INVISIBLE);
+                tvQuestionWithImage.setVisibility(View.INVISIBLE);
+                tvQuestionWithoutImage.setVisibility(View.VISIBLE);
+
+            }
+            else {questionImage.setVisibility(View.VISIBLE);
+                tvQuestionWithImage.setVisibility(View.VISIBLE);
+                tvQuestionWithoutImage.setVisibility(View.INVISIBLE);}
 
 
             qCounter++; //ADD TO COUNTER
@@ -211,7 +224,8 @@ public class MockTestActivity extends AppCompatActivity implements ExampleDialog
 
         if(qCounter < totalQuestions){
             currentQuestion = questionList.get(qCounter);
-            tvQuestion.setText(currentQuestion.getQuestion());
+            tvQuestionWithImage.setText(currentQuestion.getQuestion());
+            tvQuestionWithoutImage.setText(currentQuestion.getQuestion());
             rb1.setText(currentQuestion.getOption1());
             rb2.setText(currentQuestion.getOption2());
             rb3.setText(currentQuestion.getOption3());
@@ -359,7 +373,7 @@ public class MockTestActivity extends AppCompatActivity implements ExampleDialog
 
     //TEXT TO SPEECH FUNCTION
     private void speak() {
-        String question = tvQuestion.getText().toString();
+        String question = tvQuestionWithImage.getText().toString();
         String answer1 = rb1.getText().toString();
         String answer2 = rb2.getText().toString();
         String answer3 = rb3.getText().toString();
