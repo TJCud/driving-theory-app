@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class ActivityPracticeTest extends AppCompatActivity implements ExampleDialog.ExampleDialogListener {
+public class ActivityPracticeExam extends AppCompatActivity implements ExampleDialog.ExampleDialogListener {
 
     private QuestionModel currentQuestion;
     private List<QuestionModel> questionList;
@@ -287,7 +287,7 @@ public class ActivityPracticeTest extends AppCompatActivity implements ExampleDi
 
         //Saves results and date/time to database
         if (passUsername.equals("Guest")){
-            Intent intent = new Intent(this, MockTestResults.class);
+            Intent intent = new Intent(this, ActivityFullExamResult.class);
             intent.putExtra("TOTAL_QUESTIONS", totalQuestions);
             intent.putExtra("SCORE", score);
             intent.putExtra("username_key",passUsername);
@@ -295,7 +295,7 @@ public class ActivityPracticeTest extends AppCompatActivity implements ExampleDi
             finish();
         }
         else{
-            Intent intent = new Intent(this, MockTestResults.class);
+            Intent intent = new Intent(this, ActivityFullExamResult.class);
             intent.putExtra("TOTAL_QUESTIONS", totalQuestions);
             intent.putExtra("SCORE", score);
             intent.putExtra("username_key",passUsername);

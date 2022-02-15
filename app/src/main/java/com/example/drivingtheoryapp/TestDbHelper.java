@@ -50,9 +50,7 @@ public class TestDbHelper extends SQLiteOpenHelper {
                 ResultsTableContract.ResultsTable.COLUMN_QUESTIONS_CORRECT + " INTEGER, " +
                 ResultsTableContract.ResultsTable.COLUMN_QUESTIONS_TOTAL + " INTEGER, " +
                 ResultsTableContract.ResultsTable.COLUMN_TEST_DATE + " TEXT, " +
-                ResultsTableContract.ResultsTable.COLUMN_ASKED_QUESTION + " TEXT, " +
-                ResultsTableContract.ResultsTable.COLUMN_USER_ANSWER + " TEXT, " +
-                ResultsTableContract.ResultsTable.COLUMN_CORRECT_ANSWER + " TEXT" +
+                ResultsTableContract.ResultsTable.COLUMN_SAVED_QUESTION + " TEXT" +
                 ")";
         db.execSQL(SQL_CREATE_RESULTS_TABLE);
 
@@ -183,38 +181,6 @@ public class TestDbHelper extends SQLiteOpenHelper {
         return questionList;
     }
 
-
-
-
-
-
-    //SAVES RESULTS TO DB
-    public boolean saveResults(String username, int qCorrect, int qTotal, String date, String askedQuestion, String userAnswer, String correctAnswer) {
-        //String username, int questionsCorrect, int questionsTotal
-        // Gets the data repository in write mode
-        db = getWritableDatabase();
-
-        // Create a new map of values, where column names are the keys
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(ResultsTable.COLUMN_USERNAME, username);
-        contentValues.put(ResultsTable.COLUMN_QUESTIONS_CORRECT, qCorrect);
-        contentValues.put(ResultsTable.COLUMN_QUESTIONS_TOTAL, qTotal);
-        contentValues.put(ResultsTable.COLUMN_TEST_DATE, date);
-        contentValues.put(ResultsTable.COLUMN_ASKED_QUESTION, askedQuestion);
-        contentValues.put(ResultsTable.COLUMN_USER_ANSWER, userAnswer);
-        contentValues.put(ResultsTable.COLUMN_CORRECT_ANSWER, correctAnswer);
-
-
-        // Insert the new row, returning the primary key value of the new row
-        long result = db.insert(ResultsTable.TABLE_NAME, null, contentValues);
-
-        //if date as inserted incorrectly it will return -1
-        if (result == -1) {
-            return false;
-        } else {
-            return true;
-        }
-    }
 
 
 

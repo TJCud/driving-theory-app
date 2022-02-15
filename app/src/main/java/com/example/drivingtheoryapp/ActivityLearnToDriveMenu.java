@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-public class TestMenu extends AppCompatActivity {
+public class ActivityLearnToDriveMenu extends AppCompatActivity {
 
 
     @Override
@@ -34,7 +34,7 @@ public class TestMenu extends AppCompatActivity {
         fullTestCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TestMenu.this, ActivityTestPreScreen.class);
+                Intent intent = new Intent(ActivityLearnToDriveMenu.this, ActivityFullExamPreScreen.class);
                 intent.putExtra("username_key",username);
                 finish();
                 startActivity(intent);
@@ -44,7 +44,7 @@ public class TestMenu extends AppCompatActivity {
         practiceModeCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TestMenu.this, ActivityPracticeMenu.class);
+                Intent intent = new Intent(ActivityLearnToDriveMenu.this, ActivityPracticeMenu.class);
                 intent.putExtra("username_key",username);
                 startActivity(intent);
                 finish();
@@ -69,7 +69,7 @@ public class TestMenu extends AppCompatActivity {
         returnButtonIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Menu.class);
+                Intent intent = new Intent(getApplicationContext(), ActivityMainMenu.class);
                 intent.putExtra("username_key",username);
                 finish();
                 startActivity(intent);

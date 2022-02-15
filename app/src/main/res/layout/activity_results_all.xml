@@ -8,7 +8,7 @@ android:layout_height="match_parent"
 android:orientation="vertical"
 android:background="#4287f5"
 android:weightSum="15"
-tools:context=".AllResults">
+tools:context=".ActivityResultsAll">
 
 
     <RelativeLayout
@@ -71,7 +71,7 @@ tools:context=".AllResults">
 
 
         <ListView
-            android:id="@+id/listView"
+            android:id="@+id/allResultsListView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/tvTestStats"

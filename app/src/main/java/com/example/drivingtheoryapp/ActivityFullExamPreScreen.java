@@ -3,23 +3,14 @@ package com.example.drivingtheoryapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.concurrent.TimeUnit;
 
 
-
-
-public class ActivityTestPreScreen extends AppCompatActivity {
+public class ActivityFullExamPreScreen extends AppCompatActivity {
 
     Button startButton;
 
@@ -81,7 +72,7 @@ public class ActivityTestPreScreen extends AppCompatActivity {
         backButtonIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent returnMenu = new Intent(getApplicationContext(), TestMenu.class);
+                Intent returnMenu = new Intent(getApplicationContext(), ActivityLearnToDriveMenu.class);
                 returnMenu.putExtra("username_key",username);
                 finish();
                 startActivity(returnMenu);
@@ -94,7 +85,7 @@ public class ActivityTestPreScreen extends AppCompatActivity {
 
     //Button Actions
     public void startTest(String passUsername){
-        Intent intent = new Intent(ActivityTestPreScreen.this, MockTestActivity.class);
+        Intent intent = new Intent(ActivityFullExamPreScreen.this, ActivityFullExam.class);
         intent.putExtra("username_key",passUsername);
         startActivity(intent);
     }

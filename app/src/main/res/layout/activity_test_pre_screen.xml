@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:background="#e6e6ff"
     android:weightSum="15"
-    tools:context=".ActivityTestPreScreen">
+    tools:context=".ActivityFullExamPreScreen">
 
 
     <RelativeLayout

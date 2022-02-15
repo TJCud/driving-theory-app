@@ -15,24 +15,27 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.google.android.material.textfield.TextInputEditText;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 // Making HttpURLConnection faster, easy and secure. Best method to impliment httpurlconnection in android.
 // https://github.com/VishnuSivadasVS/Advanced-HttpURLConnection/
-import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
-public class ActivitySignUp extends AppCompatActivity {
+
+public class ActivityRegister extends AppCompatActivity {
 
     EditText EditTextUsername, EditTextPassword, EditTextPasswordConfirm, EditTextEmail;
     Button buttonSingUp;
     TextView textViewLogin,tvFullNameWarning,tvEmailWarning,tvUsernameWarning,tvPasswordWarning,tvPasswordConfirmWarning;
+    private ProgressBar spinner;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
-
+        setContentView(R.layout.activity_register);
+        spinner=(ProgressBar)findViewById(R.id.progressBar);
+        spinner.setVisibility(View.GONE);
         EditTextUsername = findViewById(R.id.etUsername);
         EditTextPassword = findViewById(R.id.etPassword);
         EditTextPasswordConfirm = findViewById(R.id.etPasswordConfirm);
@@ -51,25 +54,23 @@ public class ActivitySignUp extends AppCompatActivity {
         tvPasswordConfirmWarning.setVisibility(View.GONE);
 
 
-
-
         buttonSingUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String username, usernameraw, password,passwordConfirm, email;
-
+                //DECLARING VARIABLES
+                String username, usernameRaw, password,passwordConfirm, email;
                 boolean allFieldsValid = true;
 
-                //Takes value of usernamerawdata and converts to lower case
-                usernameraw = String.valueOf(EditTextUsername.getText());
-                username = usernameraw.toLowerCase();
+                //Takes value of usernameRaw and converts to lower case
+                usernameRaw = String.valueOf(EditTextUsername.getText());
+                username = usernameRaw.toLowerCase();
                 password = String.valueOf(EditTextPassword.getText());
                 passwordConfirm = String.valueOf(EditTextPasswordConfirm.getText());
                 email = String.valueOf(EditTextEmail.getText());
-               // String usernameSize = username.chars();
 
 
+                //HIDES VALIDATION WARNINGS
                 tvEmailWarning.setVisibility(View.GONE);
                 tvUsernameWarning.setVisibility(View.GONE);
                 tvPasswordWarning.setVisibility(View.GONE);
@@ -80,12 +81,12 @@ public class ActivitySignUp extends AppCompatActivity {
                 if (username.equals("")) {
                     tvUsernameWarning.setTextColor(Color.RED);
                     tvUsernameWarning.setVisibility(View.VISIBLE);
-                    tvUsernameWarning.setText("Username field cannot be emply");
+                    tvUsernameWarning.setText("Username field cannot be empty");
                     allFieldsValid = false;}
-                if (username.length() > 8) {
+                if (username.length() > 16 || username.length() <3) {
                     tvUsernameWarning.setTextColor(Color.RED);
                     tvUsernameWarning.setVisibility(View.VISIBLE);
-                    tvUsernameWarning.setText("Username cannot exceed 8 characters");
+                    tvUsernameWarning.setText("Username must contain 3-16 characters");
                     allFieldsValid = false;}
 
                 //PASSWORD VALIDATION
@@ -110,8 +111,18 @@ public class ActivitySignUp extends AppCompatActivity {
                     tvPasswordWarning.setText("Password must contain 8-20 characters");
                     allFieldsValid = false;
                     }
-
-
+                if (passwordConfirm.equals("")) {
+                    tvPasswordConfirmWarning.setTextColor(Color.RED);
+                    tvPasswordConfirmWarning.setVisibility(View.VISIBLE);
+                    tvPasswordConfirmWarning.setText("Password field cannot be empty");
+                    allFieldsValid = false;
+                }
+                if (passwordConfirm.length() < 8 || password.length() > 20) {
+                    tvPasswordConfirmWarning.setTextColor(Color.RED);
+                    tvPasswordConfirmWarning.setVisibility(View.VISIBLE);
+                    tvPasswordConfirmWarning.setText("Password must contain 8-20 characters");
+                    allFieldsValid = false;
+                }
                 //EMAIL VALIDATION
                 if (email.equals("")) {
                     tvEmailWarning.setTextColor(Color.RED);
@@ -122,46 +133,74 @@ public class ActivitySignUp extends AppCompatActivity {
                 if (!isValidEmail(email)) {
                     tvEmailWarning.setTextColor(Color.RED);
                     tvEmailWarning.setVisibility(View.VISIBLE);
-                    tvEmailWarning.setText("Invalid e-mail format");
+                    tvEmailWarning.setText("E-mail is invalid");
                     allFieldsValid = false;
                 }
 
 
 
+              //IF ALL FIELDS ARE NOT EMPTY AND HAVE PASSED INITIAL DATA VALIDATION
+              if(!username.equals("") && !password.equals("") && !passwordConfirm.equals("") && !email.equals("") && allFieldsValid) {
 
-              if(!username.equals("") && !password.equals("") && !email.equals("") && allFieldsValid) {
+                  //MAKES PROGRESS BAR APPEAR, AND OTHER OBJECTS DISAPPEAR
+                  spinner.setVisibility(View.VISIBLE);
+                  EditTextUsername.setVisibility(View.INVISIBLE);
+                  EditTextPassword.setVisibility(View.INVISIBLE);
+                  EditTextPasswordConfirm.setVisibility(View.INVISIBLE);
+                  EditTextEmail.setVisibility(View.INVISIBLE);
+                  buttonSingUp.setVisibility(View.INVISIBLE);
+                  textViewLogin.setVisibility(View.INVISIBLE);
+                  tvEmailWarning.setVisibility(View.INVISIBLE);
+                  tvUsernameWarning.setVisibility(View.INVISIBLE);
+                  tvPasswordWarning.setVisibility(View.INVISIBLE);
+                  tvPasswordConfirmWarning.setVisibility(View.INVISIBLE);
+
+
                     Handler handler = new Handler(Looper.getMainLooper());
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
+                            //Assign current date and time to string
+                            Date today = new Date();
+                            SimpleDateFormat format = new SimpleDateFormat("MMMM dd yyyy ' @ ' hh:mm a");
+                            String date = format.format(today);
 
                             //Starting Write and Read data with URL
                             //Creating array for parameters
-                            String[] field = new String[3];
+                            String[] field = new String[4];
                             field[0] = "username";
                             field[1] = "password";
                             field[2] = "email";
+                            field[3] = "date";
                             //Creating array for data
-                            String[] data = new String[3];
+                            String[] data = new String[4];
                             data[0] = username;
                             data[1] = password;
                             data[2] = email;
+                            data[3] = date;
 
-                            PutData putData = new PutData("http://192.168.1.97/LoginRegister/signup.php", "POST", field, data);
+                            PostData postData = new PostData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/LoginRegister/signup.php", "POST", field, data);
 
-                            if (putData.startPut()) {
-                                if (putData.onComplete()) {
-
-                                    String result = putData.getResult();
+                            if (postData.startPut()) {
+                                if (postData.onComplete()) {
+                                    String result = postData.getResult();
                                     if (result.equals("Sign Up Success")) {
                                         Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(getApplicationContext(), ActivityLoginScreen.class);
+                                        Intent intent = new Intent(getApplicationContext(), ActivityLogin.class);
                                         startActivity(intent);
                                         finish();
                                     }
 
                                     else{
-                                   Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
+                                        //MAKES PROGRESS BAR DISAPPEAR, AND OTHER OBJECTS APPEAR
+                                        spinner.setVisibility(View.INVISIBLE);
+                                        EditTextUsername.setVisibility(View.VISIBLE);
+                                        EditTextPassword.setVisibility(View.VISIBLE);
+                                        EditTextPasswordConfirm.setVisibility(View.VISIBLE);
+                                        EditTextEmail.setVisibility(View.VISIBLE);
+                                        buttonSingUp.setVisibility(View.VISIBLE);
+                                        textViewLogin.setVisibility(View.VISIBLE);
+                                        Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
 
                             }
 
@@ -170,13 +209,29 @@ public class ActivitySignUp extends AppCompatActivity {
                 }
                 else {
                     Toast.makeText(getApplicationContext(),"All fields are required",Toast.LENGTH_SHORT).show();
+
+                  //MAKES PROGRESS BAR DISAPPEAR, AND OTHER OBJECTS APPEAR
+                  spinner.setVisibility(View.INVISIBLE);
+                  EditTextUsername.setVisibility(View.VISIBLE);
+                  EditTextPassword.setVisibility(View.VISIBLE);
+                  EditTextPasswordConfirm.setVisibility(View.VISIBLE);
+                  EditTextEmail.setVisibility(View.VISIBLE);
+                  buttonSingUp.setVisibility(View.VISIBLE);
+                  textViewLogin.setVisibility(View.VISIBLE);
+
                 }
             }
         });
     }
 
+
+    //FUNCTION TO CHECK IF EMAIL IS VALID
     public static boolean isValidEmail(CharSequence target) {
         return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
+
+
+
+
 
 }

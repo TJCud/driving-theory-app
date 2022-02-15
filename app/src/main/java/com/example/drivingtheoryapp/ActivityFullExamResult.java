@@ -6,16 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
-public class MockTestResults extends AppCompatActivity {
+public class ActivityFullExamResult extends AppCompatActivity {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mock_test_results);
+        setContentView(R.layout.activity_full_exam_result);
 
         //Initialise database helper
         TestDbHelper dbHelper = new TestDbHelper(this);
@@ -86,21 +84,21 @@ public class MockTestResults extends AppCompatActivity {
 
     //Button Actions
     public void retryTest(String passUsername){
-        Intent intent = new Intent(this, MockTestActivity.class);
+        Intent intent = new Intent(this, ActivityFullExam.class);
         intent.putExtra("username_key",passUsername);
         startActivity(intent);
         finish();
     }
 
     public void mainMenu(String passUsername){
-        Intent intent = new Intent(this, Menu.class);
+        Intent intent = new Intent(this, ActivityMainMenu.class);
         intent.putExtra("username_key",passUsername);
         startActivity(intent);
         finish();
     }
 
     public void viewResults(String passUsername){
-        Intent intent = new Intent(this, AllResults.class);
+        Intent intent = new Intent(this, ActivityResultsAll.class);
         intent.putExtra("username_key",passUsername);
         startActivity(intent);
         finish();

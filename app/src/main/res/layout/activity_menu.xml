@@ -8,7 +8,7 @@ android:layout_height="match_parent"
 android:orientation="vertical"
 android:background="#e6e6ff"
 android:weightSum="15"
-tools:context=".TestMenu">
+tools:context=".ActivityLearnToDriveMenu">
 
 
 <RelativeLayout

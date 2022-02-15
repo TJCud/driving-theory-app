@@ -2,17 +2,32 @@ package com.example.drivingtheoryapp;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-
+import org.apache.http.NameValuePair;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.*;
 import android.speech.tts.TextToSpeech;
+
+
+import com.android.volley.RequestQueue;
+
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,32 +35,34 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
-public class MockTestActivity extends AppCompatActivity implements ExampleDialog.ExampleDialogListener {
+public class ActivityFullExam extends AppCompatActivity implements ExampleDialog.ExampleDialogListener {
+
+
+    JSONParser jParser;
+    String URL_TO_PHP = "http://tcudden01.webhosting3.eeecs.qub.ac.uk/LoginRegister/getAllQuestions.php";
+    String TAG_SUCCESS = "success";
+    String TAG_STUFF = "stuff";
+
+
 
     public static ArrayList<String> saveQuestion= new ArrayList<>();;
-    public static ArrayList<String> saveUserAnswer= new ArrayList<>();;
-    public static ArrayList<String> saveCorrectAnswer= new ArrayList<>();;
-
     private QuestionModel currentQuestion;
     private List<QuestionModel> questionList;
-
+    private List<QuestionModel> questionListFromRemote;
     private TextView tvQuestionWithImage,tvQuestionWithoutImage, tvQuestionNo, tvTimer, tvExitTest, tvAnswerWarning;
     private RadioGroup radioGroup;
     private RadioButton rb1, rb2, rb3, rb4;
-    private Button btnNext,btnPrev;
+    private Button btnNext,btnPrev,btnFinish;
     private ImageView questionImage;
     private ImageView ttsImage;
-
     private String imageID;
-    private int totalQuestions;
-    private int qCounter;
-    private int score;
+    private int totalQuestions, qCounter, score;
     private boolean answered;
-
     private CountDownTimer countDownTimer;
     private TextToSpeech mTTS;
+    private RequestQueue mQueue;
+    private ProgressBar pbProgressBar;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -53,8 +70,12 @@ public class MockTestActivity extends AppCompatActivity implements ExampleDialog
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mock_test);
 
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         //ASSIGN VARIABLES TO ID's
         questionList = new ArrayList<>();
+        questionListFromRemote = new ArrayList<>();
         tvQuestionWithImage = findViewById(R.id.tvQuestionWithImage);
         tvQuestionWithoutImage = findViewById(R.id.tvQuestionWithoutImage);
         tvQuestionNo = findViewById(R.id.tvQuestionNumber);
@@ -67,21 +88,32 @@ public class MockTestActivity extends AppCompatActivity implements ExampleDialog
         questionImage = findViewById(R.id.ID_questionImage);
         btnNext = findViewById(R.id.btnNext);
         btnPrev = findViewById(R.id.btnExplanationOrPrevQuestion);
+        btnFinish = findViewById(R.id.btnFinish);
         tvExitTest = findViewById(R.id.tvExitTest);
         tvAnswerWarning = findViewById(R.id.tvAnswerWarning);
         tvAnswerWarning.setVisibility(View.GONE);
         ttsImage = findViewById(R.id.ivTTSicon);
+        pbProgressBar = findViewById(R.id.pbProgressBar);
+        pbProgressBar.setVisibility(View.GONE);
+
+
 
         // Getting the intent which started this activity
         Intent intent = getIntent();
         // Get the data of the activity providing the same key value
         String username = intent.getStringExtra("username_key");
 
+
+
         timer(username); //Begin Timer
         TestDbHelper dbHelper = new TestDbHelper(this); //Initialise database
         questionList = dbHelper.getAllQuestions(); //Loads questions into list
         Collections.shuffle(questionList); //Shuffles question order
-        totalQuestions = 50; //Displays number of questions
+        Collections.shuffle(questionListFromRemote);
+        totalQuestions = 3; //Displays number of questions
+
+
+
         showNextQuestion(username); //Shows the first question
 
 
@@ -109,7 +141,7 @@ public class MockTestActivity extends AppCompatActivity implements ExampleDialog
         ttsImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                speak();
+                speak(tvQuestionNo.getText().toString());
             }
         });
 
@@ -135,25 +167,6 @@ public class MockTestActivity extends AppCompatActivity implements ExampleDialog
 
 
 
-        //PREV QUESTION
-        btnPrev.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onClick(View view) {
-                if (answered == false) {
-                    if (rb1.isChecked() || rb2.isChecked() || rb3.isChecked() || rb4.isChecked()) {
-                        mTTS.stop();
-                        showPreviousQuestion(username);
-                    } else {
-                        tvAnswerWarning.setVisibility(View.VISIBLE);
-                    }
-                } else {
-                    mTTS.stop();
-                    showPreviousQuestion(username);
-                }
-            }
-        });
-
 
         //EXIT TEST LISTENER
         tvExitTest.setOnClickListener(new View.OnClickListener() {
@@ -171,7 +184,6 @@ public class MockTestActivity extends AppCompatActivity implements ExampleDialog
     // SHOW NEXT QUESTION FUNCTION
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void showNextQuestion(String passUsername) {
-
         radioGroup.clearCheck(); //CLEARS SELECTED ANSWER
         tvAnswerWarning.setVisibility(View.GONE); //CLEARS ANSWER WARNING (IF VISIBLE)
 
@@ -215,40 +227,7 @@ public class MockTestActivity extends AppCompatActivity implements ExampleDialog
     }
 
 
-    // SHOW NEXT QUESTION FUNCTION
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void showPreviousQuestion(String passUsername) {
 
-        radioGroup.clearCheck(); //CLEARS SELECTED ANSWER
-        tvAnswerWarning.setVisibility(View.GONE); //CLEARS ANSWER WARNING (IF VISIBLE)
-
-        if(qCounter < totalQuestions){
-            currentQuestion = questionList.get(qCounter);
-            tvQuestionWithImage.setText(currentQuestion.getQuestion());
-            tvQuestionWithoutImage.setText(currentQuestion.getQuestion());
-            rb1.setText(currentQuestion.getOption1());
-            rb2.setText(currentQuestion.getOption2());
-            rb3.setText(currentQuestion.getOption3());
-            rb4.setText(currentQuestion.getOption4());
-
-            //CODE FOR LOADING IMAGE
-            imageID = currentQuestion.getImageID();
-            String uri = "@drawable/question_image_"+imageID;
-            int imageResource = getResources().getIdentifier(uri, null, getPackageName());
-            Drawable drawable = getResources().getDrawable(imageResource);
-            questionImage.setImageDrawable(drawable);
-
-
-            qCounter--; //ADD TO COUNTER
-            btnNext.setText("Next Question");//CHANGE BUTTON CONTENTS
-            btnPrev.setText("Previous Question");
-            tvQuestionNo.setText("Question "+qCounter+" of "+totalQuestions + ":"); //CHANGE QUESTION NUMBER
-            answered = false; //SET ANSWERED TO FALSE
-
-        } else {
-            finishTest(passUsername); //RUN FINISH TEST FUNCTION IF QUESTION COUNTER EXCEEDS TOTAL QUESTIONS
-        }
-    }
 
 
 
@@ -268,22 +247,30 @@ public class MockTestActivity extends AppCompatActivity implements ExampleDialog
             score++;
         }
 
-        saveQuestion.add(currentQuestion.getQuestion());
-        saveUserAnswer.add((String) rbSelected.getText());
+        saveQuestion.add("Question "+ qCounter +": " + currentQuestion.getQuestion().replace("[", "").replace("]", ""));
+        saveQuestion.add("\nYour answer: " + rbSelected.getText().toString().replace("[", "").replace("]", ""));
 
         switch (currentQuestion.getAnswerNr()) {
             case 1:
-                saveCorrectAnswer.add(currentQuestion.getOption1());
+                saveQuestion.add("\nCorrect answer: " + currentQuestion.getOption1().replace("[", "").replace("]", ""));
                 break;
             case 2:
-                saveCorrectAnswer.add(currentQuestion.getOption2());
+                saveQuestion.add("\nCorrect answer: " + currentQuestion.getOption2().replace("[", "").replace("]", ""));
                 break;
             case 3:
-                saveCorrectAnswer.add(currentQuestion.getOption3());
+                saveQuestion.add("\nCorrect answer: " + currentQuestion.getOption3().replace("[", "").replace("]", ""));
                 break;
             case 4:
-                saveCorrectAnswer.add(currentQuestion.getOption4());
+                saveQuestion.add("\nCorrect answer: " + currentQuestion.getOption4().replace("[", "").replace("]", ""));
                 break;}
+
+
+        if(answerNo == currentQuestion.getAnswerNr()){
+            saveQuestion.add("\nCORRECT!\n\n".replace("[", "").replace("]", ""));
+        }
+        else{
+            saveQuestion.add("\nINCORRECT!\n\n".replace("[", "").replace("]", ""));
+        }
 
         if(qCounter < totalQuestions){
             showNextQuestion(passUsername);
@@ -311,7 +298,7 @@ public class MockTestActivity extends AppCompatActivity implements ExampleDialog
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onFinish() {
-                Toast.makeText(MockTestActivity.this, "Time up!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ActivityFullExam.this, "Time up!", Toast.LENGTH_SHORT).show();
                 finishTest(passUsername);
 
             }
@@ -323,44 +310,72 @@ public class MockTestActivity extends AppCompatActivity implements ExampleDialog
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void finishTest(String passUsername){
 
-        //Assign current date and time to string
-        Date today = new Date();
-        SimpleDateFormat format = new SimpleDateFormat("'Test Date: 'MMMM dd yyyy ' Test Time: ' hh:mm a");
-        String dateToStr = format.format(today);
-
-        //Saves results and date/time to database
-        if (passUsername.equals("Guest")){
-            Intent intent = new Intent(this, MockTestResults.class);
-            intent.putExtra("TOTAL_QUESTIONS", totalQuestions);
-            intent.putExtra("SCORE", score);
-            intent.putExtra("username_key",passUsername);
-            startActivity(intent);
-            finish();
-
-
-        }
-        else{
-
-            String saveQuestionStrings = saveQuestion.stream().map(Object::toString)
-                    .collect(Collectors.joining(" | "));
-
-            String saveUserAnswerStrings = saveUserAnswer.stream().map(Object::toString)
-                    .collect(Collectors.joining(" | "));
-
-            String saveCorrectAnswerStrings = saveCorrectAnswer.stream().map(Object::toString)
-                    .collect(Collectors.joining(" | "));
+        //MAKES PROGRESS BAR APPEAR, AND OTHER OBJECTS DISAPPEAR
+        pbProgressBar.setVisibility(View.VISIBLE);
+        tvQuestionWithoutImage.setText("Submitting Exam...");
+        tvQuestionWithImage.setVisibility(View.INVISIBLE);
+        tvQuestionWithoutImage = findViewById(R.id.tvQuestionWithoutImage);
+        radioGroup.setVisibility(View.INVISIBLE);
+        questionImage.setVisibility(View.INVISIBLE);
+        tvExitTest.setVisibility(View.INVISIBLE);
+        btnNext.setVisibility(View.INVISIBLE);
+        btnPrev.setVisibility(View.INVISIBLE);
+        btnFinish.setVisibility(View.INVISIBLE);
+        tvAnswerWarning.setVisibility(View.INVISIBLE);
+        ttsImage.setVisibility(View.INVISIBLE);
 
 
-            TestDbHelper dbHelper = new TestDbHelper(this); //Initialise database
-            dbHelper.saveResults(passUsername, score, totalQuestions, dateToStr,saveQuestionStrings,saveUserAnswerStrings,saveCorrectAnswerStrings);
-            Intent intent = new Intent(this, MockTestResults.class);
-            intent.putExtra("TOTAL_QUESTIONS", totalQuestions);
-            intent.putExtra("SCORE", score);
-            intent.putExtra("username_key",passUsername);
-            startActivity(intent);
-            finish();
-        }
+        String saveQuestionStrings = saveQuestion.toString().replace("[", "").replace("]", "");
+        String scoreAsString = String.valueOf(score);
+        String totalQuestionsAsString = String.valueOf(totalQuestions);
+
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                //Assign current date and time to string
+                Date today = new Date();
+                SimpleDateFormat format = new SimpleDateFormat("MMMM dd yyyy ' @ ' hh:mm a");
+                String date = format.format(today);
+
+                //Starting Write and Read data with URL
+                //Creating array for parameters
+                String[] field = new String[5];
+                field[0] = "username";
+                field[1] = "questions_correct";
+                field[2] = "questions_total";
+                field[3] = "date";
+                field[4] = "saved_question";
+
+                //Creating array for data
+                String[] data = new String[5];
+                data[0] = passUsername;
+                data[1] = scoreAsString;
+                data[2] = totalQuestionsAsString;
+                data[3] = date;
+                data[4] = saveQuestionStrings;
+
+                PostData postData = new PostData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/LoginRegister/saveResults.php", "POST", field, data);
+
+                if (postData.startPut()) {
+                    if (postData.onComplete()) {
+                        String result = postData.getResult();
+                        if (result.equals("Results Save Success")) {
+                            openFullExamResult(passUsername);
+                        }
+
+                        else{
+                            openPrevScreen(passUsername);
+                            Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
+                        }
+
+                    }}}
+        });
+
     }
+
+
+
 
 
     //END TEST TO PREVENT CHEATING (LOOKING UP ANSWERS ON INTERNET APPLICATION ETC)
@@ -371,8 +386,10 @@ public class MockTestActivity extends AppCompatActivity implements ExampleDialog
     }
 
 
+
+
     //TEXT TO SPEECH FUNCTION
-    private void speak() {
+    private void speak(String questionNumber) {
         String question = tvQuestionWithImage.getText().toString();
         String answer1 = rb1.getText().toString();
         String answer2 = rb2.getText().toString();
@@ -382,18 +399,36 @@ public class MockTestActivity extends AppCompatActivity implements ExampleDialog
         mTTS.setPitch(1);
         mTTS.setSpeechRate(1);
 
+
+        //QUESTION NUMBER
+        mTTS.speak(questionNumber, TextToSpeech.QUEUE_ADD, null,null);
+        mTTS.playSilentUtterance(250, TextToSpeech.QUEUE_ADD,null);
+        //QUESTION
         mTTS.speak(question, TextToSpeech.QUEUE_ADD, null,null);
         mTTS.playSilentUtterance(500, TextToSpeech.QUEUE_ADD,null);
+        //ANSWER 1
+        mTTS.speak("Option 1", TextToSpeech.QUEUE_ADD, null,null);
+        mTTS.playSilentUtterance(250, TextToSpeech.QUEUE_ADD,null);
         mTTS.speak(answer1, TextToSpeech.QUEUE_ADD, null,null);
         mTTS.playSilentUtterance(500, TextToSpeech.QUEUE_ADD,null);
+        //ANSWER 2
+        mTTS.speak("Option 2", TextToSpeech.QUEUE_ADD, null,null);
+        mTTS.playSilentUtterance(250, TextToSpeech.QUEUE_ADD,null);
         mTTS.speak(answer2, TextToSpeech.QUEUE_ADD, null,null);
         mTTS.playSilentUtterance(500, TextToSpeech.QUEUE_ADD,null);
+        //ANSWER 3
+        mTTS.speak("Option 3", TextToSpeech.QUEUE_ADD, null,null);
+        mTTS.playSilentUtterance(250, TextToSpeech.QUEUE_ADD,null);
         mTTS.speak(answer3, TextToSpeech.QUEUE_ADD, null,null);
         mTTS.playSilentUtterance(500, TextToSpeech.QUEUE_ADD,null);
+        //ANSWER 4
+        mTTS.speak("Option 4", TextToSpeech.QUEUE_ADD, null,null);
+        mTTS.playSilentUtterance(250, TextToSpeech.QUEUE_ADD,null);
         mTTS.speak(answer4, TextToSpeech.QUEUE_ADD, null,null);
-
-
     }
+
+
+
 
     @Override
     protected void onDestroy() {
@@ -404,6 +439,10 @@ public class MockTestActivity extends AppCompatActivity implements ExampleDialog
         super.onDestroy();
     }
 
+
+
+
+
     //OPENING DIALOG
     public void openDialog(String username, String input, String title, String positiveButton, String negativeButton) {
         ExampleDialog exampleDialog = new ExampleDialog(username,input,title,positiveButton,negativeButton);
@@ -412,13 +451,104 @@ public class MockTestActivity extends AppCompatActivity implements ExampleDialog
 
 
 
-    //APPLY CHOICE OF DIALOG BOX
-    @Override
-    public void applyChoice(String username) {
-        Intent intent = new Intent(getApplicationContext(), TestMenu.class);
+    //PROCEED TO NEXT SCREEN
+    public void openFullExamResult(String username) {
+        Intent intent = new Intent(this, ActivityFullExamResult.class);
+        intent.putExtra("TOTAL_QUESTIONS", totalQuestions);
+        intent.putExtra("SCORE", score);
+        intent.putExtra("username_key",username);
+        startActivity(intent);
+        finish();
+    }
+
+
+
+
+    //GO BACK TO PREVIOUS SCREEN (IN CASE OF RESULT SAVE FAILED)
+    public void openPrevScreen(String username) {
+        Intent intent = new Intent(getApplicationContext(), ActivityLearnToDriveMenu.class);
         intent.putExtra("username_key", username);
         mTTS.stop();
         startActivity(intent);
         finish();
     }
+
+
+
+    //APPLY CHOICE OF DIALOG BOX
+    @Override
+    public void applyChoice(String username) {
+        Intent intent = new Intent(getApplicationContext(), ActivityLearnToDriveMenu.class);
+        intent.putExtra("username_key", username);
+        mTTS.stop();
+        startActivity(intent);
+        finish();
+    }
+
+
+
+
+    public void fillQuestionTable(){
+
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+
+                FetchData fetchData = new FetchData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/LoginRegister/getAllQuestions.php");
+
+                if (fetchData.startFetch()) {
+                    if (fetchData.onComplete()) {
+                        try {
+                            String result = fetchData.getResult();
+                            JSONArray jsonArray = new JSONArray(result);
+                            JSONObject examQuestions=null;
+
+                            for (int i = 0; i < jsonArray.length(); i++) {
+
+                             /*   examQuestions = jsonArray.getJSONObject(i);
+
+                                QuestionModel q = new QuestionModel();
+                                int ID = examQuestions.getInt("id");
+                                q.setID(ID);
+                                String category = examQuestions.getString("category");
+                                q.setCategory(category);
+                                String question = examQuestions.getString("question");
+                                q.setQuestion(question);
+                                String option1 = examQuestions.getString("option1");
+                                q.setOption1(option1);
+                                String option2 = examQuestions.getString("option2");
+                                q.setOption2(option2);
+                                String option3 = examQuestions.getString("option3");
+                                q.setOption3(option3);
+                                String option4 = examQuestions.getString("option4");
+                                q.setOption4(option4);
+                                int answer = examQuestions.getInt("answer");
+                                q.setAnswerNr(answer);
+                                String imageID = examQuestions.getString("image");
+                                q.setImageID(imageID);
+                                String explanation = examQuestions.getString("explanation");
+                                q.setExplanation(explanation);
+
+                                questionListFromRemote.add(q);*/
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+
 }
+
+
+
+
+
+
+
+

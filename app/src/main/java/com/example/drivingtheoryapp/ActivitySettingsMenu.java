@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 
 
-public class SettingsMenu extends AppCompatActivity {
+public class ActivitySettingsMenu extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

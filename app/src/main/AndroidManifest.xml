@@ -26,7 +26,7 @@
             android:name=".TTSexample"
             android:exported="false" />
         <activity
-            android:name=".ActivityPracticeTest"
+            android:name=".ActivityPracticeExam"
             android:exported="false" />
         <activity
             android:name=".ActivityPracticeMenu"
@@ -35,37 +35,37 @@
             android:name=".ActivityGraphView"
             android:exported="false" />
         <activity
-            android:name=".ActivityReviewResults"
+            android:name=".ActivityResultsSpecific"
             android:exported="false" />
         <activity
-            android:name=".ActivityTestPreScreen"
+            android:name=".ActivityFullExamPreScreen"
             android:exported="false" />
         <activity
-            android:name=".AllResults"
+            android:name=".ActivityResultsAll"
             android:exported="false" />
         <activity
-            android:name=".SettingsMenu"
+            android:name=".ActivitySettingsMenu"
             android:exported="false" />
         <activity
-            android:name=".AccountMenu"
+            android:name=".ActivityAccountMenu"
             android:exported="false" />
         <activity
-            android:name=".TestMenu"
+            android:name=".ActivityLearnToDriveMenu"
             android:exported="false" />
         <activity
-            android:name=".MockTestResults"
+            android:name=".ActivityFullExamResult"
             android:exported="false" />
         <activity
-            android:name=".ActivitySignUp"
+            android:name=".ActivityRegister"
             android:exported="false" />
         <activity
-            android:name=".MockTestActivity"
+            android:name=".ActivityFullExam"
             android:exported="false" />
         <activity
-            android:name=".ActivityLoginScreen"
+            android:name=".ActivityLogin"
             android:exported="false" />
         <activity
-            android:name=".Menu"
+            android:name=".ActivityMainMenu"
             android:exported="false" />
         <activity
             android:name=".ActivitySplashScreen"
@@ -77,5 +77,9 @@
             </intent-filter>
         </activity>
     </application>
+
+
+
+
 
 </manifest>

@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-public class AccountMenu extends AppCompatActivity {
+public class ActivityAccountMenu extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +61,7 @@ public class AccountMenu extends AppCompatActivity {
         backButtonIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent returnMenu = new Intent(getApplicationContext(), Menu.class);
+                Intent returnMenu = new Intent(getApplicationContext(), ActivityMainMenu.class);
                 returnMenu.putExtra("username_key",username);
                 finish();
                 startActivity(returnMenu);
@@ -72,7 +72,7 @@ public class AccountMenu extends AppCompatActivity {
 
     //Button Actions
     public void openProgress(String passUsername) {
-        Intent intent = new Intent(this, AllResults.class);
+        Intent intent = new Intent(this, ActivityResultsAll.class);
         intent.putExtra("username_key",passUsername);
         startActivity(intent);
     }

@@ -8,10 +8,8 @@ public class ResultModel {
     private String category;
     private int questionsCorrect;
     private int questionsTotal;
+    private String savedQuestion;
 
-    private String askedQuestion;
-    private String userAnswer;
-    private String correctAnswer;
 
 
 
@@ -19,14 +17,12 @@ public class ResultModel {
 
 
     //CONSTRUCTOR
-    public ResultModel(String username, String category, int questionsCorrect, int questionsTotal, String askedQuestion, String userAnswer, String correctAnswer) {
+    public ResultModel(String username, String category, int questionsCorrect, int questionsTotal, String savedQuestion) {
         this.username = username;
         this.category = category;
         this.questionsCorrect = questionsCorrect;
         this.questionsTotal = questionsTotal;
-        this.askedQuestion = askedQuestion;
-        this.userAnswer = userAnswer;
-        this.correctAnswer = correctAnswer;
+        this.savedQuestion = savedQuestion;
     }
 
     //EMPTY CONSTRUCTOR
@@ -61,25 +57,11 @@ public class ResultModel {
         this.questionsTotal = questionsTotal;
     }
 
-    public String getAskedQuestion() {
-        return askedQuestion;
+    public String getSavedQuestion() {
+        return savedQuestion;
     }
-    public void setAskedQuestion(String askedQuestion) {
-        this.askedQuestion = askedQuestion;
-    }
-
-    public String getUserAnswer() {
-        return userAnswer;
-    }
-    public void setUserAnswer(String userAnswer) {
-        this.userAnswer = userAnswer;
-    }
-
-    public String getCorrectAnswer() {
-        return correctAnswer;
-    }
-    public void setCorrectAnswer(String correctAnswer) {
-        this.correctAnswer = correctAnswer;
+    public void setSavedQuestion(String savedQuestion) {
+        this.savedQuestion = savedQuestion;
     }
 
 

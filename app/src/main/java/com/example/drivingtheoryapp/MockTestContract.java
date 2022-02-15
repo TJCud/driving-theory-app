@@ -12,7 +12,7 @@ public class MockTestContract {
     public static class QuestionsTable implements BaseColumns
     {
         public static final String COLUMN_CATEGORY = "category";
-        public static final String TABLE_NAME = "test_questions";
+        public static final String TABLE_NAME = "exam_questions";
         public static final String COLUMN_QUESTION = "question";
         public static final String COLUMN_OPTION1 = "option1";
         public static final String COLUMN_OPTION2 = "option2";
@@ -21,7 +21,5 @@ public class MockTestContract {
         public static final String COLUMN_ANSWER_NR = "answer";
         public static final String COLUMN_IMAGE_ID = "image";
         public static final String COLUMN_EXPLANATION = "explanation";
-
     }
-
 }

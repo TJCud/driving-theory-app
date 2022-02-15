@@ -9,7 +9,7 @@
     android:background="#e6e6ff"
     android:weightSum="10"
     android:id="@+id/ID_settingsPage"
-    tools:context=".SettingsMenu">
+    tools:context=".ActivitySettingsMenu">
 
 
     <RelativeLayout

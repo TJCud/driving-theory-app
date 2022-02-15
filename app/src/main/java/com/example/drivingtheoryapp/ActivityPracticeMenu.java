@@ -1,28 +1,12 @@
 package com.example.drivingtheoryapp;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.content.res.Resources;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.*;
-
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 public class ActivityPracticeMenu extends AppCompatActivity {
 
@@ -66,7 +50,7 @@ public class ActivityPracticeMenu extends AppCompatActivity {
         categoryCV1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent category = new Intent(getApplicationContext(), ActivityPracticeTest.class);
+                Intent category = new Intent(getApplicationContext(), ActivityPracticeExam.class);
                 category.putExtra("username_key",username);
                 category.putExtra("category_key","Alertness");
                 startActivity(category);
@@ -77,7 +61,7 @@ public class ActivityPracticeMenu extends AppCompatActivity {
         categoryCV2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent category = new Intent(getApplicationContext(), ActivityPracticeTest.class);
+                Intent category = new Intent(getApplicationContext(), ActivityPracticeExam.class);
                 category.putExtra("username_key",username);
                 category.putExtra("category_key","Attitude");
                 startActivity(category);
@@ -88,7 +72,7 @@ public class ActivityPracticeMenu extends AppCompatActivity {
         categoryCV3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent category = new Intent(getApplicationContext(), ActivityPracticeTest.class);
+                Intent category = new Intent(getApplicationContext(), ActivityPracticeExam.class);
                 category.putExtra("username_key",username);
                 category.putExtra("category_key","Documents");
                 startActivity(category);
@@ -99,7 +83,7 @@ public class ActivityPracticeMenu extends AppCompatActivity {
         categoryCV4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent category = new Intent(getApplicationContext(), ActivityPracticeTest.class);
+                Intent category = new Intent(getApplicationContext(), ActivityPracticeExam.class);
                 category.putExtra("username_key",username);
                 category.putExtra("category_key","Hazard awareness");
                 startActivity(category);
@@ -111,7 +95,7 @@ public class ActivityPracticeMenu extends AppCompatActivity {
         categoryCV5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent category = new Intent(getApplicationContext(), ActivityPracticeTest.class);
+                Intent category = new Intent(getApplicationContext(), ActivityPracticeExam.class);
                 category.putExtra("username_key",username);
                 category.putExtra("category_key","Incidents");
                 startActivity(category);
@@ -122,7 +106,7 @@ public class ActivityPracticeMenu extends AppCompatActivity {
         categoryCV6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent category = new Intent(getApplicationContext(), ActivityPracticeTest.class);
+                Intent category = new Intent(getApplicationContext(), ActivityPracticeExam.class);
                 category.putExtra("username_key",username);
                 category.putExtra("category_key","Motorway rules");
                 startActivity(category);
@@ -133,7 +117,7 @@ public class ActivityPracticeMenu extends AppCompatActivity {
         categoryCV7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent category = new Intent(getApplicationContext(), ActivityPracticeTest.class);
+                Intent category = new Intent(getApplicationContext(), ActivityPracticeExam.class);
                 category.putExtra("username_key",username);
                 category.putExtra("category_key","Other types of vehicle");
                 startActivity(category);
@@ -144,7 +128,7 @@ public class ActivityPracticeMenu extends AppCompatActivity {
         categoryCV8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent category = new Intent(getApplicationContext(), ActivityPracticeTest.class);
+                Intent category = new Intent(getApplicationContext(), ActivityPracticeExam.class);
                 category.putExtra("username_key",username);
                 category.putExtra("category_key","Road and traffic signs");
                 startActivity(category);
@@ -155,7 +139,7 @@ public class ActivityPracticeMenu extends AppCompatActivity {
         categoryCV9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent category = new Intent(getApplicationContext(), ActivityPracticeTest.class);
+                Intent category = new Intent(getApplicationContext(), ActivityPracticeExam.class);
                 category.putExtra("username_key",username);
                 category.putExtra("category_key","Rules of the road");
                 startActivity(category);
@@ -166,7 +150,7 @@ public class ActivityPracticeMenu extends AppCompatActivity {
         categoryCV10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent category = new Intent(getApplicationContext(), ActivityPracticeTest.class);
+                Intent category = new Intent(getApplicationContext(), ActivityPracticeExam.class);
                 category.putExtra("username_key",username);
                 category.putExtra("category_key","Safety and your vehicle");
                 startActivity(category);
@@ -177,7 +161,7 @@ public class ActivityPracticeMenu extends AppCompatActivity {
         categoryCV11.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent category = new Intent(getApplicationContext(), ActivityPracticeTest.class);
+                Intent category = new Intent(getApplicationContext(), ActivityPracticeExam.class);
                 category.putExtra("username_key",username);
                 category.putExtra("category_key","Safety margins");
                 startActivity(category);
@@ -188,7 +172,7 @@ public class ActivityPracticeMenu extends AppCompatActivity {
         categoryCV12.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent category = new Intent(getApplicationContext(), ActivityPracticeTest.class);
+                Intent category = new Intent(getApplicationContext(), ActivityPracticeExam.class);
                 category.putExtra("username_key",username);
                 category.putExtra("category_key","Vehicle handling");
                 startActivity(category);
@@ -199,7 +183,7 @@ public class ActivityPracticeMenu extends AppCompatActivity {
         categoryCV13.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent category = new Intent(getApplicationContext(), ActivityPracticeTest.class);
+                Intent category = new Intent(getApplicationContext(), ActivityPracticeExam.class);
                 category.putExtra("username_key",username);
                 category.putExtra("category_key","Vehicle loading");
                 startActivity(category);
@@ -210,7 +194,7 @@ public class ActivityPracticeMenu extends AppCompatActivity {
         categoryCV14.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent category = new Intent(getApplicationContext(), ActivityPracticeTest.class);
+                Intent category = new Intent(getApplicationContext(), ActivityPracticeExam.class);
                 category.putExtra("username_key",username);
                 category.putExtra("category_key","Vulnerable road users");
                 startActivity(category);
@@ -222,7 +206,7 @@ public class ActivityPracticeMenu extends AppCompatActivity {
         backButtonIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent returnMenu = new Intent(getApplicationContext(), TestMenu.class);
+                Intent returnMenu = new Intent(getApplicationContext(), ActivityLearnToDriveMenu.class);
                 returnMenu.putExtra("username_key",username);
                 finish();
                 startActivity(returnMenu);
