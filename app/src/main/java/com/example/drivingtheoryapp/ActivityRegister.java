@@ -179,7 +179,7 @@ public class ActivityRegister extends AppCompatActivity {
                             data[2] = email;
                             data[3] = date;
 
-                            PostData postData = new PostData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/LoginRegister/signup.php", "POST", field, data);
+                            PostData postData = new PostData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/signup.php", "POST", field, data);
 
                             if (postData.startPut()) {
                                 if (postData.onComplete()) {

@@ -2,32 +2,36 @@ package com.example.drivingtheoryapp;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import org.apache.http.NameValuePair;
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.*;
 import android.speech.tts.TextToSpeech;
 
 
-import com.android.volley.RequestQueue;
-
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.simple.parser.JSONParser;
 
-import java.nio.charset.StandardCharsets;
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -37,13 +41,6 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class ActivityFullExam extends AppCompatActivity implements ExampleDialog.ExampleDialogListener {
-
-
-    JSONParser jParser;
-    String URL_TO_PHP = "http://tcudden01.webhosting3.eeecs.qub.ac.uk/LoginRegister/getAllQuestions.php";
-    String TAG_SUCCESS = "success";
-    String TAG_STUFF = "stuff";
-
 
 
     public static ArrayList<String> saveQuestion= new ArrayList<>();;
@@ -56,13 +53,14 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
     private Button btnNext,btnPrev,btnFinish;
     private ImageView questionImage;
     private ImageView ttsImage;
-    private String imageID;
+    private String imageID, fetchedResult;
     private int totalQuestions, qCounter, score;
     private boolean answered;
     private CountDownTimer countDownTimer;
     private TextToSpeech mTTS;
-    private RequestQueue mQueue;
     private ProgressBar pbProgressBar;
+   private JSONObject data;
+
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -70,8 +68,6 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mock_test);
 
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
 
         //ASSIGN VARIABLES TO ID's
         questionList = new ArrayList<>();
@@ -97,6 +93,9 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
         pbProgressBar.setVisibility(View.GONE);
 
 
+        //GET QUESTIONS FROM REMOTE DB
+        getQuestions();
+
 
         // Getting the intent which started this activity
         Intent intent = getIntent();
@@ -108,13 +107,14 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
         timer(username); //Begin Timer
         TestDbHelper dbHelper = new TestDbHelper(this); //Initialise database
         questionList = dbHelper.getAllQuestions(); //Loads questions into list
-        Collections.shuffle(questionList); //Shuffles question order
-        Collections.shuffle(questionListFromRemote);
-        totalQuestions = 3; //Displays number of questions
+        Collections.shuffle(questionList); //Shuffles sqlite question order
+        Collections.shuffle(questionListFromRemote); //Shuffle remote question order
+        totalQuestions = 10; //Displays number of questions
 
 
 
         showNextQuestion(username); //Shows the first question
+
 
 
         //TEXT TO SPEECH INITIALISATION
@@ -188,7 +188,7 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
         tvAnswerWarning.setVisibility(View.GONE); //CLEARS ANSWER WARNING (IF VISIBLE)
 
         if(qCounter < totalQuestions){
-            currentQuestion = questionList.get(qCounter);
+            currentQuestion = questionListFromRemote.get(qCounter);
             tvQuestionWithImage.setText(currentQuestion.getQuestion());
             tvQuestionWithoutImage.setText(currentQuestion.getQuestion());
             rb1.setText(currentQuestion.getOption1());
@@ -229,13 +229,6 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
 
 
 
-
-
-
-
-
-
-
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void checkAnswer(String passUsername) {
 
@@ -246,6 +239,9 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
         if(answerNo == currentQuestion.getAnswerNr()){
             score++;
         }
+
+
+
 
         saveQuestion.add("Question "+ qCounter +": " + currentQuestion.getQuestion().replace("[", "").replace("]", ""));
         saveQuestion.add("\nYour answer: " + rbSelected.getText().toString().replace("[", "").replace("]", ""));
@@ -271,6 +267,7 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
         else{
             saveQuestion.add("\nINCORRECT!\n\n".replace("[", "").replace("]", ""));
         }
+
 
         if(qCounter < totalQuestions){
             showNextQuestion(passUsername);
@@ -310,19 +307,6 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void finishTest(String passUsername){
 
-        //MAKES PROGRESS BAR APPEAR, AND OTHER OBJECTS DISAPPEAR
-        pbProgressBar.setVisibility(View.VISIBLE);
-        tvQuestionWithoutImage.setText("Submitting Exam...");
-        tvQuestionWithImage.setVisibility(View.INVISIBLE);
-        tvQuestionWithoutImage = findViewById(R.id.tvQuestionWithoutImage);
-        radioGroup.setVisibility(View.INVISIBLE);
-        questionImage.setVisibility(View.INVISIBLE);
-        tvExitTest.setVisibility(View.INVISIBLE);
-        btnNext.setVisibility(View.INVISIBLE);
-        btnPrev.setVisibility(View.INVISIBLE);
-        btnFinish.setVisibility(View.INVISIBLE);
-        tvAnswerWarning.setVisibility(View.INVISIBLE);
-        ttsImage.setVisibility(View.INVISIBLE);
 
 
         String saveQuestionStrings = saveQuestion.toString().replace("[", "").replace("]", "");
@@ -333,6 +317,22 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
         handler.post(new Runnable() {
             @Override
             public void run() {
+
+
+                //MAKES PROGRESS BAR APPEAR, AND OTHER OBJECTS DISAPPEAR
+                pbProgressBar.setVisibility(View.VISIBLE);
+                tvQuestionWithoutImage.setVisibility(View.VISIBLE);
+                tvQuestionWithoutImage.setText("Submitting Exam...");
+                tvQuestionWithImage.setVisibility(View.INVISIBLE);
+                radioGroup.setVisibility(View.INVISIBLE);
+                questionImage.setVisibility(View.INVISIBLE);
+                tvExitTest.setVisibility(View.INVISIBLE);
+                btnNext.setVisibility(View.INVISIBLE);
+                btnPrev.setVisibility(View.INVISIBLE);
+                btnFinish.setVisibility(View.INVISIBLE);
+                tvAnswerWarning.setVisibility(View.INVISIBLE);
+                ttsImage.setVisibility(View.INVISIBLE);
+
                 //Assign current date and time to string
                 Date today = new Date();
                 SimpleDateFormat format = new SimpleDateFormat("MMMM dd yyyy ' @ ' hh:mm a");
@@ -355,9 +355,12 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
                 data[3] = date;
                 data[4] = saveQuestionStrings;
 
-                PostData postData = new PostData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/LoginRegister/saveResults.php", "POST", field, data);
+
+                PostData postData = new PostData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/saveresults.php", "POST", field, data);
 
                 if (postData.startPut()) {
+
+
                     if (postData.onComplete()) {
                         String result = postData.getResult();
                         if (result.equals("Results Save Success")) {
@@ -440,9 +443,6 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
     }
 
 
-
-
-
     //OPENING DIALOG
     public void openDialog(String username, String input, String title, String positiveButton, String negativeButton) {
         ExampleDialog exampleDialog = new ExampleDialog(username,input,title,positiveButton,negativeButton);
@@ -486,61 +486,79 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
     }
 
 
+    public void getQuestions(){
 
 
-    public void fillQuestionTable(){
 
-        Handler handler = new Handler(Looper.getMainLooper());
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-
-                FetchData fetchData = new FetchData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/LoginRegister/getAllQuestions.php");
-
+                pbProgressBar.setVisibility(View.VISIBLE);
+                FetchData fetchData = new FetchData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/getquestions.php");
                 if (fetchData.startFetch()) {
                     if (fetchData.onComplete()) {
-                        try {
-                            String result = fetchData.getResult();
-                            JSONArray jsonArray = new JSONArray(result);
-                            JSONObject examQuestions=null;
+                        fetchedResult = fetchData.getData();
+                        Log.i("FetchData", fetchedResult);
+                        //End ProgressBar (Set visibility to GONE)
+                        pbProgressBar.setVisibility(View.GONE);
 
-                            for (int i = 0; i < jsonArray.length(); i++) {
-
-                             /*   examQuestions = jsonArray.getJSONObject(i);
-
-                                QuestionModel q = new QuestionModel();
-                                int ID = examQuestions.getInt("id");
-                                q.setID(ID);
-                                String category = examQuestions.getString("category");
-                                q.setCategory(category);
-                                String question = examQuestions.getString("question");
-                                q.setQuestion(question);
-                                String option1 = examQuestions.getString("option1");
-                                q.setOption1(option1);
-                                String option2 = examQuestions.getString("option2");
-                                q.setOption2(option2);
-                                String option3 = examQuestions.getString("option3");
-                                q.setOption3(option3);
-                                String option4 = examQuestions.getString("option4");
-                                q.setOption4(option4);
-                                int answer = examQuestions.getInt("answer");
-                                q.setAnswerNr(answer);
-                                String imageID = examQuestions.getString("image");
-                                q.setImageID(imageID);
-                                String explanation = examQuestions.getString("explanation");
-                                q.setExplanation(explanation);
-
-                                questionListFromRemote.add(q);*/
-                            }
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
                     }
                 }
+
+
+        try {
+            JSONObject obj = new JSONObject(fetchedResult);
+            JSONArray questionData = obj.getJSONArray("questiondata");
+            int n = questionData.length();
+            for (int i = 0; i < n; ++i) {
+                JSONObject questionObj = questionData.getJSONObject(i);
+                QuestionModel q = new QuestionModel();
+                int ID = questionObj.getInt("id");
+                q.setID(ID);
+                String category = questionObj.getString("category");
+                q.setCategory(category);
+                String question = questionObj.getString("question");
+                q.setQuestion(question);
+                String option1 = questionObj.getString("option1");
+                q.setOption1(option1);
+                String option2 = questionObj.getString("option2");
+                q.setOption2(option2);
+                String option3 = questionObj.getString("option3");
+                q.setOption3(option3);
+                String option4 = questionObj.getString("option4");
+                q.setOption4(option4);
+                int answer = questionObj.getInt("answer");
+                q.setAnswerNr(answer);
+                String imageID = questionObj.getString("image");
+                q.setImageID(imageID);
+                String explanation = questionObj.getString("explanation");
+                q.setExplanation(explanation);
+                questionListFromRemote.add(q);
+
             }
-        });
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+/*        for (int i = 0; i<100; ++i) {
+            QuestionModel q = new QuestionModel();
+            q.setID(i);
+            q.setCategory("category");
+            q.setQuestion("question");
+            q.setOption1("option1");
+            q.setOption2("option2");
+            q.setOption3("option3");
+            q.setOption4("option4");
+            q.setAnswerNr(1);
+            q.setImageID("default");
+            q.setExplanation("explanation");
+            questionListFromRemote.add(q);
+        }*/
+
+
+
     }
+
+
 
 
 }

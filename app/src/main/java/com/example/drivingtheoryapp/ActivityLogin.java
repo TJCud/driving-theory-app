@@ -85,7 +85,7 @@ public class ActivityLogin extends AppCompatActivity {
                             String[] data = new String[2];
                             data[0] = username;
                             data[1] = password;
-                            PostData postData = new PostData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/LoginRegister/login.php", "POST", field, data);
+                            PostData postData = new PostData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/login.php", "POST", field, data);
                             if (postData.startPut()) {
                                 if (postData.onComplete()) {
 
