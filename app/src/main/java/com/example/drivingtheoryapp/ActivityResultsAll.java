@@ -6,15 +6,23 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 
 public class ActivityResultsAll extends AppCompatActivity {
@@ -24,6 +32,9 @@ public class ActivityResultsAll extends AppCompatActivity {
     private ListView allResultsListView;
     private ArrayList<String> arrayListExamOutcome = new ArrayList<>();
     private ArrayList<String> arrayListaskedQuestions = new ArrayList<>();
+    private String fetchedResult;
+    private ProgressBar pbProgressBar;
+    private List<ResultModel> resultList;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -117,6 +128,73 @@ public class ActivityResultsAll extends AppCompatActivity {
         });
 
     }
+
+
+
+
+
+
+
+
+    public void getQuestions(){
+
+        pbProgressBar.setVisibility(View.VISIBLE);
+        FetchData fetchData = new FetchData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/getresults.php");
+        if (fetchData.startFetch()) {
+            if (fetchData.onComplete()) {
+                fetchedResult = fetchData.getData();
+                Log.i("FetchData", fetchedResult);
+                //End ProgressBar (Set visibility to GONE)
+                pbProgressBar.setVisibility(View.GONE);
+
+            }
+        }
+
+        try {
+            JSONObject obj = new JSONObject(fetchedResult);
+            JSONArray questionData = obj.getJSONArray("questiondata");
+            int n = questionData.length();
+            for (int i = 0; i < n; ++i) {
+                JSONObject questionObj = questionData.getJSONObject(i);
+                ResultModel r = new ResultModel();
+
+                int ID = questionObj.getInt("id");
+                r.setID(ID);
+
+                String username = questionObj.getString("username");
+                r.setUsername(username);
+
+                String questionsCorrect = questionObj.getString("questions_correct");
+                r.setQuestionsCorrect(questionsCorrect);
+
+                String questionsTotal = questionObj.getString("questions_total");
+                r.setQuestionsTotal(questionsTotal);
+
+                String outcome = questionObj.getString("outcome");
+                r.setOutcome(outcome);
+
+                String date = questionObj.getString("date");
+                r.setDate(date);
+
+                String savedQuestion = questionObj.getString("saved_question");
+                r.setSavedQuestion(outcome);
+
+                resultList.add(r);
+
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+
+
+
+
+
 }
 
 

@@ -165,7 +165,7 @@ public class ActivityRegister extends AppCompatActivity {
                             SimpleDateFormat format = new SimpleDateFormat("MMMM dd yyyy ' @ ' hh:mm a");
                             String date = format.format(today);
 
-                            //Starting Write and Read data with URL
+                           //Starting Write and Read data with URL
                             //Creating array for parameters
                             String[] field = new String[4];
                             field[0] = "username";
@@ -178,6 +178,7 @@ public class ActivityRegister extends AppCompatActivity {
                             data[1] = password;
                             data[2] = email;
                             data[3] = date;
+
 
                             PostData postData = new PostData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/signup.php", "POST", field, data);
 

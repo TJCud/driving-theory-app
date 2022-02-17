@@ -59,7 +59,7 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
     private CountDownTimer countDownTimer;
     private TextToSpeech mTTS;
     private ProgressBar pbProgressBar;
-   private JSONObject data;
+
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -308,6 +308,25 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
     public void finishTest(String passUsername){
 
 
+        //MAKES PROGRESS BAR APPEAR, AND OTHER OBJECTS DISAPPEAR
+        pbProgressBar.setVisibility(View.VISIBLE);
+        tvQuestionWithoutImage.setVisibility(View.VISIBLE);
+        tvQuestionWithoutImage.setText("SAVING EXAM RESULTS...");
+        tvQuestionWithImage.setVisibility(View.INVISIBLE);
+        radioGroup.setVisibility(View.INVISIBLE);
+        questionImage.setVisibility(View.INVISIBLE);
+        tvExitTest.setVisibility(View.INVISIBLE);
+        btnNext.setVisibility(View.INVISIBLE);
+        btnPrev.setVisibility(View.INVISIBLE);
+        btnFinish.setVisibility(View.INVISIBLE);
+        tvAnswerWarning.setVisibility(View.INVISIBLE);
+        ttsImage.setVisibility(View.INVISIBLE);
+
+        //CHECKS IF PASS PERCENTAGE IS ACHIEVED AND DISPLAYS OUTCOME
+        String outcome;
+        double passCheck = score * 100 / totalQuestions;
+        if(passCheck > 85){ outcome = "PASS"; }
+        else { outcome = "FAIL"; }
 
         String saveQuestionStrings = saveQuestion.toString().replace("[", "").replace("]", "");
         String scoreAsString = String.valueOf(score);
@@ -319,46 +338,37 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
             public void run() {
 
 
-                //MAKES PROGRESS BAR APPEAR, AND OTHER OBJECTS DISAPPEAR
-                pbProgressBar.setVisibility(View.VISIBLE);
-                tvQuestionWithoutImage.setVisibility(View.VISIBLE);
-                tvQuestionWithoutImage.setText("Submitting Exam...");
-                tvQuestionWithImage.setVisibility(View.INVISIBLE);
-                radioGroup.setVisibility(View.INVISIBLE);
-                questionImage.setVisibility(View.INVISIBLE);
-                tvExitTest.setVisibility(View.INVISIBLE);
-                btnNext.setVisibility(View.INVISIBLE);
-                btnPrev.setVisibility(View.INVISIBLE);
-                btnFinish.setVisibility(View.INVISIBLE);
-                tvAnswerWarning.setVisibility(View.INVISIBLE);
-                ttsImage.setVisibility(View.INVISIBLE);
-
                 //Assign current date and time to string
                 Date today = new Date();
                 SimpleDateFormat format = new SimpleDateFormat("MMMM dd yyyy ' @ ' hh:mm a");
                 String date = format.format(today);
 
-                //Starting Write and Read data with URL
                 //Creating array for parameters
-                String[] field = new String[5];
+                String[] field = new String[6];
                 field[0] = "username";
                 field[1] = "questions_correct";
                 field[2] = "questions_total";
-                field[3] = "date";
-                field[4] = "saved_question";
+                field[3] = "outcome";
+                field[4] = "date";
+                field[5] = "saved_question";
 
                 //Creating array for data
-                String[] data = new String[5];
+                String[] data = new String[6];
                 data[0] = passUsername;
                 data[1] = scoreAsString;
                 data[2] = totalQuestionsAsString;
-                data[3] = date;
-                data[4] = saveQuestionStrings;
+                data[3] = outcome;
+                data[4] = date;
+                data[5] = saveQuestionStrings;
 
 
-                PostData postData = new PostData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/saveresults.php", "POST", field, data);
+              PostData postData = new PostData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/saveResults.php", "POST", field, data);
+
 
                 if (postData.startPut()) {
+
+
+
 
 
                     if (postData.onComplete()) {
@@ -368,7 +378,22 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
                         }
 
                         else{
+                            //MAKES PROGRESS BAR APPEAR, AND OTHER OBJECTS DISAPPEAR
+                            pbProgressBar.setVisibility(View.INVISIBLE);
+                            tvQuestionWithoutImage.setVisibility(View.VISIBLE);
+                            tvQuestionWithoutImage.setText("Error saving exam");
+                            tvQuestionWithImage.setVisibility(View.VISIBLE);
+                            radioGroup.setVisibility(View.VISIBLE);
+                            questionImage.setVisibility(View.VISIBLE);
+                            tvExitTest.setVisibility(View.VISIBLE);
+                            btnNext.setVisibility(View.VISIBLE);
+                            btnPrev.setVisibility(View.VISIBLE);
+                            btnFinish.setVisibility(View.VISIBLE);
+                            tvAnswerWarning.setVisibility(View.VISIBLE);
+                            ttsImage.setVisibility(View.VISIBLE);
+                            //OPEN PREVIOUS SCREEN
                             openPrevScreen(passUsername);
+                            //SHOW ERROR MESSAGE
                             Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
                         }
 
@@ -376,8 +401,6 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
         });
 
     }
-
-
 
 
 
@@ -488,8 +511,6 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
 
     public void getQuestions(){
 
-
-
                 pbProgressBar.setVisibility(View.VISIBLE);
                 FetchData fetchData = new FetchData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/getquestions.php");
                 if (fetchData.startFetch()) {
@@ -501,7 +522,6 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
 
                     }
                 }
-
 
         try {
             JSONObject obj = new JSONObject(fetchedResult);
@@ -537,24 +557,6 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
-/*        for (int i = 0; i<100; ++i) {
-            QuestionModel q = new QuestionModel();
-            q.setID(i);
-            q.setCategory("category");
-            q.setQuestion("question");
-            q.setOption1("option1");
-            q.setOption2("option2");
-            q.setOption3("option3");
-            q.setOption4("option4");
-            q.setAnswerNr(1);
-            q.setImageID("default");
-            q.setExplanation("explanation");
-            questionListFromRemote.add(q);
-        }*/
-
-
 
     }
 
