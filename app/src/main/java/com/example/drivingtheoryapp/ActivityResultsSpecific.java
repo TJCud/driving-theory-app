@@ -27,8 +27,8 @@ public class ActivityResultsSpecific extends AppCompatActivity {
         setContentView(R.layout.activity_results_specific);
 
         Bundle recdData = getIntent().getExtras();
-        String myVal1 = recdData.getString("id");
-        String myVal2 = recdData.getString("username_key");
+/*        String myVal1 = recdData.getString("id");
+        String myVal2 = recdData.getString("username_key");*/
         String myVal3 = recdData.getString("result");
 
         TextView textView = (TextView)findViewById(R.id.tvReviewResults);

@@ -59,9 +59,9 @@ tools:context=".ActivityResultsAll">
 
         <TextView
             android:id="@+id/tvTestStats"
-            android:fontFamily="@font/robotocondensedlight"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="40dp"
+            android:fontFamily="@font/robotocondensedlight"
             android:gravity="center_horizontal"
             android:scrollbars="vertical"
             android:text="STATS"
