@@ -6,7 +6,7 @@ xmlns:card_view="http://schemas.android.com/apk/res-auto"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical"
-android:background="#e6e6ff"
+android:background="@drawable/background"
 android:weightSum="15"
 tools:context=".ActivityAccountMenu">
 
@@ -16,7 +16,7 @@ tools:context=".ActivityAccountMenu">
     android:layout_height="45dp"
     android:layout_weight="2"
     android:layout_marginBottom="0dp"
-    android:background="#4287f5">
+    android:background="#80C0C0C0">
 
     <ImageView
         android:id="@+id/ID_returnButton"
@@ -76,7 +76,7 @@ tools:context=".ActivityAccountMenu">
             android:layout_marginBottom="16dp"
             app:cardCornerRadius="80dp"
             app:cardElevation="0dp"
-            card_view:cardBackgroundColor="#4287f5"
+            card_view:cardBackgroundColor="#BFC0C0C0"
 
             >
 
@@ -118,7 +118,7 @@ tools:context=".ActivityAccountMenu">
             android:layout_marginBottom="16dp"
             app:cardCornerRadius="80dp"
             app:cardElevation="0dp"
-            card_view:cardBackgroundColor="#4287f5">
+            card_view:cardBackgroundColor="#BFC0C0C0">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -161,7 +161,7 @@ tools:context=".ActivityAccountMenu">
             android:layout_marginBottom="16dp"
             app:cardCornerRadius="80dp"
             app:cardElevation="0dp"
-            card_view:cardBackgroundColor="#4287f5">
+            card_view:cardBackgroundColor="#BFC0C0C0">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -201,7 +201,7 @@ tools:context=".ActivityAccountMenu">
             android:layout_marginBottom="16dp"
             app:cardCornerRadius="80dp"
             app:cardElevation="0dp"
-            card_view:cardBackgroundColor="#4287f5">
+            card_view:cardBackgroundColor="#BFC0C0C0">
 
             <LinearLayout
                 android:layout_width="wrap_content"

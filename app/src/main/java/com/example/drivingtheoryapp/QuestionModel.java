@@ -1,5 +1,10 @@
 package com.example.drivingtheoryapp;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
 public class QuestionModel {
 
     //DECLARING VARIABLES
@@ -13,8 +18,6 @@ public class QuestionModel {
     private String imageID;
     private String explanation;
     private int answerNr;
-
-
 
 
     //CONSTRUCTOR
@@ -106,4 +109,7 @@ public class QuestionModel {
     public void setAnswerNr(int answerNr) {
         this.answerNr = answerNr;
     }
+
+
+
 }

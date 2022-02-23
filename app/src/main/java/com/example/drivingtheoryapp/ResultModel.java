@@ -76,8 +76,8 @@ public class ResultModel {
         this.date = date;
     }
 
-    public String getSavedQuestion() {
-        return savedQuestion;
+    public String getSavedQuestion(int savedQuestion) {
+        return this.savedQuestion;
     }
     public void setSavedQuestion(String savedQuestion) {
         this.savedQuestion = savedQuestion;

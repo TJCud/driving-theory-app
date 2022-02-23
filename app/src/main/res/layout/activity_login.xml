@@ -1,64 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ActivityLogin"
-    android:background="#e6e6ff">
+    android:background="@drawable/background"
+    android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen"
+    android:fitsSystemWindows="false">
 
     <!--Page Title-->
-    <TextView
-        android:id="@+id/signintext"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="50dp"
-        android:fontFamily="@font/robotocondensedlight"
-        android:gravity="center"
-        android:text="Sign In"
-        android:textColor="@color/black"
-        android:textSize="35dp"
-        android:textStyle="bold" />
 
     <!--Username Field-->
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/logo"
+        android:gravity="center" />
+
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/etUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/signintext"
+        android:layout_below="@id/logo"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="#30ffffff"
+        android:layout_marginBottom="5dp"
+        android:background="#B3ffffff"
         android:drawableLeft="@drawable/ic_baseline_person_outline_24"
         android:drawablePadding="20dp"
         android:fontFamily="@font/robotocondensedlight"
         android:hint="@string/username"
         android:inputType="text"
-        android:maxLength="12"
+        android:maxLength="16"
         android:maxLines="1"
         android:padding="20dp"
         android:textColor="#000000"
         android:textColorHint="#5c5c5c" />
 
-    <!--Password Field-->
-    <EditText
-        android:id="@+id/password"
+    <TextView
+        android:id="@+id/tvUsernameWarning"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/username"
-        android:fontFamily="@font/robotocondensedlight"
+        android:layout_below="@id/logo"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="#30ffffff"
-        android:drawableLeft="@drawable/ic_baseline_lock_24"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/robotocondensedlight"
+        android:paddingLeft="20dp"
+        android:text="Username Warning"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+
+
+    <!--Email Field-->
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etUsername"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="5dp"
+        android:animateLayoutChanges="true"
+        android:background="#B3ffffff"
+        android:drawableLeft="@drawable/ic_baseline_person_outline_24"
         android:drawablePadding="20dp"
+        android:fontFamily="@font/robotocondensedlight"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:maxLength="300"
+        android:maxLines="1"
+        android:padding="20dp"
+        android:textColor="#000000"
+        android:textColorHint="#5c5c5c" />
+
+    <TextView
+        android:id="@+id/tvEmailWarning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etUsername"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/robotocondensedlight"
+        android:paddingLeft="20dp"
+        android:text="Email Warning"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+
+
+
+
+
+    <!--Password Field-->
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etEmail"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="5dp"
+        android:animateLayoutChanges="true"
+        android:background="#B3ffffff"
+        android:drawableLeft="@drawable/ic_baseline_person_outline_24"
+        android:drawablePadding="20dp"
+        android:fontFamily="@font/robotocondensedlight"
         android:hint="@string/password"
         android:inputType="textPassword"
         android:maxLength="16"
@@ -67,47 +131,110 @@
         android:textColor="#000000"
         android:textColorHint="#5c5c5c" />
 
+    <TextView
+        android:id="@+id/tvPasswordWarning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etEmail"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/robotocondensedlight"
+        android:paddingLeft="20dp"
+        android:text="Password Warning"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+
+
+    <!--Password Field-->
+    <EditText
+        android:id="@+id/etPasswordConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etPassword"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="5dp"
+        android:animateLayoutChanges="true"
+        android:background="#B3ffffff"
+        android:drawableLeft="@drawable/ic_baseline_person_outline_24"
+        android:drawablePadding="20dp"
+        android:fontFamily="@font/robotocondensedlight"
+        android:hint="@string/confirmpassword"
+        android:inputType="textPassword"
+        android:maxLength="16"
+        android:maxLines="1"
+        android:padding="20dp"
+        android:textColor="@color/black"
+        android:textColorHint="#5c5c5c" />
+
+    <TextView
+        android:id="@+id/tvPasswordConfirmWarning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etPassword"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="5dp"
+        android:paddingLeft="20dp"
+        android:fontFamily="@font/robotocondensedlight"
+        android:text="Password Warning"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        android:textStyle="bold" />
 
 
 
     <!--Login Button-->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/loginbtn"
-        android:layout_width="match_parent"
+
+
+    <Button
+        android:id="@+id/signInBtn"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/password"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:backgroundTint="@color/black"
+        android:layout_below="@id/etPasswordConfirm"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="50dp"
+        android:backgroundTint="#80000000"
         android:fontFamily="@font/robotocondensedlight"
-        android:gravity="center"
-        android:text="Login" />
+        android:text="SIGN IN"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold" />
 
 
-
-    <!--Register Button-->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/registerbtn"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/registerBtn"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/loginbtn"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:backgroundTint="@color/black"
+        android:layout_below="@id/etPasswordConfirm"
+        android:layout_marginLeft="210dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="5dp"
+        android:backgroundTint="#80000000"
         android:fontFamily="@font/robotocondensedlight"
-        android:text="Register" />
+        android:text="REGISTER"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+
 
 
     <!--Continue as guest link-->
     <TextView
-        android:id="@+id/ID_guest"
+        android:id="@+id/tvGuestUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/registerbtn"
+        android:layout_below="@id/registerBtn"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
@@ -115,9 +242,10 @@
         android:layout_marginBottom="20dp"
         android:backgroundTint="@color/white"
         android:fontFamily="@font/robotocondensedlight"
-        android:text="Continue as guest"
-        android:textColor="@color/black"
-        android:textSize="20dp" />
+        android:text="CONTINUE AS GUEST"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textStyle="bold" />
 
     <ProgressBar
         android:id="@+id/pbProgressBar"
@@ -130,7 +258,7 @@
         android:id="@+id/tvProgressBarText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/registerbtn"
+        android:layout_below="@id/registerBtn"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="20dp"
         android:layout_marginTop="-50dp"
@@ -138,8 +266,8 @@
         android:layout_marginBottom="25dp"
         android:backgroundTint="@color/white"
         android:fontFamily="@font/robotocondensedlight"
-        android:text="Logging in..."
-        android:textColor="@color/black"
+        android:text="Singing in..."
+        android:textColor="@color/white"
         android:textSize="20dp" />
 
 

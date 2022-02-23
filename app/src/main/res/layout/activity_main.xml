@@ -7,9 +7,12 @@
     tools:context=".ActivitySplashScreen"
     android:background="@drawable/splash">
 
-
-
-
-
+    <ProgressBar
+        android:id="@+id/pbProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:indeterminateTint="@android:color/darker_gray"
+        android:visibility="visible" />
 
 </RelativeLayout>

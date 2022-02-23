@@ -20,6 +20,9 @@
         android:theme="@style/Theme.DrivingTheoryApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ActivityLoginRegister"
+            android:exported="false" />
+        <activity
             android:name=".RBsaverTest"
             android:exported="false" />
         <activity
@@ -77,9 +80,5 @@
             </intent-filter>
         </activity>
     </application>
-
-
-
-
 
 </manifest>

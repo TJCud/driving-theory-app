@@ -3,24 +3,37 @@ package com.example.drivingtheoryapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class ActivityLogin extends AppCompatActivity {
 
-    EditText EditTextUsername, EditTextPassword;
-    Button loginButton, registerButton;
+    EditText EditTextUsername, EditTextPassword, EditTextPasswordConfirm, EditTextEmail;
+    Button signInButton, registerButton;
+    private boolean regFieldsOpen;
     private long pressedTime;
     private ProgressBar pbProgressBar;
-    private TextView tvHeader, tvProgressBarText;
+    private TextView tvProgressBarText,tvFullNameWarning,tvEmailWarning,tvUsernameWarning,tvPasswordWarning,tvPasswordConfirmWarning,tvGuestUser;
+    private ImageView logo;
+
 
 
 
@@ -29,102 +42,125 @@ public class ActivityLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        if (getIntent().getBooleanExtra("EXIT", false)) {
-            finish();
+        //PUTS APP INTO FULL SCREEN
+        hideSystemUI();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            getWindow().getAttributes().layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
         }
+
+
+        //CLOSING APP ON BACK PRESS
+        if (getIntent().getBooleanExtra("EXIT", false))
+        { finish(); }
+
+
+        //ASSIGNING VARIABLES TO ID
         pbProgressBar=(ProgressBar)findViewById(R.id.pbProgressBar);
         tvProgressBarText = findViewById(R.id.tvProgressBarText);
         pbProgressBar.setVisibility(View.GONE);
         tvProgressBarText.setVisibility(View.GONE);
-        TextView guestUser = findViewById(R.id.ID_guest);
-        EditTextUsername = findViewById(R.id.username);
-        EditTextPassword = findViewById(R.id.password);
-        loginButton = (Button) findViewById(R.id.loginbtn);
-        registerButton = (Button) findViewById(R.id.registerbtn);
-        tvHeader = findViewById(R.id.signintext);
+        tvGuestUser = findViewById(R.id.tvGuestUser);
+        EditTextUsername = findViewById(R.id.etUsername);
+        EditTextPassword = findViewById(R.id.etPassword);
+        EditTextPasswordConfirm = findViewById(R.id.etPasswordConfirm);
+        EditTextEmail = findViewById(R.id.etEmail);
+        signInButton = (Button) findViewById(R.id.signInBtn);
+        registerButton = (Button) findViewById(R.id.registerBtn);
+        logo = findViewById(R.id.logo);
+        tvEmailWarning = findViewById(R.id.tvEmailWarning);
+        tvUsernameWarning = findViewById(R.id.tvUsernameWarning);
+        tvPasswordWarning = findViewById(R.id.tvPasswordWarning);
+        tvPasswordConfirmWarning = findViewById(R.id.tvPasswordConfirmWarning);
 
+        //HIDING INPUT WARNINGS
+        tvEmailWarning.setVisibility(View.GONE);
+        tvUsernameWarning.setVisibility(View.GONE);
+        tvPasswordWarning.setVisibility(View.GONE);
+        tvPasswordConfirmWarning.setVisibility(View.GONE);
+
+        //HIDE INPUTS FOR REGISTRATION
+        EditTextEmail.setVisibility(View.GONE);
+        EditTextPasswordConfirm.setVisibility(View.GONE);
+        regFieldsOpen = false;
 
 
 
         //BUTTON LISTENERS
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String usernamerawdata, username, password;
 
-                //Takes value of 'usernamerawdata' and converts to lower case
-                usernamerawdata = String.valueOf(EditTextUsername.getText());
-                password = String.valueOf(EditTextPassword.getText());
-                username = usernamerawdata.toLowerCase();
-
-                //MAKES PROGRESS BAR APPEAR, AND OTHER OBJECTS DISAPPEAR
-                pbProgressBar.setVisibility(View.VISIBLE);
-                tvProgressBarText.setVisibility(View.VISIBLE);
-                EditTextUsername.setVisibility(View.INVISIBLE);
-                EditTextPassword.setVisibility(View.INVISIBLE);
-                loginButton.setVisibility(View.INVISIBLE);
-                registerButton.setVisibility(View.INVISIBLE);
-                guestUser.setVisibility(View.INVISIBLE);
-                tvHeader.setVisibility(View.INVISIBLE);
-/*                tvUsernameWarning.setVisibility(View.INVISIBLE);
-                tvPasswordWarning.setVisibility(View.INVISIBLE);*/
+                //IF REGISTRATION FIELDS ARE VISIBLE, HIDE THEM
+                if (regFieldsOpen) {
+                    EditTextEmail.setVisibility(View.GONE);
+                    EditTextPasswordConfirm.setVisibility(View.GONE);
+                    tvUsernameWarning.setVisibility(View.GONE);
+                    tvEmailWarning.setVisibility(View.GONE);
+                    tvPasswordWarning.setVisibility(View.GONE);
+                    tvPasswordConfirmWarning.setVisibility(View.GONE);
+                    tvGuestUser.setVisibility(View.VISIBLE);
+                    registerButton.setText("REGISTER");
+                    signInButton.setText("SIGN IN");
+                    regFieldsOpen = false;
+                } else {
 
 
-                if(!username.equals("") && !password.equals("")) {
-                    Handler handler = new Handler(Looper.getMainLooper());
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
+                    //SIGN IN VARIABLES
+                    String usernamerawdata, username, password;
 
-                            //Starting Write and Read data with URL
-                            //Creating array for parameters
-                            String[] field = new String[2];
-                            field[0] = "username";
-                            field[1] = "password";
-                            //Creating array for data
-                            String[] data = new String[2];
-                            data[0] = username;
-                            data[1] = password;
-                            PostData postData = new PostData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/login.php", "POST", field, data);
-                            if (postData.startPut()) {
-                                if (postData.onComplete()) {
+                    //Takes value of 'usernamerawdata' and converts to lower case
+                    usernamerawdata = String.valueOf(EditTextUsername.getText());
+                    password = String.valueOf(EditTextPassword.getText());
+                    username = usernamerawdata.toLowerCase();
 
-                                    String result = postData.getResult();
-                                    if (result.equals("Login Success")) {
+                    //MAKES PROGRESS BAR APPEAR, AND OTHER OBJECTS DISAPPEAR
+                    showProgressBar();
 
-                                        Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
-                                        openMainMenu(username);
-                                        finish();
+
+                    //CHECKING IF USERNAME AND PASSWORD FIELDS ARE NOT BLANK
+                    if (!username.equals("") && !password.equals("")) {
+                        Handler handler = new Handler(Looper.getMainLooper());
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                //Starting Write and Read data with URL
+                                //Creating array for parameters
+                                String[] field = new String[2];
+                                field[0] = "username";
+                                field[1] = "password";
+                                //Creating array for data
+                                String[] data = new String[2];
+                                data[0] = username;
+                                data[1] = password;
+                                PostData postData = new PostData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/login.php", "POST", field, data);
+                                if (postData.startPut()) {
+                                    if (postData.onComplete()) {
+
+                                        String result = postData.getResult();
+                                        if (result.equals("Login Success")) {
+
+                                            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                                            openMainMenu(username);
+                                            finish();
+                                        } else {
+                                            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                                            //MAKES PROGRESS BAR DISAPPEAR, AND OTHER OBJECTS REAPPEAR
+                                            hideProgressBar();
+
+
+                                        }
+
                                     }
+                                }
+                            }
+                        });
+                    } else {
+                        Toast.makeText(getApplicationContext(), "All fields are required", Toast.LENGTH_SHORT).show();
+                        //MAKES PROGRESS BAR DISAPPEAR, AND OTHER OBJECTS REAPPEAR
+                        hideProgressBar();
 
-                                    else{
-                                        Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
-                                        //MAKES PROGRESS BAR DISAPPEAR, AND OTHER OBJECTS REAPPEAR
-                                        pbProgressBar.setVisibility(View.INVISIBLE);
-                                        tvProgressBarText.setVisibility(View.INVISIBLE);
-                                        EditTextUsername.setVisibility(View.VISIBLE);
-                                        EditTextPassword.setVisibility(View.VISIBLE);
-                                        loginButton.setVisibility(View.VISIBLE);
-                                        registerButton.setVisibility(View.VISIBLE);
-                                        guestUser.setVisibility(View.VISIBLE);
-                                        tvHeader.setVisibility(View.VISIBLE);
-
-                                    }
-
-                                }}}
-                    });
-                }
-                else {
-                    Toast.makeText(getApplicationContext(),"All fields are required",Toast.LENGTH_SHORT).show();
-                    //MAKES PROGRESS BAR DISAPPEAR, AND OTHER OBJECTS REAPPEAR
-                    pbProgressBar.setVisibility(View.INVISIBLE);
-                    tvProgressBarText.setVisibility(View.INVISIBLE);
-                    EditTextUsername.setVisibility(View.VISIBLE);
-                    EditTextPassword.setVisibility(View.VISIBLE);
-                    loginButton.setVisibility(View.VISIBLE);
-                    registerButton.setVisibility(View.VISIBLE);
-                    guestUser.setVisibility(View.VISIBLE);
-                    tvHeader.setVisibility(View.VISIBLE);
+                    }
                 }
             }
         });
@@ -133,12 +169,176 @@ public class ActivityLogin extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openRegister();
+
+                //IF REGISTRATION FIELDS ARE NOT VISIBLE, SHOW THEM
+                if(!regFieldsOpen){
+                EditTextEmail.setVisibility(View.VISIBLE);
+                EditTextPasswordConfirm.setVisibility(View.VISIBLE);
+                tvGuestUser.setVisibility(View.GONE);
+                registerButton.setText("COMPLETE REGISTRATION");
+                signInButton.setText("ALREADY REGISTERED? SIGN IN");
+                regFieldsOpen = true;}
+                else{
+
+
+
+                    //DECLARING VARIABLES
+                    String username, usernameRaw, password,passwordConfirm, email;
+                    boolean allFieldsValid = true;
+
+                    //Takes value of usernameRaw and converts to lower case
+                    usernameRaw = String.valueOf(EditTextUsername.getText());
+                    username = usernameRaw.toLowerCase();
+                    password = String.valueOf(EditTextPassword.getText());
+                    passwordConfirm = String.valueOf(EditTextPasswordConfirm.getText());
+                    email = String.valueOf(EditTextEmail.getText());
+
+
+                    //HIDES VALIDATION WARNINGS
+                    tvEmailWarning.setVisibility(View.GONE);
+                    tvUsernameWarning.setVisibility(View.GONE);
+                    tvPasswordWarning.setVisibility(View.GONE);
+                    tvPasswordConfirmWarning.setVisibility(View.GONE);
+
+
+                    //USERNAME VALIDATION
+                    if (username.equals("")) {
+                        tvUsernameWarning.setTextColor(Color.RED);
+                        tvUsernameWarning.setVisibility(View.VISIBLE);
+                        tvUsernameWarning.setText("Username field cannot be empty");
+                        allFieldsValid = false;}
+                    if (username.length() > 16 || username.length() <3) {
+                        tvUsernameWarning.setTextColor(Color.RED);
+                        tvUsernameWarning.setVisibility(View.VISIBLE);
+                        tvUsernameWarning.setText("Username must contain 3-16 characters");
+                        allFieldsValid = false;}
+
+                    //PASSWORD VALIDATION
+                    if  (!password.equals(passwordConfirm)) {
+                        tvPasswordWarning.setTextColor(Color.RED);
+                        tvPasswordWarning.setVisibility(View.VISIBLE);
+                        tvPasswordWarning.setText("Password does not match");
+                        tvPasswordConfirmWarning.setTextColor(Color.RED);
+                        tvPasswordConfirmWarning.setVisibility(View.VISIBLE);
+                        tvPasswordConfirmWarning.setText("Password does not match");
+                        allFieldsValid = false;
+                    }
+                    if (password.equals("")) {
+                        tvPasswordWarning.setTextColor(Color.RED);
+                        tvPasswordWarning.setVisibility(View.VISIBLE);
+                        tvPasswordWarning.setText("Password field cannot be empty");
+                        allFieldsValid = false;
+                    }
+                    if (password.length() < 8 || password.length() > 20) {
+                        tvPasswordWarning.setTextColor(Color.RED);
+                        tvPasswordWarning.setVisibility(View.VISIBLE);
+                        tvPasswordWarning.setText("Password must contain 8-20 characters");
+                        allFieldsValid = false;
+                    }
+                    if (passwordConfirm.equals("")) {
+                        tvPasswordConfirmWarning.setTextColor(Color.RED);
+                        tvPasswordConfirmWarning.setVisibility(View.VISIBLE);
+                        tvPasswordConfirmWarning.setText("Password field cannot be empty");
+                        allFieldsValid = false;
+                    }
+                    if (passwordConfirm.length() < 8 || password.length() > 20) {
+                        tvPasswordConfirmWarning.setTextColor(Color.RED);
+                        tvPasswordConfirmWarning.setVisibility(View.VISIBLE);
+                        tvPasswordConfirmWarning.setText("Password must contain 8-20 characters");
+                        allFieldsValid = false;
+                    }
+                    //EMAIL VALIDATION
+                    if (email.equals("")) {
+                        tvEmailWarning.setTextColor(Color.RED);
+                        tvEmailWarning.setVisibility(View.VISIBLE);
+                        tvEmailWarning.setText("E-mail field cannot be empty");
+                        allFieldsValid = false;
+                    }
+                    if (!isValidEmail(email)) {
+                        tvEmailWarning.setTextColor(Color.RED);
+                        tvEmailWarning.setVisibility(View.VISIBLE);
+                        tvEmailWarning.setText("E-mail is invalid");
+                        allFieldsValid = false;
+                    }
+
+
+
+                    //IF ALL FIELDS ARE NOT EMPTY AND HAVE PASSED INITIAL DATA VALIDATION
+                    if(!username.equals("") && !password.equals("") && !passwordConfirm.equals("") && !email.equals("") && allFieldsValid) {
+
+                        //MAKES PROGRESS BAR APPEAR, AND OTHER OBJECTS DISAPPEAR
+                        showProgressBar();
+
+                        //HIDES INPUT WARNINGS (ONLY IF VISIBLE)
+                        tvEmailWarning.setVisibility(View.INVISIBLE);
+                        tvUsernameWarning.setVisibility(View.INVISIBLE);
+                        tvPasswordWarning.setVisibility(View.INVISIBLE);
+                        tvPasswordConfirmWarning.setVisibility(View.INVISIBLE);
+
+
+                        Handler handler = new Handler(Looper.getMainLooper());
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                //Assign current date and time to string
+                                Date today = new Date();
+                                SimpleDateFormat format = new SimpleDateFormat("MMMM dd yyyy ' @ ' hh:mm a");
+                                String date = format.format(today);
+
+                                //Starting Write and Read data with URL
+                                //Creating array for parameters
+                                String[] field = new String[4];
+                                field[0] = "username";
+                                field[1] = "password";
+                                field[2] = "email";
+                                field[3] = "date";
+                                //Creating array for data
+                                String[] data = new String[4];
+                                data[0] = username;
+                                data[1] = password;
+                                data[2] = email;
+                                data[3] = date;
+
+
+                                PostData postData = new PostData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/signup.php", "POST", field, data);
+
+                                if (postData.startPut()) {
+                                    if (postData.onComplete()) {
+                                        String result = postData.getResult();
+                                        if (result.equals("Sign Up Success")) {
+                                            Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
+                                            openMainMenu(username);
+                                            finish();
+                                        }
+
+                                        else{
+                                            //MAKES PROGRESS BAR DISAPPEAR, AND OTHER OBJECTS APPEAR
+                                            hideProgressBar();
+
+                                            //DISPLAYS RETURN MESSAGE
+                                            Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
+
+                                        }
+
+                                    }}}
+                        });
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(),"All fields are required",Toast.LENGTH_SHORT).show();
+
+                        //MAKES PROGRESS BAR DISAPPEAR, AND OTHER OBJECTS APPEAR
+                        hideProgressBar();
+
+
+                    }
+                }
+
             }
         });
 
 
-        guestUser.setOnClickListener(new View.OnClickListener() {
+        //PROCEED TO MAIN MENU AS A GUESTION USER
+        tvGuestUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openMainMenu("Guest");
@@ -149,13 +349,9 @@ public class ActivityLogin extends AppCompatActivity {
     }
 
 
-    //BUTTON ACTIONS
-    public void openRegister(){
-        Intent intent = new Intent(this, ActivityRegister.class);
-        startActivity(intent);
-    }
 
 
+    //METHOD FOR OPENING MAIN MENU, PASSING IN USERNAME
     public void openMainMenu(String passUsername){
         //FOR PASSING USERNAME TO OTHER ACTIVITIES
         Intent openMenu = new Intent(getApplicationContext(), ActivityMainMenu.class);
@@ -183,4 +379,50 @@ public class ActivityLogin extends AppCompatActivity {
         }
         pressedTime = System.currentTimeMillis();
     }
+
+
+    //FUNCTION TO CHECK IF EMAIL IS VALID
+    public static boolean isValidEmail(CharSequence target) {
+        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
+    }
+
+
+
+    //MAKES PROGRESS BAR APPEAR, AND OTHER OBJECTS DISAPPEAR
+    public void showProgressBar(){
+        pbProgressBar.setVisibility(View.VISIBLE);
+        tvProgressBarText.setVisibility(View.VISIBLE);
+        EditTextUsername.setVisibility(View.INVISIBLE);
+        EditTextPassword.setVisibility(View.INVISIBLE);
+        signInButton.setVisibility(View.INVISIBLE);
+        registerButton.setVisibility(View.INVISIBLE);
+        tvGuestUser.setVisibility(View.INVISIBLE);
+        logo.setVisibility(View.INVISIBLE);
+    }
+
+    //MAKES PROGRESS BAR DISAPPEAR, AND OTHER OBJECTS APPEAR
+    public void hideProgressBar(){
+        pbProgressBar.setVisibility(View.INVISIBLE);
+        tvProgressBarText.setVisibility(View.INVISIBLE);
+        EditTextUsername.setVisibility(View.VISIBLE);
+        EditTextPassword.setVisibility(View.VISIBLE);
+        signInButton.setVisibility(View.VISIBLE);
+        registerButton.setVisibility(View.VISIBLE);
+        tvGuestUser.setVisibility(View.VISIBLE);
+        logo.setVisibility(View.VISIBLE);
+    }
+
+
+    //CODE FOR SHOWING FULL SCREEN
+    public void hideSystemUI() {
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_LOW_PROFILE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+    }
+
+
 }
