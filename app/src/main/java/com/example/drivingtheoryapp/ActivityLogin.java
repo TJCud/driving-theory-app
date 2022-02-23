@@ -42,13 +42,6 @@ public class ActivityLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        //PUTS APP INTO FULL SCREEN
-        hideSystemUI();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            getWindow().getAttributes().layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
-        }
-
-
         //CLOSING APP ON BACK PRESS
         if (getIntent().getBooleanExtra("EXIT", false))
         { finish(); }
@@ -410,18 +403,6 @@ public class ActivityLogin extends AppCompatActivity {
         registerButton.setVisibility(View.VISIBLE);
         tvGuestUser.setVisibility(View.VISIBLE);
         logo.setVisibility(View.VISIBLE);
-    }
-
-
-    //CODE FOR SHOWING FULL SCREEN
-    public void hideSystemUI() {
-        getWindow().getDecorView().setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_LOW_PROFILE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_IMMERSIVE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
     }
 
 

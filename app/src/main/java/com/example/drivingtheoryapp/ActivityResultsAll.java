@@ -33,8 +33,7 @@ public class ActivityResultsAll extends AppCompatActivity {
     private ListView allResultsListView;
     private ArrayList<String> arrayListExamOutcome = new ArrayList<>();
     private ArrayList<String> arrayListAskedQuestions = new ArrayList<>();
-    private String fetchedResult, savedQuestion;
-    private ProgressBar pbProgressBar;
+    private String fetchedResult;
     private int pass = 0;
     private ResultModel resultModel = new ResultModel();
 
@@ -45,13 +44,6 @@ public class ActivityResultsAll extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results_all);
 
-        //PUTS APP INTO FULL SCREEN
-        hideSystemUI();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            getWindow().getAttributes().layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
-        }
-
-
         TextView tvTestStats = (TextView) findViewById(R.id.tvTestStats);
         allResultsListView = (ListView) findViewById(R.id.allResultsListView);
         ImageView backButtonIcon = (ImageView) findViewById(R.id.ID_returnButton);
@@ -61,6 +53,7 @@ public class ActivityResultsAll extends AppCompatActivity {
         String username = intent.getStringExtra("username_key");
 
 
+        //Results method
         getResults(username, tvTestStats);
 
 
@@ -118,42 +111,41 @@ public class ActivityResultsAll extends AppCompatActivity {
                     JSONObject questionObj = questionData.getJSONObject(i);
 
                     //PARSING DATA FROM JSON TO VARIABLES
-
                     int ID = questionObj.getInt("id");
-                    resultModel.setID(ID);
-                    String username = questionObj.getString("username");
                     String questionsCorrect = questionObj.getString("questions_correct");
                     String questionsTotal = questionObj.getString("questions_total");
                     String outcome = questionObj.getString("outcome");
                     if(outcome.equals("PASS")){ pass++; } //COUNTING NUMBER OF TIMES USER HAS PASSED EXAM
                     String date = questionObj.getString("date");
-                    savedQuestion = questionObj.getString("saved_question");
+                    String savedQuestion = questionObj.getString("saved_question");
                     resultModel.setSavedQuestion(savedQuestion);
                     //CHECKS IF PASS PERCENTAGE IS ACHIEVED AND DISPLAYS OUTCOME
                     double passCheck = Integer.parseInt(questionsCorrect) * 100 / Integer.parseInt(questionsTotal);
 
 
-                    //ADDS EXAM DATA TO ARRAY LIST
+                    //ADDS EXAM DATA TO ARRAY LISTS
                     arrayListExamOutcome.add("Exam ID: " + ID +"\n"+date + "\n" + "Exam Score: " + questionsCorrect + "/" + questionsTotal + " (" + passCheck + "%) " + "Outcome: " + outcome);
+                    arrayListAskedQuestions.add("Exam ID: " + ID +"\n\n"+savedQuestion + "\n\n");
 
+
+                    //CREATE AND SET THE LIST ADAPTER FOR DISPLAYING EXAM INFO
+                    ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, arrayListExamOutcome);
+                    allResultsListView.setAdapter(adapter);
+
+                    //set an onItemClickListener to the ListView
+                    allResultsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                            String getSavedQuestionString = arrayListAskedQuestions.get(position);
+                            Intent editScreenIntent = new Intent(ActivityResultsAll.this, ActivityResultsSpecific.class);
+                            editScreenIntent.putExtra("result",getSavedQuestionString);
+                            startActivity(editScreenIntent);
+                        }
+                    });
                 }
 
-                //CREATE AND SET THE LIST ADAPTER FOR DISPLAYING EXAM INFO
-                ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, arrayListExamOutcome);
-                allResultsListView.setAdapter(adapter);
-
-                //set an onItemClickListener to the ListView
-                allResultsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
 
-                        int savedQuestion = (int) adapterView.getItemIdAtPosition(resultModel.getID());
-                        Intent editScreenIntent = new Intent(ActivityResultsAll.this, ActivityResultsSpecific.class);
-                        editScreenIntent.putExtra("result",resultModel.getSavedQuestion(savedQuestion));
-                        startActivity(editScreenIntent);
-                    }
-                });
 
                 //CALCULATING PASS RATE
                 double overallPassRate;
@@ -161,6 +153,7 @@ public class ActivityResultsAll extends AppCompatActivity {
 
                 // Now the list is in reverse order (most recent exam at top)
                 Collections.reverse(arrayListExamOutcome);
+                Collections.reverse(arrayListAskedQuestions);
 
                 //SET EXAM OVERVIEW LABEL
                 overviewLabel.setText("Total Exams Taken: " + n + "              Pass rate: " + overallPassRate + "%");
@@ -175,20 +168,6 @@ public class ActivityResultsAll extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
-
-    //CODE FOR SHOWING FULL SCREEN
-    public void hideSystemUI() {
-        getWindow().getDecorView().setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_LOW_PROFILE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_IMMERSIVE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-    }
-
-
 
 }
 

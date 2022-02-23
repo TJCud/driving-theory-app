@@ -35,7 +35,7 @@ public class ResultModel {
 
 
     //GETTERS AND SETTERS
-    public int getID() {
+    public int getID(int position) {
         return ID;
     }
     public void setID(int ID) {
