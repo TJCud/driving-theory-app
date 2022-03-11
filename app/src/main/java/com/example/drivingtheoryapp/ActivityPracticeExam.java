@@ -12,6 +12,11 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.*;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,7 +28,7 @@ import java.util.Locale;
 public class ActivityPracticeExam extends AppCompatActivity implements ExampleDialog.ExampleDialogListener {
 
     private QuestionModel currentQuestion;
-    private List<QuestionModel> questionList;
+
     private TextView tvQuestionWithImage,tvQuestionWithoutImage, tvQuestionNo, tvTimer, tvExitTest,tvAnswerWarning;;
     private RadioGroup radioGroup;
     private RadioButton rb1, rb2, rb3, rb4;
@@ -31,13 +36,15 @@ public class ActivityPracticeExam extends AppCompatActivity implements ExampleDi
     private Button btnExplanation;
     private ImageView questionImage;
     private ImageView ttsImage;
-    private String imageID;
+    private String imageID, fetchedResult;
     private String questionExplanation;
     private int totalQuestions;
     private int qCounter;
     private int score;
     private boolean answered;
     private TextToSpeech mTTS;
+    private ProgressBar pbProgressBar;
+    private List<QuestionModel> questionListFromRemote;
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -48,7 +55,6 @@ public class ActivityPracticeExam extends AppCompatActivity implements ExampleDi
 
 
         //ASSIGN VARIABLES TO ID's
-        questionList = new ArrayList<>();
         tvQuestionWithImage = findViewById(R.id.tvQuestionWithImage);
         tvQuestionWithoutImage = findViewById(R.id.tvQuestionWithoutImage);
         tvQuestionNo = findViewById(R.id.tvQuestionNumber);
@@ -66,19 +72,23 @@ public class ActivityPracticeExam extends AppCompatActivity implements ExampleDi
         tvExitTest = findViewById(R.id.tvExitTest);
         tvAnswerWarning = findViewById(R.id.tvAnswerWarning);
         ttsImage = findViewById(R.id.ivTTSicon);
+        pbProgressBar = findViewById(R.id.pbProgressBar);
+        pbProgressBar.setVisibility(View.GONE);
+        questionListFromRemote = new ArrayList<>();
 
 
         // Getting the intent which started this activity
         Intent intent = getIntent();
         // Get the data of the activity providing the same key value
         String username = intent.getStringExtra("username_key");
-        String category = intent.getStringExtra("category_key");
+        String selectedCategory = intent.getStringExtra("category_key");
+
+        //GET QUESTIONS FROM REMOTE DB
+        getQuestions(selectedCategory);
 
         // timer(username); //Begin Timer
-        TestDbHelper dbHelper = new TestDbHelper(this); //Initialise database
-        questionList = dbHelper.getCategoryQuestions(category); //Loads questions into list
-        Collections.shuffle(questionList); //Shuffles question order
-        totalQuestions = questionList.size(); //Displays number of questions
+        Collections.shuffle(questionListFromRemote); //Shuffle remote question order
+        totalQuestions = questionListFromRemote.size(); //Displays number of questions
 
         showNextQuestion(username);
 
@@ -210,7 +220,7 @@ public class ActivityPracticeExam extends AppCompatActivity implements ExampleDi
         tvAnswerWarning.setVisibility(View.GONE); //CLEARS ANSWER WARNING (IF VISIBLE)
 
         if(qCounter < totalQuestions){
-            currentQuestion = questionList.get(qCounter);
+            currentQuestion = questionListFromRemote.get(qCounter);
             tvQuestionWithImage.setText(currentQuestion.getQuestion());
             tvQuestionWithoutImage.setText(currentQuestion.getQuestion());
             rb1.setText(currentQuestion.getOption1());
@@ -301,8 +311,8 @@ public class ActivityPracticeExam extends AppCompatActivity implements ExampleDi
             intent.putExtra("TOTAL_QUESTIONS", totalQuestions);
             intent.putExtra("SCORE", score);
             intent.putExtra("username_key",passUsername);
-            startActivity(intent);
-            finish();
+        //    startActivity(intent);
+          //  finish();
         }
     }
 
@@ -393,6 +403,77 @@ public class ActivityPracticeExam extends AppCompatActivity implements ExampleDi
     public void applyChoice(String username) {
 
     }
+
+
+
+    public void getQuestions(String selectedCategory){
+
+        pbProgressBar.setVisibility(View.VISIBLE);
+        //Starting Write and Read data with URL
+        //Creating array for parameters
+        String[] field = new String[1];
+        field[0] = "category";
+        //Creating array for data
+        String[] data = new String[1];
+        data[0] = selectedCategory;
+        PostData postData = new PostData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/getcategory.php", "POST", field, data);
+
+
+
+
+        if (postData.startPut()) {
+            if (postData.onComplete()) {
+                fetchedResult = postData.getData();
+                Log.i("FetchData", fetchedResult);
+                //End ProgressBar (Set visibility to GONE)
+                pbProgressBar.setVisibility(View.GONE);
+
+            }
+        }
+
+        try {
+            JSONObject obj = new JSONObject(fetchedResult);
+            JSONArray questionData = obj.getJSONArray("categorydata");
+            int n = questionData.length();
+            for (int i = 0; i < n; ++i) {
+                JSONObject questionObj = questionData.getJSONObject(i);
+                QuestionModel q = new QuestionModel();
+                int ID = questionObj.getInt("id");
+                q.setID(ID);
+                String question = questionObj.getString("question");
+                q.setQuestion(question);
+                String option1 = questionObj.getString("option1");
+                q.setOption1(option1);
+                String option2 = questionObj.getString("option2");
+                q.setOption2(option2);
+                String option3 = questionObj.getString("option3");
+                q.setOption3(option3);
+                String option4 = questionObj.getString("option4");
+                q.setOption4(option4);
+                int answer = questionObj.getInt("answer");
+                q.setAnswerNr(answer);
+                String imageID = questionObj.getString("image");
+                q.setImageID(imageID);
+                String explanation = questionObj.getString("explanation");
+                q.setExplanation(explanation);
+                questionListFromRemote.add(q);
+
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+
+
+
+
+
+
+
 
 
 }

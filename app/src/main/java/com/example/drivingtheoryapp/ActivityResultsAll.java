@@ -2,6 +2,7 @@ package com.example.drivingtheoryapp;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.ClipData;
 import android.content.Intent;
@@ -20,9 +21,11 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 
@@ -30,6 +33,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -42,9 +46,6 @@ public class ActivityResultsAll extends AppCompatActivity {
     private ArrayList<String> arrayListExamOutcome = new ArrayList<>();
     private ArrayList<String> arrayListAskedQuestions = new ArrayList<>();
 
-
-
-
     private String fetchedResult;
     private int pass = 0;
     private ProgressBar progressBar;
@@ -52,12 +53,12 @@ public class ActivityResultsAll extends AppCompatActivity {
     private ResultModel resultModel = new ResultModel();
     private Button viewChange;
 
-
-
-
-    //FOR CREATING GRAPH
+    //FOR CREATING CHART
     BarChart barChart;
-    private Boolean graphVisible;
+    private Boolean chartVisible;
+    ArrayList<BarEntry> failedExamEntries = new ArrayList<>();
+    ArrayList<BarEntry> passedExamEntries = new ArrayList<>();
+
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -81,44 +82,44 @@ public class ActivityResultsAll extends AppCompatActivity {
         Intent intent = getIntent();
         String username = intent.getStringExtra("username_key");
 
-        //Results method
-        getResults(username, tvTestStats);
-        displayResultList(username, tvTestStats);
-        drawChart(username, tvTestStats);
+
         barChart.setVisibility(View.GONE);
-        viewChange.setText("GRAPH");
+
+        //DISPLAY MESSAGE TO GUEST ACCOUNT
+        if (username.equals("Guest")){
+            tvTestStats.setText("Guest exam results are not saved. Please sign in.");
+            viewChange.setVisibility(View.GONE);
+        }
+        else {
+
+            getResults(username, tvTestStats);
+            displayResultList(username, tvTestStats);
+            drawChart(username, tvTestStats);
+            barChart.setVisibility(View.GONE);
+            viewChange.setText("Chart View");
+
+        }
 
 
 
 
-
-
-        graphVisible = false;
-
-
-
-
+        //FOR CHANGING BETWEEN CHART AND LIST VIEW
+        chartVisible = false;
         viewChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-
-                if(graphVisible){
-                    viewChange.setText("GRAPH");
+                if(chartVisible){
+                    viewChange.setText("Chart View");
                     barChart.setVisibility(View.GONE);
                     allResultsListView.setVisibility(View.VISIBLE);
-                    graphVisible = false;
+                    chartVisible = false;
                 } else {
-                    viewChange.setText("LIST");
+                    viewChange.setText("List View");
                     barChart.setVisibility(View.VISIBLE);
                     allResultsListView.setVisibility(View.GONE);
-                    graphVisible = true;
+                    chartVisible = true;
                 }
-
-
-
-
-
             }
         });
 
@@ -144,12 +145,6 @@ public class ActivityResultsAll extends AppCompatActivity {
 
     public void getResults(String passUsername, TextView overviewLabel){
 
-        //DISPLAY MESSAGE TO GUEST ACCOUNT
-        if (passUsername.equals("Guest")){
-            overviewLabel.setText("Guest exam results are not saved. Please sign in.");}
-        else {
-
-
             //Creating array for parameters
             String[] field = new String[1];
             field[0] = "username";
@@ -163,7 +158,7 @@ public class ActivityResultsAll extends AppCompatActivity {
             progressBar.setVisibility(View.VISIBLE);
             progressBarText.setVisibility(View.VISIBLE);
 
-            PostData postData = new PostData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/getresults2.php", "POST", field, data);
+            PostData postData = new PostData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/getresults.php", "POST", field, data);
             if (postData.startPut()) {
                 if (postData.onComplete()) {
                     fetchedResult = postData.getData();
@@ -175,7 +170,7 @@ public class ActivityResultsAll extends AppCompatActivity {
 
                 }
             }
-        }}
+        }
 
 
 
@@ -230,9 +225,6 @@ public class ActivityResultsAll extends AppCompatActivity {
                     });
                 }
 
-
-
-
                 //CALCULATING PASS RATE
                 double overallPassRate;
                 overallPassRate = pass * 100 / n;
@@ -274,32 +266,60 @@ public class ActivityResultsAll extends AppCompatActivity {
             }
             else{
 
-                ArrayList<BarEntry> entries = new ArrayList<>();
 
                 int testNo = 0;
 
                 for (int i = 0; i < n; ++i) {
 
                     JSONObject questionObj = questionData.getJSONObject(i);
-                    int value = questionObj.getInt("questions_correct");
+                    int examScore = questionObj.getInt("questions_correct");
                     testNo++;
 
-                    entries.add(new BarEntry(testNo,value));
+
+                    //IF EXAM SCORE IS LESS THAN 44, ADD TO FAIL LIST, ELSE ADD TO PASS LIST
+                    if (examScore < 44){
+                    failedExamEntries.add(new BarEntry(testNo, examScore));}
+                    else{
+                        passedExamEntries.add(new BarEntry(testNo, examScore));
+                    }
 
                 }
 
 
-                BarDataSet barDataSet = new BarDataSet(entries, "Entries");
-                barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
-                barDataSet.setValueTextColor(Color.BLACK);
-                barDataSet.setValueTextSize(16f);
+                BarDataSet barDataSetFail = new BarDataSet(failedExamEntries, "FailedEntries");
+                BarDataSet barDataSetPass = new BarDataSet(passedExamEntries, "FailedEntries");
 
-                BarData barData = new BarData(barDataSet);
+                //FAILED EXAMS
+                barDataSetFail.setColor(Color.RED);
+                barDataSetFail.setValueTextColor(Color.BLACK);
+                barDataSetFail.setValueTextSize(16f);
+
+                //PASSED EXAMS
+                barDataSetPass.setColor(Color.GREEN);
+                barDataSetPass.setValueTextColor(Color.BLACK);
+                barDataSetPass.setValueTextSize(16f);
+
+                //ADDS DATA SETS TO BAR DATA
+                BarData barData = new BarData();
+                barData.addDataSet(barDataSetFail);
+                barData.addDataSet(barDataSetPass);
+
+                //REMOVES DECIMAL POINT FROM RESULTS
+                barData.setValueFormatter(new MyValueFormatter());
 
                 barChart.setFitBars(true);
                 barChart.setData(barData);
-                barChart.getDescription().setText("Bar Chart Example");
-                barChart.animateY(1000);
+                barChart.getLegend().setEnabled(false);
+                barChart.getAxisRight().setDrawLabels(false);
+                barChart.getAxisRight().setEnabled(false);
+                barChart.getAxisLeft().setDrawLabels(false);
+                barChart.getAxisLeft().setEnabled(false);
+                barChart.getXAxis().setEnabled(false);
+                barChart.getDescription().setText("");
+                barChart.setVisibleXRangeMaximum(15);
+                barChart.getAxisRight().setAxisMinimum(0);
+                barChart.getAxisRight().setAxisMaximum(50);
+                barChart.setDrawGridBackground(true);
 
 
 
@@ -311,9 +331,6 @@ public class ActivityResultsAll extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
-
-
 
 
 }
