@@ -32,34 +32,43 @@ public class ActivityMainMenu extends AppCompatActivity {
         welcomeLabel.setText("Welcome, " + username + "!");
 
         //Declaring buttons
-        CardView logoutbtn = (CardView) findViewById(R.id.logoutbtn);
-        CardView testbtn = (CardView) findViewById(R.id.testbtn);
-        CardView accmgmtbtn = (CardView) findViewById(R.id.accmgmtbtn);
-        CardView settingbtn = (CardView) findViewById(R.id.settingsbtn);
+        CardView logoutButtonCV = (CardView) findViewById(R.id.logoutbtn);
+        CardView examButtonCV = (CardView) findViewById(R.id.testbtn);
+        CardView accmgmtButtonCV = (CardView) findViewById(R.id.accmgmtbtn);
+        CardView settingButtonCV = (CardView) findViewById(R.id.settingsbtn);
+
+
+        //IF GUEST USER IS SIGNED IN, HIDE ACCOUNT AND SETTINGS MENU'S
+        if (username.equals("guest")||username.equals("Guest")){
+            accmgmtButtonCV.setVisibility(View.GONE);
+            settingButtonCV.setVisibility(View.GONE);
+        }
+
+
 
         //Button Listeners
-        testbtn.setOnClickListener(new View.OnClickListener() {
+        examButtonCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 testMenu(username);
             }
         });
 
-        logoutbtn.setOnClickListener(new View.OnClickListener() {
+        logoutButtonCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 logOut(username);
             }
         });
 
-        accmgmtbtn.setOnClickListener(new View.OnClickListener() {
+        accmgmtButtonCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 accMgmt(username);
             }
         });
 
-        settingbtn.setOnClickListener(new View.OnClickListener() {
+        settingButtonCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 settings(username);

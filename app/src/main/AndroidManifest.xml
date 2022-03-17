@@ -20,6 +20,18 @@
         android:theme="@style/Theme.DrivingTheoryApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ActivityAdminEditQuestion"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityAdminAllQuestions"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityAdminAllUsers"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityAdminTools"
+            android:exported="false" />
+        <activity
             android:name=".ActivityLoginRegister"
             android:exported="false" />
         <activity

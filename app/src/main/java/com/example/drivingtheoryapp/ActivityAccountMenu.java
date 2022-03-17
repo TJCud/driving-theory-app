@@ -17,12 +17,6 @@ public class ActivityAccountMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_menu);
 
-        //PUTS APP INTO FULL SCREEN
-        hideSystemUI();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            getWindow().getAttributes().layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
-        }
-
         // Getting the intent which started this activity
         Intent intent = getIntent();
         // Get the data of the activity providing the same key value
@@ -30,38 +24,56 @@ public class ActivityAccountMenu extends AppCompatActivity {
 
 
         //Declaring buttons
-        CardView progressbtn = (CardView) findViewById(R.id.progressbtn);
-        CardView deletebtn = (CardView) findViewById(R.id.deletebtn);
-        CardView changepwbtn = (CardView) findViewById(R.id.changepwbtn);
-        CardView changeunbtn = (CardView) findViewById(R.id.changeunbtn);
+        CardView trackProgressCV = (CardView) findViewById(R.id.trackProgress);
+        CardView deleteAccountCV = (CardView) findViewById(R.id.deleteAccount);
+        CardView changePasswordCV = (CardView) findViewById(R.id.changePassword);
+        CardView changeUsernameCV = (CardView) findViewById(R.id.changeUsername);
+        CardView adminToolsCV = (CardView) findViewById(R.id.adminTools);
+        adminToolsCV.setVisibility(View.GONE);
         ImageView backButtonIcon = (ImageView) findViewById(R.id.ID_returnButton);
 
+
+        if (username.equals("admin")){
+            changeUsernameCV.setVisibility(View.GONE);
+            changePasswordCV.setVisibility(View.GONE);
+            deleteAccountCV.setVisibility(View.GONE);
+            adminToolsCV.setVisibility(View.VISIBLE);
+        }
+
+
         //Button Listeners
-        progressbtn.setOnClickListener(new View.OnClickListener() {
+        trackProgressCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openProgress(username);
             }
         });
 
-        deletebtn.setOnClickListener(new View.OnClickListener() {
+        deleteAccountCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                deleteAccount();
+                deleteAccount(username);
             }
         });
 
-        changepwbtn.setOnClickListener(new View.OnClickListener() {
+        changePasswordCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                changePassword();
+                changePassword(username);
             }
         });
 
-        changeunbtn.setOnClickListener(new View.OnClickListener() {
+        changeUsernameCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                changeUsername();
+                changeUsername(username);
+            }
+        });
+
+        adminToolsCV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                adminTools(username);
             }
         });
 
@@ -85,27 +97,24 @@ public class ActivityAccountMenu extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void deleteAccount() {
+    public void deleteAccount(String passUsername) {
         Intent intent = new Intent(this, RBsaverTest.class);
         startActivity(intent);
 
     }
 
-    public void changePassword() {
+    public void changePassword(String passUsername) {
     }
 
-    public void changeUsername() {
+    public void changeUsername(String passUsername) {
     }
 
-    public void hideSystemUI() {
-        getWindow().getDecorView().setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_LOW_PROFILE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_IMMERSIVE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+    public void adminTools(String passUsername) {
+        Intent intent = new Intent(this, ActivityAdminTools.class);
+        intent.putExtra("username_key",passUsername);
+        startActivity(intent);
     }
+
 
 
 }

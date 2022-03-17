@@ -311,8 +311,8 @@ public class ActivityPracticeExam extends AppCompatActivity implements ExampleDi
             intent.putExtra("TOTAL_QUESTIONS", totalQuestions);
             intent.putExtra("SCORE", score);
             intent.putExtra("username_key",passUsername);
-        //    startActivity(intent);
-          //  finish();
+            startActivity(intent);
+            finish();
         }
     }
 
@@ -409,21 +409,10 @@ public class ActivityPracticeExam extends AppCompatActivity implements ExampleDi
     public void getQuestions(String selectedCategory){
 
         pbProgressBar.setVisibility(View.VISIBLE);
-        //Starting Write and Read data with URL
-        //Creating array for parameters
-        String[] field = new String[1];
-        field[0] = "category";
-        //Creating array for data
-        String[] data = new String[1];
-        data[0] = selectedCategory;
-        PostData postData = new PostData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/getcategory.php", "POST", field, data);
-
-
-
-
-        if (postData.startPut()) {
-            if (postData.onComplete()) {
-                fetchedResult = postData.getData();
+        FetchData fetchData = new FetchData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/getquestions.php");
+        if (fetchData.startFetch()) {
+            if (fetchData.onComplete()) {
+                fetchedResult = fetchData.getData();
                 Log.i("FetchData", fetchedResult);
                 //End ProgressBar (Set visibility to GONE)
                 pbProgressBar.setVisibility(View.GONE);
@@ -433,13 +422,15 @@ public class ActivityPracticeExam extends AppCompatActivity implements ExampleDi
 
         try {
             JSONObject obj = new JSONObject(fetchedResult);
-            JSONArray questionData = obj.getJSONArray("categorydata");
+            JSONArray questionData = obj.getJSONArray("questiondata");
             int n = questionData.length();
             for (int i = 0; i < n; ++i) {
                 JSONObject questionObj = questionData.getJSONObject(i);
                 QuestionModel q = new QuestionModel();
                 int ID = questionObj.getInt("id");
                 q.setID(ID);
+                String category = questionObj.getString("category");
+                q.setCategory(category);
                 String question = questionObj.getString("question");
                 q.setQuestion(question);
                 String option1 = questionObj.getString("option1");
@@ -456,7 +447,10 @@ public class ActivityPracticeExam extends AppCompatActivity implements ExampleDi
                 q.setImageID(imageID);
                 String explanation = questionObj.getString("explanation");
                 q.setExplanation(explanation);
-                questionListFromRemote.add(q);
+
+                //ONLY ADD TO QUESTION LIST IF CATEGORY EQUALS SELECTED CATEGORY
+                if (category.equals(selectedCategory)){
+                questionListFromRemote.add(q);}
 
             }
 

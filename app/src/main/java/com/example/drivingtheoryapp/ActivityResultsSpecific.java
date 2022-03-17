@@ -18,11 +18,12 @@ public class ActivityResultsSpecific extends AppCompatActivity {
         setContentView(R.layout.activity_results_specific);
 
         Bundle recdData = getIntent().getExtras();
-        String passedValue = recdData.getString("result");
+        int passedValue = recdData.getInt("result");
+        String passedValueAsString = String.valueOf(passedValue);
 
         TextView textView = (TextView)findViewById(R.id.tvReviewResults);
 
-        textView.setText(passedValue); }
+        textView.setText(passedValueAsString); }
 
 
 

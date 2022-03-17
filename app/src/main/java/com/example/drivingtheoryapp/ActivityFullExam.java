@@ -109,7 +109,7 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
         questionList = dbHelper.getAllQuestions(); //Loads questions into list
         Collections.shuffle(questionList); //Shuffles sqlite question order
         Collections.shuffle(questionListFromRemote); //Shuffle remote question order
-        totalQuestions = 10; //Displays number of questions
+        totalQuestions = 50; //Displays number of questions
 
 
 
@@ -362,7 +362,7 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
                 data[5] = saveQuestionStrings;
 
 
-              PostData postData = new PostData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/saveResults.php", "POST", field, data);
+                PostData postData = new PostData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/saveResults.php", "POST", field, data);
 
 
                 if (postData.startPut()) {
@@ -392,7 +392,7 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
                             tvAnswerWarning.setVisibility(View.VISIBLE);
                             ttsImage.setVisibility(View.VISIBLE);
                             //OPEN PREVIOUS SCREEN
-                            openPrevScreen(passUsername);
+                       //     openPrevScreen(passUsername);
                             //SHOW ERROR MESSAGE
                             Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
                         }
@@ -511,17 +511,17 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
 
     public void getQuestions(){
 
-                pbProgressBar.setVisibility(View.VISIBLE);
-                FetchData fetchData = new FetchData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/getquestions.php");
-                if (fetchData.startFetch()) {
-                    if (fetchData.onComplete()) {
-                        fetchedResult = fetchData.getData();
-                        Log.i("FetchData", fetchedResult);
-                        //End ProgressBar (Set visibility to GONE)
-                        pbProgressBar.setVisibility(View.GONE);
+        pbProgressBar.setVisibility(View.VISIBLE);
+        FetchData fetchData = new FetchData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/getquestions.php");
+        if (fetchData.startFetch()) {
+            if (fetchData.onComplete()) {
+                fetchedResult = fetchData.getData();
+                Log.i("FetchData", fetchedResult);
+                //End ProgressBar (Set visibility to GONE)
+                pbProgressBar.setVisibility(View.GONE);
 
-                    }
-                }
+            }
+        }
 
         try {
             JSONObject obj = new JSONObject(fetchedResult);
@@ -563,11 +563,3 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
 
 
 }
-
-
-
-
-
-
-
-

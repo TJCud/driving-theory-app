@@ -92,7 +92,7 @@ public class ActivityResultsAll extends AppCompatActivity {
         }
         else {
 
-            getResults(username, tvTestStats);
+            getResults(username);
             displayResultList(username, tvTestStats);
             drawChart(username, tvTestStats);
             barChart.setVisibility(View.GONE);
@@ -143,7 +143,7 @@ public class ActivityResultsAll extends AppCompatActivity {
 
 
 
-    public void getResults(String passUsername, TextView overviewLabel){
+    public void getResults(String passUsername){
 
             //Creating array for parameters
             String[] field = new String[1];
@@ -273,11 +273,12 @@ public class ActivityResultsAll extends AppCompatActivity {
 
                     JSONObject questionObj = questionData.getJSONObject(i);
                     int examScore = questionObj.getInt("questions_correct");
+                    String examOutcome = questionObj.getString("outcome");
                     testNo++;
 
 
                     //IF EXAM SCORE IS LESS THAN 44, ADD TO FAIL LIST, ELSE ADD TO PASS LIST
-                    if (examScore < 44){
+                    if (examOutcome.equals("FAIL")){
                     failedExamEntries.add(new BarEntry(testNo, examScore));}
                     else{
                         passedExamEntries.add(new BarEntry(testNo, examScore));

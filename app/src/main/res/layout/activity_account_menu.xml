@@ -66,7 +66,7 @@ tools:context=".ActivityAccountMenu">
 
         <!-- Column 1 -->
         <androidx.cardview.widget.CardView
-            android:id="@+id/progressbtn"
+            android:id="@+id/trackProgress"
             android:layout_width="0dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
@@ -108,7 +108,7 @@ tools:context=".ActivityAccountMenu">
 
         <!-- Column 2 -->
         <androidx.cardview.widget.CardView
-            android:id="@+id/deletebtn"
+            android:id="@+id/deleteAccount"
             android:layout_width="0dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
@@ -151,7 +151,7 @@ tools:context=".ActivityAccountMenu">
 
         <!-- Column 1 -->
         <androidx.cardview.widget.CardView
-            android:id="@+id/changepwbtn"
+            android:id="@+id/changePassword"
             android:layout_width="0dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
@@ -191,7 +191,7 @@ tools:context=".ActivityAccountMenu">
 
         <!-- Column 2 -->
         <androidx.cardview.widget.CardView
-            android:id="@+id/changeunbtn"
+            android:id="@+id/changeUsername"
             android:layout_width="0dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
@@ -221,6 +221,47 @@ tools:context=".ActivityAccountMenu">
                     android:layout_height="match_parent"
                     android:fontFamily="@font/robotocondensedlight"
                     android:text="Change Username"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="30dp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <!-- Column 2 -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/adminTools"
+            android:layout_width="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_vertical"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="80dp"
+            app:cardElevation="0dp"
+            card_view:cardBackgroundColor="#BFC0C0C0">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/icons_admin" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/robotocondensedlight"
+                    android:text="Admin Tools"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
                     android:textSize="30dp" />
