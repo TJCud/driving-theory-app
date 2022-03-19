@@ -66,7 +66,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:fontFamily="@font/robotocondensedlight"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:scrollbars="vertical"
             android:text="STATS"
             android:textColor="@color/black"
@@ -94,7 +94,7 @@
         <ListView
             android:id="@+id/allResultsListView"
             android:layout_width="match_parent"
-            android:layout_height="550dp"
+            android:layout_height="650dp"
             android:layout_below="@id/tvTestStats"
             android:fontFamily="@font/robotocondensedlight"
             android:paddingBottom="0dp" />

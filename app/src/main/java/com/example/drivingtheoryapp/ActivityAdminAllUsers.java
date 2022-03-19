@@ -23,12 +23,14 @@ import java.util.ArrayList;
 public class ActivityAdminAllUsers extends AppCompatActivity {
 
     private ListView allUsersListView;
-    private ArrayList<String> arrayListAllUsers = new ArrayList<>();
+    private ArrayList<String> arrayListAllUsersInfo = new ArrayList<>();
+    private ArrayList<String> arrayListAllUsersID = new ArrayList<>();
 
 
     private String fetchedResult;
     private ProgressBar progressBar;
-    private TextView progressBarText;
+    private TextView progressBarText, allUsersStats;
+    private ImageView returnButton;
 
 
 
@@ -47,26 +49,23 @@ public class ActivityAdminAllUsers extends AppCompatActivity {
         progressBar.setVisibility(View.GONE);
         progressBarText = findViewById(R.id.progressBarText);
         progressBarText.setVisibility(View.GONE);
+        allUsersStats = findViewById(R.id.allUsersStats);
+        returnButton = findViewById(R.id.returnButton);
 
 
 
-        //Code for passing username from last activity and assigning to string variable
-        Intent intent = getIntent();
-        String username = intent.getStringExtra("username_key");
-
-
-
-            getAllUsers();
-            displayUsers();
+        getAllUsers();
+        displayUsers();
 
 
 
 
-        backButtonIcon.setOnClickListener(new View.OnClickListener() {
+        returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 Intent returnMenu = new Intent(getApplicationContext(), ActivityAdminTools.class);
-                returnMenu.putExtra("username_key",username);
+                String username = "admin";
+                returnMenu.putExtra("username_key", username);
                 finish();
                 startActivity(returnMenu);
             }
@@ -106,6 +105,7 @@ public class ActivityAdminAllUsers extends AppCompatActivity {
             int n = questionData.length();
 
 
+
             //CHECK IF ANY EXAMS EXIST FOR USER
             if (n<1){
 
@@ -116,9 +116,9 @@ public class ActivityAdminAllUsers extends AppCompatActivity {
                     JSONObject questionObj = questionData.getJSONObject(i);
 
                     //PARSING DATA FROM JSON TO VARIABLES
-                    int fetchedID = questionObj.getInt("id");
+                    String fetchedID = questionObj.getString("id");
                     String fetchedUsername = questionObj.getString("username");
-                    String fetchedPassword = questionObj.getString("password");
+                    String fetchedAccountType = questionObj.getString("type");
                     String fetchedEmail = questionObj.getString("email");
                     String fetchedDate = questionObj.getString("date");
 
@@ -126,26 +126,26 @@ public class ActivityAdminAllUsers extends AppCompatActivity {
 
 
                     //ADDS EXAM DATA TO ARRAY LISTS
-                    arrayListAllUsers.add("Username: " + fetchedUsername + " (User ID: " + fetchedID +")\nDate Registered: "+fetchedDate + "\n" + "Password: " + fetchedPassword + "\n"  + fetchedEmail);
-
+                    arrayListAllUsersInfo.add("Username: " + fetchedUsername + " (User ID: " + fetchedID +")\nAccount Type: " + fetchedAccountType + "\nDate Registered: "+fetchedDate + "\n" + "Email: " + fetchedEmail);
+                    arrayListAllUsersID.add(fetchedID);
 
                     //CREATE AND SET THE LIST ADAPTER FOR DISPLAYING EXAM INFO
-                    ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, arrayListAllUsers);
+                    ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, arrayListAllUsersInfo);
                     allUsersListView.setAdapter(adapter);
 
                     //set an onItemClickListener to the ListView
                     allUsersListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                            String getSavedQuestionString = arrayListAllUsers.get(position);
-                            Intent editScreenIntent = new Intent(ActivityAdminAllUsers.this, ActivityResultsSpecific.class);
-                            editScreenIntent.putExtra("result",getSavedQuestionString.replaceAll(",", ""));
+                            String passedID = arrayListAllUsersID.get(position);
+                            Intent editScreenIntent = new Intent(ActivityAdminAllUsers.this, ActivityAdminEditUser.class);
+                            editScreenIntent.putExtra("passedID",passedID);
                             startActivity(editScreenIntent);
                         }
                     });
                 }
 
-
+            allUsersStats.setText("Accounts on system: " + n);
 
 
             }

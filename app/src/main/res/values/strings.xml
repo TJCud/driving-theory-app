@@ -10,17 +10,17 @@
         <item>Alertness</item>
         <item>Attitude</item>
         <item>Documents</item>
-        <item>Hazard Awareness</item>
+        <item>Hazard awareness</item>
         <item>Incidents</item>
-        <item>Motorway Rules</item>
-        <item>Other Types Of Vehicle</item>
-        <item>Road and Traffic Signs</item>
-        <item>Rules of the Road</item>
-        <item>Safety and Your Vehicle</item>
-        <item>Safety Margins</item>
-        <item>Vehicle Handling</item>
-        <item>Vehicle Loading</item>
-        <item>Vulnerable Road Users</item>
+        <item>Motorway rules</item>
+        <item>Other types of vehicle</item>
+        <item>Road and traffic Signs</item>
+        <item>Rules of the road</item>
+        <item>Safety and your vehicle</item>
+        <item>Safety margins</item>
+        <item>Vehicle handling</item>
+        <item>Vehicle loading</item>
+        <item>Vulnerable road users</item>
     </string-array>
 
     <string-array name="answer_array">
@@ -29,5 +29,12 @@
         <item>3</item>
         <item>4</item>
     </string-array>
+
+    <string-array name="account_array">
+        <item>administrator</item>
+        <item>standard</item>
+    </string-array>
+
+
 
 </resources>

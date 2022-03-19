@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:background="@color/white"
     android:weightSum="15"
-    tools:context=".ActivityAdminEditQuestion">
+    tools:context=".ActivityAdminEditUser">
 
 
     <RelativeLayout
@@ -38,7 +38,7 @@
             android:layout_marginTop="0dp"
             android:fontFamily="@font/robotocondensedlight"
             android:gravity="center"
-            android:text="Edit Question"
+            android:text="Edit User"
             android:textColor="@color/white"
             android:textSize="35dp" />
 
@@ -54,7 +54,7 @@
 
 
         <EditText
-            android:id="@+id/EditTextQuestionID"
+            android:id="@+id/EditTextUserID"
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:layout_marginStart="10dp"
@@ -63,7 +63,7 @@
             android:layout_marginBottom="5dp"
             android:background="@drawable/edit_text_border"
             android:fontFamily="@font/robotocondensedlight"
-            android:hint="Enter Question ID"
+            android:hint="Enter User ID"
             android:inputType="text"
             android:maxLength="4"
             android:maxLines="1"
@@ -80,7 +80,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="5dp"
-            android:layout_toRightOf="@id/EditTextQuestionID"
+            android:layout_toRightOf="@id/EditTextUserID"
             android:backgroundTint="#80000000"
             android:fontFamily="@font/robotocondensedlight"
             android:text="SEARCH ID"
@@ -90,15 +90,15 @@
 
 
         <TextView
-            android:id="@+id/questionSearchStatus"
+            android:id="@+id/userSearchStatus"
             android:layout_width="300dp"
             android:layout_height="20dp"
-            android:layout_below="@id/EditTextQuestionID"
+            android:layout_below="@id/EditTextUserID"
             android:layout_centerInParent="true"
             android:layout_marginTop="0dp"
             android:fontFamily="@font/robotocondensedlight"
             android:gravity="center"
-            android:text="Question ID: "
+            android:text="User ID: "
             android:textColor="@color/black"
             android:textSize="15dp" />
 
@@ -106,32 +106,32 @@
 
 
         <Spinner
-            android:id="@+id/CategorySpinner"
+            android:id="@+id/AccountTypeSpinner"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_below="@id/EditTextQuestionID"
+            android:layout_below="@id/EditTextUserID"
             android:layout_marginStart="10dp"
             android:layout_marginTop="25dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/edit_text_border"
-            android:entries="@array/category_array"
+            android:entries="@array/account_array"
             android:hint="Category"
             android:textColor="#000000"
             android:textColorHint="#5c5c5c" />
 
 
         <EditText
-            android:id="@+id/EditTextQuestion"
+            android:id="@+id/EditTextUsername"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_below="@id/CategorySpinner"
+            android:layout_below="@id/AccountTypeSpinner"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/edit_text_border"
             android:fontFamily="@font/robotocondensedlight"
-            android:hint="Question"
+            android:hint="Username"
             android:inputType="text"
             android:maxLength="200"
             android:maxLines="1"
@@ -141,16 +141,16 @@
 
 
         <EditText
-            android:id="@+id/EditTextOption1"
+            android:id="@+id/EditTextEmail"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_below="@id/EditTextQuestion"
+            android:layout_below="@id/EditTextUsername"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/edit_text_border"
             android:fontFamily="@font/robotocondensedlight"
-            android:hint="Option 1"
+            android:hint="E-mail Address"
             android:inputType="text"
             android:maxLength="200"
             android:maxLines="1"
@@ -160,126 +160,74 @@
 
 
         <EditText
-            android:id="@+id/EditTextOption2"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@id/EditTextOption1"
+            android:id="@+id/EditTextPassword"
+            android:layout_width="200dp"
+            android:layout_height="55dp"
+            android:layout_below="@id/newUserButton"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/edit_text_border"
             android:fontFamily="@font/robotocondensedlight"
-            android:hint="Option 2"
-            android:inputType="text"
+            android:hint="New Password"
+            android:inputType="textPassword"
             android:maxLength="200"
             android:maxLines="1"
-            android:padding="10dp"
-            android:textColor="#000000"
-            android:textColorHint="#5c5c5c" />
-
-
-        <EditText
-            android:id="@+id/EditTextOption3"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@id/EditTextOption2"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/edit_text_border"
-            android:fontFamily="@font/robotocondensedlight"
-            android:hint="Option 3"
-            android:inputType="text"
-            android:maxLength="200"
-            android:maxLines="1"
-            android:padding="10dp"
-            android:textColor="#000000"
-            android:textColorHint="#5c5c5c" />
-
-
-        <EditText
-            android:id="@+id/EditTextOption4"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@id/EditTextOption3"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/edit_text_border"
-            android:fontFamily="@font/robotocondensedlight"
-            android:hint="Option 4"
-            android:inputType="text"
-            android:maxLength="200"
-            android:maxLines="1"
-            android:padding="10dp"
-            android:textColor="#000000"
-            android:textColorHint="#5c5c5c" />
-
-
-        <Spinner
-            android:id="@+id/AnswerSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@id/EditTextOption4"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/edit_text_border"
-            android:entries="@array/answer_array"
-            android:hint="Category"
-            android:textColor="#000000"
-            android:textColorHint="#5c5c5c" />
-
-
-        <EditText
-            android:id="@+id/EditTextExplanation"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@id/AnswerSpinner"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/edit_text_border"
-            android:fontFamily="@font/robotocondensedlight"
-            android:hint="Question Explanation"
-            android:inputType="text"
-            android:maxLength="500"
-            android:maxLines="3"
             android:padding="10dp"
             android:textColor="#000000"
             android:textColorHint="#5c5c5c" />
 
 
         <Button
-            android:id="@+id/newQuestionButton"
+            android:id="@+id/updatePasswordButton"
             android:layout_width="200dp"
+            android:layout_height="55dp"
+            android:layout_below="@id/newUserButton"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_toRightOf="@id/EditTextPassword"
+            android:backgroundTint="#80000000"
+            android:fontFamily="@font/robotocondensedlight"
+            android:text="UPDATE PASSWORD"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+
+        <Button
+            android:id="@+id/newUserButton"
+            android:layout_width="150dp"
             android:layout_height="50dp"
-            android:layout_below="@id/EditTextExplanation"
+            android:layout_below="@id/EditTextEmail"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="5dp"
-            android:layout_toRightOf="@id/EditTextQuestionID"
+            android:layout_toRightOf="@id/EditTextUserID"
             android:backgroundTint="#80000000"
             android:fontFamily="@font/robotocondensedlight"
-            android:text="New Question"
+            android:layout_centerVertical="true"
+            android:text="New User"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/saveQuestionButton"
-            android:layout_width="200dp"
+            android:id="@+id/saveUserButton"
+            android:layout_width="150dp"
             android:layout_height="50dp"
-            android:layout_below="@id/EditTextExplanation"
+            android:layout_below="@id/EditTextEmail"
+            android:layout_centerInParent="true"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="5dp"
-            android:layout_toLeftOf="@id/newQuestionButton"
+            android:layout_toStartOf="@id/newUserButton"
             android:backgroundTint="#80000000"
+            android:layout_centerVertical="true"
             android:fontFamily="@font/robotocondensedlight"
-            android:text="Save Question"
+            android:text="Save User"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="bold" />

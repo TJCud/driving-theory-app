@@ -10,83 +10,66 @@ import android.widget.ImageView;
 
 public class ActivityAdminTools extends AppCompatActivity {
 
+    private ImageView returnButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_tools);
 
 
-        // Getting the intent which started this activity
-        Intent intent = getIntent();
-        // Get the data of the activity providing the same key value
-        String username = intent.getStringExtra("username_key");
-
 
         //Declaring buttons
         CardView editUsersCV = (CardView) findViewById(R.id.editUsers);
-        CardView editResultsCV = (CardView) findViewById(R.id.editResults);
         CardView editQuestionsCV = (CardView) findViewById(R.id.editQuestions);
-        ImageView backButtonIcon = (ImageView) findViewById(R.id.ID_returnButton);
+        returnButton = findViewById(R.id.returnButton);
 
 
-        if (!username.equals("admin")){
-            editUsersCV.setVisibility(View.GONE);
-            editResultsCV.setVisibility(View.GONE);
-            editQuestionsCV.setVisibility(View.GONE);
-        }
+
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent returnMenu = new Intent(getApplicationContext(), ActivityAccountMenu.class);
+                String username = "admin";
+                returnMenu.putExtra("username_key", username);
+                finish();
+                startActivity(returnMenu);
+            }
+        });
 
 
         //Button Listeners
         editUsersCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            editUsers(username);
+            editUsers();
             }
         });
 
-        editResultsCV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
 
         editQuestionsCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                editQuestions(username);
+                editQuestions();
             }
         });
 
 
-
-        backButtonIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent returnMenu = new Intent(getApplicationContext(), ActivityAccountMenu.class);
-                returnMenu.putExtra("username_key",username);
-                finish();
-                startActivity(returnMenu);
-            }
-        });
 
     }
 
     //Button Actions
-    public void editUsers(String username) {
+    public void editUsers() {
         Intent intent = new Intent(getApplicationContext(), ActivityAdminAllUsers.class);
-        intent.putExtra("username_key",username);
         finish();
         startActivity(intent);
 
     }
 
-    public void editResults() {
-    }
 
-    public void editQuestions(String username) {
-        Intent intent = new Intent(getApplicationContext(), ActivityAdminEditQuestion.class);
-        intent.putExtra("username_key",username);
+
+    public void editQuestions() {
+        Intent intent = new Intent(getApplicationContext(), ActivityAdminAllQuestions.class);
         finish();
         startActivity(intent);
     }

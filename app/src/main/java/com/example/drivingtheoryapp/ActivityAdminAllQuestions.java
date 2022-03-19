@@ -29,7 +29,7 @@ public class ActivityAdminAllQuestions extends AppCompatActivity {
 
     private String fetchedResult;
     private ProgressBar progressBar;
-    private TextView progressBarText;
+    private TextView progressBarText, allQuestionsStats;
 
 
 
@@ -41,7 +41,7 @@ public class ActivityAdminAllQuestions extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_all_questions);
 
-        TextView tvTestStats = (TextView) findViewById(R.id.tvTestStats);
+        allQuestionsStats = findViewById(R.id.tvTestStats);
         allQuestionsListView = (ListView) findViewById(R.id.allResultsListView);
         ImageView backButtonIcon = (ImageView) findViewById(R.id.ID_returnButton);
         progressBar = findViewById(R.id.progressBar);
@@ -51,14 +51,10 @@ public class ActivityAdminAllQuestions extends AppCompatActivity {
 
 
 
-        //Code for passing username from last activity and assigning to string variable
-        Intent intent = getIntent();
-        String username = intent.getStringExtra("username_key");
-
 
 
         getAllQuestions();
-        displayQuestions(tvTestStats);
+        displayQuestions(allQuestionsStats);
 
 
 
@@ -67,6 +63,7 @@ public class ActivityAdminAllQuestions extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent returnMenu = new Intent(getApplicationContext(), ActivityAdminTools.class);
+                String username = "admin";
                 returnMenu.putExtra("username_key",username);
                 finish();
                 startActivity(returnMenu);
@@ -153,7 +150,7 @@ public class ActivityAdminAllQuestions extends AppCompatActivity {
 
 
                 //SET EXAM OVERVIEW LABEL
-                overviewLabel.setText("Total Questions Found: " + n);
+                allQuestionsStats.setText("Total Questions Found: " + n);
 
 
             }
