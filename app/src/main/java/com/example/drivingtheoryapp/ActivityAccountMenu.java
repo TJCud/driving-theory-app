@@ -34,9 +34,9 @@ public class ActivityAccountMenu extends AppCompatActivity {
 
 
         if (username.equals("admin")){
-            changeUsernameCV.setVisibility(View.GONE);
-            changePasswordCV.setVisibility(View.GONE);
-            deleteAccountCV.setVisibility(View.GONE);
+            changeUsernameCV.setVisibility(View.INVISIBLE);
+            changePasswordCV.setVisibility(View.INVISIBLE);
+            deleteAccountCV.setVisibility(View.INVISIBLE);
             adminToolsCV.setVisibility(View.VISIBLE);
         }
 
@@ -78,15 +78,6 @@ public class ActivityAccountMenu extends AppCompatActivity {
         });
 
 
-        backButtonIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent returnMenu = new Intent(getApplicationContext(), ActivityMainMenu.class);
-                returnMenu.putExtra("username_key",username);
-                finish();
-                startActivity(returnMenu);
-            }
-        });
 
     }
 

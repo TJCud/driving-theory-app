@@ -27,21 +27,18 @@ public class ActivityMainMenu extends AppCompatActivity {
         // Get the data of the activity providing the same key value
         String username = intent.getStringExtra("username_key");
 
-        //Displaying username in welcome header
-        TextView welcomeLabel = (TextView) findViewById(R.id.welcomeLabel);
-        welcomeLabel.setText("Welcome, " + username + "!");
 
         //Declaring buttons
         CardView logoutButtonCV = (CardView) findViewById(R.id.logoutbtn);
         CardView examButtonCV = (CardView) findViewById(R.id.testbtn);
         CardView accmgmtButtonCV = (CardView) findViewById(R.id.accmgmtbtn);
-        CardView settingButtonCV = (CardView) findViewById(R.id.settingsbtn);
+//        CardView settingButtonCV = (CardView) findViewById(R.id.settingsbtn);
 
 
         //IF GUEST USER IS SIGNED IN, HIDE ACCOUNT AND SETTINGS MENU'S
         if (username.equals("guest")||username.equals("Guest")){
             accmgmtButtonCV.setVisibility(View.GONE);
-            settingButtonCV.setVisibility(View.GONE);
+          //  settingButtonCV.setVisibility(View.GONE);
         }
 
 
@@ -68,12 +65,12 @@ public class ActivityMainMenu extends AppCompatActivity {
             }
         });
 
-        settingButtonCV.setOnClickListener(new View.OnClickListener() {
+      /*  settingButtonCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 settings(username);
             }
-        });
+        });*/
 
 
 

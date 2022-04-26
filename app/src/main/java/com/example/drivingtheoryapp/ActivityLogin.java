@@ -31,8 +31,7 @@ public class ActivityLogin extends AppCompatActivity {
     private boolean regFieldsOpen;
     private long pressedTime;
     private ProgressBar pbProgressBar;
-    private TextView tvProgressBarText,tvFullNameWarning,tvEmailWarning,tvUsernameWarning,tvPasswordWarning,tvPasswordConfirmWarning,tvGuestUser;
-    private ImageView logo;
+    private TextView tvProgressBarText,tvEmailWarning,tvUsernameWarning,tvPasswordWarning,tvPasswordConfirmWarning,tvGuestUser;
 
 
 
@@ -59,7 +58,6 @@ public class ActivityLogin extends AppCompatActivity {
         EditTextEmail = findViewById(R.id.etEmail);
         signInButton = (Button) findViewById(R.id.signInBtn);
         registerButton = (Button) findViewById(R.id.registerBtn);
-        logo = findViewById(R.id.logo);
         tvEmailWarning = findViewById(R.id.tvEmailWarning);
         tvUsernameWarning = findViewById(R.id.tvUsernameWarning);
         tvPasswordWarning = findViewById(R.id.tvPasswordWarning);
@@ -134,7 +132,7 @@ public class ActivityLogin extends AppCompatActivity {
                                         if (result.equals("Login Success")) {
 
                                             Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
-                                            openMainMenu(username);
+                                            openNextMenu(username);
                                             finish();
                                         } else {
                                             Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
@@ -300,7 +298,7 @@ public class ActivityLogin extends AppCompatActivity {
                                         String result = postData.getResult();
                                         if (result.equals("Sign Up Success")) {
                                             Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
-                                            openMainMenu(username);
+                                            openNextMenu(username);
                                             finish();
                                         }
 
@@ -334,7 +332,7 @@ public class ActivityLogin extends AppCompatActivity {
         tvGuestUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openMainMenu("Guest");
+                openNextMenu("Guest");
                 finish();
             }
         });
@@ -345,12 +343,28 @@ public class ActivityLogin extends AppCompatActivity {
 
 
     //METHOD FOR OPENING MAIN MENU, PASSING IN USERNAME
-    public void openMainMenu(String passUsername){
+    public void openNextMenu(String passUsername){
         //FOR PASSING USERNAME TO OTHER ACTIVITIES
-        Intent openMenu = new Intent(getApplicationContext(), ActivityMainMenu.class);
-        openMenu.putExtra("username_key",passUsername);
-        startActivity(openMenu);
+
+
+        //IF USER IS A GUEST ACCOUNT, SKIP STRAIGHT TO EXAM MENU
+        if(passUsername.equals("Guest")) {
+            Intent openMenu = new Intent(getApplicationContext(), ActivityLearnToDriveMenu.class);
+            openMenu.putExtra("username_key", passUsername);
+            startActivity(openMenu);
+        }
+        //IF USER IS NOT A GUEST, PROCEED TO MAIN MENU
+        else {
+
+            Intent openMenu = new Intent(getApplicationContext(), ActivityMainMenu.class);
+            openMenu.putExtra("username_key", passUsername);
+            startActivity(openMenu);
+        }
+
+
     }
+
+
 
 
 
@@ -390,7 +404,6 @@ public class ActivityLogin extends AppCompatActivity {
         signInButton.setVisibility(View.INVISIBLE);
         registerButton.setVisibility(View.INVISIBLE);
         tvGuestUser.setVisibility(View.INVISIBLE);
-        logo.setVisibility(View.INVISIBLE);
     }
 
     //MAKES PROGRESS BAR DISAPPEAR, AND OTHER OBJECTS APPEAR
@@ -402,7 +415,6 @@ public class ActivityLogin extends AppCompatActivity {
         signInButton.setVisibility(View.VISIBLE);
         registerButton.setVisibility(View.VISIBLE);
         tvGuestUser.setVisibility(View.VISIBLE);
-        logo.setVisibility(View.VISIBLE);
     }
 
 

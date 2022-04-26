@@ -20,6 +20,9 @@
         android:theme="@style/Theme.DrivingTheoryApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ActivityWebView"
+            android:exported="false" />
+        <activity
             android:name=".ActivityAdminEditUser"
             android:exported="false" />
         <activity
@@ -33,9 +36,6 @@
             android:exported="false" />
         <activity
             android:name=".ActivityAdminTools"
-            android:exported="false" />
-        <activity
-            android:name=".ActivityLoginRegister"
             android:exported="false" />
         <activity
             android:name=".RBsaverTest"

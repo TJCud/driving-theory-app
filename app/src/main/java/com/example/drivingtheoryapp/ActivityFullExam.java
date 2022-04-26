@@ -13,26 +13,14 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.*;
 import android.speech.tts.TextToSpeech;
 
-
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -51,7 +39,7 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
     private TextView tvQuestionWithImage,tvQuestionWithoutImage, tvQuestionNo, tvTimer, tvExitTest, tvAnswerWarning;
     private RadioGroup radioGroup;
     private RadioButton rb1, rb2, rb3, rb4;
-    private Button btnNext,btnPrev,btnFinish;
+    private Button btnNext;
     private ImageView questionImage;
     private ImageView ttsImage;
     private String imageID, fetchedResult;
@@ -67,7 +55,7 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mock_test);
+        setContentView(R.layout.activity_full_exam);
 
         //ASSIGN VARIABLES TO ID's
         questionList = new ArrayList<>();
@@ -83,8 +71,6 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
         rb4 = findViewById(R.id.rb4);
         questionImage = findViewById(R.id.ID_questionImage);
         btnNext = findViewById(R.id.btnNext);
-        btnPrev = findViewById(R.id.btnExplanationOrPrevQuestion);
-        btnFinish = findViewById(R.id.btnFinish);
         tvExitTest = findViewById(R.id.tvExitTest);
         tvAnswerWarning = findViewById(R.id.tvAnswerWarning);
         tvAnswerWarning.setVisibility(View.GONE);
@@ -176,6 +162,61 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
                 openDialog(username,"Are you sure you void and exit the exam?", "Warning", "Yes", "No");
             }
         });
+
+        //RADIO BUTTON LISTENERS
+        rb1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearRadioButtonColors();
+                rb1.setBackgroundColor(Color.parseColor("#06a800"));
+                btnNext.setBackgroundColor(Color.parseColor("#4287f5"));
+            }
+        });
+
+        rb2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearRadioButtonColors();
+                rb2.setBackgroundColor(Color.parseColor("#06a800"));
+                btnNext.setBackgroundColor(Color.parseColor("#4287f5"));
+            }
+        });
+
+        rb3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearRadioButtonColors();
+                rb3.setBackgroundColor(Color.parseColor("#06a800"));
+                btnNext.setBackgroundColor(Color.parseColor("#4287f5"));
+            }
+        });
+
+        rb4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearRadioButtonColors();
+                rb4.setBackgroundColor(Color.parseColor("#06a800"));
+                btnNext.setBackgroundColor(Color.parseColor("#4287f5"));
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
 
@@ -185,7 +226,9 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void showNextQuestion(String passUsername) {
         radioGroup.clearCheck(); //CLEARS SELECTED ANSWER
+        clearRadioButtonColors();//CLEARS RADIO BUTTON COLORS
         tvAnswerWarning.setVisibility(View.GONE); //CLEARS ANSWER WARNING (IF VISIBLE)
+
 
         if(qCounter < totalQuestions){
             currentQuestion = questionListFromRemote.get(qCounter);
@@ -217,7 +260,7 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
 
             qCounter++; //ADD TO COUNTER
             btnNext.setText("Next Question");//CHANGE BUTTON CONTENTS
-            btnPrev.setText("Previous Question");
+            btnNext.setBackgroundColor(Color.parseColor("#808080"));
             tvQuestionNo.setText("Question "+qCounter+" of "+totalQuestions + ":"); //CHANGE QUESTION NUMBER
             answered = false; //SET ANSWERED TO FALSE
 
@@ -234,7 +277,6 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
 
         answered = true;
         RadioButton rbSelected = findViewById(radioGroup.getCheckedRadioButtonId());
-
         int answerNo = radioGroup.indexOfChild(rbSelected) +1;
         if(answerNo == currentQuestion.getAnswerNr()){
             score++;
@@ -317,8 +359,6 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
         questionImage.setVisibility(View.INVISIBLE);
         tvExitTest.setVisibility(View.INVISIBLE);
         btnNext.setVisibility(View.INVISIBLE);
-        btnPrev.setVisibility(View.INVISIBLE);
-        btnFinish.setVisibility(View.INVISIBLE);
         tvAnswerWarning.setVisibility(View.INVISIBLE);
         ttsImage.setVisibility(View.INVISIBLE);
 
@@ -366,11 +406,6 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
 
 
                 if (postData.startPut()) {
-
-
-
-
-
                     if (postData.onComplete()) {
                         String result = postData.getResult();
                         if (result.equals("Results Save Success")) {
@@ -387,8 +422,6 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
                             questionImage.setVisibility(View.VISIBLE);
                             tvExitTest.setVisibility(View.VISIBLE);
                             btnNext.setVisibility(View.VISIBLE);
-                            btnPrev.setVisibility(View.VISIBLE);
-                            btnFinish.setVisibility(View.VISIBLE);
                             tvAnswerWarning.setVisibility(View.VISIBLE);
                             ttsImage.setVisibility(View.VISIBLE);
                             //OPEN PREVIOUS SCREEN
@@ -480,8 +513,19 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
         intent.putExtra("TOTAL_QUESTIONS", totalQuestions);
         intent.putExtra("SCORE", score);
         intent.putExtra("username_key",username);
+        intent.putExtra("exam_type","full");
         startActivity(intent);
         finish();
+    }
+
+
+    //PROCEED TO NEXT SCREEN
+    public void clearRadioButtonColors() {
+        rb1.setBackgroundColor(Color.parseColor("#4287f5"));
+        rb2.setBackgroundColor(Color.parseColor("#4287f5"));
+        rb3.setBackgroundColor(Color.parseColor("#4287f5"));
+        rb4.setBackgroundColor(Color.parseColor("#4287f5"));
+        btnNext.setBackgroundColor(Color.parseColor("#4287f5"));
     }
 
 

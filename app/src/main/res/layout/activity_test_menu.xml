@@ -6,7 +6,7 @@ xmlns:card_view="http://schemas.android.com/apk/res-auto"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical"
-android:background="@drawable/background"
+android:background="@drawable/bg_login"
 android:weightSum="15"
 tools:context=".ActivityLearnToDriveMenu">
 
@@ -18,28 +18,9 @@ tools:context=".ActivityLearnToDriveMenu">
     android:layout_marginBottom="0dp"
    >
 
-    <ImageView
-        android:id="@+id/ID_returnButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center"
-        android:layout_marginTop="0dp"
-        android:layout_toLeftOf="@id/ID_category_menu_header"
-        android:paddingRight="5dp"
-        android:src="@drawable/ic_backarrow" />
 
-    <TextView
-        android:id="@+id/ID_category_menu_header"
-        android:layout_width="300dp"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="0dp"
-        android:fontFamily="@font/robotocondensedlight"
-        android:gravity="center"
-        android:text="Learn to drive"
-        android:textColor="@color/white"
-        android:textSize="35dp" />
+
+
 
 </RelativeLayout>
 
@@ -54,7 +35,7 @@ tools:context=".ActivityLearnToDriveMenu">
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="30dp"
         android:alignmentMode="alignMargins"
         android:columnCount="1"
         android:columnOrderPreserved="false"
@@ -73,9 +54,7 @@ tools:context=".ActivityLearnToDriveMenu">
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
-            app:cardCornerRadius="80dp"
-            app:cardElevation="0dp"
-            card_view:cardBackgroundColor="#BFC0C0C0"
+            card_view:cardBackgroundColor="#754287f5"
 
             >
 
@@ -115,9 +94,7 @@ tools:context=".ActivityLearnToDriveMenu">
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
-            app:cardCornerRadius="80dp"
-            app:cardElevation="0dp"
-            card_view:cardBackgroundColor="#BFC0C0C0">
+            card_view:cardBackgroundColor="#754287f5">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -158,9 +135,7 @@ tools:context=".ActivityLearnToDriveMenu">
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
-            app:cardCornerRadius="80dp"
-            app:cardElevation="0dp"
-            card_view:cardBackgroundColor="#BFC0C0C0">
+            card_view:cardBackgroundColor="#754287f5">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -198,9 +173,7 @@ tools:context=".ActivityLearnToDriveMenu">
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
-            app:cardCornerRadius="80dp"
-            app:cardElevation="0dp"
-            card_view:cardBackgroundColor="#BFC0C0C0">
+            card_view:cardBackgroundColor="#754287f5">
 
             <LinearLayout
                 android:layout_width="wrap_content"

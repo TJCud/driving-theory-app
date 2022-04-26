@@ -6,215 +6,46 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#e6e6ff"
+    android:background="@drawable/bg_login"
     android:weightSum="15"
     tools:context=".ActivityFullExamPreScreen">
 
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:layout_marginBottom="0dp"
-        android:layout_weight="2"
-        android:background="#4287f5">
-
-        <ImageView
-            android:id="@+id/ID_returnButton"
-            android:layout_width="48dp"
-            android:layout_height="54dp"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center"
-            android:layout_marginTop="0dp"
-            android:layout_marginRight="8dp"
-            android:layout_toLeftOf="@id/tvPageHeader"
-            android:paddingRight="5dp"
-            android:src="@drawable/ic_backarrow" />
+        android:layout_weight="1"
+        android:gravity="center">
 
 
         <TextView
-            android:id="@+id/tvPageHeader"
-            android:layout_width="300dp"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
+            android:id="@+id/tvExamInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="404dp"
+            android:layout_above="@id/ID_startButton"
+            android:layout_marginLeft="50dp"
             android:layout_marginTop="0dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginBottom="-4dp"
+            android:background="#754287f5"
             android:fontFamily="@font/robotocondensedlight"
             android:gravity="center"
-            android:text="Full Mock Exam"
+            android:justificationMode="inter_word"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:text="You have 57 minutes to answer 50 multiple choice driving theory test questions. At least 43 out of 50 questions must be answered correctly in order to pass the test.\n\nGood luck!"
             android:textColor="@color/white"
-            android:textSize="35dp" />
-
-    </RelativeLayout>
-
-
-    <ScrollView
-        android:id="@+id/container_scroll_view"
-        android:layout_width="match_parent"
-        android:layout_height="181dp"
-        android:layout_gravity="center_vertical">
-
-        <GridLayout
-            android:id="@+id/allDisplay"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="0dp"
-            android:alignmentMode="alignMargins"
-            android:columnCount="3"
-            android:columnOrderPreserved="false"
-            android:padding="30dp">
-
-            <!-- Row 1 -->
-
-            <!-- Column 1 -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/questionDisplay"
-                android:layout_width="40dp"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_gravity="fill_vertical"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginBottom="16dp"
-                app:cardCornerRadius="0dp"
-                app:cardElevation="0dp"
-                card_view:cardBackgroundColor="#4287f5"
-
-                >
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_margin="16dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/robotocondensedlight"
-                        android:text="50"
-                        android:textAlignment="center"
-                        android:textColor="@android:color/white"
-                        android:textSize="30dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/robotocondensedlight"
-                        android:text="Questions"
-                        android:textAlignment="center"
-                        android:textColor="@android:color/white"
-                        android:textSize="10dp" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <!-- Column 2 -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/minutesDisplay"
-                android:layout_width="40dp"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_gravity="fill_vertical"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginBottom="16dp"
-                app:cardCornerRadius="0dp"
-                app:cardElevation="0dp"
-                card_view:cardBackgroundColor="#4287f5">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_margin="14dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/robotocondensedlight"
-                        android:text="57"
-                        android:textAlignment="center"
-                        android:textColor="@android:color/white"
-                        android:textSize="30dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/robotocondensedlight"
-                        android:text="Minutes"
-                        android:textAlignment="center"
-                        android:textColor="@android:color/white"
-                        android:textSize="10dp" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/topicDisplay"
-                android:layout_width="40dp"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_gravity="fill_vertical"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginBottom="16dp"
-                app:cardCornerRadius="0dp"
-                app:cardElevation="0dp"
-                card_view:cardBackgroundColor="#4287f5">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_margin="16dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/robotocondensedlight"
-                        android:text="14"
-                        android:textAlignment="center"
-                        android:textColor="@android:color/white"
-                        android:textSize="30dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:fontFamily="@font/robotocondensedlight"
-                        android:text="Topics"
-                        android:textAlignment="center"
-                        android:textColor="@android:color/white"
-                        android:textSize="10dp" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-
-        </GridLayout>
-
-    </ScrollView>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="241dp"
-        android:layout_marginBottom="0dp"
-        android:layout_weight="2"
-        android:background="#e6e6ff"
-        android:gravity="center">
+            android:textSize="25dp" />
 
         <Button
             android:id="@+id/ID_startButton"
             android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:backgroundTint="#4287f5"
+            android:layout_height="120dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="#754287f5"
             android:fontFamily="@font/robotocondensedlight"
             android:gravity="center"
             android:text="BEGIN EXAM"
@@ -222,25 +53,11 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/ID_trafficlights"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/trafficlight_red"
-            android:visibility="gone" />
+
+
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="0dp"
-        android:layout_weight="2"
-        android:gravity="center"
-        android:background="#e6e6ff">
-
-
-    </RelativeLayout>
 
 
 

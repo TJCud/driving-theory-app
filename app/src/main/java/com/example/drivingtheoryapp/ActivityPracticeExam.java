@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.*;
 
 import org.json.JSONArray;
@@ -51,7 +50,7 @@ public class ActivityPracticeExam extends AppCompatActivity implements ExampleDi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mock_test);
+        setContentView(R.layout.activity_pratice_exam);
 
 
         //ASSIGN VARIABLES TO ID's
@@ -68,7 +67,7 @@ public class ActivityPracticeExam extends AppCompatActivity implements ExampleDi
         rb4 = findViewById(R.id.rb4);
         questionImage = findViewById(R.id.ID_questionImage);
         btnNext = findViewById(R.id.btnNext);
-        btnExplanation = findViewById(R.id.btnExplanationOrPrevQuestion);
+        btnExplanation = findViewById(R.id.btnExplanation);
         tvExitTest = findViewById(R.id.tvExitTest);
         tvAnswerWarning = findViewById(R.id.tvAnswerWarning);
         ttsImage = findViewById(R.id.ivTTSicon);
@@ -303,6 +302,7 @@ public class ActivityPracticeExam extends AppCompatActivity implements ExampleDi
             intent.putExtra("TOTAL_QUESTIONS", totalQuestions);
             intent.putExtra("SCORE", score);
             intent.putExtra("username_key",passUsername);
+            intent.putExtra("exam_type","practice");
             startActivity(intent);
             finish();
         }
@@ -311,6 +311,7 @@ public class ActivityPracticeExam extends AppCompatActivity implements ExampleDi
             intent.putExtra("TOTAL_QUESTIONS", totalQuestions);
             intent.putExtra("SCORE", score);
             intent.putExtra("username_key",passUsername);
+            intent.putExtra("exam_type","practice");
             startActivity(intent);
             finish();
         }

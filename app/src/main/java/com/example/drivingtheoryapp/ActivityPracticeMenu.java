@@ -205,16 +205,6 @@ public class ActivityPracticeMenu extends AppCompatActivity {
         });
 
 
-        backButtonIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent returnMenu = new Intent(getApplicationContext(), ActivityLearnToDriveMenu.class);
-                returnMenu.putExtra("username_key",username);
-                finish();
-                startActivity(returnMenu);
-            }
-        });
-
     }
 
 }
