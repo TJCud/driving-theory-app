@@ -57,26 +57,39 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_full_exam);
 
-        //ASSIGN VARIABLES TO ID's
+        //Initialising array lists
         questionList = new ArrayList<>();
         questionListFromRemote = new ArrayList<>();
+
+        //Assigning on screen text view objects
         tvQuestionWithImage = findViewById(R.id.tvQuestionWithImage);
         tvQuestionWithoutImage = findViewById(R.id.tvQuestionWithoutImage);
         tvQuestionNo = findViewById(R.id.tvQuestionNumber);
         tvTimer = findViewById(R.id.tvTimer);
+        tvExitTest = findViewById(R.id.tvExitTest);
+
+        //Assigning on screen radio group and button object
         radioGroup = findViewById(R.id.radioGroup);
         rb1 = findViewById(R.id.rb1);
         rb2 = findViewById(R.id.rb2);
         rb3 = findViewById(R.id.rb3);
         rb4 = findViewById(R.id.rb4);
+
+        //Assigning on screen image objects
         questionImage = findViewById(R.id.ID_questionImage);
-        btnNext = findViewById(R.id.btnNext);
-        tvExitTest = findViewById(R.id.tvExitTest);
-        tvAnswerWarning = findViewById(R.id.tvAnswerWarning);
-        tvAnswerWarning.setVisibility(View.GONE);
         ttsImage = findViewById(R.id.ivTTSicon);
+
+        //Assigning on screen button objects
+        btnNext = findViewById(R.id.btnNext);
+
+        //Assigning and hiding progress bar
         pbProgressBar = findViewById(R.id.pbProgressBar);
         pbProgressBar.setVisibility(View.GONE);
+
+        //Assigning and hiding unanswered question warning
+        tvAnswerWarning = findViewById(R.id.tvAnswerWarning);
+        tvAnswerWarning.setVisibility(View.GONE);
+
 
 
         //GET QUESTIONS FROM REMOTE DB
@@ -200,23 +213,6 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
             }
         });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
 
@@ -282,9 +278,6 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
             score++;
         }
 
-
-
-
         saveQuestion.add("Question "+ qCounter +": " + currentQuestion.getQuestion().replace("[", "").replace("]", ""));
         saveQuestion.add("\nYour answer: " + rbSelected.getText().toString().replace("[", "").replace("]", ""));
 
@@ -347,7 +340,7 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
 
     //NAVIGATES TO RESULT SCREEN
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public void finishTest(String passUsername){
+    public void finishTest(String passUsername) {
 
 
         //MAKES PROGRESS BAR APPEAR, AND OTHER OBJECTS DISAPPEAR
@@ -362,11 +355,21 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
         tvAnswerWarning.setVisibility(View.INVISIBLE);
         ttsImage.setVisibility(View.INVISIBLE);
 
+
+        //If the user is not a guest, continue saving results to database
+
+        if(!passUsername.equals("guest")){
+
+
         //CHECKS IF PASS PERCENTAGE IS ACHIEVED AND DISPLAYS OUTCOME
         String outcome;
         double passCheck = score * 100 / totalQuestions;
-        if(passCheck > 85){ outcome = "PASS"; }
-        else { outcome = "FAIL"; }
+        if (passCheck > 85) {
+            outcome = "PASS";
+        } else {
+            outcome = "FAIL";
+        }
+
 
         String saveQuestionStrings = saveQuestion.toString().replace("[", "").replace("]", "");
         String scoreAsString = String.valueOf(score);
@@ -401,18 +404,14 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
                 data[4] = date;
                 data[5] = saveQuestionStrings;
 
-
                 PostData postData = new PostData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/saveResults.php", "POST", field, data);
-
 
                 if (postData.startPut()) {
                     if (postData.onComplete()) {
                         String result = postData.getResult();
                         if (result.equals("Results Save Success")) {
                             openFullExamResult(passUsername);
-                        }
-
-                        else{
+                        } else {
                             //MAKES PROGRESS BAR APPEAR, AND OTHER OBJECTS DISAPPEAR
                             pbProgressBar.setVisibility(View.INVISIBLE);
                             tvQuestionWithoutImage.setVisibility(View.VISIBLE);
@@ -425,13 +424,20 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
                             tvAnswerWarning.setVisibility(View.VISIBLE);
                             ttsImage.setVisibility(View.VISIBLE);
                             //OPEN PREVIOUS SCREEN
-                       //     openPrevScreen(passUsername);
+                            //     openPrevScreen(passUsername);
                             //SHOW ERROR MESSAGE
-                            Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
                         }
 
-                    }}}
+                    }
+                }
+            }
         });
+    }
+
+        else{
+            openFullExamResult(passUsername);
+        }
 
     }
 

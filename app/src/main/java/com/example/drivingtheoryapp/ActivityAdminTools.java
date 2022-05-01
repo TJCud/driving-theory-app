@@ -26,16 +26,7 @@ public class ActivityAdminTools extends AppCompatActivity {
 
 
 
-        returnButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent returnMenu = new Intent(getApplicationContext(), ActivityAccountMenu.class);
-                String username = "admin";
-                returnMenu.putExtra("username_key", username);
-                finish();
-                startActivity(returnMenu);
-            }
-        });
+
 
 
         //Button Listeners

@@ -36,7 +36,7 @@ public class ActivityMainMenu extends AppCompatActivity {
 
 
         //IF GUEST USER IS SIGNED IN, HIDE ACCOUNT AND SETTINGS MENU'S
-        if (username.equals("guest")||username.equals("Guest")){
+        if (username.equals("guest")){
             accmgmtButtonCV.setVisibility(View.GONE);
           //  settingButtonCV.setVisibility(View.GONE);
         }

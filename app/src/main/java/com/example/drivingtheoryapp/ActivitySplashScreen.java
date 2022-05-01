@@ -30,74 +30,49 @@ public class ActivitySplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        pbProgressBar = findViewById(R.id.pbProgressBar);
+        questionListFromRemote = new ArrayList<>();
+
+        getAllQuestions();
+
+        Log.i("FetchData", fetchedResult);
+
+
+        //INITIALISE AND HIDE PROGRESS BAR
+        pbProgressBar.setVisibility(View.VISIBLE);
+
         splashDelayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i = new Intent(ActivitySplashScreen.this, ActivityLogin.class);
-                startActivity(i);
+
+                Intent passQuestionJSONToExamActivity = new Intent(ActivitySplashScreen.this, ActivityFullExam.class);
+                passQuestionJSONToExamActivity.putExtra("questionJSON", fetchedResult);
+
+                Intent goToLoginActivity = new Intent(ActivitySplashScreen.this, ActivityLogin.class);
+                startActivity(goToLoginActivity);
+
+
                 finish();
 
             }
         },3000);
 
 
-        //INITIALISE AND HIDE PROGRESS BAR
-        pbProgressBar = findViewById(R.id.pbProgressBar);
-        pbProgressBar.setVisibility(View.GONE);
+
 
     }
 
 
-/*    public void getQuestions(){
+    public void getAllQuestions() {
 
-        pbProgressBar.setVisibility(View.VISIBLE);
-        FetchData fetchData = new FetchData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/getquestions.php");
+        FetchData fetchData = new FetchData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/get_all_questions.php");
         if (fetchData.startFetch()) {
             if (fetchData.onComplete()) {
                 fetchedResult = fetchData.getData();
-                Log.i("FetchData", fetchedResult);
-                //End ProgressBar (Set visibility to GONE)
-                pbProgressBar.setVisibility(View.GONE);
-
             }
         }
+    }
 
-        try {
-            JSONObject obj = new JSONObject(fetchedResult);
-            JSONArray questionData = obj.getJSONArray("questiondata");
-            int n = questionData.length();
-            for (int i = 0; i < n; ++i) {
-                JSONObject questionObj = questionData.getJSONObject(i);
-                QuestionModel q = new QuestionModel();
-                int ID = questionObj.getInt("id");
-                q.setID(ID);
-                String category = questionObj.getString("category");
-                q.setCategory(category);
-                String question = questionObj.getString("question");
-                q.setQuestion(question);
-                String option1 = questionObj.getString("option1");
-                q.setOption1(option1);
-                String option2 = questionObj.getString("option2");
-                q.setOption2(option2);
-                String option3 = questionObj.getString("option3");
-                q.setOption3(option3);
-                String option4 = questionObj.getString("option4");
-                q.setOption4(option4);
-                int answer = questionObj.getInt("answer");
-                q.setAnswerNr(answer);
-                String imageID = questionObj.getString("image");
-                q.setImageID(imageID);
-                String explanation = questionObj.getString("explanation");
-                q.setExplanation(explanation);
-                questionListFromRemote.add(q);
-
-            }
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-    }*/
 
 
 }

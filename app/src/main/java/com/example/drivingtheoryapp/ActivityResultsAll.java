@@ -86,7 +86,7 @@ public class ActivityResultsAll extends AppCompatActivity {
         barChart.setVisibility(View.GONE);
 
         //DISPLAY MESSAGE TO GUEST ACCOUNT
-        if (username.equals("Guest")){
+        if (username.equals("guest")){
             tvTestStats.setText("Guest exam results are not saved. Please sign in.");
             viewChange.setVisibility(View.GONE);
         }
@@ -218,9 +218,11 @@ public class ActivityResultsAll extends AppCompatActivity {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                             String getSavedQuestionString = arrayListAskedQuestions.get(position);
-                            Intent editScreenIntent = new Intent(ActivityResultsAll.this, ActivityResultsSpecific.class);
-                            editScreenIntent.putExtra("result",getSavedQuestionString.replaceAll(",", ""));
-                            startActivity(editScreenIntent);
+                            Intent resultsSpecificIntent = new Intent(ActivityResultsAll.this, ActivityResultsSpecific.class);
+                            resultsSpecificIntent.putExtra("result_key",getSavedQuestionString.replaceAll(",", ""));
+                            resultsSpecificIntent.putExtra("username_key", passUsername);
+                            startActivity(resultsSpecificIntent);
+                            finish();
                         }
                     });
                 }

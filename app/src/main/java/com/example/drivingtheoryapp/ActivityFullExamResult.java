@@ -51,10 +51,8 @@ public class ActivityFullExamResult extends AppCompatActivity {
 
 
 
-
-
-        //Saves results and date/time to database
-        if (username.equals("Guest")){
+        //If user is a guest, hide results button
+        if (username.equals("guest")){
             resultsBtn.setVisibility(View.GONE);
         }
 
@@ -93,12 +91,28 @@ public class ActivityFullExamResult extends AppCompatActivity {
         finish();
     }
 
+
+
+
+
     public void mainMenu(String passUsername){
-        Intent intent = new Intent(this, ActivityMainMenu.class);
+        Intent intent;
+
+        //If user is a guest, return to Learn To Drive Menu
+        if (passUsername=="guest"){
+            intent = new Intent(this, ActivityLearnToDriveMenu.class);
+        }
+        //Return to main menu if user is registered
+        else{
+            intent = new Intent(this, ActivityMainMenu.class);
+        }
+
         intent.putExtra("username_key",passUsername);
         startActivity(intent);
         finish();
     }
+
+
 
     public void viewResults(String passUsername){
         Intent intent = new Intent(this, ActivityResultsAll.class);

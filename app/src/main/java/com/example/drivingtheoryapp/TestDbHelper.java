@@ -102,6 +102,9 @@ public class TestDbHelper extends SQLiteOpenHelper {
                 cv.put(QuestionsTable.COLUMN_EXPLANATION, columns[8].trim());
 
                 db.insert(QuestionsTable.TABLE_NAME, null, cv);
+
+                db.close();
+
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -116,6 +119,8 @@ public class TestDbHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + ResultsTable.TABLE_NAME);
         onCreate(db);
     }
+
+
 
 
 

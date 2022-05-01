@@ -328,11 +328,11 @@ public class ActivityLogin extends AppCompatActivity {
         });
 
 
-        //PROCEED TO MAIN MENU AS A GUESTION USER
+        //PROCEED TO MAIN MENU AS A GUEST USER
         tvGuestUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openNextMenu("Guest");
+                openNextMenu("guest");
                 finish();
             }
         });
@@ -347,19 +347,18 @@ public class ActivityLogin extends AppCompatActivity {
         //FOR PASSING USERNAME TO OTHER ACTIVITIES
 
 
-        //IF USER IS A GUEST ACCOUNT, SKIP STRAIGHT TO EXAM MENU
-        if(passUsername.equals("Guest")) {
-            Intent openMenu = new Intent(getApplicationContext(), ActivityLearnToDriveMenu.class);
-            openMenu.putExtra("username_key", passUsername);
-            startActivity(openMenu);
+        //IF USER IS A GUEST ACCOUNT, PROCEED TO EXAM MENU
+        Intent openMenu;
+        if(passUsername.equals("guest")) {
+            openMenu = new Intent(getApplicationContext(), ActivityLearnToDriveMenu.class);
         }
         //IF USER IS NOT A GUEST, PROCEED TO MAIN MENU
         else {
-
-            Intent openMenu = new Intent(getApplicationContext(), ActivityMainMenu.class);
-            openMenu.putExtra("username_key", passUsername);
-            startActivity(openMenu);
+            openMenu = new Intent(getApplicationContext(), ActivityMainMenu.class);
         }
+
+        openMenu.putExtra("username_key", passUsername);
+        startActivity(openMenu);
 
 
     }
