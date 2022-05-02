@@ -188,8 +188,9 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/etPasswordConfirm"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="50dp"
         android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginRight="50dp"
         android:backgroundTint="#80000000"
         android:fontFamily="@font/robotocondensedlight"
@@ -203,10 +204,10 @@
         android:id="@+id/registerBtn"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/etPasswordConfirm"
-        android:layout_marginLeft="210dp"
+        android:layout_below="@id/signInBtn"
+        android:layout_marginLeft="50dp"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="5dp"
+        android:layout_centerHorizontal="true"
         android:backgroundTint="#80000000"
         android:fontFamily="@font/robotocondensedlight"
         android:text="REGISTER"
@@ -220,6 +221,8 @@
 
 
     <!--Continue as guest link-->
+
+
     <TextView
         android:id="@+id/tvGuestUser"
         android:layout_width="wrap_content"
@@ -230,12 +233,12 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/white"
         android:fontFamily="@font/robotocondensedlight"
         android:text="CONTINUE AS GUEST"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="20dp"
         android:textStyle="bold" />
+
 
     <ProgressBar
         android:id="@+id/pbProgressBar"
@@ -248,16 +251,16 @@
         android:id="@+id/tvProgressBarText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/registerBtn"
+        android:layout_below="@id/pbProgressBar"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="-50dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="25dp"
         android:backgroundTint="@color/white"
         android:fontFamily="@font/robotocondensedlight"
-        android:text="Singing in..."
-        android:textColor="@color/white"
+        android:text="Connecting..."
+        android:textColor="@color/black"
         android:textSize="20dp" />
 
 

@@ -28,6 +28,7 @@ import java.util.Date;
 public class ActivityAdminEditUser extends AppCompatActivity {
 
     private String fetchedResult;
+    private String username;
     private ProgressBar progressBar;
     private TextView progressBarText, statusTextView;
     private EditText userIDEditText, usernameEditText, emailEditText, passwordEditText;
@@ -56,6 +57,13 @@ public class ActivityAdminEditUser extends AppCompatActivity {
         usernameEditText = findViewById(R.id.EditTextUsername);
         emailEditText = findViewById(R.id.EditTextEmail);
         passwordEditText = findViewById(R.id.EditTextPassword);
+
+
+        // Getting the intent which started this activity
+        Intent intent = getIntent();
+        // Get the data of the activity providing the same key value
+        username = intent.getStringExtra("username_key");
+
 
 
 
@@ -262,7 +270,14 @@ public class ActivityAdminEditUser extends AppCompatActivity {
             }
         }
     }
-
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(ActivityAdminEditUser.this, ActivityAdminAllUsers.class);
+        intent.putExtra("username_key","admin");
+        startActivity(intent);
+        finish();
+    }
 
 
 }

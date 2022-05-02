@@ -273,7 +273,7 @@ public class ActivityLogin extends AppCompatActivity {
                             public void run() {
                                 //Assign current date and time to string
                                 Date today = new Date();
-                                SimpleDateFormat format = new SimpleDateFormat("MMMM dd yyyy ' @ ' hh:mm a");
+                                SimpleDateFormat format = new SimpleDateFormat("dd/mm/yyyy '  ' hh:mm a");
                                 String date = format.format(today);
 
                                 //Starting Write and Read data with URL

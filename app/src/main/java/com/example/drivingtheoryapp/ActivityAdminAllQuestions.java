@@ -26,7 +26,7 @@ public class ActivityAdminAllQuestions extends AppCompatActivity {
     private ArrayList<String> arrayListAllQuestionsOverview = new ArrayList<>();
     private ArrayList<Integer> arrayListAllQuestionsByID = new ArrayList<>();
 
-
+    private String username;
     private String fetchedResult;
     private ProgressBar progressBar;
     private TextView progressBarText, allQuestionsStats;
@@ -50,25 +50,16 @@ public class ActivityAdminAllQuestions extends AppCompatActivity {
         progressBarText.setVisibility(View.GONE);
 
 
-
+        // Getting the intent which started this activity
+        Intent intent = getIntent();
+        // Get the data of the activity providing the same key value
+        username = intent.getStringExtra("username_key");
 
 
         getAllQuestions();
         displayQuestions(allQuestionsStats);
 
 
-
-
-        backButtonIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent returnMenu = new Intent(getApplicationContext(), ActivityAdminTools.class);
-                String username = "admin";
-                returnMenu.putExtra("username_key",username);
-                finish();
-                startActivity(returnMenu);
-            }
-        });
     }
 
 
@@ -80,7 +71,7 @@ public class ActivityAdminAllQuestions extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         progressBarText.setVisibility(View.VISIBLE);
 
-        FetchData fetchData = new FetchData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/getquestions.php");
+        FetchData fetchData = new FetchData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/get_all_questions.php");
         if (fetchData.startFetch()) {
             if (fetchData.onComplete()) {
                 fetchedResult = fetchData.getData();
@@ -100,7 +91,7 @@ public class ActivityAdminAllQuestions extends AppCompatActivity {
 
         try {
             JSONObject obj = new JSONObject(fetchedResult);
-            JSONArray questionData = obj.getJSONArray("questiondata");
+            JSONArray questionData = obj.getJSONArray("getAllQuestions");
             int n = questionData.length();
 
 
@@ -144,6 +135,7 @@ public class ActivityAdminAllQuestions extends AppCompatActivity {
                             Intent editScreenIntent = new Intent(ActivityAdminAllQuestions.this, ActivityAdminEditQuestion.class);
                             editScreenIntent.putExtra("questionID",getSavedQuestionString);
                             startActivity(editScreenIntent);
+                            finish();
                         }
                     });
                 }
@@ -159,6 +151,17 @@ public class ActivityAdminAllQuestions extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(ActivityAdminAllQuestions.this, ActivityAdminTools.class);
+        intent.putExtra("username_key","admin");
+        startActivity(intent);
+        finish();
+
+    }
+
 
 
 }

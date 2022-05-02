@@ -17,6 +17,8 @@ public class ActivityPracticeMenu extends AppCompatActivity {
             categoryCV6, categoryCV7, categoryCV8, categoryCV9, categoryCV10,
             categoryCV11, categoryCV12, categoryCV13, categoryCV14;
 
+    private String username;
+
 
 
     @Override
@@ -45,7 +47,7 @@ public class ActivityPracticeMenu extends AppCompatActivity {
         // Getting the intent which started this activity
         Intent intent = getIntent();
         // Get the data of the activity providing the same key value
-        String username = intent.getStringExtra("username_key");
+        username = intent.getStringExtra("username_key");
 
 
         //Button Listeners
@@ -203,8 +205,17 @@ public class ActivityPracticeMenu extends AppCompatActivity {
                 finish();
             }
         });
-
-
     }
+
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(ActivityPracticeMenu.this, ActivityLearnToDriveMenu.class);
+        intent.putExtra("username_key",username);
+        startActivity(intent);
+        finish();
+    }
+
+
 
 }

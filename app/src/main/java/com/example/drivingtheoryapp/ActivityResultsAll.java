@@ -43,14 +43,15 @@ public class ActivityResultsAll extends AppCompatActivity {
 
 
     private ListView allResultsListView;
-    private ArrayList<String> arrayListExamOutcome = new ArrayList<>();
-    private ArrayList<String> arrayListAskedQuestions = new ArrayList<>();
+    private final ArrayList<String> arrayListExamOutcome = new ArrayList<>();
+    private final ArrayList<String> arrayListAskedQuestions = new ArrayList<>();
 
     private String fetchedResult;
+    private String username;
     private int pass = 0;
     private ProgressBar progressBar;
     private TextView progressBarText;
-    private ResultModel resultModel = new ResultModel();
+    private final ResultModel resultModel = new ResultModel();
     private Button viewChange;
 
     //FOR CREATING CHART
@@ -69,7 +70,6 @@ public class ActivityResultsAll extends AppCompatActivity {
 
         TextView tvTestStats = (TextView) findViewById(R.id.tvTestStats);
         allResultsListView = (ListView) findViewById(R.id.allResultsListView);
-        ImageView backButtonIcon = (ImageView) findViewById(R.id.ID_returnButton);
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
         progressBarText = findViewById(R.id.progressBarText);
@@ -78,9 +78,10 @@ public class ActivityResultsAll extends AppCompatActivity {
         barChart = findViewById(R.id.barChart);
 
 
-        //Code for passing username from last activity and assigning to string variable
+        // Getting the intent which started this activity
         Intent intent = getIntent();
-        String username = intent.getStringExtra("username_key");
+        // Get the data of the activity providing the same key value
+        username = intent.getStringExtra("username_key");
 
 
         barChart.setVisibility(View.GONE);
@@ -125,20 +126,6 @@ public class ActivityResultsAll extends AppCompatActivity {
 
 
 
-
-
-
-
-
-        backButtonIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent returnMenu = new Intent(getApplicationContext(), ActivityAccountMenu.class);
-                returnMenu.putExtra("username_key",username);
-                finish();
-                startActivity(returnMenu);
-            }
-        });
     }
 
 
@@ -171,8 +158,6 @@ public class ActivityResultsAll extends AppCompatActivity {
                 }
             }
         }
-
-
 
         public void displayResultList(String passUsername, TextView overviewLabel){
 
@@ -246,12 +231,6 @@ public class ActivityResultsAll extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
-
-
-
-
-
 
 
     private void drawChart(String passUsername, TextView overviewLabel){
@@ -334,6 +313,18 @@ public class ActivityResultsAll extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(ActivityResultsAll.this, ActivityAccountMenu.class);
+        intent.putExtra("username_key",username);
+        startActivity(intent);
+        finish();
+    }
+
+
+
 
 
 }

@@ -8,23 +8,16 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ActivityFullExamResult extends AppCompatActivity {
 
+    private String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_full_exam_result);
-
-
-        //Initialise database helper
-        TestDbHelper dbHelper = new TestDbHelper(this);
-
-
-        //Code for passing username from last activity and assigning to string variable
-        Intent intent = getIntent();
-        String username = intent.getStringExtra("username_key");
 
         //Variables
         TextView scoreLabel = (TextView) findViewById(R.id.scoreLabel);
@@ -33,60 +26,111 @@ public class ActivityFullExamResult extends AppCompatActivity {
         Button menuBtn = (Button) findViewById(R.id.menubtn);
         Button resultsBtn = (Button) findViewById(R.id.resultsbtn);
 
+        // Getting the intent which started this activity
+        Intent intent = getIntent();
+        // Get the data of the activity providing the same key value
+        username = intent.getStringExtra("username_key");
+        String category = intent.getStringExtra("category_key");
+        String examType = intent.getStringExtra("exam_type_key");
+        int examScore = intent.getIntExtra("exam_score_key", 0);
+        int examTotalQuestions = intent.getIntExtra("total_questions_key",0);
 
-        //CALCULATES PERCENTAGE OF CORRECT QUESTIONS
-        int score = getIntent().getIntExtra("SCORE", 0);
-        int totalQuestions = getIntent().getIntExtra("TOTAL_QUESTIONS", 0);
-        double passCheck = score * 100 / totalQuestions;
 
 
-        //CHECKS IF PASS PERCENTAGE IS ACHIEVED AND DISPLAYS OUTCOME
-        if(passCheck > 85){
-            verdictLabel.setText("Exam Passed.\n Congratulations!");
+
+
+        //IF EXAM TYPE IS 'PRACTICE', JUST DISPLAY CATEGORY TYPE AND SCORE
+        if (examType.equals("practice")) {
+            scoreLabel.setText("Category: " + category);
+            verdictLabel.setText(examScore + " out of " + examTotalQuestions);
+            retryBtn.setText("New Category");
+
+
         }
-        else {
-            verdictLabel.setText("Exam Failed.\n Please try again.");
+        else{
+            //CALCULATES PERCENTAGE OF CORRECT QUESTIONS
+            double passCheck = examScore * 100 / examTotalQuestions;
+            //CHECKS IF PASS PERCENTAGE IS ACHIEVED AND DISPLAYS OUTCOME
+            if (passCheck > 85) {
+                verdictLabel.setText("Exam Passed.\n Congratulations!");
+            } else {
+                verdictLabel.setText("Exam Failed.\n Please try again.");
+            }
+            scoreLabel.setText(examScore + " out of " + examTotalQuestions + "\n" + "Accuracy " + passCheck + "%" + "\n" + "(86% or higher required)");
+
+
         }
-        scoreLabel.setText(score + " out of " + totalQuestions + "\n" + "Accuracy " + passCheck + "%" + "\n" + "(86% or higher required)");
-
-
-
-        //If user is a guest, hide results button
-        if (username.equals("guest")){
-            resultsBtn.setVisibility(View.GONE);
-        }
-
-
-
 
 
         //Button Listeners
         retryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                retryTest(username);
+
+                Intent intent;
+
+                if(examType.equals("practice")){
+                    intent = new Intent(ActivityFullExamResult.this, ActivityPracticeMenu.class);
+                    intent.putExtra("username_key",username);
+                }
+
+                else {
+                    intent = new Intent(ActivityFullExamResult.this, ActivityFullExam.class);
+                    intent.putExtra("username_key",username);
+                }
+
+                startActivity(intent);
+                finish();
             }
         });
+
+
 
         menuBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mainMenu(username);
+                Intent intent;
+
+                //If user is a guest, return to Learn To Drive Menu
+                if (username.equals("guest")){
+                    intent = new Intent(ActivityFullExamResult.this, ActivityLearnToDriveMenu.class);
+                }
+                //Return to main menu if user is registered
+                else{
+                    intent = new Intent(ActivityFullExamResult.this, ActivityMainMenu.class);
+                }
+
+                intent.putExtra("username_key",username);
+                startActivity(intent);
+                finish();
             }
         });
+
+
 
         resultsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                viewResults(username);
+
+                //If user is a guest, disable results button
+                if (username.equals("guest")){
+                    Toast.makeText(getApplicationContext(),"Guest results are not save. Please sign in or create an account.",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Intent intent = new Intent(ActivityFullExamResult.this, ActivityResultsAll.class);
+                    intent.putExtra("username_key", username);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
     }
 
-    //Button Actions
-    public void retryTest(String passUsername){
-        Intent intent = new Intent(this, ActivityFullExam.class);
-        intent.putExtra("username_key",passUsername);
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(ActivityFullExamResult.this, ActivityLearnToDriveMenu.class);
+        intent.putExtra("username_key",username);
         startActivity(intent);
         finish();
     }
@@ -95,31 +139,7 @@ public class ActivityFullExamResult extends AppCompatActivity {
 
 
 
-    public void mainMenu(String passUsername){
-        Intent intent;
 
-        //If user is a guest, return to Learn To Drive Menu
-        if (passUsername=="guest"){
-            intent = new Intent(this, ActivityLearnToDriveMenu.class);
-        }
-        //Return to main menu if user is registered
-        else{
-            intent = new Intent(this, ActivityMainMenu.class);
-        }
-
-        intent.putExtra("username_key",passUsername);
-        startActivity(intent);
-        finish();
-    }
-
-
-
-    public void viewResults(String passUsername){
-        Intent intent = new Intent(this, ActivityResultsAll.class);
-        intent.putExtra("username_key",passUsername);
-        startActivity(intent);
-        finish();
-    }
 
 
 

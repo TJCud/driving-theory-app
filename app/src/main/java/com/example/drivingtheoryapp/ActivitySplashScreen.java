@@ -4,74 +4,118 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.*;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
-public class ActivitySplashScreen extends AppCompatActivity {
+public class ActivitySplashScreen extends AppCompatActivity implements ExampleDialog.ExampleDialogListener {
     private ProgressBar pbProgressBar;
+    private TextView tvProgressBarText;
     private String fetchedResult;
-    private List<QuestionModel> questionListFromRemote;
+    public static final String SHARED_PREFS = "sharedPrefs";
     Handler splashDelayHandler = new Handler();
+    Boolean proceed=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Initialise and assign progress bar / text objects
         pbProgressBar = findViewById(R.id.pbProgressBar);
-        questionListFromRemote = new ArrayList<>();
+        tvProgressBarText = findViewById(R.id.tvProgressBarText);
 
-        getAllQuestions();
-
-        Log.i("FetchData", fetchedResult);
-
-
-        //INITIALISE AND HIDE PROGRESS BAR
+        //DISPLAYING STATUS ON UI
         pbProgressBar.setVisibility(View.VISIBLE);
+        tvProgressBarText.setVisibility(View.VISIBLE);
+        tvProgressBarText.setText("Connecting to database...");
 
+
+        //HANDLER FOR ADDING DELAY TO SPLASH SCREEN
         splashDelayHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
 
-                Intent passQuestionJSONToExamActivity = new Intent(ActivitySplashScreen.this, ActivityFullExam.class);
-                passQuestionJSONToExamActivity.putExtra("questionJSON", fetchedResult);
 
-                Intent goToLoginActivity = new Intent(ActivitySplashScreen.this, ActivityLogin.class);
-                startActivity(goToLoginActivity);
+                //Run method to load questions from database
+                getAllQuestions();
 
 
-                finish();
+                if (!getAllQuestions().equals("getAllQuestions")) {
+                    openDialog("username", "Unable to connect to server.", "Connection Error", "Continue Offline", "Try Again");
+                }
+
+                Log.i("testFETCH", getAllQuestions());
+
+
+                if(proceed) {
+
+                    //INITIALISING SHARED PREFERENCES TO SHARE WITH EXAM ACTIVITIES
+                    SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("questionJSON_key", fetchedResult);
+                    editor.apply();
+
+                    //INTENT FOR NEXT ACTIVITY (LOGIN SCREEN)
+                    Intent goToLoginActivity = new Intent(ActivitySplashScreen.this, ActivityLogin.class);
+                    startActivity(goToLoginActivity);
+
+
+                    finish(); //Close splash screen activity
+                }
 
             }
-        },3000);
-
-
+        }, 1000); //1 second delay
 
 
     }
 
 
-    public void getAllQuestions() {
+    public String getAllQuestions() {
 
+        //FETCH DATA METHOD ON GET_ALL_QUESTIONS PHP FUNCTION
         FetchData fetchData = new FetchData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/get_all_questions.php");
+
         if (fetchData.startFetch()) {
             if (fetchData.onComplete()) {
                 fetchedResult = fetchData.getData();
+
+                //For testing purposes
+                Log.i("FetchData", fetchedResult);
+
+
+                if(fetchedResult.startsWith("getAllQuestions", 2)){
+                    proceed=true;
+                }
+
             }
         }
+
+        return fetchedResult.substring(2, 17);
+
     }
+
+
+
+    @Override
+    public void applyChoice(String username) {
+        Intent intent = new Intent(getApplicationContext(), ActivityLearnToDriveMenu.class);
+        intent.putExtra("username_key", "guest");
+        startActivity(intent);
+        finish();
+    }
+
+    //OPENING DIALOG
+    public void openDialog(String username, String input, String title, String positiveButton, String negativeButton) {
+        ExampleDialog exampleDialog = new ExampleDialog(username,input,title,positiveButton,negativeButton);
+        exampleDialog.show(getSupportFragmentManager(), "example dialog");
+    }
+
 
 
 

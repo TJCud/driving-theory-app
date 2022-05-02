@@ -3,6 +3,7 @@ package com.example.drivingtheoryapp;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -27,19 +28,13 @@ import java.util.Locale;
 public class ActivityPracticeExam extends AppCompatActivity implements ExampleDialog.ExampleDialogListener {
 
     private QuestionModel currentQuestion;
-
     private TextView tvQuestionWithImage,tvQuestionWithoutImage, tvQuestionNo, tvTimer, tvExitTest,tvAnswerWarning;;
     private RadioGroup radioGroup;
     private RadioButton rb1, rb2, rb3, rb4;
-    private Button btnNext;
-    private Button btnExplanation;
-    private ImageView questionImage;
-    private ImageView ttsImage;
-    private String imageID, fetchedResult;
-    private String questionExplanation;
-    private int totalQuestions;
-    private int qCounter;
-    private int score;
+    private Button btnNext, btnExplanation;
+    private ImageView questionImage, ttsImage;
+    private String imageID, questionExplanation, selectedCategory, username;
+    private int totalQuestions, qCounter, score;
     private boolean answered;
     private TextToSpeech mTTS;
     private ProgressBar pbProgressBar;
@@ -79,11 +74,15 @@ public class ActivityPracticeExam extends AppCompatActivity implements ExampleDi
         // Getting the intent which started this activity
         Intent intent = getIntent();
         // Get the data of the activity providing the same key value
-        String username = intent.getStringExtra("username_key");
-        String selectedCategory = intent.getStringExtra("category_key");
+        username = intent.getStringExtra("username_key");
+        selectedCategory = intent.getStringExtra("category_key");
+
+        //Getting JSON data from splash screen via SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+        String fetchedQuestionJSON = sharedPreferences.getString("questionJSON_key","");
 
         //GET QUESTIONS FROM REMOTE DB
-        getQuestions(selectedCategory);
+        parseJSONtoQuestionModel(fetchedQuestionJSON,selectedCategory);
 
         // timer(username); //Begin Timer
         Collections.shuffle(questionListFromRemote); //Shuffle remote question order
@@ -293,28 +292,18 @@ public class ActivityPracticeExam extends AppCompatActivity implements ExampleDi
 
         //Assign current date and time to string
         Date today = new Date();
-        SimpleDateFormat format = new SimpleDateFormat("'Test Date: 'MMMM dd yyyy ' Test Time: ' hh:mm a");
+        SimpleDateFormat format = new SimpleDateFormat("dd/mm/yyyy '  ' hh:mm a");
         String dateToStr = format.format(today);
 
-        //Saves results and date/time to database
-        if (passUsername.equals("Guest")){
-            Intent intent = new Intent(this, ActivityFullExamResult.class);
-            intent.putExtra("TOTAL_QUESTIONS", totalQuestions);
-            intent.putExtra("SCORE", score);
-            intent.putExtra("username_key",passUsername);
-            intent.putExtra("exam_type","practice");
-            startActivity(intent);
-            finish();
-        }
-        else{
-            Intent intent = new Intent(this, ActivityFullExamResult.class);
-            intent.putExtra("TOTAL_QUESTIONS", totalQuestions);
-            intent.putExtra("SCORE", score);
-            intent.putExtra("username_key",passUsername);
-            intent.putExtra("exam_type","practice");
-            startActivity(intent);
-            finish();
-        }
+        Intent intent = new Intent(this, ActivityFullExamResult.class);
+        intent.putExtra("total_questions_key", totalQuestions);
+        intent.putExtra("exam_score_key", score);
+        intent.putExtra("username_key",passUsername);
+        intent.putExtra("exam_type_key","practice");
+        intent.putExtra("category_key",selectedCategory);
+        startActivity(intent);
+        finish();
+
     }
 
 
@@ -407,23 +396,12 @@ public class ActivityPracticeExam extends AppCompatActivity implements ExampleDi
 
 
 
-    public void getQuestions(String selectedCategory){
+    public void parseJSONtoQuestionModel(String fetchedQuestionJson, String selectedCategory){
 
-        pbProgressBar.setVisibility(View.VISIBLE);
-        FetchData fetchData = new FetchData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/getquestions.php");
-        if (fetchData.startFetch()) {
-            if (fetchData.onComplete()) {
-                fetchedResult = fetchData.getData();
-                Log.i("FetchData", fetchedResult);
-                //End ProgressBar (Set visibility to GONE)
-                pbProgressBar.setVisibility(View.GONE);
-
-            }
-        }
 
         try {
-            JSONObject obj = new JSONObject(fetchedResult);
-            JSONArray questionData = obj.getJSONArray("questiondata");
+            JSONObject obj = new JSONObject(fetchedQuestionJson);
+            JSONArray questionData = obj.getJSONArray("getAllQuestions");
             int n = questionData.length();
             for (int i = 0; i < n; ++i) {
                 JSONObject questionObj = questionData.getJSONObject(i);
@@ -458,17 +436,17 @@ public class ActivityPracticeExam extends AppCompatActivity implements ExampleDi
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
 
 
-
-
-
-
-
-
-
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(ActivityPracticeExam.this, ActivityPracticeMenu.class);
+        intent.putExtra("username_key",username);
+        startActivity(intent);
+        finish();
+    }
 
 
 }

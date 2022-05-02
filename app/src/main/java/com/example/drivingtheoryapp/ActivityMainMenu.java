@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,92 +30,84 @@ public class ActivityMainMenu extends AppCompatActivity {
 
 
         //Declaring buttons
-        CardView logoutButtonCV = (CardView) findViewById(R.id.logoutbtn);
-        CardView examButtonCV = (CardView) findViewById(R.id.testbtn);
-        CardView accmgmtButtonCV = (CardView) findViewById(R.id.accmgmtbtn);
-//        CardView settingButtonCV = (CardView) findViewById(R.id.settingsbtn);
+        CardView logoutCV = (CardView) findViewById(R.id.logoutCV);
+        CardView learnToDriveCV = (CardView) findViewById(R.id.learnToDriveCV);
+        CardView accountManagementCV = (CardView) findViewById(R.id.accountManagementCV);
+        CardView adminToolsCV = (CardView) findViewById(R.id.adminToolsCV);
+        GridLayout adminGrid = findViewById(R.id.adminGrid);
 
 
-        //IF GUEST USER IS SIGNED IN, HIDE ACCOUNT AND SETTINGS MENU'S
+
+        //IF USER IS GUEST, HIDE ACCOUNT MANAGEMENT OPTION
         if (username.equals("guest")){
-            accmgmtButtonCV.setVisibility(View.GONE);
-          //  settingButtonCV.setVisibility(View.GONE);
+            accountManagementCV.setVisibility(View.GONE);
+        }
+
+        //IF USER IS ADMIN, SHOW ADMIN TOOLS OPTION
+        if (username.equals("admin")){
+            adminGrid.setVisibility(View.VISIBLE);
+            adminToolsCV.setVisibility(View.VISIBLE);
         }
 
 
 
+
+
         //Button Listeners
-        examButtonCV.setOnClickListener(new View.OnClickListener() {
+        learnToDriveCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                testMenu(username);
+                Intent intent = new Intent(getApplicationContext(), ActivityLearnToDriveMenu.class);
+                intent.putExtra("username_key",username);
+                startActivity(intent);
+                finish();
             }
         });
 
-        logoutButtonCV.setOnClickListener(new View.OnClickListener() {
+        logoutCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                logOut(username);
+                Intent intent = new Intent(getApplicationContext(), ActivityLogin.class);
+                intent.removeExtra(username);
+                startActivity(intent);
+                finish();
             }
         });
 
-        accmgmtButtonCV.setOnClickListener(new View.OnClickListener() {
+        accountManagementCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                accMgmt(username);
+                Intent intent = new Intent(getApplicationContext(), ActivityAccountMenu.class);
+                intent.putExtra("username_key",username);
+                startActivity(intent);
+                finish();
             }
         });
 
-      /*  settingButtonCV.setOnClickListener(new View.OnClickListener() {
+
+        adminToolsCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                settings(username);
+                Intent intent = new Intent(getApplicationContext(), ActivityAdminTools.class);
+                intent.putExtra("username_key",username);
+                startActivity(intent);
+                finish();
             }
-        });*/
-
-
-
-
+        });
     }
 
-    //Button Actions
-    public void logOut(String passUsername){
-        Intent intent = new Intent(this, ActivityLogin.class);
-        intent.removeExtra(passUsername);
-        startActivity(intent);
-        finish();
-    }
-
-    public void testMenu(String passUsername){
-        Intent intent = new Intent(getApplicationContext(), ActivityLearnToDriveMenu.class);
-        intent.putExtra("username_key",passUsername);
-        startActivity(intent);
-    }
-
-    public void accMgmt(String passUsername){
-        Intent intent = new Intent(getApplicationContext(), ActivityAccountMenu.class);
-        intent.putExtra("username_key",passUsername);
-        startActivity(intent);
-    }
-
-    public void settings(String passUsername){
-        Intent intent = new Intent(getApplicationContext(), ActivitySettingsMenu.class);
-        intent.putExtra("username_key",passUsername);
-        startActivity(intent);
-    }
 
 
     //LOG OUT ON BACK BUTTON
     @Override
     public void onBackPressed()
     {
+        //BACK BUTTON MUST BE PRESSED TWICE WITHIN 2 SECONDS FOR ACCOUNT TO LOG OUT
         if (pressedTime + 2000 > System.currentTimeMillis()) {
             super.onBackPressed();
-
             Intent logOut = new Intent(this, ActivityLogin.class);
             startActivity(logOut);
             finish();
-
 
         } else {
             Toast.makeText(getBaseContext(), "Press back again to log out", Toast.LENGTH_SHORT).show();

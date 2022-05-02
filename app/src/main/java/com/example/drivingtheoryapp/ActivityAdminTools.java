@@ -10,7 +10,7 @@ import android.widget.ImageView;
 
 public class ActivityAdminTools extends AppCompatActivity {
 
-    private ImageView returnButton;
+    private String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,14 +18,14 @@ public class ActivityAdminTools extends AppCompatActivity {
         setContentView(R.layout.activity_admin_tools);
 
 
+        // Getting the intent which started this activity
+        Intent intent = getIntent();
+        // Get the data of the activity providing the same key value
+        username = intent.getStringExtra("username_key");
 
         //Declaring buttons
         CardView editUsersCV = (CardView) findViewById(R.id.editUsers);
         CardView editQuestionsCV = (CardView) findViewById(R.id.editQuestions);
-        returnButton = findViewById(R.id.returnButton);
-
-
-
 
 
 
@@ -52,8 +52,8 @@ public class ActivityAdminTools extends AppCompatActivity {
     //Button Actions
     public void editUsers() {
         Intent intent = new Intent(getApplicationContext(), ActivityAdminAllUsers.class);
-        finish();
         startActivity(intent);
+        finish();
 
     }
 
@@ -61,10 +61,18 @@ public class ActivityAdminTools extends AppCompatActivity {
 
     public void editQuestions() {
         Intent intent = new Intent(getApplicationContext(), ActivityAdminAllQuestions.class);
-        finish();
         startActivity(intent);
+        finish();
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(ActivityAdminTools.this, ActivityMainMenu.class);
+        intent.putExtra("username_key","admin");
+        startActivity(intent);
+        finish();
+    }
 
 
 }

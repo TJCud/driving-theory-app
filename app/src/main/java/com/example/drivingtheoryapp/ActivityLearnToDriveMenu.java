@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 public class ActivityLearnToDriveMenu extends AppCompatActivity {
 
+    private String username;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +25,7 @@ public class ActivityLearnToDriveMenu extends AppCompatActivity {
         // Getting the intent which started this activity
         Intent intent = getIntent();
         // Get the data of the activity providing the same key value
-        String username = intent.getStringExtra("username_key");
+        username = intent.getStringExtra("username_key");
 
 
         //Declaring buttons
@@ -31,7 +33,6 @@ public class ActivityLearnToDriveMenu extends AppCompatActivity {
         CardView practiceModeCV = (CardView) findViewById(R.id.practicebtn);
         CardView hwCodeCV = (CardView) findViewById(R.id.hwcodebtn);
         CardView drivingTipsCV = (CardView) findViewById(R.id.tipsbtn);
-        ImageView returnButtonIcon = (ImageView) findViewById(R.id.ID_returnButton);
 
         //Button Listeners
         fullTestCV.setOnClickListener(new View.OnClickListener() {
@@ -75,9 +76,23 @@ public class ActivityLearnToDriveMenu extends AppCompatActivity {
 
             }
         });
+    }
 
 
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent;
 
+        if(username.equals("guest")){
+            intent = new Intent(ActivityLearnToDriveMenu.this, ActivityLogin.class);
+        }
+        else {
+            intent = new Intent(ActivityLearnToDriveMenu.this, ActivityMainMenu.class);
+        }
+        intent.putExtra("username_key",username);
+        startActivity(intent);
+        finish();
     }
 
 

@@ -28,9 +28,9 @@ public class ActivityAdminAllUsers extends AppCompatActivity {
 
 
     private String fetchedResult;
+    private String username;
     private ProgressBar progressBar;
     private TextView progressBarText, allUsersStats;
-    private ImageView returnButton;
 
 
 
@@ -42,34 +42,23 @@ public class ActivityAdminAllUsers extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_all_users);
 
-        TextView tvTestStats = (TextView) findViewById(R.id.tvTestStats);
         allUsersListView = (ListView) findViewById(R.id.allResultsListView);
-        ImageView backButtonIcon = (ImageView) findViewById(R.id.ID_returnButton);
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
         progressBarText = findViewById(R.id.progressBarText);
         progressBarText.setVisibility(View.GONE);
         allUsersStats = findViewById(R.id.allUsersStats);
-        returnButton = findViewById(R.id.returnButton);
 
+        // Getting the intent which started this activity
+        Intent intent = getIntent();
+        // Get the data of the activity providing the same key value
+        username = intent.getStringExtra("username_key");
 
 
         getAllUsers();
         displayUsers();
 
 
-
-
-        returnButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent returnMenu = new Intent(getApplicationContext(), ActivityAdminTools.class);
-                String username = "admin";
-                returnMenu.putExtra("username_key", username);
-                finish();
-                startActivity(returnMenu);
-            }
-        });
     }
 
 
@@ -81,7 +70,7 @@ public class ActivityAdminAllUsers extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         progressBarText.setVisibility(View.VISIBLE);
 
-        FetchData fetchData = new FetchData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/getallusers.php");
+        FetchData fetchData = new FetchData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/get_all_users.php");
         if (fetchData.startFetch()) {
             if (fetchData.onComplete()) {
                 fetchedResult = fetchData.getData();
@@ -141,6 +130,7 @@ public class ActivityAdminAllUsers extends AppCompatActivity {
                             Intent editScreenIntent = new Intent(ActivityAdminAllUsers.this, ActivityAdminEditUser.class);
                             editScreenIntent.putExtra("passedID",passedID);
                             startActivity(editScreenIntent);
+                            finish();
                         }
                     });
                 }
@@ -154,6 +144,17 @@ public class ActivityAdminAllUsers extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(ActivityAdminAllUsers.this, ActivityAdminTools.class);
+        intent.putExtra("username_key","admin");
+        startActivity(intent);
+        finish();
+    }
+
+
 
 
 }

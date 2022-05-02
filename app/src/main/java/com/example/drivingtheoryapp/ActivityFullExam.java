@@ -4,6 +4,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -43,6 +44,7 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
     private ImageView questionImage;
     private ImageView ttsImage;
     private String imageID, fetchedResult;
+    private String username;
     private int totalQuestions, qCounter, score;
     private boolean answered;
     private CountDownTimer countDownTimer;
@@ -90,21 +92,22 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
         tvAnswerWarning = findViewById(R.id.tvAnswerWarning);
         tvAnswerWarning.setVisibility(View.GONE);
 
-
-
-        //GET QUESTIONS FROM REMOTE DB
-        getQuestions();
-
-
         // Getting the intent which started this activity
         Intent intent = getIntent();
         // Get the data of the activity providing the same key value
-        String username = intent.getStringExtra("username_key");
+        username = intent.getStringExtra("username_key");
+
+        //Getting JSON data from splash screen via SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+        String fetchedQuestionJSON = sharedPreferences.getString("questionJSON_key","");
+
+
+        parseJSONtoQuestionModel(fetchedQuestionJSON); //Parsing JSON String into Question Model
 
 
 
         timer(username); //Begin Timer
-        TestDbHelper dbHelper = new TestDbHelper(this); //Initialise database
+        TestDbHelper dbHelper = new TestDbHelper(this); //Initialise SQLite database
         questionList = dbHelper.getAllQuestions(); //Loads questions into list
         Collections.shuffle(questionList); //Shuffles sqlite question order
         Collections.shuffle(questionListFromRemote); //Shuffle remote question order
@@ -383,7 +386,7 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
 
                 //Assign current date and time to string
                 Date today = new Date();
-                SimpleDateFormat format = new SimpleDateFormat("MMMM dd yyyy ' @ ' hh:mm a");
+                SimpleDateFormat format = new SimpleDateFormat("dd/mm/yyyy '  ' hh:mm a");
                 String date = format.format(today);
 
                 //Creating array for parameters
@@ -559,23 +562,11 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
     }
 
 
-    public void getQuestions(){
-
-        pbProgressBar.setVisibility(View.VISIBLE);
-        FetchData fetchData = new FetchData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/getquestions.php");
-        if (fetchData.startFetch()) {
-            if (fetchData.onComplete()) {
-                fetchedResult = fetchData.getData();
-                Log.i("FetchData", fetchedResult);
-                //End ProgressBar (Set visibility to GONE)
-                pbProgressBar.setVisibility(View.GONE);
-
-            }
-        }
+    public void parseJSONtoQuestionModel(String fetchedQuestionJson){
 
         try {
-            JSONObject obj = new JSONObject(fetchedResult);
-            JSONArray questionData = obj.getJSONArray("questiondata");
+            JSONObject obj = new JSONObject(fetchedQuestionJson);
+            JSONArray questionData = obj.getJSONArray("getAllQuestions");
             int n = questionData.length();
             for (int i = 0; i < n; ++i) {
                 JSONObject questionObj = questionData.getJSONObject(i);
@@ -607,8 +598,15 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
+
+    //EXIT TEST WARNING ON BACK PRESS
+    @Override
+    public void onBackPressed()
+    {
+        openDialog(username,"Are you sure you void and exit the exam?", "Warning", "Yes", "No");
+    }
+
 
 
 

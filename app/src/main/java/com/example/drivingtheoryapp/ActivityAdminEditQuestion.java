@@ -32,8 +32,7 @@ import java.util.Date;
 public class ActivityAdminEditQuestion extends AppCompatActivity {
 
     private String fetchedResult;
-    private ImageView returnButton;
-    private ProgressBar progressBar;
+    private String username;
     private TextView progressBarText, statusTextView;
     private EditText questionIDEditText, questionEditText, option1EditText, option2EditText, option3EditText, option4EditText,explanationEditText;
     private Spinner categorySpinner, correctAnswerSpinner;
@@ -49,7 +48,7 @@ public class ActivityAdminEditQuestion extends AppCompatActivity {
 
 
         searchIDButton = findViewById(R.id.searchButton);
-        returnButton = findViewById(R.id.returnButton);
+
         saveQuestionButton = findViewById(R.id.saveQuestionButton);
         newQuestionButton = findViewById(R.id.newQuestionButton);
         statusTextView = findViewById(R.id.questionSearchStatus);
@@ -64,19 +63,10 @@ public class ActivityAdminEditQuestion extends AppCompatActivity {
         option4EditText = findViewById(R.id.EditTextOption4);
         explanationEditText = findViewById(R.id.EditTextExplanation);
 
-
-
-        //BUTTON LISTENERS
-        returnButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent returnMenu = new Intent(getApplicationContext(), ActivityAdminAllQuestions.class);
-                String username = "admin";
-                returnMenu.putExtra("username_key",username);
-                finish();
-                startActivity(returnMenu);
-            }
-        });
+        // Getting the intent which started this activity
+        Intent intent = getIntent();
+        // Get the data of the activity providing the same key value
+        username = intent.getStringExtra("username_key");
 
 
         searchIDButton.setOnClickListener(new View.OnClickListener() {
@@ -299,6 +289,14 @@ public class ActivityAdminEditQuestion extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(ActivityAdminEditQuestion.this, ActivityAdminAllQuestions.class);
+        intent.putExtra("username_key","admin");
+        startActivity(intent);
+        finish();
 
+    }
 
 }

@@ -26,7 +26,7 @@ tools:context=".ActivityLearnToDriveMenu">
 
         <!-- Column 1 -->
         <androidx.cardview.widget.CardView
-            android:id="@+id/testbtn"
+            android:id="@+id/learnToDriveCV"
             android:layout_width="0dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
@@ -67,6 +67,62 @@ tools:context=".ActivityLearnToDriveMenu">
 
     </GridLayout>
 
+    <GridLayout
+        android:id="@+id/adminGrid"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:alignmentMode="alignMargins"
+        android:columnCount="1"
+        android:columnOrderPreserved="false"
+        android:padding="25dp"
+        android:visibility="gone">
+
+        <!-- Row 1 -->
+
+        <!-- Column 1 -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/adminToolsCV"
+            android:layout_width="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_vertical"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            card_view:cardBackgroundColor="#754287f5"
+
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/icons_admin" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/robotocondensedlight"
+                    android:text="Administrator Tools"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="30dp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+    </GridLayout>
+
 
     <GridLayout
         android:id="@+id/bottomGrid"
@@ -84,7 +140,7 @@ tools:context=".ActivityLearnToDriveMenu">
 
         <!-- Column 2 -->
         <androidx.cardview.widget.CardView
-            android:id="@+id/accmgmtbtn"
+            android:id="@+id/accountManagementCV"
             android:layout_width="0dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
@@ -129,7 +185,7 @@ tools:context=".ActivityLearnToDriveMenu">
 
         <!-- Column 2 -->
         <androidx.cardview.widget.CardView
-            android:id="@+id/logoutbtn"
+            android:id="@+id/logoutCV"
             android:layout_width="0dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
