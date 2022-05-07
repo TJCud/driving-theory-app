@@ -43,7 +43,6 @@ public class ActivityAdminAllQuestions extends AppCompatActivity {
 
         allQuestionsStats = findViewById(R.id.tvTestStats);
         allQuestionsListView = (ListView) findViewById(R.id.allResultsListView);
-        ImageView backButtonIcon = (ImageView) findViewById(R.id.ID_returnButton);
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
         progressBarText = findViewById(R.id.progressBarText);

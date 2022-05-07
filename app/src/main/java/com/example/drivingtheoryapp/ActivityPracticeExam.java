@@ -395,41 +395,39 @@ public class ActivityPracticeExam extends AppCompatActivity implements ExampleDi
     }
 
 
-
+    //PARSES JSON OF QUESTIONS AND ANSWERS AND STORES INTO QUESTIONMODEL
     public void parseJSONtoQuestionModel(String fetchedQuestionJson, String selectedCategory){
 
 
         try {
-            JSONObject obj = new JSONObject(fetchedQuestionJson);
-            JSONArray questionData = obj.getJSONArray("getAllQuestions");
-            int n = questionData.length();
-            for (int i = 0; i < n; ++i) {
-                JSONObject questionObj = questionData.getJSONObject(i);
-                QuestionModel q = new QuestionModel();
-                int ID = questionObj.getInt("id");
-                q.setID(ID);
-                String category = questionObj.getString("category");
-                q.setCategory(category);
-                String question = questionObj.getString("question");
-                q.setQuestion(question);
-                String option1 = questionObj.getString("option1");
-                q.setOption1(option1);
-                String option2 = questionObj.getString("option2");
-                q.setOption2(option2);
-                String option3 = questionObj.getString("option3");
-                q.setOption3(option3);
-                String option4 = questionObj.getString("option4");
-                q.setOption4(option4);
-                int answer = questionObj.getInt("answer");
-                q.setAnswerNr(answer);
-                String imageID = questionObj.getString("image");
-                q.setImageID(imageID);
-                String explanation = questionObj.getString("explanation");
-                q.setExplanation(explanation);
+
+            JSONObject questionJsonObject = new JSONObject(fetchedQuestionJson); //Initialise JSON Object, passing in JSON data
+            JSONArray questionJsonArray = questionJsonObject.getJSONArray("getAllQuestions"); //Assign JSON Object into JSON Array
+
+
+            //Fill QuestionList until reaches end of array
+            for (int i = 0; i<questionJsonArray.length(); ++i) {
+
+                JSONObject questionObj = questionJsonArray.getJSONObject(i); //Pass values from array into new object
+
+                QuestionModel questionModel = new QuestionModel(); //New QuestionModel
+
+
+                //Set up question model from JSONObject elements
+                questionModel.setID(questionObj.getInt("id"));
+                questionModel.setCategory(questionObj.getString("category"));
+                questionModel.setQuestion(questionObj.getString("question"));
+                questionModel.setOption1(questionObj.getString("option1"));
+                questionModel.setOption2(questionObj.getString("option2"));
+                questionModel.setOption3(questionObj.getString("option3"));
+                questionModel.setOption4(questionObj.getString("option4"));
+                questionModel.setAnswerNr(questionObj.getInt("answer"));
+                questionModel.setImageID(questionObj.getString("image"));
+                questionModel.setExplanation(questionObj.getString("explanation"));
 
                 //ONLY ADD TO QUESTION LIST IF CATEGORY EQUALS SELECTED CATEGORY
-                if (category.equals(selectedCategory)){
-                questionListFromRemote.add(q);}
+                if (questionModel.getCategory().equals(selectedCategory)){
+                questionListFromRemote.add(questionModel);}
 
             }
 
@@ -439,6 +437,7 @@ public class ActivityPracticeExam extends AppCompatActivity implements ExampleDi
     }
 
 
+    //On back press, return to practice menu
     @Override
     public void onBackPressed()
     {

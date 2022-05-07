@@ -34,17 +34,18 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
 
 
     public static ArrayList<String> saveQuestion= new ArrayList<>();;
+
     private QuestionModel currentQuestion;
-    private List<QuestionModel> questionList;
-    private List<QuestionModel> questionListFromRemote;
+    private List<QuestionModel> questionListOffline,questionListOnline;;
+
     private TextView tvQuestionWithImage,tvQuestionWithoutImage, tvQuestionNo, tvTimer, tvExitTest, tvAnswerWarning;
+
     private RadioGroup radioGroup;
     private RadioButton rb1, rb2, rb3, rb4;
+
     private Button btnNext;
-    private ImageView questionImage;
-    private ImageView ttsImage;
-    private String imageID, fetchedResult;
-    private String username;
+    private ImageView questionImage,ttsImage;
+    private String imageID,username;
     private int totalQuestions, qCounter, score;
     private boolean answered;
     private CountDownTimer countDownTimer;
@@ -53,15 +54,15 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
 
 
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_full_exam);
 
         //Initialising array lists
-        questionList = new ArrayList<>();
-        questionListFromRemote = new ArrayList<>();
+        questionListOffline = new ArrayList<>();
+        questionListOnline = new ArrayList<>();
 
         //Assigning on screen text view objects
         tvQuestionWithImage = findViewById(R.id.tvQuestionWithImage);
@@ -101,22 +102,20 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
         SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
         String fetchedQuestionJSON = sharedPreferences.getString("questionJSON_key","");
 
-
         parseJSONtoQuestionModel(fetchedQuestionJSON); //Parsing JSON String into Question Model
 
-
-
         timer(username); //Begin Timer
+
         TestDbHelper dbHelper = new TestDbHelper(this); //Initialise SQLite database
-        questionList = dbHelper.getAllQuestions(); //Loads questions into list
-        Collections.shuffle(questionList); //Shuffles sqlite question order
-        Collections.shuffle(questionListFromRemote); //Shuffle remote question order
+        questionListOffline = dbHelper.getAllQuestions(); //Loads questions into list
+        Collections.shuffle(questionListOffline); //Shuffles sqlite question order
+
+
+        Collections.shuffle(questionListOnline); //Shuffle remote question order
         totalQuestions = 50; //Displays number of questions
 
 
-
         showNextQuestion(username); //Shows the first question
-
 
 
         //TEXT TO SPEECH INITIALISATION
@@ -150,10 +149,9 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
 
         //WHEN BUTTON IS CLICKED, CHECK TO SEE AN ANSWER HAS BEEN SELECTED
         btnNext.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View view) {
-                if (answered == false) {
+                if (!answered) {
                     if (rb1.isChecked() || rb2.isChecked() || rb3.isChecked() || rb4.isChecked()) {
                         mTTS.stop();
                         checkAnswer(username);
@@ -166,9 +164,6 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
                 }
             }
         });
-
-
-
 
         //EXIT TEST LISTENER
         tvExitTest.setOnClickListener(new View.OnClickListener() {
@@ -218,19 +213,16 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
 
     }
 
-
-
-
     // SHOW NEXT QUESTION FUNCTION
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private void showNextQuestion(String passUsername) {
+
         radioGroup.clearCheck(); //CLEARS SELECTED ANSWER
         clearRadioButtonColors();//CLEARS RADIO BUTTON COLORS
         tvAnswerWarning.setVisibility(View.GONE); //CLEARS ANSWER WARNING (IF VISIBLE)
 
 
         if(qCounter < totalQuestions){
-            currentQuestion = questionListFromRemote.get(qCounter);
+            currentQuestion = questionListOnline.get(qCounter);
             tvQuestionWithImage.setText(currentQuestion.getQuestion());
             tvQuestionWithoutImage.setText(currentQuestion.getQuestion());
             rb1.setText(currentQuestion.getOption1());
@@ -268,11 +260,8 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
         }
     }
 
-
-
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void checkAnswer(String passUsername) {
+    //Check answer is correct
+    private void checkAnswer(String username) {
 
         answered = true;
         RadioButton rbSelected = findViewById(radioGroup.getCheckedRadioButtonId());
@@ -308,7 +297,7 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
 
 
         if(qCounter < totalQuestions){
-            showNextQuestion(passUsername);
+            showNextQuestion(username);
 
         } else{
             countDownTimer.cancel();
@@ -317,10 +306,8 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
         }
     }
 
-
-
     //TIMER FUNCTION
-    private void timer(String passUsername) {
+    private void timer(String username) {
         countDownTimer = new CountDownTimer(3421000,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -334,16 +321,15 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
             @Override
             public void onFinish() {
                 Toast.makeText(ActivityFullExam.this, "Time up!", Toast.LENGTH_SHORT).show();
-                finishTest(passUsername);
+                finishTest(username);
 
             }
         }.start();
     }
 
 
-    //NAVIGATES TO RESULT SCREEN
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public void finishTest(String passUsername) {
+    //Method when exam is finished
+    public void finishTest(String username) {
 
 
         //MAKES PROGRESS BAR APPEAR, AND OTHER OBJECTS DISAPPEAR
@@ -360,100 +346,87 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
 
 
         //If the user is not a guest, continue saving results to database
+        if(!username.equals("guest")){
 
-        if(!passUsername.equals("guest")){
-
-
-        //CHECKS IF PASS PERCENTAGE IS ACHIEVED AND DISPLAYS OUTCOME
-        String outcome;
-        double passCheck = score * 100 / totalQuestions;
-        if (passCheck > 85) {
-            outcome = "PASS";
-        } else {
-            outcome = "FAIL";
-        }
+            //CHECKS IF PASS PERCENTAGE IS ACHIEVED AND DISPLAYS OUTCOME
+            String outcome;
+            double passCheck = score * 100 / totalQuestions;
+            if (passCheck > 85) {
+                outcome = "PASS";
+            } else {
+                outcome = "FAIL";
+            }
 
 
-        String saveQuestionStrings = saveQuestion.toString().replace("[", "").replace("]", "");
-        String scoreAsString = String.valueOf(score);
-        String totalQuestionsAsString = String.valueOf(totalQuestions);
-
-        Handler handler = new Handler(Looper.getMainLooper());
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
 
 
-                //Assign current date and time to string
-                Date today = new Date();
-                SimpleDateFormat format = new SimpleDateFormat("dd/mm/yyyy '  ' hh:mm a");
-                String date = format.format(today);
 
-                //Creating array for parameters
-                String[] field = new String[6];
-                field[0] = "username";
-                field[1] = "questions_correct";
-                field[2] = "questions_total";
-                field[3] = "outcome";
-                field[4] = "date";
-                field[5] = "saved_question";
 
-                //Creating array for data
-                String[] data = new String[6];
-                data[0] = passUsername;
-                data[1] = scoreAsString;
-                data[2] = totalQuestionsAsString;
-                data[3] = outcome;
-                data[4] = date;
-                data[5] = saveQuestionStrings;
 
-                PostData postData = new PostData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/saveResults.php", "POST", field, data);
+            //Assign current date and time to string
+            Date today = new Date();
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy '  ' hh:mm a");
+            String date = format.format(today);
 
-                if (postData.startPut()) {
-                    if (postData.onComplete()) {
-                        String result = postData.getResult();
-                        if (result.equals("Results Save Success")) {
-                            openFullExamResult(passUsername);
-                        } else {
-                            //MAKES PROGRESS BAR APPEAR, AND OTHER OBJECTS DISAPPEAR
-                            pbProgressBar.setVisibility(View.INVISIBLE);
-                            tvQuestionWithoutImage.setVisibility(View.VISIBLE);
-                            tvQuestionWithoutImage.setText("Error saving exam");
-                            tvQuestionWithImage.setVisibility(View.VISIBLE);
-                            radioGroup.setVisibility(View.VISIBLE);
-                            questionImage.setVisibility(View.VISIBLE);
-                            tvExitTest.setVisibility(View.VISIBLE);
-                            btnNext.setVisibility(View.VISIBLE);
-                            tvAnswerWarning.setVisibility(View.VISIBLE);
-                            ttsImage.setVisibility(View.VISIBLE);
-                            //OPEN PREVIOUS SCREEN
-                            //     openPrevScreen(passUsername);
-                            //SHOW ERROR MESSAGE
-                            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
-                        }
+            //Creating array for parameters
+            String[] field = new String[6];
+            field[0] = "username";
+            field[1] = "questions_correct";
+            field[2] = "questions_total";
+            field[3] = "outcome";
+            field[4] = "date";
+            field[5] = "saved_question";
 
+            //Creating array for data
+            String[] data = new String[6];
+            data[0] = username;
+            data[1] = String.valueOf(score);;
+            data[2] = String.valueOf(totalQuestions);;
+            data[3] = outcome;
+            data[4] = date;
+            data[5] = saveQuestion.toString();;
+
+
+            //For testing purposes
+            Log.i("saveQuestionStrings", data[5]);
+            //For testing purposes
+            Log.i("scoreAsString", data[1]);
+            //For testing purposes
+            Log.i("totalQuestionsAsString", data[2]);
+
+            PostData postData = new PostData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/save_results.php", "POST", field, data);
+
+            if (postData.startPut()) {
+                if (postData.onComplete()) {
+                    if (postData.getResult().equals("success")) {
+                        openFullExamResult(username);
+                    } else {
+                        //MAKES PROGRESS BAR APPEAR, AND OTHER OBJECTS DISAPPEAR
+/*                        pbProgressBar.setVisibility(View.INVISIBLE);
+                        tvQuestionWithoutImage.setVisibility(View.VISIBLE);*/
+                        tvQuestionWithoutImage.setText("Error saving exam");
+/*                        tvQuestionWithImage.setVisibility(View.VISIBLE);
+                        radioGroup.setVisibility(View.VISIBLE);
+                        questionImage.setVisibility(View.VISIBLE);
+                        tvExitTest.setVisibility(View.VISIBLE);
+                        btnNext.setVisibility(View.VISIBLE);
+                        tvAnswerWarning.setVisibility(View.VISIBLE);
+                        ttsImage.setVisibility(View.VISIBLE);*/
+                        //OPEN PREVIOUS SCREEN
+                        //     openPrevScreen(passUsername);
+                        //SHOW ERROR MESSAGE
+                        Toast.makeText(getApplicationContext(), postData.getResult(), Toast.LENGTH_SHORT).show();
                     }
+
                 }
             }
-        });
-    }
 
-        else{
-            openFullExamResult(passUsername);
         }
 
+        else{
+            openFullExamResult(username);
+        }
     }
-
-
-
-    //END TEST TO PREVENT CHEATING (LOOKING UP ANSWERS ON INTERNET APPLICATION ETC)
-    @Override
-    protected void onPause() {
-        super.onPause();
-        finish();
-    }
-
-
 
 
     //TEXT TO SPEECH FUNCTION
@@ -496,8 +469,6 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
     }
 
 
-
-
     @Override
     protected void onDestroy() {
         if (mTTS != null) {
@@ -516,19 +487,20 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
 
 
 
-    //PROCEED TO NEXT SCREEN
+    //Method for proceeding to next activity
     public void openFullExamResult(String username) {
+
         Intent intent = new Intent(this, ActivityFullExamResult.class);
-        intent.putExtra("TOTAL_QUESTIONS", totalQuestions);
-        intent.putExtra("SCORE", score);
+        intent.putExtra("total_questions_key", totalQuestions);
+        intent.putExtra("exam_score_key", score);
         intent.putExtra("username_key",username);
-        intent.putExtra("exam_type","full");
+        intent.putExtra("exam_type_key","full");
         startActivity(intent);
         finish();
     }
 
 
-    //PROCEED TO NEXT SCREEN
+    //Clear radio button colours when next question is shown
     public void clearRadioButtonColors() {
         rb1.setBackgroundColor(Color.parseColor("#4287f5"));
         rb2.setBackgroundColor(Color.parseColor("#4287f5"));
@@ -536,8 +508,6 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
         rb4.setBackgroundColor(Color.parseColor("#4287f5"));
         btnNext.setBackgroundColor(Color.parseColor("#4287f5"));
     }
-
-
 
 
     //GO BACK TO PREVIOUS SCREEN (IN CASE OF RESULT SAVE FAILED)
@@ -562,36 +532,38 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
     }
 
 
+
+    //PARSES JSON OF QUESTIONS AND ANSWERS AND STORES INTO QUESTIONMODEL
     public void parseJSONtoQuestionModel(String fetchedQuestionJson){
 
         try {
-            JSONObject obj = new JSONObject(fetchedQuestionJson);
-            JSONArray questionData = obj.getJSONArray("getAllQuestions");
-            int n = questionData.length();
-            for (int i = 0; i < n; ++i) {
-                JSONObject questionObj = questionData.getJSONObject(i);
-                QuestionModel q = new QuestionModel();
-                int ID = questionObj.getInt("id");
-                q.setID(ID);
-                String category = questionObj.getString("category");
-                q.setCategory(category);
-                String question = questionObj.getString("question");
-                q.setQuestion(question);
-                String option1 = questionObj.getString("option1");
-                q.setOption1(option1);
-                String option2 = questionObj.getString("option2");
-                q.setOption2(option2);
-                String option3 = questionObj.getString("option3");
-                q.setOption3(option3);
-                String option4 = questionObj.getString("option4");
-                q.setOption4(option4);
-                int answer = questionObj.getInt("answer");
-                q.setAnswerNr(answer);
-                String imageID = questionObj.getString("image");
-                q.setImageID(imageID);
-                String explanation = questionObj.getString("explanation");
-                q.setExplanation(explanation);
-                questionListFromRemote.add(q);
+
+            JSONObject questionJsonObject = new JSONObject(fetchedQuestionJson); //Initialise JSON Object, passing in JSON data
+            JSONArray questionJsonArray = questionJsonObject.getJSONArray("getAllQuestions"); //Assign JSON Object into JSON Array
+
+
+            //Fill QuestionList until reaches end of array
+            for (int i = 0; i<questionJsonArray.length(); ++i) {
+
+                JSONObject questionObj = questionJsonArray.getJSONObject(i); //Pass values from array into new object
+
+                QuestionModel questionModel = new QuestionModel(); //New QuestionModel
+
+
+                //Set up question model from JSONObject elements
+                questionModel.setID(questionObj.getInt("id"));
+                questionModel.setCategory(questionObj.getString("category"));
+                questionModel.setQuestion(questionObj.getString("question"));
+                questionModel.setOption1(questionObj.getString("option1"));
+                questionModel.setOption2(questionObj.getString("option2"));
+                questionModel.setOption3(questionObj.getString("option3"));
+                questionModel.setOption4(questionObj.getString("option4"));
+                questionModel.setAnswerNr(questionObj.getInt("answer"));
+                questionModel.setImageID(questionObj.getString("image"));
+                questionModel.setExplanation(questionObj.getString("explanation"));
+
+                //Add QuestionModel object to QuestionList
+                questionListOnline.add(questionModel);
 
             }
 
@@ -600,14 +572,19 @@ public class ActivityFullExam extends AppCompatActivity implements ExampleDialog
         }
     }
 
+
+    public void saveExamResults(String username){
+
+
+
+    }
+
     //EXIT TEST WARNING ON BACK PRESS
     @Override
     public void onBackPressed()
     {
         openDialog(username,"Are you sure you void and exit the exam?", "Warning", "Yes", "No");
     }
-
-
 
 
 }

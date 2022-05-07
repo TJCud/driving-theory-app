@@ -14,8 +14,6 @@ import android.widget.TextView;
 
 
 public class ActivitySplashScreen extends AppCompatActivity implements ExampleDialog.ExampleDialogListener {
-    private ProgressBar pbProgressBar;
-    private TextView tvProgressBarText;
     private String fetchedResult;
     public static final String SHARED_PREFS = "sharedPrefs";
     Handler splashDelayHandler = new Handler();
@@ -27,8 +25,8 @@ public class ActivitySplashScreen extends AppCompatActivity implements ExampleDi
         setContentView(R.layout.activity_main);
 
         //Initialise and assign progress bar / text objects
-        pbProgressBar = findViewById(R.id.pbProgressBar);
-        tvProgressBarText = findViewById(R.id.tvProgressBarText);
+        ProgressBar pbProgressBar = findViewById(R.id.pbProgressBar);
+        TextView tvProgressBarText = findViewById(R.id.tvProgressBarText);
 
         //DISPLAYING STATUS ON UI
         pbProgressBar.setVisibility(View.VISIBLE);
@@ -50,7 +48,7 @@ public class ActivitySplashScreen extends AppCompatActivity implements ExampleDi
                     openDialog("username", "Unable to connect to server.", "Connection Error", "Continue Offline", "Try Again");
                 }
 
-                Log.i("testFETCH", getAllQuestions());
+                Log.i("Status", "Attempting to connect");
 
 
                 if(proceed) {
@@ -64,7 +62,6 @@ public class ActivitySplashScreen extends AppCompatActivity implements ExampleDi
                     //INTENT FOR NEXT ACTIVITY (LOGIN SCREEN)
                     Intent goToLoginActivity = new Intent(ActivitySplashScreen.this, ActivityLogin.class);
                     startActivity(goToLoginActivity);
-
 
                     finish(); //Close splash screen activity
                 }
@@ -82,22 +79,20 @@ public class ActivitySplashScreen extends AppCompatActivity implements ExampleDi
         FetchData fetchData = new FetchData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/get_all_questions.php");
 
         if (fetchData.startFetch()) {
+            Log.i("Status", "Attempting to connect");
             if (fetchData.onComplete()) {
+                Log.i("Status", "Connected, returning data");
                 fetchedResult = fetchData.getData();
 
                 //For testing purposes
-                Log.i("FetchData", fetchedResult);
-
+                Log.i("Status", String.valueOf(fetchedResult.startsWith("getAllQuestions", 2)));
 
                 if(fetchedResult.startsWith("getAllQuestions", 2)){
                     proceed=true;
                 }
-
             }
         }
-
         return fetchedResult.substring(2, 17);
-
     }
 
 

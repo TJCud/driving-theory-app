@@ -39,6 +39,7 @@
         <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/layout/activity_login_register.xml" value="0.20572916666666666" />
         <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/layout/activity_material_design_testing.xml" value="0.3671875" />
         <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/layout/activity_menu.xml" value="0.25" />
         <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/layout/activity_mock_test.xml" value="0.335" />
         <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/layout/activity_mock_test_results.xml" value="0.25" />
@@ -47,7 +48,7 @@
         <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/layout/activity_practice.xml" value="0.34692028985507245" />
         <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/layout/activity_practice_menu.xml" value="0.27255029201817" />
         <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/layout/activity_practice_test.xml" value="0.34692028985507245" />
-        <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/layout/activity_pratice_exam.xml" value="0.21875" />
+        <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/layout/activity_pratice_exam.xml" value="0.165" />
         <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/layout/activity_rbsaver_test.xml" value="0.21875" />
         <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/layout/activity_register.xml" value="0.3061594202898551" />
         <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/layout/activity_result.xml" value="0.18072916666666666" />
@@ -60,11 +61,12 @@
         <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/layout/activity_test_menu.xml" value="0.25" />
         <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/layout/activity_test_pre_screen.xml" value="0.2046875" />
         <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/layout/activity_ttsexample.xml" value="0.2046875" />
+        <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/layout/activity_webview.xml" value="0.19635416666666666" />
         <entry key="..\:/Users/TJ_19/AndroidStudioProjects/DrivingTheoryApp/app/src/main/res/layout/dialog_layout.xml" value="0.21875" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

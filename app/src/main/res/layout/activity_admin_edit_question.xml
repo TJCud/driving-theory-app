@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="#e6e9ff"
     android:weightSum="15"
     tools:context=".ActivityAdminEditQuestion">
 
@@ -18,16 +16,7 @@
         android:layout_marginBottom="0dp"
         android:background="#4287f5">
 
-        <ImageView
-            android:id="@+id/returnButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center"
-            android:layout_marginTop="0dp"
-            android:layout_toLeftOf="@id/tvPageHeader"
-            android:paddingRight="5dp"
-            android:src="@drawable/ic_backarrow" />
+
 
 
         <TextView
@@ -38,9 +27,9 @@
             android:layout_marginTop="0dp"
             android:fontFamily="@font/robotocondensedlight"
             android:gravity="center"
-            android:text="Edit Question"
+            android:text="@string/edit_question"
             android:textColor="@color/white"
-            android:textSize="35dp" />
+            android:textSize="35sp" />
 
     </RelativeLayout>
 
@@ -50,7 +39,7 @@
         android:layout_height="690dp"
         android:layout_weight="1"
         android:layout_marginBottom="0dp"
-        android:background="@color/white">
+        android:background="#e6e9ff">
 
 
         <EditText
@@ -58,12 +47,12 @@
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/edit_text_border"
             android:fontFamily="@font/robotocondensedlight"
-            android:hint="Enter Question ID"
+            android:hint="@string/enter_question_id"
             android:inputType="text"
             android:maxLength="4"
             android:maxLines="1"
@@ -77,13 +66,13 @@
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="5dp"
-            android:layout_toRightOf="@id/EditTextQuestionID"
+            android:layout_toEndOf="@id/EditTextQuestionID"
             android:backgroundTint="#80000000"
             android:fontFamily="@font/robotocondensedlight"
-            android:text="SEARCH ID"
+            android:text="@string/search_id"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="bold" />
@@ -95,14 +84,12 @@
             android:layout_height="20dp"
             android:layout_below="@id/EditTextQuestionID"
             android:layout_centerInParent="true"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/robotocondensedlight"
             android:gravity="center"
-            android:text="Question ID: "
+            android:text="@string/question_id"
             android:textColor="@color/black"
-            android:textSize="15dp" />
-
-
+            android:textSize="15sp" />
 
 
         <Spinner
@@ -111,12 +98,12 @@
             android:layout_height="50dp"
             android:layout_below="@id/EditTextQuestionID"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="45dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/edit_text_border"
             android:entries="@array/category_array"
-            android:hint="Category"
+            android:hint="@string/category"
             android:textColor="#000000"
             android:textColorHint="#5c5c5c" />
 
@@ -127,11 +114,12 @@
             android:layout_height="50dp"
             android:layout_below="@id/CategorySpinner"
             android:layout_marginStart="10dp"
+
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/edit_text_border"
             android:fontFamily="@font/robotocondensedlight"
-            android:hint="Question"
+            android:hint="@string/question"
             android:inputType="text"
             android:maxLength="200"
             android:maxLines="1"
@@ -150,7 +138,7 @@
             android:layout_marginBottom="5dp"
             android:background="@drawable/edit_text_border"
             android:fontFamily="@font/robotocondensedlight"
-            android:hint="Option 1"
+            android:hint="@string/option_1"
             android:inputType="text"
             android:maxLength="200"
             android:maxLines="1"
@@ -169,7 +157,7 @@
             android:layout_marginBottom="5dp"
             android:background="@drawable/edit_text_border"
             android:fontFamily="@font/robotocondensedlight"
-            android:hint="Option 2"
+            android:hint="@string/option_2"
             android:inputType="text"
             android:maxLength="200"
             android:maxLines="1"
@@ -188,7 +176,7 @@
             android:layout_marginBottom="5dp"
             android:background="@drawable/edit_text_border"
             android:fontFamily="@font/robotocondensedlight"
-            android:hint="Option 3"
+            android:hint="@string/option_3"
             android:inputType="text"
             android:maxLength="200"
             android:maxLines="1"
@@ -207,7 +195,7 @@
             android:layout_marginBottom="5dp"
             android:background="@drawable/edit_text_border"
             android:fontFamily="@font/robotocondensedlight"
-            android:hint="Option 4"
+            android:hint="@string/option_4"
             android:inputType="text"
             android:maxLength="200"
             android:maxLines="1"
@@ -226,7 +214,7 @@
             android:layout_marginBottom="5dp"
             android:background="@drawable/edit_text_border"
             android:entries="@array/answer_array"
-            android:hint="Category"
+            android:hint="@string/category"
             android:textColor="#000000"
             android:textColorHint="#5c5c5c" />
 
@@ -241,7 +229,7 @@
             android:layout_marginBottom="5dp"
             android:background="@drawable/edit_text_border"
             android:fontFamily="@font/robotocondensedlight"
-            android:hint="Question Explanation"
+            android:hint="@string/question_explanation"
             android:inputType="text"
             android:maxLength="500"
             android:maxLines="3"
@@ -259,10 +247,10 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="5dp"
-            android:layout_toRightOf="@id/EditTextQuestionID"
+            android:layout_toEndOf="@id/EditTextQuestionID"
             android:backgroundTint="#80000000"
             android:fontFamily="@font/robotocondensedlight"
-            android:text="New Question"
+            android:text="@string/new_question"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="bold" />
@@ -276,10 +264,10 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="5dp"
-            android:layout_toLeftOf="@id/newQuestionButton"
+            android:layout_toStartOf="@id/newQuestionButton"
             android:backgroundTint="#80000000"
             android:fontFamily="@font/robotocondensedlight"
-            android:text="Save Question"
+            android:text="@string/save_question"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="bold" />

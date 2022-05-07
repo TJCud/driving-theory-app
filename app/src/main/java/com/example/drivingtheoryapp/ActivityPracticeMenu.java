@@ -41,7 +41,6 @@ public class ActivityPracticeMenu extends AppCompatActivity {
         categoryCV12 = findViewById(R.id.ID_buttonVehicleHandling);
         categoryCV13 = findViewById(R.id.ID_buttonVehicleLoading);
         categoryCV14 = findViewById(R.id.ID_buttonVulnerableRoadUsers);
-        ImageView backButtonIcon = (ImageView) findViewById(R.id.ID_returnButton);
 
 
         // Getting the intent which started this activity

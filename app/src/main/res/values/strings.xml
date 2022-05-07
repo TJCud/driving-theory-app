@@ -1,10 +1,60 @@
 <resources>
     <string name="app_name">DrivingTheoryApp</string>
-    <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="confirmpassword">Confirm Password</string>
     <string name="email">E-mail Address</string>
     <string name="register">Complete Registration</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="question_will_display_here">Question will display here</string>
+    <string name="please_select_an_answer">Please select an answer</string>
+    <string name="next_question">NEXT QUESTION</string>
+    <string name="see_explanation">See Explanation</string>
+    <string name="timer">TIMER</string>
+    <string name="exit">EXIT</string>
+    <string name="question_1_n">Question 1/n</string>
+    <string name="track_my_progress">Track My Progress</string>
+    <string name="delete_account">Delete Account</string>
+    <string name="change_password">Change Password</string>
+    <string name="all_questions">All Questions</string>
+    <string name="all_users">All Users</string>
+    <string name="edit_question">Edit Question</string>
+    <string name="enter_question_id">Enter Question ID</string>
+    <string name="question_id">Question ID:</string>
+    <string name="question">Question</string>
+    <string name="option_1">Option 1</string>
+    <string name="option_2">Option 2</string>
+    <string name="option_3">Option 3</string>
+    <string name="option_4">Option 4</string>
+    <string name="category">Category</string>
+    <string name="question_explanation">Question Explanation</string>
+    <string name="new_question">New Question</string>
+    <string name="save_question">Save Question</string>
+    <string name="search_id">SEARCH ID</string>
+    <string name="enter_user_id">Enter User ID</string>
+    <string name="edit_user">Edit User</string>
+    <string name="user_id">User ID:</string>
+    <string name="username">Username</string>
+    <string name="e_mail_address">E-mail Address</string>
+    <string name="new_password">New Password</string>
+    <string name="update_password">UPDATE PASSWORD</string>
+    <string name="new_user">New User</string>
+    <string name="save_user">Save User</string>
+    <string name="edit_users">Edit Users</string>
+    <string name="edit_questions">Edit Questions</string>
+    <string name="administrator_tools">Administrator Tools</string>
+    <string name="edit_nquestions">Edit\nQuestions</string>
+    <string name="edit_nusers">Edit\nUsers</string>
+    <string name="test_results">Test Results</string>
+    <string name="pass_fail">PASS/FAIL</string>
+    <string name="main_menu">MAIN MENU</string>
+    <string name="retake_test">RETAKE TEST</string>
+    <string name="all_results">ALL RESULTS</string>
+    <string name="all_exam_results">All Exam Results</string>
+    <string name="stats">STATS</string>
+    <string name="fetching_results">Fetching Results...</string>
+    <string name="option">OPTION</string>
+    <string name="track_progress">Track Progress</string>
+
 
     <string-array name="category_array">
         <item>Alertness</item>
@@ -21,6 +71,7 @@
         <item>Vehicle handling</item>
         <item>Vehicle loading</item>
         <item>Vulnerable road users</item>
+
     </string-array>
 
     <string-array name="answer_array">

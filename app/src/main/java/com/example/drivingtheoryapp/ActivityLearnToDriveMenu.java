@@ -71,7 +71,7 @@ public class ActivityLearnToDriveMenu extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(ActivityLearnToDriveMenu.this, ActivityWebView.class);
                 intent.putExtra("username_key",username);
-                intent.putExtra("document_key","https://www.drivingtestsuccess.com/blog/last-minute-tips-pass-your-theory-test");
+                intent.putExtra("document_key","http://tcudden01.webhosting3.eeecs.qub.ac.uk/drivingtips.html");
                 startActivity(intent);
 
             }

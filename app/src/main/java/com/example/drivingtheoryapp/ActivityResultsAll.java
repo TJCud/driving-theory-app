@@ -170,6 +170,7 @@ public class ActivityResultsAll extends AppCompatActivity {
             //CHECK IF ANY EXAMS EXIST FOR USER
             if (n<1){
                 overviewLabel.setText("\nNo results found for "+ passUsername +".");
+                viewChange.setVisibility(View.GONE);
             }
             else{
 
@@ -189,10 +190,12 @@ public class ActivityResultsAll extends AppCompatActivity {
                     double passCheck = questionsCorrect * 100 / questionsTotal;
 
 
-                    //ADDS EXAM DATA TO ARRAY LISTS
-                    arrayListExamOutcome.add("Exam ID: " + ID +"\n"+date + "\n" + "Exam Score: " + questionsCorrect + "/" + questionsTotal + " (" + passCheck + "%) " + "Outcome: " + outcome);
-                    arrayListAskedQuestions.add("Exam ID: " + ID +"\n\n"+savedQuestion + "\n\n");
+                    //Adding data containing an overview of the exam results to array list
+                    arrayListExamOutcome.add("Exam ID: " + ID +"\n"+date + "\n" + "Exam Score: " + questionsCorrect
+                            + "/" + questionsTotal + " (" + passCheck + "%) " + "Outcome: " + outcome);
 
+                    //Adding data containing each specific question and answer
+                    arrayListAskedQuestions.add("Exam ID: " + ID +"\n\n"+savedQuestion + "\n\n");
 
                     //CREATE AND SET THE LIST ADAPTER FOR DISPLAYING EXAM INFO
                     ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, arrayListExamOutcome);
@@ -202,9 +205,11 @@ public class ActivityResultsAll extends AppCompatActivity {
                     allResultsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                            String getSavedQuestionString = arrayListAskedQuestions.get(position);
+                            String getSavedQuestionString = arrayListAskedQuestions.get(position); //Sets position of array to correspond with element on listview
+
+                            //Intent code for passing data to next activity
                             Intent resultsSpecificIntent = new Intent(ActivityResultsAll.this, ActivityResultsSpecific.class);
-                            resultsSpecificIntent.putExtra("result_key",getSavedQuestionString.replaceAll(",", ""));
+                            resultsSpecificIntent.putExtra("result_key",getSavedQuestionString.replaceAll(",", "")); //Removing comments from string
                             resultsSpecificIntent.putExtra("username_key", passUsername);
                             startActivity(resultsSpecificIntent);
                             finish();

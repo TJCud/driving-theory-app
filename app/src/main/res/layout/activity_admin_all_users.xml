@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#4287f5"
+    android:background="#e6e9ff"
     android:weightSum="15"
     tools:context=".ActivityAdminAllUsers">
 
@@ -19,19 +19,7 @@
         android:layout_marginBottom="0dp"
         android:layout_weight="2"
         android:background="#4287f5"
-
         >
-
-        <ImageView
-            android:id="@+id/returnButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center"
-            android:layout_marginTop="0dp"
-            android:layout_toLeftOf="@id/tvPageHeader"
-            android:paddingRight="5dp"
-            android:src="@drawable/ic_backarrow" />
 
 
         <TextView
@@ -42,9 +30,9 @@
             android:layout_marginTop="0dp"
             android:fontFamily="@font/robotocondensedlight"
             android:gravity="center"
-            android:text="All Users"
+            android:text="@string/all_users"
             android:textColor="@color/white"
-            android:textSize="35dp" />
+            android:textSize="35sp" />
 
 
 
@@ -56,7 +44,6 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="0dp"
         android:fontFamily="@font/robotocondensedlight"
-        android:layout_below="@id/topHeader"
         android:layout_weight="2"
         android:background="#e6e6ff">
 
@@ -68,9 +55,9 @@
             android:fontFamily="@font/robotocondensedlight"
             android:gravity="center"
             android:scrollbars="vertical"
-            android:text="STATS"
+            android:text="@string/stats"
             android:textColor="@color/black"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:textStyle="normal" />
 
         <ProgressBar
@@ -85,7 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="Fetching Results..."
+            android:text="@string/fetching_results"
             android:layout_below="@id/progressBar"
             android:visibility="visible" />
 

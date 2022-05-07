@@ -20,6 +20,9 @@
         android:theme="@style/Theme.DrivingTheoryApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".MaterialDesignTesting"
+            android:exported="false" />
+        <activity
             android:name=".ActivityWebView"
             android:exported="false" />
         <activity
@@ -37,20 +40,12 @@
         <activity
             android:name=".ActivityAdminTools"
             android:exported="false" />
-        <activity
-            android:name=".RBsaverTest"
-            android:exported="false" />
-        <activity
-            android:name=".TTSexample"
-            android:exported="false" />
+
         <activity
             android:name=".ActivityPracticeExam"
             android:exported="false" />
         <activity
             android:name=".ActivityPracticeMenu"
-            android:exported="false" />
-        <activity
-            android:name=".ActivityGraphView"
             android:exported="false" />
         <activity
             android:name=".ActivityResultsSpecific"
@@ -60,9 +55,6 @@
             android:exported="false" />
         <activity
             android:name=".ActivityResultsAll"
-            android:exported="false" />
-        <activity
-            android:name=".ActivitySettingsMenu"
             android:exported="false" />
         <activity
             android:name=".ActivityAccountMenu"

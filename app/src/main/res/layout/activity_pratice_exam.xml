@@ -10,7 +10,7 @@
     app:layout_constraintTop_toTopOf="parent"
     android:padding="0dp"
     tools:context=".ActivityPracticeExam"
-    android:background="#bad5ff"
+    android:background="#e6e9ff"
     >
 
     <RelativeLayout
@@ -18,7 +18,6 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginBottom="0dp"
-        android:layout_weight="2"
         android:background="#4287f5"
         android:gravity="center_vertical">
 
@@ -28,9 +27,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/robotocondensedlight"
-            android:paddingLeft="15dp"
-            android:paddingRight="5dp"
-            android:text="EXIT"
+            android:paddingStart="15dp"
+            android:paddingEnd="5dp"
+            android:text="@string/exit"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="bold" />
@@ -40,11 +39,11 @@
             android:id="@+id/tvQuestionNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/tvTimer"
-            android:layout_toRightOf="@id/tvExitTest"
+            android:layout_toStartOf="@id/tvTimer"
+            android:layout_toEndOf="@id/tvExitTest"
             android:fontFamily="@font/robotocondensedlight"
             android:gravity="center"
-            android:text="Question 1/n"
+            android:text="@string/question_1_n"
             android:textColor="@color/white"
             android:textSize="15sp" />
 
@@ -55,9 +54,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:fontFamily="@font/robotocondensedlight"
-            android:paddingLeft="5dp"
-            android:paddingRight="15dp"
-            android:text="TIMER"
+            android:paddingStart="5dp"
+            android:paddingEnd="15dp"
+            android:text="@string/timer"
             android:textColor="@color/white"
             android:textSize="15sp" />
 
@@ -77,26 +76,32 @@
         android:id="@+id/tvQuestionWithImage"
         android:layout_width="match_parent"
         android:layout_height="125dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_below="@+id/ID_questionImage"
         android:layout_marginTop="-100dp"
         android:fontFamily="@font/robotocondensedlight"
         android:gravity="center"
-        android:text="Question will display here"
+        android:text="@string/question_will_display_here"
         android:textColor="#000000"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="bold"/>
 
 
     <TextView
         android:id="@+id/tvQuestionWithoutImage"
         android:layout_width="match_parent"
         android:layout_height="306dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_below="@+id/ID_questionImage"
         android:layout_marginTop="-280dp"
         android:fontFamily="@font/robotocondensedlight"
         android:gravity="center"
-        android:text="Question will display here"
+        android:text="@string/question_will_display_here"
         android:textColor="#000000"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
 
 
@@ -134,10 +139,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/radioGroup"
-        android:layout_marginTop="-20dp"
+        android:layout_marginBottom="10dp"
         android:fontFamily="@font/robotocondensedlight"
         android:gravity="center"
-        android:text="Please select an answer"
+        android:text="@string/please_select_an_answer"
         android:textColor="#ff5757"
         android:textSize="10sp"
         android:textStyle="bold" />
@@ -165,11 +170,11 @@
             android:gravity="center"
             android:fontFamily="@font/robotocondensedlight"
             android:paddingLeft="20dp"
-
             android:paddingRight="20dp"
             android:text="Option 1"
             android:textColor="#FFFFFF"
-            android:textSize="11.5sp" />
+            android:textSize="14sp"
+            android:textStyle="bold"/>
 
 
         <RadioButton
@@ -183,9 +188,10 @@
             android:gravity="center"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
+            android:textStyle="bold"
             android:text="Option 2"
             android:textColor="#FFFFFF"
-            android:textSize="11.5sp" />
+            android:textSize="14sp" />
 
         <RadioButton
             android:id="@+id/rb3"
@@ -199,8 +205,9 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:text="Option 3"
+            android:textStyle="bold"
             android:textColor="#FFFFFF"
-            android:textSize="11.5sp" />
+            android:textSize="14sp" />
 
         <RadioButton
             android:id="@+id/rb4"
@@ -214,8 +221,9 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:text="Option 4"
+            android:textStyle="bold"
             android:textColor="#FFFFFF"
-            android:textSize="11.5sp" />
+            android:textSize="14sp" />
 
 
 
@@ -225,15 +233,16 @@
 
     <Button
         android:id="@+id/btnNext"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
+        android:layout_centerHorizontal="true"
         android:layout_height="55dp"
         android:layout_below="@id/radioGroup"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="50dp"
         android:backgroundTint="#4287f5"
         android:fontFamily="@font/robotocondensedlight"
-        android:text="NEXT QUESTION"
+        android:text="@string/next_question"
         android:textColor="@color/white"
         android:textSize="15sp"
         android:textStyle="italic"
@@ -241,24 +250,17 @@
 
     <Button
         android:id="@+id/btnExplanation"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
+        android:layout_centerHorizontal="true"
         android:layout_height="55dp"
         android:layout_below="@id/btnNext"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:backgroundTint="#4287f5"
         android:fontFamily="@font/robotocondensedlight"
-        android:text="See Explanation"
+        android:text="@string/see_explanation"
         android:textColor="@color/white"
         android:textSize="15sp"
         android:textStyle="italic" />
-
-
-
-
-
-
-
-
 
 </RelativeLayout>

@@ -49,7 +49,7 @@ public class ActivityAdminEditUser extends AppCompatActivity {
         newUserButton = findViewById(R.id.newUserButton);
         statusTextView = findViewById(R.id.userSearchStatus);
         accountTypeSpinner = findViewById(R.id.AccountTypeSpinner);
-        returnButton = findViewById(R.id.returnButton);
+
 
 
         userIDEditText = findViewById(R.id.EditTextUserID);

@@ -30,19 +30,18 @@
             android:layout_marginTop="0dp"
             android:fontFamily="@font/robotocondensedlight"
             android:gravity="center"
-            android:text="Test Results"
+            android:text="@string/test_results"
             android:textColor="@color/white"
-            android:textSize="35dp" />
+            android:textSize="35sp" />
 
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="682dp"
-        android:layout_below="@id/topHeader"
         android:layout_marginBottom="0dp"
         android:layout_weight="2"
-        android:background="#e6e6ff">
+        android:background="#e6e9ff">
 
 
         <TextView
@@ -63,7 +62,7 @@
             android:layout_below="@id/scoreLabel"
             android:layout_marginTop="61dp"
             android:gravity="center"
-            android:text="PASS/FAIL"
+            android:text="@string/pass_fail"
             android:fontFamily="@font/robotocondensedlight"
             android:textSize="50sp" />
 
@@ -80,7 +79,7 @@
             android:backgroundTint="#4287f5"
             android:fontFamily="@font/robotocondensedlight"
             android:gravity="center"
-            android:text="MAIN MENU"
+            android:text="@string/main_menu"
             android:textSize="14sp" />
 
         <Button
@@ -95,8 +94,8 @@
             android:layout_toRightOf="@id/menubtn"
             android:backgroundTint="#4287f5"
             android:fontFamily="@font/robotocondensedlight"
-            android:text="RETAKE TEST"
-            android:textSize="13dp" />
+            android:text="@string/retake_test"
+            android:textSize="13sp" />
 
         <Button
             android:id="@+id/resultsbtn"
@@ -106,17 +105,16 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_toRightOf="@id/retrybtn"
+            android:layout_toEndOf="@id/retrybtn"
             android:backgroundTint="#4287f5"
             android:fontFamily="@font/robotocondensedlight"
             android:gravity="center"
-            android:text="ALL RESULTS"
-            android:textSize="13dp" />
-
-
+            android:text="@string/all_results"
+            android:textSize="13sp" />
         </RelativeLayout>
+
+
 
 
 

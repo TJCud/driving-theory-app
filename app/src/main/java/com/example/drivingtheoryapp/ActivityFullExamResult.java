@@ -71,13 +71,12 @@ public class ActivityFullExamResult extends AppCompatActivity {
 
                 if(examType.equals("practice")){
                     intent = new Intent(ActivityFullExamResult.this, ActivityPracticeMenu.class);
-                    intent.putExtra("username_key",username);
                 }
 
                 else {
                     intent = new Intent(ActivityFullExamResult.this, ActivityFullExam.class);
-                    intent.putExtra("username_key",username);
                 }
+                intent.putExtra("username_key",username);
 
                 startActivity(intent);
                 finish();

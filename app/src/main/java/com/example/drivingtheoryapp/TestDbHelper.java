@@ -1,5 +1,6 @@
 package com.example.drivingtheoryapp;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -125,6 +126,7 @@ public class TestDbHelper extends SQLiteOpenHelper {
 
 
     //RETRIEVES QUESTIONS FROM DB, ADDS TO LIST, RETURNS LIST
+    @SuppressLint("Range")
     public List<QuestionModel> getAllQuestions() {
 
         List<QuestionModel> questionList = new ArrayList<>();
@@ -154,6 +156,7 @@ public class TestDbHelper extends SQLiteOpenHelper {
     }
 
 
+    @SuppressLint("Range")
     public List<QuestionModel> getCategoryQuestions(String category) {
 
         List<QuestionModel> questionList = new ArrayList<>();
