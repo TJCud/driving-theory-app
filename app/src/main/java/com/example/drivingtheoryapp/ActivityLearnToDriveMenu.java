@@ -4,22 +4,29 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
-import android.os.Build;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.Toast;
 
-public class ActivityLearnToDriveMenu extends AppCompatActivity {
+public class ActivityLearnToDriveMenu extends AppCompatActivity implements DialogPositiveNegative.ExampleDialogListener {
 
     private String username;
+    private boolean connected;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_menu);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+        connected = sharedPreferences.getBoolean("connected_key",false);
+
+        if (!connected){
+            openDialog("username", "Unable to connect to server. Please select an option below.",
+                    "Connection Error", "Try Again", "Continue Offline");
+        }
+
 
 
         // Getting the intent which started this activity
@@ -60,7 +67,7 @@ public class ActivityLearnToDriveMenu extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(ActivityLearnToDriveMenu.this, ActivityWebView.class);
                 intent.putExtra("username_key",username);
-                intent.putExtra("document_key","https://www.gov.uk/browse/driving/highway-code-road-safety");
+                intent.putExtra("document_key",getResources().getString(R.string.highwayCode));
                 startActivity(intent);
 
             }
@@ -71,7 +78,7 @@ public class ActivityLearnToDriveMenu extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(ActivityLearnToDriveMenu.this, ActivityWebView.class);
                 intent.putExtra("username_key",username);
-                intent.putExtra("document_key","http://tcudden01.webhosting3.eeecs.qub.ac.uk/drivingtips.html");
+                intent.putExtra("document_key",getResources().getString(R.string.drivingTips));
                 startActivity(intent);
 
             }
@@ -84,16 +91,35 @@ public class ActivityLearnToDriveMenu extends AppCompatActivity {
     {
         Intent intent;
 
-        if(username.equals("guest")){
-            intent = new Intent(ActivityLearnToDriveMenu.this, ActivityLogin.class);
+        if (connected) {
+
+            if (username.equals("guest")) {
+                intent = new Intent(ActivityLearnToDriveMenu.this, ActivityLogin.class);
+            } else {
+                intent = new Intent(ActivityLearnToDriveMenu.this, ActivityMainMenu.class);
+            }
+            intent.putExtra("username_key", username);
+            startActivity(intent);
         }
-        else {
-            intent = new Intent(ActivityLearnToDriveMenu.this, ActivityMainMenu.class);
-        }
-        intent.putExtra("username_key",username);
+        finish();
+    }
+
+
+
+    @Override
+    public void applyChoice(String username) {
+        Intent intent = new Intent(getApplicationContext(), ActivitySplashScreen.class);
+        //intent.putExtra("username_key", "guest");
         startActivity(intent);
         finish();
     }
+
+    //OPENING DIALOG
+    public void openDialog(String username, String input, String title, String positiveButton, String negativeButton) {
+        DialogPositiveNegative dialogPositiveNegative = new DialogPositiveNegative(username,input,title,positiveButton,negativeButton);
+        dialogPositiveNegative.show(getSupportFragmentManager(), "example dialog");
+    }
+
 
 
 }

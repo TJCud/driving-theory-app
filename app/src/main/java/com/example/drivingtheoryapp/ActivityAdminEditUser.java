@@ -29,12 +29,18 @@ public class ActivityAdminEditUser extends AppCompatActivity {
 
     private String fetchedResult;
     private String username;
-    private ProgressBar progressBar;
-    private TextView progressBarText, statusTextView;
+    private TextView statusTextView;
     private EditText userIDEditText, usernameEditText, emailEditText, passwordEditText;
     private Spinner accountTypeSpinner;
-    private Button searchUserButton, newUserButton, saveUserButton;
-    private ImageView returnButton;
+    private Button searchUserButton, newUserButton, saveUserButton,updatePasswordButton;
+
+
+
+    private String password;
+    boolean allFieldsValid;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +53,7 @@ public class ActivityAdminEditUser extends AppCompatActivity {
         searchUserButton = findViewById(R.id.searchButton);
         saveUserButton = findViewById(R.id.saveUserButton);
         newUserButton = findViewById(R.id.newUserButton);
+        updatePasswordButton = findViewById(R.id.updatePasswordButton);
         statusTextView = findViewById(R.id.userSearchStatus);
         accountTypeSpinner = findViewById(R.id.AccountTypeSpinner);
 
@@ -70,17 +77,6 @@ public class ActivityAdminEditUser extends AppCompatActivity {
         getUserByID(passedValue);
 
 
-
-        returnButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent returnMenu = new Intent(getApplicationContext(), ActivityAdminAllUsers.class);
-                String username = "admin";
-                returnMenu.putExtra("username_key",username);
-                finish();
-                startActivity(returnMenu);
-            }
-        });
 
 
 
@@ -125,7 +121,7 @@ public class ActivityAdminEditUser extends AppCompatActivity {
 
                         //Assign current date and time to string
                         Date today = new Date();
-                        SimpleDateFormat format = new SimpleDateFormat("MMMM dd yyyy ' @ ' hh:mm a");
+                        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy '  ' HH:mm");
                         String date = format.format(today);
                         data[4] = date;
 
@@ -135,7 +131,7 @@ public class ActivityAdminEditUser extends AppCompatActivity {
                         String accountTypeIDToString = String.valueOf(typeID);
                         data[5] = accountTypeIDToString;
 
-                        PostData postData = new PostData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/saveUser.php", "POST", field, data);
+                        PostData postData = new PostData(getResources().getString(R.string.saveUser), "POST", field, data);
 
                         if (postData.startPut()) {
                             if (postData.onComplete()) {
@@ -159,7 +155,7 @@ public class ActivityAdminEditUser extends AppCompatActivity {
                 //  progressBar.setVisibility(View.VISIBLE);
                 //   progressBarText.setVisibility(View.VISIBLE);
 
-                FetchData fetchData = new FetchData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/getallusers.php");
+                FetchData fetchData = new FetchData(getResources().getString(R.string.getAllUsers));
                 if (fetchData.startFetch()) {
                     if (fetchData.onComplete()) {
                         fetchedResult = fetchData.getData();
@@ -192,6 +188,57 @@ public class ActivityAdminEditUser extends AppCompatActivity {
 
             }
         });
+
+        updatePasswordButton.setOnClickListener(new View.OnClickListener() {  //PROCEED TO MAIN MENU AS A GUEST USER
+            @Override
+            public void onClick(View view) {
+
+                password = String.valueOf(passwordEditText.getText());
+                allFieldsValid = true;
+
+                //PASSWORD VALIDATION
+                if (String.valueOf(userIDEditText.getText()).equals("")) {
+                    userIDEditText.setBackgroundColor(Color.parseColor("#B3eb4034"));
+                    Toast.makeText(getApplicationContext(),"Username field cannot be empty",Toast.LENGTH_SHORT).show();
+                    allFieldsValid = false;
+                }
+
+                if (password.equals("")) {
+                    passwordEditText.setBackgroundColor(Color.parseColor("#B3eb4034"));
+                    Toast.makeText(getApplicationContext(),"Password field cannot be empty",Toast.LENGTH_SHORT).show();
+                    allFieldsValid = false;
+                }
+                if (password.length() < 6) {
+                    passwordEditText.setBackgroundColor(Color.parseColor("#B3eb4034"));
+                    Toast.makeText(getApplicationContext(),"Password must contain a minimum of 6 characters",Toast.LENGTH_SHORT).show();
+                    allFieldsValid = false;
+                }
+                if (password.length() > 32) {
+                    passwordEditText.setBackgroundColor(Color.parseColor("#B3eb4034"));
+                    Toast.makeText(getApplicationContext(),"Password must not exceed 32 characters",Toast.LENGTH_SHORT).show();
+                    allFieldsValid = false;
+                }
+                if (!isValidPassword(password)){
+                    passwordEditText.setBackgroundColor(Color.parseColor("#B3eb4034"));
+                    Toast.makeText(getApplicationContext(),"Password must contain a lowercase, uppercase letter and number",Toast.LENGTH_SHORT).show();
+                    allFieldsValid = false;
+                }
+
+
+
+
+
+                //IF ALL FIELDS ARE NOT EMPTY AND HAVE PASSED INITIAL DATA VALIDATION
+                if(allFieldsValid) {
+                    updatePassword();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(),"All fields are required",Toast.LENGTH_SHORT).show();
+                }
+            }
+
+
+        });
     }
 
 
@@ -216,7 +263,7 @@ public class ActivityAdminEditUser extends AppCompatActivity {
             data[0] = userID;
 
 
-            PostData postData = new PostData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/getUserByID.php", "POST", field, data);
+            PostData postData = new PostData(getResources().getString(R.string.getUserByID), "POST", field, data);
             if (postData.startPut()) {
                 if (postData.onComplete()) {
                     fetchedResult = postData.getData();
@@ -279,5 +326,63 @@ public class ActivityAdminEditUser extends AppCompatActivity {
         finish();
     }
 
+    public void updatePassword(){
+
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+
+                //Starting Write and Read data with URL
+                //Creating array for parameters
+                String[] field = new String[2];
+                field[0] = "username";
+                field[1] = "password";
+
+                //Creating array for data
+                String[] data = new String[2];
+                data[0] = String.valueOf(usernameEditText.getText());
+                data[1] = password;
+
+
+                PostData postData = new PostData(getResources().getString(R.string.updatePasswordURL), "POST", field, data);
+
+                if (postData.startPut()) {
+                    if (postData.onComplete()) {
+                        String result = postData.getResult();
+                        if (result.equals("Password Successfully Updated")) {
+                            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    private static boolean isValidPassword(String password) {
+        char ch;
+        boolean capitalFlag = false;
+        boolean lowerCaseFlag = false;
+        boolean numberFlag = false;
+
+
+        for(int i=0;i < password.length();i++) {
+            ch = password.charAt(i);
+            if( Character.isDigit(ch)) {
+                numberFlag = true;
+            }
+            else if (Character.isUpperCase(ch)) {
+                capitalFlag = true;
+            } else if (Character.isLowerCase(ch)) {
+                lowerCaseFlag = true;
+            }
+            if(numberFlag && capitalFlag && lowerCaseFlag)
+                return true;
+        }
+        return false;
+    }
 
 }

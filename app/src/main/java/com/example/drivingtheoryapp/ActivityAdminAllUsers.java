@@ -70,7 +70,7 @@ public class ActivityAdminAllUsers extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         progressBarText.setVisibility(View.VISIBLE);
 
-        FetchData fetchData = new FetchData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/get_all_users.php");
+        FetchData fetchData = new FetchData(getResources().getString(R.string.getAllUsers));
         if (fetchData.startFetch()) {
             if (fetchData.onComplete()) {
                 fetchedResult = fetchData.getData();

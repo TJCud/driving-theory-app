@@ -4,13 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.ImageView;
+import android.widget.Toast;
 
-public class ActivityAccountMenu extends AppCompatActivity {
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class ActivityAccountMenu extends AppCompatActivity implements DialogDeleteAccount.ExampleDialogListener {
 
     private String username;
 
@@ -41,14 +44,12 @@ public class ActivityAccountMenu extends AppCompatActivity {
                 openProgress(username);
             }
         });
-
         deleteAccountCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 deleteAccount(username);
             }
         });
-
         changePasswordCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,10 +70,14 @@ public class ActivityAccountMenu extends AppCompatActivity {
     }
 
     public void deleteAccount(String passUsername) {
-
+        openDialog();
     }
 
     public void changePassword(String passUsername) {
+        Intent intent = new Intent(this, ActivityChangePassword.class);
+        intent.putExtra("username_key",passUsername);
+        startActivity(intent);
+        finish();
     }
 
 
@@ -86,5 +91,59 @@ public class ActivityAccountMenu extends AppCompatActivity {
         finish();
     }
 
+    //OPENING DIALOG
+    public void openDialog() {
+        DialogDeleteAccount dialogDeleteAccount = new DialogDeleteAccount();
+        dialogDeleteAccount.show(getSupportFragmentManager(), "example dialog");
+    }
 
+
+    //APPLY CHOICE OF DIALOG BOX
+    @Override
+    public void applyChoice() {
+        confirmDelete(username);
+    }
+
+
+    public void confirmDelete(String username){
+
+        //Prohibits deletion of administrator or guest account
+        if(username.equals("admin") || username.equals("guest")){
+            Toast.makeText(getApplicationContext(),"Unable to delete administrator account!",Toast.LENGTH_SHORT).show();
+        }
+        else {
+
+
+            Handler handler = new Handler(Looper.getMainLooper());
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+
+                    //Starting Write and Read data with URL
+                    //Creating array for parameters
+                    String[] field = new String[1];
+                    field[0] = "username";
+
+                    //Creating array for data
+                    String[] data = new String[1];
+                    data[0] = username;
+
+                    PostData postData = new PostData(getResources().getString(R.string.deleteAccount), "POST", field, data);
+
+                    if (postData.startPut()) {
+                        if (postData.onComplete()) {
+                            String result = postData.getResult();
+                            if (result.equals("success")) {
+                                Intent intent = new Intent(ActivityAccountMenu.this, ActivityLogin.class);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    }
 }

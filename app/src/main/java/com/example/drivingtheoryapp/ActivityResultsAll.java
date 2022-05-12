@@ -145,7 +145,7 @@ public class ActivityResultsAll extends AppCompatActivity {
             progressBar.setVisibility(View.VISIBLE);
             progressBarText.setVisibility(View.VISIBLE);
 
-            PostData postData = new PostData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/getresults.php", "POST", field, data);
+            PostData postData = new PostData(getResources().getString(R.string.getResults), "POST", field, data);
             if (postData.startPut()) {
                 if (postData.onComplete()) {
                     fetchedResult = postData.getData();
@@ -179,13 +179,13 @@ public class ActivityResultsAll extends AppCompatActivity {
 
                     //PARSING DATA FROM JSON TO VARIABLES
                     int ID = questionObj.getInt("id");
-                    int questionsCorrect = questionObj.getInt("questions_correct");
-                    int questionsTotal = questionObj.getInt("questions_total");
+                    int questionsCorrect = questionObj.getInt("questionsCorrect");
+                    int questionsTotal = questionObj.getInt("questionsTotal");
                     String outcome = questionObj.getString("outcome");
                     if(outcome.equals("PASS")){ pass++; } //COUNTING NUMBER OF TIMES USER HAS PASSED EXAM
                     String date = questionObj.getString("date");
-                    String savedQuestion = questionObj.getString("saved_question");
-                    resultModel.setSavedQuestion(savedQuestion);
+                    String savedQuestion = questionObj.getString("savedQuestions");
+                  //  resultModel.setSavedQuestion(savedQuestion);
                     //CHECKS IF PASS PERCENTAGE IS ACHIEVED AND DISPLAYS OUTCOME
                     double passCheck = questionsCorrect * 100 / questionsTotal;
 
@@ -258,7 +258,7 @@ public class ActivityResultsAll extends AppCompatActivity {
                 for (int i = 0; i < n; ++i) {
 
                     JSONObject questionObj = questionData.getJSONObject(i);
-                    int examScore = questionObj.getInt("questions_correct");
+                    int examScore = questionObj.getInt("questionsCorrect");
                     String examOutcome = questionObj.getString("outcome");
                     testNo++;
 

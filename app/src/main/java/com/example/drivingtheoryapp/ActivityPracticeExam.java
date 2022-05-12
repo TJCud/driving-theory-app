@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class ActivityPracticeExam extends AppCompatActivity implements ExampleDialog.ExampleDialogListener {
+public class ActivityPracticeExam extends AppCompatActivity implements DialogPositiveNegative.ExampleDialogListener {
 
     private QuestionModel currentQuestion;
     private TextView tvQuestionWithImage,tvQuestionWithoutImage, tvQuestionNo, tvTimer, tvExitTest,tvAnswerWarning;;
@@ -84,7 +84,9 @@ public class ActivityPracticeExam extends AppCompatActivity implements ExampleDi
         //GET QUESTIONS FROM REMOTE DB
         parseJSONtoQuestionModel(fetchedQuestionJSON,selectedCategory);
 
-        // timer(username); //Begin Timer
+
+
+
         Collections.shuffle(questionListFromRemote); //Shuffle remote question order
         totalQuestions = questionListFromRemote.size(); //Displays number of questions
 
@@ -290,10 +292,6 @@ public class ActivityPracticeExam extends AppCompatActivity implements ExampleDi
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void finishTest(String passUsername){
 
-        //Assign current date and time to string
-        Date today = new Date();
-        SimpleDateFormat format = new SimpleDateFormat("dd/mm/yyyy '  ' hh:mm a");
-        String dateToStr = format.format(today);
 
         Intent intent = new Intent(this, ActivityFullExamResult.class);
         intent.putExtra("total_questions_key", totalQuestions);
@@ -382,8 +380,8 @@ public class ActivityPracticeExam extends AppCompatActivity implements ExampleDi
 
     //OPENING DIALOG
     public void openDialog(String username, String questionExplanation, String title, String positiveButton, String negativeButton) {
-        ExampleDialog exampleDialog = new ExampleDialog(username,questionExplanation,title,positiveButton,negativeButton);
-        exampleDialog.show(getSupportFragmentManager(), "example dialog");
+        DialogPositiveNegative dialogPositiveNegative = new DialogPositiveNegative(username,questionExplanation,title,positiveButton,negativeButton);
+        dialogPositiveNegative.show(getSupportFragmentManager(), "example dialog");
 
     }
 

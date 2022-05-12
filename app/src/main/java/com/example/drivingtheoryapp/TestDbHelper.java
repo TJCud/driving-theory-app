@@ -104,7 +104,6 @@ public class TestDbHelper extends SQLiteOpenHelper {
 
                 db.insert(QuestionsTable.TABLE_NAME, null, cv);
 
-                db.close();
 
             }
         } catch (IOException e) {
@@ -126,7 +125,6 @@ public class TestDbHelper extends SQLiteOpenHelper {
 
 
     //RETRIEVES QUESTIONS FROM DB, ADDS TO LIST, RETURNS LIST
-    @SuppressLint("Range")
     public List<QuestionModel> getAllQuestions() {
 
         List<QuestionModel> questionList = new ArrayList<>();
@@ -138,15 +136,15 @@ public class TestDbHelper extends SQLiteOpenHelper {
         if (c.moveToFirst()) { //moveToFirst will display question ONLY if there is an entry in database
             do {
                 QuestionModel question = new QuestionModel();
-                question.setCategory(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_CATEGORY)));
-                question.setQuestion(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_QUESTION)));
-                question.setOption1(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION1)));
-                question.setOption2(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION2)));
-                question.setOption3(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION3)));
-                question.setOption4(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION4)));
-                question.setAnswerNr(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_ANSWER_NR)));
-                question.setImageID(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_IMAGE_ID)));
-                question.setExplanation(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_EXPLANATION)));
+                question.setCategory(c.getString(c.getColumnIndexOrThrow(QuestionsTable.COLUMN_CATEGORY)));
+                question.setQuestion(c.getString(c.getColumnIndexOrThrow(QuestionsTable.COLUMN_QUESTION)));
+                question.setOption1(c.getString(c.getColumnIndexOrThrow(QuestionsTable.COLUMN_OPTION1)));
+                question.setOption2(c.getString(c.getColumnIndexOrThrow(QuestionsTable.COLUMN_OPTION2)));
+                question.setOption3(c.getString(c.getColumnIndexOrThrow(QuestionsTable.COLUMN_OPTION3)));
+                question.setOption4(c.getString(c.getColumnIndexOrThrow(QuestionsTable.COLUMN_OPTION4)));
+                question.setAnswerNr(c.getInt(c.getColumnIndexOrThrow(QuestionsTable.COLUMN_ANSWER_NR)));
+                question.setImageID(c.getString(c.getColumnIndexOrThrow(QuestionsTable.COLUMN_IMAGE_ID)));
+                question.setExplanation(c.getString(c.getColumnIndexOrThrow(QuestionsTable.COLUMN_EXPLANATION)));
                 questionList.add(question);
             } while (c.moveToNext()); //Keeps adding questions while entries in database exists.
         }
@@ -156,7 +154,6 @@ public class TestDbHelper extends SQLiteOpenHelper {
     }
 
 
-    @SuppressLint("Range")
     public List<QuestionModel> getCategoryQuestions(String category) {
 
         List<QuestionModel> questionList = new ArrayList<>();
@@ -172,15 +169,15 @@ public class TestDbHelper extends SQLiteOpenHelper {
         if (c.moveToFirst()) { //moveToFirst will display question ONLY if there is an entry in database
             do {
                 QuestionModel question = new QuestionModel();
-                question.setCategory(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_CATEGORY)));
-                question.setQuestion(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_QUESTION)));
-                question.setOption1(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION1)));
-                question.setOption2(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION2)));
-                question.setOption3(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION3)));
-                question.setOption4(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION4)));
-                question.setAnswerNr(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_ANSWER_NR)));
-                question.setImageID(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_IMAGE_ID)));
-                question.setExplanation(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_EXPLANATION)));
+                question.setCategory(c.getString(c.getColumnIndexOrThrow(QuestionsTable.COLUMN_CATEGORY)));
+                question.setQuestion(c.getString(c.getColumnIndexOrThrow(QuestionsTable.COLUMN_QUESTION)));
+                question.setOption1(c.getString(c.getColumnIndexOrThrow(QuestionsTable.COLUMN_OPTION1)));
+                question.setOption2(c.getString(c.getColumnIndexOrThrow(QuestionsTable.COLUMN_OPTION2)));
+                question.setOption3(c.getString(c.getColumnIndexOrThrow(QuestionsTable.COLUMN_OPTION3)));
+                question.setOption4(c.getString(c.getColumnIndexOrThrow(QuestionsTable.COLUMN_OPTION4)));
+                question.setAnswerNr(c.getInt(c.getColumnIndexOrThrow(QuestionsTable.COLUMN_ANSWER_NR)));
+                question.setImageID(c.getString(c.getColumnIndexOrThrow(QuestionsTable.COLUMN_IMAGE_ID)));
+                question.setExplanation(c.getString(c.getColumnIndexOrThrow(QuestionsTable.COLUMN_EXPLANATION)));
                 questionList.add(question);
             } while (c.moveToNext()); //Keeps adding questions while entries in database exists.
         }

@@ -13,16 +13,20 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
-public class ActivitySplashScreen extends AppCompatActivity implements ExampleDialog.ExampleDialogListener {
+public class ActivitySplashScreen extends AppCompatActivity {
     private String fetchedResult;
     public static final String SHARED_PREFS = "sharedPrefs";
     Handler splashDelayHandler = new Handler();
-    Boolean proceed=false;
+    Boolean connected=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //INITIALISING SHARED PREFERENCES TO SHARE WITH EXAM ACTIVITIES
+        SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
         //Initialise and assign progress bar / text objects
         ProgressBar pbProgressBar = findViewById(R.id.pbProgressBar);
@@ -40,31 +44,31 @@ public class ActivitySplashScreen extends AppCompatActivity implements ExampleDi
             public void run() {
 
 
-                //Run method to load questions from database
-                getAllQuestions();
+                //Test connection to database
+                establishConnection();
 
 
-                if (!getAllQuestions().equals("getAllQuestions")) {
-                    openDialog("username", "Unable to connect to server.", "Connection Error", "Continue Offline", "Try Again");
-                }
-
-                Log.i("Status", "Attempting to connect");
-
-
-                if(proceed) {
-
-                    //INITIALISING SHARED PREFERENCES TO SHARE WITH EXAM ACTIVITIES
-                    SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("questionJSON_key", fetchedResult);
+                //Close splash screen activity
+                if (!establishConnection()) {
+                    //If connection not established, pass in boolean to shared prefs
+                    editor.putBoolean("connected_key", false);
                     editor.apply();
-
+                    //INTENT FOR NEXT ACTIVITY (LOGIN SCREEN)
+                    Intent goToMainMenuActivity = new Intent(ActivitySplashScreen.this, ActivityLearnToDriveMenu.class);
+                    goToMainMenuActivity.putExtra("username_key", "guest");
+                    startActivity(goToMainMenuActivity);
+                }
+                else {
+                    //If connection established, pass in fetched results to shared prefs
+                    editor.putString("questionJSON_key", fetchedResult);
+                    editor.putBoolean("connected_key", true);
+                    editor.apply();
                     //INTENT FOR NEXT ACTIVITY (LOGIN SCREEN)
                     Intent goToLoginActivity = new Intent(ActivitySplashScreen.this, ActivityLogin.class);
                     startActivity(goToLoginActivity);
-
-                    finish(); //Close splash screen activity
                 }
+                finish(); //Close splash screen activity
+
 
             }
         }, 1000); //1 second delay
@@ -73,13 +77,12 @@ public class ActivitySplashScreen extends AppCompatActivity implements ExampleDi
     }
 
 
-    public String getAllQuestions() {
+    public boolean establishConnection() {
 
         //FETCH DATA METHOD ON GET_ALL_QUESTIONS PHP FUNCTION
-        FetchData fetchData = new FetchData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/get_all_questions.php");
+        FetchData fetchData = new FetchData(getResources().getString(R.string.getAllQuestions));
 
         if (fetchData.startFetch()) {
-            Log.i("Status", "Attempting to connect");
             if (fetchData.onComplete()) {
                 Log.i("Status", "Connected, returning data");
                 fetchedResult = fetchData.getData();
@@ -87,29 +90,14 @@ public class ActivitySplashScreen extends AppCompatActivity implements ExampleDi
                 //For testing purposes
                 Log.i("Status", String.valueOf(fetchedResult.startsWith("getAllQuestions", 2)));
 
-                if(fetchedResult.startsWith("getAllQuestions", 2)){
-                    proceed=true;
+                if(!fetchedResult.startsWith("getAllQuestions", 2)){
+                    return false;
                 }
             }
         }
-        return fetchedResult.substring(2, 17);
+        return true;
     }
 
-
-
-    @Override
-    public void applyChoice(String username) {
-        Intent intent = new Intent(getApplicationContext(), ActivityLearnToDriveMenu.class);
-        intent.putExtra("username_key", "guest");
-        startActivity(intent);
-        finish();
-    }
-
-    //OPENING DIALOG
-    public void openDialog(String username, String input, String title, String positiveButton, String negativeButton) {
-        ExampleDialog exampleDialog = new ExampleDialog(username,input,title,positiveButton,negativeButton);
-        exampleDialog.show(getSupportFragmentManager(), "example dialog");
-    }
 
 
 

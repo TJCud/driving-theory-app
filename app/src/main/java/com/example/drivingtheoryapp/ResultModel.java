@@ -1,6 +1,9 @@
 package com.example.drivingtheoryapp;
 
+import java.util.ArrayList;
+
 public class ResultModel {
+
 
 
     //DECLARING VARIABLES
@@ -8,18 +11,12 @@ public class ResultModel {
     private String username;
     private String questionsCorrect;
     private String questionsTotal;
-    private String savedQuestion;
     private String outcome;
     private String date;
-
-
-
-
-
-
+    private ArrayList<String> savedQuestion;
 
     //CONSTRUCTOR
-    public ResultModel(int ID, String username, String questionsCorrect, String questionsTotal, String outcome, String date, String savedQuestion) {
+    public ResultModel(int ID, String username, String questionsCorrect, String questionsTotal, String outcome, String date) {
         this.ID = ID;
         this.username = username;
         this.questionsCorrect = questionsCorrect;
@@ -35,7 +32,7 @@ public class ResultModel {
 
 
     //GETTERS AND SETTERS
-    public int getID(int position) {
+    public int getID() {
         return ID;
     }
     public void setID(int ID) {
@@ -74,13 +71,6 @@ public class ResultModel {
     }
     public void setDate(String date) {
         this.date = date;
-    }
-
-    public String getSavedQuestion(int savedQuestion) {
-        return this.savedQuestion;
-    }
-    public void setSavedQuestion(String savedQuestion) {
-        this.savedQuestion = savedQuestion;
     }
 
 

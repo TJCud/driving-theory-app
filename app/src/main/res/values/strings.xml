@@ -4,7 +4,7 @@
     <string name="confirmpassword">Confirm Password</string>
     <string name="email">E-mail Address</string>
     <string name="register">Complete Registration</string>
-    <string name="sign_in">SIGN IN</string>
+    <string name="log_in">Log In</string>
     <string name="question_will_display_here">Question will display here</string>
     <string name="please_select_an_answer">Please select an answer</string>
     <string name="next_question">NEXT QUESTION</string>
@@ -54,6 +54,25 @@
     <string name="fetching_results">Fetching Results...</string>
     <string name="option">OPTION</string>
     <string name="track_progress">Track Progress</string>
+    <string name="confirm_password">Confirm Password</string>
+
+
+    <!-- PHP Connection URLs -->
+    <string name="updatePasswordURL">http://tcudden01.webhosting3.eeecs.qub.ac.uk/update_password.php</string>
+    <string name="getAllQuestions">http://tcudden01.webhosting3.eeecs.qub.ac.uk/get_all_questions.php</string>
+    <string name="deleteAccount">http://tcudden01.webhosting3.eeecs.qub.ac.uk/delete_account.php</string>
+    <string name="login">http://tcudden01.webhosting3.eeecs.qub.ac.uk/login.php</string>
+    <string name="signUp">http://tcudden01.webhosting3.eeecs.qub.ac.uk/signup.php</string>
+    <string name="getAllUsers">http://tcudden01.webhosting3.eeecs.qub.ac.uk/get_all_users.php</string>
+    <string name="saveQuestion">http://tcudden01.webhosting3.eeecs.qub.ac.uk/saveQuestion.php</string>
+    <string name="getQuestionByID">http://tcudden01.webhosting3.eeecs.qub.ac.uk/getQuestionByID.php</string>
+    <string name="saveUser">http://tcudden01.webhosting3.eeecs.qub.ac.uk/saveUser.php</string>
+    <string name="getUserByID">http://tcudden01.webhosting3.eeecs.qub.ac.uk/getUserByID.php</string>
+    <string name="saveTestResults">http://tcudden01.webhosting3.eeecs.qub.ac.uk/save_test_results.php</string>
+    <string name="drivingTips">http://tcudden01.webhosting3.eeecs.qub.ac.uk/drivingtips.html</string>
+    <string name="highwayCode">https://www.gov.uk/browse/driving/highway-code-road-safety</string>
+    <string name="getResults">http://tcudden01.webhosting3.eeecs.qub.ac.uk/getresults.php</string>
+    <string name="resetPassword">http://tcudden01.webhosting3.eeecs.qub.ac.uk/phpmailersend.php</string>
 
 
     <string-array name="category_array">

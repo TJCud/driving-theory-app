@@ -70,7 +70,7 @@ public class ActivityAdminAllQuestions extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         progressBarText.setVisibility(View.VISIBLE);
 
-        FetchData fetchData = new FetchData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/get_all_questions.php");
+        FetchData fetchData = new FetchData(getResources().getString(R.string.getAllQuestions));
         if (fetchData.startFetch()) {
             if (fetchData.onComplete()) {
                 fetchedResult = fetchData.getData();

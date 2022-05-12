@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -47,16 +49,15 @@ public class ActivityFullExamResult extends AppCompatActivity {
 
 
         }
+        //IF THE EXAM TYPE IS 'FULL', CALCULATE AND SHOW SCORE
         else{
-            //CALCULATES PERCENTAGE OF CORRECT QUESTIONS
-            double passCheck = examScore * 100 / examTotalQuestions;
             //CHECKS IF PASS PERCENTAGE IS ACHIEVED AND DISPLAYS OUTCOME
-            if (passCheck > 85) {
+            if (ExamMethods.getExamOutcome(examScore, examTotalQuestions).equals("PASS")) {
                 verdictLabel.setText("Exam Passed.\n Congratulations!");
             } else {
                 verdictLabel.setText("Exam Failed.\n Please try again.");
             }
-            scoreLabel.setText(examScore + " out of " + examTotalQuestions + "\n" + "Accuracy " + passCheck + "%" + "\n" + "(86% or higher required)");
+            scoreLabel.setText(examScore + " out of " + examTotalQuestions + "\n" + "Accuracy " + ExamMethods.getScorePercentage(examScore,examTotalQuestions) + "%" + "\n" + "(86% or higher required)");
 
 
         }
@@ -67,19 +68,18 @@ public class ActivityFullExamResult extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent;
+                Intent intent; //Initialise intent
 
+                //Depending on which type of exam the user conducted, go back to full exam or practice menu
                 if(examType.equals("practice")){
                     intent = new Intent(ActivityFullExamResult.this, ActivityPracticeMenu.class);
                 }
-
                 else {
                     intent = new Intent(ActivityFullExamResult.this, ActivityFullExam.class);
                 }
-                intent.putExtra("username_key",username);
-
-                startActivity(intent);
-                finish();
+                intent.putExtra("username_key",username); //Pass username to next activity
+                startActivity(intent); //Start next activity
+                finish(); //Close current activity
             }
         });
 
@@ -125,6 +125,9 @@ public class ActivityFullExamResult extends AppCompatActivity {
         });
     }
 
+
+
+    //On back press, return to Learn to Drive activity
     @Override
     public void onBackPressed()
     {
@@ -133,11 +136,6 @@ public class ActivityFullExamResult extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
-
-
-
-
 
 
 

@@ -122,7 +122,7 @@ public class ActivityAdminEditQuestion extends AppCompatActivity {
                         data[10] = categoryIDToString;
 
 
-                        PostData postData = new PostData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/saveQuestion.php", "POST", field, data);
+                        PostData postData = new PostData(getResources().getString(R.string.saveQuestion), "POST", field, data);
 
                         if (postData.startPut()) {
                             if (postData.onComplete()) {
@@ -158,7 +158,7 @@ public class ActivityAdminEditQuestion extends AppCompatActivity {
               //  progressBar.setVisibility(View.VISIBLE);
              //   progressBarText.setVisibility(View.VISIBLE);
 
-                FetchData fetchData = new FetchData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/getquestions.php");
+                FetchData fetchData = new FetchData(getResources().getString(R.string.getAllQuestions));
                 if (fetchData.startFetch()) {
                     if (fetchData.onComplete()) {
                         fetchedResult = fetchData.getData();
@@ -222,7 +222,7 @@ public class ActivityAdminEditQuestion extends AppCompatActivity {
             data[0] = questionID;
 
 
-            PostData postData = new PostData("http://tcudden01.webhosting3.eeecs.qub.ac.uk/getQuestionByID.php", "POST", field, data);
+            PostData postData = new PostData(getResources().getString(R.string.getQuestionByID), "POST", field, data);
             if (postData.startPut()) {
                 if (postData.onComplete()) {
                     fetchedResult = postData.getData();

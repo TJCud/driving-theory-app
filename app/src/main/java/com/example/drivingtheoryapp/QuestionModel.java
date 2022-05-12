@@ -110,6 +110,13 @@ public class QuestionModel {
         this.answerNr = answerNr;
     }
 
+/*    public String getUserAnswer() {
+        return userAnswer;
+    }
+    public void setUserAnswer(String userAnswer) {
+        this.userAnswer = userAnswer;
+    }*/
+
 
 
 }
