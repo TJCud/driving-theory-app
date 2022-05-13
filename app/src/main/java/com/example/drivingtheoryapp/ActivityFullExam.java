@@ -362,8 +362,8 @@ public class ActivityFullExam extends AppCompatActivity implements DialogPositiv
             data[0] = username;
             data[1] = String.valueOf(score);
             data[2] = String.valueOf(totalQuestions);
-            data[3] = ExamMethods.getExamOutcome(score, totalQuestions);;
-            data[4] = ExamMethods.getDate();
+            data[3] = Methods.getExamOutcome(score, totalQuestions);;
+            data[4] = Methods.getDate();
             data[5] = saveQuestionListString;
 
             Log.i("Status", saveQuestionListString);

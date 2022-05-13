@@ -2,11 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ActivityLogin"
     android:background="@drawable/bg_login"
-    android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen"
     android:fitsSystemWindows="false">
 
     <!--Page Title-->
@@ -37,7 +37,7 @@
         android:id="@+id/tvUsernameWarning"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/etEmail"
+        android:layout_above="@id/etPassword"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
@@ -51,48 +51,6 @@
 
 
 
-    <!--Email Field-->
-    <EditText
-        android:id="@+id/etEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/etUsername"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="5dp"
-        android:animateLayoutChanges="true"
-        android:background="#B3ffffff"
-        android:drawableLeft="@drawable/ic_baseline_email_24"
-        android:drawablePadding="20dp"
-        android:fontFamily="@font/robotocondensedlight"
-        android:hint="@string/email"
-        android:inputType="textEmailAddress"
-        android:maxLength="100"
-        android:maxLines="1"
-        android:padding="20dp"
-        android:textColor="#000000"
-        android:textColorHint="#5c5c5c" />
-
-    <TextView
-        android:id="@+id/tvEmailWarning"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/etPassword"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="-15dp"
-        android:fontFamily="@font/robotocondensedlight"
-        android:paddingLeft="20dp"
-        android:text="Email Warning"
-        android:textColor="@color/black"
-        android:textSize="12dp"
-        android:textStyle="bold" />
-
-
-
-
 
 
     <!--Password Field-->
@@ -100,7 +58,7 @@
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/etEmail"
+        android:layout_below="@id/etUsername"
         android:layout_marginStart="10dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="10dp"
@@ -120,60 +78,20 @@
 
     <TextView
         android:id="@+id/tvPasswordWarning"
-        android:textSize="12sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/etPasswordConfirm"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="-15dp"
-        android:fontFamily="@font/robotocondensedlight"
-        android:paddingLeft="20dp"
-        android:text="Password Warning"
-        android:textColor="@color/black"
-        android:textStyle="bold" />
-
-
-
-    <!--Password Field-->
-    <EditText
-        android:id="@+id/etPasswordConfirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/etPassword"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="5dp"
-        android:animateLayoutChanges="true"
-        android:background="#B3ffffff"
-        android:drawableLeft="@drawable/ic_baseline_lock_24"
-        android:drawablePadding="20dp"
-        android:fontFamily="@font/robotocondensedlight"
-        android:hint="@string/confirmpassword"
-        android:inputType="textPassword"
-        android:maxLength="32"
-        android:maxLines="1"
-        android:padding="20dp"
-        android:textColor="@color/black"
-        android:textColorHint="#5c5c5c" />
-
-    <TextView
-        android:id="@+id/tvPasswordConfirmWarning"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/etPasswordConfirm"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="-2dp"
+        android:layout_marginTop="0dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="-15dp"
         android:fontFamily="@font/robotocondensedlight"
         android:paddingLeft="20dp"
         android:text="Password Warning"
         android:textColor="@color/black"
-        android:textSize="12dp"
+        android:textSize="12sp"
         android:textStyle="bold" />
+
 
 
     <ProgressBar
@@ -205,67 +123,165 @@
         <!--Login Button-->
 
 
-    <Button
-        android:id="@+id/signInBtn"
-        android:layout_width="200dp"
-        android:layout_height="37dp"
-        android:layout_below="@id/etPasswordConfirm"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="50dp"
-        android:background="#ffffff"
-        android:fontFamily="@font/robotocondensedlight"
-        android:text="@string/log_in"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        android:textStyle="bold" />
 
 
-    <Button
-        android:id="@+id/registerBtn"
-        android:layout_width="200dp"
-        android:layout_height="37dp"
-        android:layout_below="@id/signInBtn"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="0dp"
-        android:background="#0Dffffff"
-        android:fontFamily="@font/robotocondensedlight"
-        android:text="Sign Up"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/guestBtn"
-        android:layout_width="200dp"
-        android:layout_height="37dp"
-        android:layout_below="@id/registerBtn"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="0dp"
-        android:background="#0Dffffff"
-        android:fontFamily="@font/robotocondensedlight"
-        android:text="GUEST MODE"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/forgotPasswordBtn"
-        android:layout_width="200dp"
-        android:layout_height="37dp"
-        android:layout_below="@id/guestBtn"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="0dp"
-        android:background="#0Dffffff"
-        android:fontFamily="@font/robotocondensedlight"
-        android:text="FORGOT PASSWORD"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:textStyle="bold" />
+
+
+
+
+
+    <GridLayout
+        android:id="@+id/mainGrid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/etPassword"
+        android:alignmentMode="alignMargins"
+        android:columnCount="1"
+        android:columnOrderPreserved="false"
+        android:padding="25dp">
+
+        <!-- Row 1 -->
+
+        <!-- Column 1 -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/signInBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_vertical"
+            card_view:cardBackgroundColor="#754287f5"
+
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/robotocondensedlight"
+                    android:text="Log In"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="30dp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Column 1 -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/registerBtn"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_vertical"
+            card_view:cardBackgroundColor="#754287f5"
+
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/robotocondensedlight"
+                    android:text="Sign Up"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="25dp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Column 1 -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/guestBtn"
+            android:layout_marginEnd="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_vertical"
+            card_view:cardBackgroundColor="#754287f5"
+
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/robotocondensedlight"
+                    android:text="Guest Mode"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="25dp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/forgotPasswordBtn"
+            android:layout_marginEnd="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_vertical"
+            card_view:cardBackgroundColor="#754287f5"
+
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/robotocondensedlight"
+                    android:text="Forgot Password"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="25dp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+    </GridLayout>
 
 
 

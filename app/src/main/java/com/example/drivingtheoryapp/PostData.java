@@ -11,6 +11,16 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
+
+/*
+
+Special thanks to Vishnu Sivadas for providing this library
+
+Making HttpURLConnection easy and secure. Best method to implement httpurlconnection in android.
+
+        www.vishnusivadas.com*/
+
+
 public class PostData extends Thread {
     private String url, method;
     String result_data = "Empty";

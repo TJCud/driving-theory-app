@@ -24,6 +24,7 @@ public class ActivityChangePassword extends AppCompatActivity {
     private TextView tvPasswordConfirmWarning,tvPasswordWarning;
     private String password, passwordConfirm;
     boolean allFieldsValid;
+    String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +44,7 @@ public class ActivityChangePassword extends AppCompatActivity {
         // Getting the intent which started this activity
         Intent intent = getIntent();
         // Get the data of the activity providing the same key value
-        String username = intent.getStringExtra("username_key");
+        username = intent.getStringExtra("username_key");
 
 
         updatePasswordButton.setOnClickListener(new View.OnClickListener() {  //PROCEED TO MAIN MENU AS A GUEST USER
@@ -222,6 +223,16 @@ public class ActivityChangePassword extends AppCompatActivity {
                 return true;
         }
         return false;
+    }
+
+
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(ActivityChangePassword.this, ActivityAccountMenu.class);
+        intent.putExtra("username_key",username);
+        startActivity(intent);
+        finish();
     }
 
 }

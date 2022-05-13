@@ -191,7 +191,7 @@ public class ActivityResultsAll extends AppCompatActivity {
 
 
                     //Adding data containing an overview of the exam results to array list
-                    arrayListExamOutcome.add("Exam ID: " + ID +"\n"+date + "\n" + "Exam Score: " + questionsCorrect
+                    arrayListExamOutcome.add("Exam Date: "+date + "\n" + "Exam Score: " + questionsCorrect
                             + "/" + questionsTotal + " (" + passCheck + "%) " + "Outcome: " + outcome);
 
                     //Adding data containing each specific question and answer
@@ -306,7 +306,9 @@ public class ActivityResultsAll extends AppCompatActivity {
                 barChart.setVisibleXRangeMaximum(15);
                 barChart.getAxisRight().setAxisMinimum(0);
                 barChart.getAxisRight().setAxisMaximum(50);
-                barChart.setDrawGridBackground(true);
+                barChart.setDrawGridBackground(false);
+                barChart.setBackgroundColor(Color.TRANSPARENT);
+
 
 
 

@@ -3,7 +3,7 @@ package com.example.drivingtheoryapp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ExamMethods {
+public class Methods {
 
 
 
@@ -29,10 +29,7 @@ public class ExamMethods {
 
 
     public static double getScorePercentage(int score, int totalQuestions){
-
-
         return (double) score * 100 / totalQuestions;
-
     }
 
 

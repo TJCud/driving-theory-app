@@ -7,6 +7,18 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+
+
+
+/*
+
+Special thanks to Vishnu Sivadas for providing this library
+
+Making HttpURLConnection easy and secure. Best method to implement httpurlconnection in android.
+
+        www.vishnusivadas.com*/
+
+
 public class FetchData extends Thread {
     public String url;
     String data = "Empty";

@@ -2,12 +2,8 @@ package com.example.drivingtheoryapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,12 +48,12 @@ public class ActivityFullExamResult extends AppCompatActivity {
         //IF THE EXAM TYPE IS 'FULL', CALCULATE AND SHOW SCORE
         else{
             //CHECKS IF PASS PERCENTAGE IS ACHIEVED AND DISPLAYS OUTCOME
-            if (ExamMethods.getExamOutcome(examScore, examTotalQuestions).equals("PASS")) {
+            if (Methods.getExamOutcome(examScore, examTotalQuestions).equals("PASS")) {
                 verdictLabel.setText("Exam Passed.\n Congratulations!");
             } else {
                 verdictLabel.setText("Exam Failed.\n Please try again.");
             }
-            scoreLabel.setText(examScore + " out of " + examTotalQuestions + "\n" + "Accuracy " + ExamMethods.getScorePercentage(examScore,examTotalQuestions) + "%" + "\n" + "(86% or higher required)");
+            scoreLabel.setText(examScore + " out of " + examTotalQuestions + "\n" + "Accuracy " + Methods.getScorePercentage(examScore,examTotalQuestions) + "%" + "\n" + "(86% or higher required)");
 
 
         }

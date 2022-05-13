@@ -72,7 +72,7 @@
     <string name="drivingTips">http://tcudden01.webhosting3.eeecs.qub.ac.uk/drivingtips.html</string>
     <string name="highwayCode">https://www.gov.uk/browse/driving/highway-code-road-safety</string>
     <string name="getResults">http://tcudden01.webhosting3.eeecs.qub.ac.uk/getresults.php</string>
-    <string name="resetPassword">http://tcudden01.webhosting3.eeecs.qub.ac.uk/phpmailersend.php</string>
+    <string name="resetPassword">http://tcudden01.webhosting3.eeecs.qub.ac.uk/phpmailersend.php</string>s
 
 
     <string-array name="category_array">

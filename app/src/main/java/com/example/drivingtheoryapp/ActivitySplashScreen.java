@@ -17,7 +17,6 @@ public class ActivitySplashScreen extends AppCompatActivity {
     private String fetchedResult;
     public static final String SHARED_PREFS = "sharedPrefs";
     Handler splashDelayHandler = new Handler();
-    Boolean connected=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +76,8 @@ public class ActivitySplashScreen extends AppCompatActivity {
     }
 
 
+
+    //Attempt to establish connection to retrieve questions
     public boolean establishConnection() {
 
         //FETCH DATA METHOD ON GET_ALL_QUESTIONS PHP FUNCTION
